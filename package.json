@@ -1,0 +1,28 @@
+{
+  "name": "gatsby-theme-dualdocs",
+  "description": "Gatsby theme for presentation/documentation",
+  "author": "David Deprost",
+  "version": "0.0.1",
+  "main": "index.js",
+  "keywords": [
+    "gatsby-theme"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "gatsby": "^2.3.32",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.3.32",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "dependencies": {
+    "gatsby-plugin-compile-es6-packages": "^1.1.0",
+    "gatsby-plugin-page-creator": "^2.0.12"
+  }
+}
