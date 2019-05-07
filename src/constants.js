@@ -1,30 +1,52 @@
 /* eslint-disable */
-import { faBars, faWrench } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faWrench } from '@fortawesome/free-solid-svg-icons';
+import { lighten, darken, adjustHue } from "polished";
 
 
-export const colors = {
-  leftSidebarBg: 'orange',
-  rightSidebarBg: 'violet',
-  sidebarFont: '#7d4444',
-  sidebarHover: '#f1f1f1',
+export const global = {
+  color: {
+    background: 'rgb(255, 255, 197, 0.9)',
+    font: 'rgb(200, 0, 100, 0.8)',
+  },
+}
 
-  bodyBg: '#fffecc', //'#feffc5', //'#faf1d7', // 'rgb(230, 240, 255)', //
-  bodyFont: 'rgb(200, 0, 100, 0.8)', //'rgb(250, 0, 50)',
-
-  headerBg: 'rgb(0, 34, 46)',
-  headerFont: 'rgb(82, 38, 228)', // '#830602',
+export const header = {
+  color: {
+    leftGradient: 'orange',
+    rightGradient: 'violet',
+    font: 'rgb(82, 38, 228)',
+  },
 }
 
 export const sideStrip = {
   left: {
-    width: 1, // in rem!
+    width: 0.5, // in rem!
     icon: faBars,
-    z: 6, // z-index
+    color: {
+      background: adjustHue(-15, header.color.leftGradient), // dark orange
+      backgroundHover: darken(0.15, adjustHue(-15, header.color.leftGradient)), // darker orange
+      icon: header.color.font,
+      iconHover: '#f1f1f1',
+      // border: header.color.font,
+      // borderHover: lighten(0.15, header.color.font),
+      border: lighten(0.15, header.color.font),
+      borderHover: header.color.font,
+    },
   },
+
   right: {
-    width: 1, // in rem!
+    width: 0.5, // in rem!
     icon: faWrench,
-    z: 5, // z-index
+    color: {
+      background: darken(0.2, header.color.rightGradient), // dark violet
+      backgroundHover: darken(0.35, header.color.rightGradient), // darker violet
+      icon: header.color.font,
+      iconHover: '#f1f1f1',
+      // border: header.color.font,
+      // borderHover: lighten(0.15, header.color.font),
+      border: lighten(0.15, header.color.font),
+      borderHover: header.color.font,
+    },
   }
 }
 

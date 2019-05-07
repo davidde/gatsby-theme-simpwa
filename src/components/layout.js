@@ -1,8 +1,7 @@
 import React from "react"
 import { Global, css } from "@emotion/core"
-import { colors, sideStrip } from "../constants"
+import { global, header, sideStrip } from "../constants"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { lighten } from "polished";
 
 
 function Header() {
@@ -11,7 +10,7 @@ function Header() {
           position: sticky;
           height: 4rem;
           top: 0;
-          background: linear-gradient(to right, ${colors.leftSidebarBg}, ${colors.rightSidebarBg});
+          background: linear-gradient(to right, ${header.color.leftGradient}, ${header.color.rightGradient});
           box-shadow: 0px 0px 10px;
 
     `}>
@@ -20,9 +19,11 @@ function Header() {
           position: fixed;
           height: inherit;
           top: inherit;
-          left: 4rem;
-          right: 4rem;
-          color: ${colors.headerFont};
+          left: 3.6rem;
+          right: 3.6rem;
+          background: linear-gradient(to right, ${header.color.leftGradient}, ${header.color.rightGradient});
+          
+          color: ${header.color.font};
           display: flex;
           justify-content: center;
           align-items: center;
@@ -37,40 +38,57 @@ function Header() {
 }
 
 function SideStrip(props) {
-  let bgColor = props.whichSide === 'left' ? colors.leftSidebarBg : colors.rightSidebarBg;
   let width = props.whichSide === 'left' ? sideStrip.left.width : sideStrip.right.width;
-  let gradient = props.whichSide === 'left' ?
-                `linear-gradient(${colors.leftSidebarBg}, ${colors.rightSidebarBg})`:
-                `linear-gradient(${colors.rightSidebarBg}, ${colors.leftSidebarBg})`;
   let icon = props.whichSide === 'left' ? sideStrip.left.icon : sideStrip.right.icon;
-  let z = props.whichSide === 'left' ? sideStrip.left.z : sideStrip.right.z;
+
+  let backgroundColor = props.whichSide === 'left' ?
+        sideStrip.left.color.background : sideStrip.right.color.background;
+  let backgroundHoverColor = props.whichSide === 'left' ?
+        sideStrip.left.color.backgroundHover : sideStrip.right.color.backgroundHover;
+  let iconColor = props.whichSide === 'left' ?
+        sideStrip.left.color.icon : sideStrip.right.color.icon;
+  let iconHoverColor = props.whichSide === 'left' ?
+        sideStrip.left.color.iconHover : sideStrip.right.color.iconHover;
+  let borderColor = props.whichSide === 'left' ?
+        sideStrip.left.color.border : sideStrip.right.color.border;
+  let borderHoverColor = props.whichSide === 'left' ?
+        sideStrip.left.color.borderHover : sideStrip.right.color.borderHover;
+
   let iconId = 'icon-' + props.whichSide;
+  let squareId = 'square-' + props.whichSide;
+  let stripId = 'strip-' + props.whichSide;
 
   return (
     <div css={css`
             &:hover {
               cursor: pointer;
-              /* Messy due to CSS limitations: cannot elegantly target element B when hoovering element A.
-                 => gradient is lost!
-              */
-              > div {
-                background: ${lighten(0.1, bgColor)};
+              /* Messy due to CSS limitations: cannot elegantly target element B when hoovering element A. */
+              ${'#' + stripId} {
+                background: ${backgroundHoverColor};
+                box-shadow: 0px 2px 0px 2px ${borderHoverColor};
+              }
+              ${'#' + squareId} {
+                background: ${backgroundHoverColor};
+                box-shadow: none;
+                border: 2px solid ${borderHoverColor};
+                ${'border-' + props.whichSide}: 0;
               }
               ${'#' + iconId} {
-                color: ${colors.sidebarHover};
+                color: ${iconHoverColor};
               }
             }
     `}>
       {/* Square icon div: */}
-      <div css={css`
-          position: fixed;
-          top: 0;
-          ${props.whichSide}: 0;
-          min-height: 2rem;
-          min-width: 2rem;
-          border: 2px solid ${colors.headerFont};
-          ${'border-' + props.whichSide}: 0;
-          background: ${bgColor};
+      <div id={squareId}
+          css={css`
+            position: fixed;
+            top: 0;
+            ${props.whichSide}: 0;
+            min-height: 2rem;
+            min-width: 2rem;
+            border: 2px solid ${borderColor};
+            ${'border-' + props.whichSide}: 0;
+            background: ${backgroundColor};
       `}>
           <FontAwesomeIcon
             id={iconId}
@@ -78,55 +96,59 @@ function SideStrip(props) {
             css={css`
               font-size: 1.75rem;
               margin: 1rem;
-              color: ${colors.headerFont};
-              z-index: ${z};
+              color: ${iconColor};
+              z-index: 10;
               
           `}/>
       </div>
 
       {/* Small strip below icon to the side of the screen: */}
-      <div css={css`
+      <div id={stripId}
+          css={css`
             position: fixed;
+            top: 3.9rem;
             ${props.whichSide}: 0;
             height: 100%;
-            box-shadow: 0px 2px 0px 2px ${colors.headerFont};
             width: ${width}rem;
-            background: ${gradient};
+            background: ${backgroundColor};
+            box-shadow: 0px 2px 0px 2px ${borderColor};
       `}/>
     </div>
   )
 }
 
-export default ({ children }) => (
-  <div>
-      <Global
-        styles={css`
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
-          body {
-            min-height: 100vh;
-            max-width: 100vw;
-            background-color: ${colors.bodyBg};
-            /* Ensure no horizontal scroll bars appear: */
-            overflow-x: hidden;
-          }
-        `}
-      />
+export default ({ children }) => {
+  return (
+    <div>
+        <Global
+          styles={css`
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            body {
+              min-height: 100vh;
+              max-width: 100vw;
+              background-color: ${global.color.background};
+              /* Ensure no horizontal scroll bars appear: */
+              overflow-x: hidden;
+            }
+          `}
+        />
 
-      <Header />
-      <SideStrip whichSide='left' />
-      <SideStrip whichSide='right' />
-      <br/>
+        <Header />
+        <SideStrip whichSide='right' />
+        <SideStrip whichSide='left' />
+        <br/>
 
-      <div css={css`
-            padding-left: ${5 * sideStrip.left.width}rem;
-            padding-right: ${5 * sideStrip.right.width}rem;
-            color: ${colors.bodyFont};
-      `}>
-        {children}
-      </div>
-  </div>
-)
+        <div css={css`
+              padding-left: ${10 * sideStrip.left.width}rem;
+              padding-right: ${10 * sideStrip.right.width}rem;
+              color: ${global.color.font};
+        `}>
+          {children}
+        </div>
+    </div>
+  )
+}
