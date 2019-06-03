@@ -2,13 +2,14 @@ import React from "react"
 import { css } from "@emotion/core"
 import { sidebar } from "../constants"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Hoverbar from "./hoverbar";
+import Hoverbar from "./hoverbar"
 
 
 function Sidebar(props) {
   let width = props.whichSide === 'left' ? sidebar.left.width : sidebar.right.width;
   let icon = props.whichSide === 'left' ? sidebar.left.icon : sidebar.right.icon;
-
+  let otherSide = props.whichSide === 'left' ? 'right' : 'left';
+  
   let backgroundColor = props.whichSide === 'left' ?
         sidebar.left.color.background : sidebar.right.color.background;
   let backgroundHoverColor = props.whichSide === 'left' ?
@@ -30,24 +31,34 @@ function Sidebar(props) {
     <div onClick={props.onClick}
           css={css`
             grid-area: ${props.whichSide + 'side'};
-            
+            height: 100%;
+            width: 30vw;
     `}>
       <Hoverbar whichSide={props.whichSide} />
 
       {/* Content of the sidebar: */}
       <div css={css`
-            height: 100%;
-            width: 30vw;
-            z-index: 5;
+            height: 100vh;
+            width: inherit;
+            /* z-index: 5; */
             background: ${backgroundColor};
-            box-shadow: 0px 2px 0px 2px ${borderColor};
+            ${'border-' + otherSide + ': 2px solid ' + borderColor};
+            /* box-shadow: 0px 2px 0px 2px ${borderColor}; */
             overflow: hidden;
             position: fixed;
             top: 0;
-            cursor: auto;
-            ${props.whichSide}: 0;
+            /* ${props.whichSide}: 0; */
 
-      `}/>
+      `}>
+        <div css={css`
+            height: 4rem;
+            border-bottom: 2px solid ${borderColor};
+            /* position: fixed;top: 0;overflow: hidden; */
+
+        `}>
+          
+        </div>
+      </div>
     </div>
   )
 }

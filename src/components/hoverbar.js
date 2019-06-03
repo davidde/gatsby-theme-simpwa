@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function Hoverbar(props) {
   let width = props.whichSide === 'left' ? sidebar.left.width : sidebar.right.width;
   let icon = props.whichSide === 'left' ? sidebar.left.icon : sidebar.right.icon;
+  let otherSide = props.whichSide === 'left' ? 'right' : 'left';
 
   let backgroundColor = props.whichSide === 'left' ?
         sidebar.left.color.background : sidebar.right.color.background;
@@ -57,8 +58,8 @@ function Hoverbar(props) {
             height: 4rem;
             width: 4rem;
             text-align: center;
-            border: 2px solid ${borderColor};
-            ${'border-' + props.whichSide}: 0;
+            border-bottom: 2px solid ${borderColor};
+            ${'border-' + otherSide + ': 2px solid ' + borderColor};
             background: ${backgroundColor};
             z-index: 10;
       `}>
@@ -76,9 +77,9 @@ function Hoverbar(props) {
       {/* Small strip below icon to the side of the screen: */}
       <div id={stripId}
           css={css`
-            position: fixed;
-            top: 3.9rem;
-            ${props.whichSide}: 0;
+            /* position: fixed;
+            top: 3.9rem; */
+            /* ${props.whichSide}: 0; */
             height: 100%;
             width: ${width}rem;
             background: ${backgroundColor};

@@ -10,15 +10,18 @@ function Header(props) {
           position: sticky;
           height: 4rem;
           top: 0;
-          box-shadow: 0px 0px 10px;
+          /* box-shadow: 0px 3px 10px ${header.color.font}; */
+          border-bottom: 2px solid ${header.color.font};
+          /* border-top: 0; */
     `}>
 
       <h1 css={css`
-          position: fixed;
+          /* position: fixed;
           height: inherit;
           top: inherit;
           left: 4rem;
-          right: 4rem;
+          right: 4rem; */
+          height: 100%;
           padding-left: 1rem;
           background: linear-gradient(to right, ${header.color.leftGradient}, ${header.color.rightGradient});
           color: ${header.color.font};
