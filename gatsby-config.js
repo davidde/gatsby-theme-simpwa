@@ -12,7 +12,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-compile-es6-packages",
       options: {
-        modules: ["gatsby-theme-dualdocs"],
+        modules: ["gatsby-theme-dualside"],
       },
     },
   ],
