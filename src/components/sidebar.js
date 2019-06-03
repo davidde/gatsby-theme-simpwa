@@ -2,6 +2,7 @@ import React from "react"
 import { css } from "@emotion/core"
 import { sidebar } from "../constants"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Hoverbar from "./hoverbar";
 
 
 function Sidebar(props) {
@@ -26,59 +27,26 @@ function Sidebar(props) {
   let stripId = 'strip-' + props.whichSide;
 
   return (
-    <div css={css`
-            &:hover {
-              cursor: pointer;
-              /* Messy due to CSS limitations: cannot elegantly target element B when hovering element A. */
-              ${'#' + stripId} {
-                background: ${backgroundHoverColor};
-                box-shadow: 0px 2px 0px 2px ${borderHoverColor};
-              }
-              ${'#' + squareId} {
-                background: ${backgroundHoverColor};
-                box-shadow: none;
-                border: 2px solid ${borderHoverColor};
-                ${'border-' + props.whichSide}: 0;
-              }
-              ${'#' + iconId} {
-                color: ${iconHoverColor};
-              }
-            }
+    <div onClick={props.onClick}
+          css={css`
+            grid-area: ${props.whichSide + 'side'};
+            
     `}>
-      {/* Square icon div: */}
-      <div id={squareId}
-          css={css`
-            position: fixed;
-            top: 0;
-            ${props.whichSide}: 0;
-            min-height: 2rem;
-            min-width: 2rem;
-            border: 2px solid ${borderColor};
-            ${'border-' + props.whichSide}: 0;
-            background: ${backgroundColor};
-      `}>
-          <FontAwesomeIcon
-            id={iconId}
-            icon={icon}
-            css={css`
-              font-size: 1.75rem;
-              margin: 1rem;
-              color: ${iconColor};
-              z-index: 10;
-              
-          `}/>
-      </div>
+      <Hoverbar whichSide={props.whichSide} />
 
-      {/* Small strip below icon to the side of the screen: */}
-      <div id={stripId}
-          css={css`
-            position: fixed;
-            top: 3.9rem;
-            ${props.whichSide}: 0;
+      {/* Content of the sidebar: */}
+      <div css={css`
             height: 100%;
-            width: ${width}rem;
+            width: 30vw;
+            z-index: 5;
             background: ${backgroundColor};
             box-shadow: 0px 2px 0px 2px ${borderColor};
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            cursor: auto;
+            ${props.whichSide}: 0;
+
       `}/>
     </div>
   )

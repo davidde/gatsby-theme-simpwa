@@ -6,10 +6,10 @@ import { header } from "../constants"
 function Header(props) {
   return (
     <div css={css`
+          grid-area: header;
           position: sticky;
           height: 4rem;
           top: 0;
-          background: ${header.color.leftGradient};
           box-shadow: 0px 0px 10px;
     `}>
 
@@ -17,8 +17,9 @@ function Header(props) {
           position: fixed;
           height: inherit;
           top: inherit;
-          left: 4.6rem;
-          right: 3.6rem;
+          left: 4rem;
+          right: 4rem;
+          padding-left: 1rem;
           background: linear-gradient(to right, ${header.color.leftGradient}, ${header.color.rightGradient});
           color: ${header.color.font};
           display: flex;

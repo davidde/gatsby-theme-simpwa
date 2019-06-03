@@ -8,7 +8,13 @@ import Sidebar from './sidebar'
 
 export default ({ children }) => {
   return (
-    <div>
+    <div css={css`
+          display: grid;
+          grid-template-columns: min-content 1fr;
+          grid-template-rows: minmax(min-content, max-content) 1fr;
+          grid-template-areas: 'leftside header rightside'
+                              'leftside content rightside';
+    `}>
         <Global
           styles={css`
             * {
@@ -32,6 +38,8 @@ export default ({ children }) => {
         <br/>
 
         <div css={css`
+              grid-area: content;
+              
               padding-left: 10vw;
               padding-right: 10vw;
               color: ${global.color.font};
