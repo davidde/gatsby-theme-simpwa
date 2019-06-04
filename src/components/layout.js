@@ -21,6 +21,7 @@ export default ({ children }) => {
               margin: 0;
               padding: 0;
               box-sizing: border-box;
+              /* border: 3px solid red; */
             }
             body {
               min-height: 100vh;
@@ -41,7 +42,7 @@ export default ({ children }) => {
         <div css={css`
               grid-area: content;
               height: calc(100vh - 4rem);
-              width: calc(100vw - 0.6rem);
+              width: 100%;
               overflow-y: scroll;
               padding-left: 10vw;
               padding-right: 10vw;

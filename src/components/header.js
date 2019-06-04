@@ -1,6 +1,6 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { header } from "../constants"
+import { header, sidebar } from "../constants"
 
 
 function Header(props) {
@@ -11,7 +11,7 @@ function Header(props) {
           height: 4rem;
           top: 0;
           /* box-shadow: 0px 3px 10px ${header.color.font}; */
-          border-bottom: 2px solid ${header.color.font};
+          border-bottom: 2px solid ${sidebar.left.color.border};
           /* border-top: 0; */
     `}>
 

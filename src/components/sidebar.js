@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    let width = this.props.whichSide === 'left' ? sidebar.left.width : sidebar.right.width;
+    let widthStr = this.props.whichSide === 'left' ? sidebar.left.width + 'rem' : sidebar.right.width + 'rem';
     let icon = this.props.whichSide === 'left' ? sidebar.left.icon : sidebar.right.icon;
     let otherSide = this.props.whichSide === 'left' ? 'right' : 'left';
     let transitionDuration = this.props.whichSide === 'left' ? sidebar.left.duration : sidebar.right.duration;
@@ -47,9 +47,14 @@ class Sidebar extends React.Component {
       <div css={css`
               grid-area: ${this.props.whichSide + 'side'};
               height: 100%;
-              width: ${this.state.isActive ? '30vw' : width };
+              width: ${this.state.isActive ? '30vw' : widthStr };
+              /* width: 30vw; */
+              ${this.props.whichSide}:
+                ${this.state.isActive ? 0 : '-90vw' };
+              transition: ${this.props.whichSide} 0.7s, width 0.7s;
+              /* cubic-bezier(0.7, 0.1, 0.4, 1); */
       `}>
-        <Hoverbar whichSide={this.props.whichSide} onClick={this.toggleSidebar} />
+        <Hoverbar whichSide={this.props.whichSide} onClick={this.toggleSidebar} isActive={this.state.isActive} />
 
         {/* Content of the sidebar: */}
         <div css={css`
@@ -59,14 +64,11 @@ class Sidebar extends React.Component {
               background: ${backgroundColor};
               ${'border-' + otherSide + ': 2px solid ' + borderColor};
               /* box-shadow: 0px 2px 0px 2px ${borderColor}; */
-              overflow: hidden;
+              /* overflow: hidden; */
               position: fixed;
               top: 0;
               
-              ${this.props.whichSide}:
-                ${this.state.isActive ? 0 : '-90vw' };
-              transition: ${this.props.whichSide} 0.7s;
-              /* cubic-bezier(0.7, 0.1, 0.4, 1); */
+              
 
         `}>
           <div css={css`
