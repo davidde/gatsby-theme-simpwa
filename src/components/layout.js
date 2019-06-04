@@ -27,7 +27,7 @@ export default ({ children }) => {
               max-width: 100vw;
               background-color: ${global.color.background};
               /* Ensure no horizontal scroll bars appear: */
-              overflow-x: hidden;
+              overflow: hidden;
             }
           `}
         />
@@ -37,9 +37,12 @@ export default ({ children }) => {
         <Sidebar whichSide='left' />
         <br/>
 
+        {/* User content goes in the 'content' grid-area: */}
         <div css={css`
               grid-area: content;
-              
+              height: calc(100vh - 4rem);
+              width: calc(100vw - 0.6rem);
+              overflow-y: scroll;
               padding-left: 10vw;
               padding-right: 10vw;
               color: ${global.color.font};

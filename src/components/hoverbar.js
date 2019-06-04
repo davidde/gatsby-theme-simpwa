@@ -3,7 +3,7 @@ import { css } from "@emotion/core"
 import { sidebar } from "../constants"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
+/// Represents the inactive, hoverable sidebar
 function Hoverbar(props) {
   let width = props.whichSide === 'left' ? sidebar.left.width : sidebar.right.width;
   let icon = props.whichSide === 'left' ? sidebar.left.icon : sidebar.right.icon;
@@ -34,7 +34,8 @@ function Hoverbar(props) {
               /* Messy due to CSS limitations: cannot elegantly target element B when hovering element A. */
               ${'#' + stripId} {
                 background: ${backgroundHoverColor};
-                box-shadow: 0px 2px 0px 2px ${borderHoverColor};
+                ${'border-' + otherSide + ': 2px solid ' + borderHoverColor};
+                /* box-shadow: 0px 2px 0px 2px ${borderHoverColor}; */
               }
               ${'#' + squareId} {
                 background: ${backgroundHoverColor};
@@ -77,13 +78,14 @@ function Hoverbar(props) {
       {/* Small strip below icon to the side of the screen: */}
       <div id={stripId}
           css={css`
-            /* position: fixed;
-            top: 3.9rem; */
-            /* ${props.whichSide}: 0; */
+            position: fixed;
+            top: 3.9rem;
+            ${props.whichSide}: 0;
             height: 100%;
             width: ${width}rem;
             background: ${backgroundColor};
-            box-shadow: 0px 2px 0px 2px ${borderColor};
+            ${'border-' + otherSide + ': 2px solid ' + borderColor};
+            /* box-shadow: 0px 2px 0px 2px ${borderColor}; */
       `}/>
 
     </div>
