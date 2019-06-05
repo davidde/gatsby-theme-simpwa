@@ -11,6 +11,7 @@ function Header(props) {
           height: 4rem;
           top: 0;
           border-bottom: 2px solid ${sidebar.left.color.border};
+          box-shadow: 0 3px 10px 0 #666;
     `}>
 
       <h1 css={css`
