@@ -35,14 +35,10 @@ function Hoverbar(props) {
               ${'#' + stripId} {
                 background: ${backgroundHoverColor};
                 ${'border-' + otherSide + ': 2px solid ' + borderHoverColor};
-                /* box-shadow: 0px 2px 0px 2px ${borderHoverColor}; */
               }
               ${'#' + squareId} {
                 background: ${backgroundHoverColor};
                 ${'border-' + otherSide + ': 2px solid ' + borderHoverColor};
-                /* box-shadow: none;
-                border: 2px solid ${borderHoverColor};
-                ${'border-' + props.whichSide}: 0; */
               }
               ${'#' + iconId} {
                 color: ${iconHoverColor};
@@ -55,8 +51,6 @@ function Hoverbar(props) {
             position: fixed;
             top: 0;
             ${props.whichSide}: 0;
-            /* min-height: 2rem;
-            min-width: 2rem; */
             height: 4rem;
             width: 4rem;
             text-align: center;
@@ -72,14 +66,12 @@ function Hoverbar(props) {
               font-size: 1.75rem;
               margin: 1rem;
               color: ${iconColor};
-              
           `}/>
       </div>
 
       {/* Small strip below icon to the side of the screen: */}
       <div id={stripId}
           css={css`
-            /* border: 1rem solid red; */
             position: fixed;
             top: 3.9rem;
             ${props.whichSide}: 0;
@@ -90,7 +82,6 @@ function Hoverbar(props) {
             z-index: ${props.isActive ? 0 : 10 };
             transition-property: z-index;
             transition-delay: ${props.isActive ? '0s' : '0.7s' };
-            /* box-shadow: 0px 2px 0px 2px ${borderColor}; */
       `}/>
 
     </div>

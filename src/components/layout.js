@@ -34,8 +34,8 @@ export default ({ children }) => {
         />
 
         <Header title='gatsby-theme-dualside' />
-        <Sidebar whichSide='right' />
-        <Sidebar whichSide='left' />
+        <Sidebar whichSide='right' title='Home' />
+        <Sidebar whichSide='left' title='Contents' />
         <br/>
 
         {/* User content goes in the 'content' grid-area: */}
@@ -44,8 +44,14 @@ export default ({ children }) => {
               height: calc(100vh - 4rem);
               width: 100%;
               overflow-y: scroll;
-              padding-left: 10vw;
-              padding-right: 10vw;
+              /* Remove scrollbar space: */
+              scrollbar-width: none; /* Firefox */
+              -ms-overflow-style: none; /* IE 10+ */
+              ::-webkit-scrollbar {
+                  width: 0px; /* Webkit */
+              }
+              padding-left: 10%;
+              padding-right: 10%;
               color: ${global.color.font};
         `}>
           {children}
