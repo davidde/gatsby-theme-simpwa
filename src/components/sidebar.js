@@ -26,10 +26,13 @@ class Sidebar extends React.Component {
 
     return (
       <div css={css`
-              grid-area: ${this.props.whichSide + 'side'};
+              /* grid-area: ${this.props.whichSide + 'side'}; */
+              display: inline-block;
               height: 100%;
               width: ${this.state.isActive ? '30vw' : widthStr };
               transition: width 0.5s;
+              position: fixed;
+              ${this.props.whichSide}: 0;
               /* ${this.props.whichSide}:
                 ${this.state.isActive ? 0 : '-100vw' }; */
               /* transition: ${this.props.whichSide} 0.7s, width 0.7s; */

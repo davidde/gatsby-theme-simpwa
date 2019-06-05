@@ -9,11 +9,11 @@ import Sidebar from './sidebar'
 export default ({ children }) => {
   return (
     <div css={css`
-          display: grid;
+          /* display: grid;
           grid-template-columns: min-content 1fr;
           grid-template-rows: minmax(min-content, max-content) 1fr;
           grid-template-areas: 'leftside header rightside'
-                              'leftside content rightside';
+                              'leftside content rightside'; */
     `}>
         <Global
           styles={css`
@@ -40,7 +40,8 @@ export default ({ children }) => {
 
         {/* User content goes in the 'content' grid-area: */}
         <div css={css`
-              grid-area: content;
+              /* grid-area: content; */
+              display: inline-block;
               height: calc(100vh - 4rem);
               width: 100%;
               overflow-y: scroll;

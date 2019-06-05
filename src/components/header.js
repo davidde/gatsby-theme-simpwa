@@ -6,9 +6,11 @@ import { header, sidebar } from "../constants"
 function Header(props) {
   return (
     <div css={css`
-          grid-area: header;
+          /* grid-area: header; */
+          display: inline-block;
           position: sticky;
           height: 4rem;
+          width: 100%;
           top: 0;
           border-bottom: 2px solid ${sidebar.left.color.border};
     `}>
