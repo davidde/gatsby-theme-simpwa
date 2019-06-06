@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import { lighten, darken, adjustHue } from "polished";
-
+// CSS equivalents: filter: brightness(150%); filter: brightness(50%); filter: hue-rotate(-15deg);
 
 export const global = {
   color: {
@@ -11,6 +11,7 @@ export const global = {
 }
 
 export const header = {
+  height: 4, // in rem!
   color: {
     leftGradient: 'orange',
     rightGradient: 'violet',
@@ -24,8 +25,10 @@ export const sidebar = {
     icon: faBars,
     transitionDuration: '0.5s',
     color: {
-      background: adjustHue(-15, header.color.leftGradient), // dark orange
-      backgroundHover: darken(0.12, adjustHue(-15, header.color.leftGradient)), // darker orange
+      // To log these colors in console, e.g.:
+      // getComputedStyle(document.querySelector("#square-left")).background;
+      background: adjustHue(-15, header.color.leftGradient), // dark orange: rgb(255, 101, 0)
+      backgroundHover: darken(0.12, adjustHue(-15, header.color.leftGradient)), // darker orange: rgb(194, 77, 0)
       icon: header.color.font,
       iconHover: '#f1f1f1',
       // border: header.color.font,
@@ -40,8 +43,8 @@ export const sidebar = {
     icon: faHome,
     transitionDuration: '0.5s',
     color: {
-      background: darken(0.2, header.color.rightGradient), // dark violet
-      backgroundHover: darken(0.35, header.color.rightGradient), // darker violet
+      background: darken(0.2, header.color.rightGradient), // dark violet: rgb(226, 40, 226)
+      backgroundHover: darken(0.35, header.color.rightGradient), // darker violet: rgb(167, 23, 167)
       icon: header.color.font,
       iconHover: '#f1f1f1',
       // border: header.color.font,

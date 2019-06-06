@@ -1,7 +1,7 @@
 import React from "react"
 import { Global, css } from "@emotion/core"
 import { global } from "../constants"
-
+import './theme.css';
 
 export default ({ children }) => {
   return (
@@ -23,9 +23,10 @@ export default ({ children }) => {
             body {
               min-height: 100vh;
               max-width: 100vw;
-              background-color: ${global.color.background};
+              background-color: var(--bg);
               /* Disable scrolling on body: */
               overflow: hidden;
+              font-family: "Open Sans", sans-serif;
             }
           `}
         />
