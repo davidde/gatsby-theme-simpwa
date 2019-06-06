@@ -25,13 +25,16 @@ class Sidebar extends React.Component {
           sidebar.left.color.border : sidebar.right.color.border;
 
     let shadow = this.props.whichSide === 'left' ? '6px 0 15px 0 #888' : '-6px 0 15px 0 #888';
+    let startHeader = this.props.whichSide === 'left' ? '4rem' : '0';
+    let transitionDuration = this.props.whichSide === 'left' ?
+          sidebar.left.transitionDuration : sidebar.right.transitionDuration;
 
     return (
       <div css={css`
               grid-area: ${this.props.whichSide + 'side'};
               height: 100%;
               width: ${this.state.isActive ? '30vw' : widthStr };
-              transition: width 0.5s;
+              transition: width ${transitionDuration};
               box-shadow: ${shadow};
               /* ${this.props.whichSide}:
                 ${this.state.isActive ? 0 : '-100vw' }; */
@@ -39,9 +42,8 @@ class Sidebar extends React.Component {
       `}>
         <Hoverbar whichSide={this.props.whichSide} onClick={this.toggleSidebar} isActive={this.state.isActive} />
 
-        {/* Content of the sidebar: */}
         <div css={css`
-              height: 100vh;
+              height: inherit;
               width: inherit;
               background: ${backgroundColor};
               ${'border-' + otherSide + ': 2px solid ' + borderColor};
@@ -50,7 +52,10 @@ class Sidebar extends React.Component {
         `}>
           {/* Header of the sidebar: */}
           <div css={css`
+              position: relative;
+              left: ${startHeader};
               height: 4rem;
+              width: calc(100% - 4rem);
               border-bottom: 2px solid ${borderColor};
           `}>
             <h1 css={css`
@@ -63,6 +68,15 @@ class Sidebar extends React.Component {
             `}>
               {this.props.title}
             </h1>
+          </div>
+
+          {/* Content of the sidebar: */}
+          <div css={css`
+                height: calc(100vh - 4rem);
+                overflow-y: auto;
+                padding: 1rem;
+          `}>
+            {this.props.children}
           </div>
         </div>
       </div>

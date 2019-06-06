@@ -10,7 +10,7 @@ export default ({ children }) => {
           grid-area: content;
           height: calc(100vh - 4rem);
           width: 100%;
-          overflow-y: scroll;
+          overflow-y: auto;
           padding: 2rem 10% 3rem;
           color: ${global.color.font};
     `}>
