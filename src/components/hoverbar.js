@@ -29,6 +29,9 @@ function Hoverbar(props) {
   let squareId = 'square-' + props.whichSide;
   let stripId = 'strip-' + props.whichSide;
 
+  let transitionDelay = props.whichSide === 'left' ?
+          sidebar.left.transitionDuration : sidebar.right.transitionDuration;
+
   return (
     <div onClick={props.onClick}
           css={css`
@@ -53,6 +56,7 @@ function Hoverbar(props) {
       <div id={squareId}
           css={css`
             position: fixed;
+            z-index: 10;
             top: 0;
             ${props.whichSide}: 0;
             height: 4rem;
@@ -61,7 +65,6 @@ function Hoverbar(props) {
             border-bottom: 2px solid ${borderColor};
             ${'border-' + otherSide + ': 2px solid ' + borderColor};
             background: ${backgroundColor};
-            z-index: 10;
       `}>
           <FontAwesomeIcon
             id={iconId}
@@ -77,15 +80,16 @@ function Hoverbar(props) {
       <div id={stripId}
           css={css`
             position: fixed;
+            z-index: 10;
             top: 3.9rem;
             ${props.whichSide}: 0;
             height: 100%;
             width: ${width}rem;
             background: ${backgroundColor};
             ${'border-' + otherSide + ': 2px solid ' + borderColor};
-            z-index: ${props.isActive ? 0 : 15 };
-            transition-property: z-index;
-            transition-delay: ${props.isActive ? '0s' : '0.7s' };
+            opacity: ${props.isActive ? 0 : 1 };
+            transition-property: opacity;
+            transition-delay: ${props.isActive ? '0s' : transitionDelay };
             box-shadow: ${shadow};
       `}/>
 
