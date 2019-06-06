@@ -1,9 +1,13 @@
 import React from "react"
 import { Global, css } from "@emotion/core"
-import { global } from "../constants"
-import './theme.css';
 
-export default ({ children }) => {
+
+export default ({ theme, children }) => {
+  if (!theme) {
+    theme = 'joy';
+  }
+  require('./themes/theme-' + theme + '.css');
+
   return (
     <div css={css`
           display: grid;
@@ -23,7 +27,8 @@ export default ({ children }) => {
             body {
               min-height: 100vh;
               max-width: 100vw;
-              background-color: var(--bg);
+              background: var(--bg);
+              color: var(--fg);
               /* Disable scrolling on body: */
               overflow: hidden;
               font-family: "Open Sans", sans-serif;

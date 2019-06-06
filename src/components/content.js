@@ -1,6 +1,6 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { global } from "../constants"
+
 
 // Possibility:
 // height: calc(100vh - ${header.height});
@@ -15,7 +15,6 @@ export default ({ children }) => {
           width: 100%;
           overflow-y: auto;
           padding: 2rem 10% 3rem;
-          color: var(--fg);
     `}>
       {children}
     </div>
