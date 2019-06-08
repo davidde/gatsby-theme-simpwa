@@ -60,6 +60,7 @@ class Sidebar extends React.Component {
           `}>
             <h1 css={css`
                 height: 100%;
+                margin: 0;
                 color: ${header.color.font};
                 display: flex;
                 justify-content: center;

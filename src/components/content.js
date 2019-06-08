@@ -13,8 +13,11 @@ export default ({ children }) => {
           grid-area: content;
           height: calc(100vh - 4rem);
           width: 100%;
-          overflow-y: auto;
+          /* Without border-box, the 10% left/right padding is added
+             to the 100% width, resulting in overflowing content! */
+          box-sizing: border-box;
           padding: 2rem 10% 3rem;
+          overflow-y: auto;
     `}>
       {children}
     </div>

@@ -81,7 +81,7 @@ function Hoverbar(props) {
           css={css`
             position: fixed;
             z-index: 10;
-            top: 3.9rem;
+            top: 4rem;
             ${props.whichSide}: 0;
             height: 100%;
             width: ${width}rem;

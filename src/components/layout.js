@@ -19,14 +19,15 @@ export default ({ theme, children }) => {
         <Global
           styles={css`
             * {
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;
+              /* margin: 0; */
+              /* padding: 0; */
+              /* box-sizing: border-box; */
               /* border: 3px solid red; */
             }
             body {
               min-height: 100vh;
               max-width: 100vw;
+              margin: 0;
               background: var(--bg);
               color: var(--fg);
               /* Disable scrolling on body: */

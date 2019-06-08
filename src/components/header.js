@@ -16,6 +16,7 @@ function Header(props) {
 
       <h1 css={css`
           height: 100%;
+          margin: 0;
           padding-left: 1rem;
           background: linear-gradient(to right, ${header.color.leftGradient}, ${header.color.rightGradient});
           color: ${header.color.font};
