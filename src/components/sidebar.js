@@ -62,9 +62,8 @@ class Sidebar extends React.Component {
                 height: 100%;
                 margin: 0;
                 color: ${header.color.font};
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                line-height: calc(4rem - 2px); /* Vertical center */
+                text-align: center; /* Horizontal center */
                 overflow: hidden;
             `}>
               {this.props.title}
