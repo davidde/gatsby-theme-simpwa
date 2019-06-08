@@ -25,9 +25,9 @@ class Sidebar extends React.Component {
           sidebar.left.color.border : sidebar.right.color.border;
 
     let shadow = this.props.whichSide === 'left' ? '6px 0 15px 0 #888' : '-6px 0 15px 0 #888';
-    let startHeader = this.props.whichSide === 'left' ? '4rem' : '0';
     let transitionDuration = this.props.whichSide === 'left' ?
           sidebar.left.transitionDuration : sidebar.right.transitionDuration;
+    let direction = this.props.whichSide === 'left' ? 'ltr' : 'rtl';
 
     return (
       <div css={css`
@@ -47,13 +47,13 @@ class Sidebar extends React.Component {
               width: inherit;
               background: ${backgroundColor};
               ${'border-' + otherSide + ': 2px solid ' + borderColor};
-              position: fixed;
+              position: absolute;
               top: 0;
         `}>
           {/* Header of the sidebar: */}
           <div css={css`
-              position: relative;
-              left: ${startHeader};
+              position: sticky;
+              ${this.props.whichSide}: 4rem;
               height: 4rem;
               width: calc(100% - 4rem);
               border-bottom: 2px solid ${borderColor};
@@ -73,11 +73,18 @@ class Sidebar extends React.Component {
 
           {/* Content of the sidebar: */}
           <div css={css`
+                box-sizing: border-box;
                 height: calc(100vh - 4rem);
-                overflow-y: auto;
                 padding: 1rem;
+                direction: ${direction};
+                overflow-y: auto;
+                visibility: ${this.state.isActive ? 'visible' : 'hidden' };
           `}>
-            {this.props.children}
+            <div css={css`
+              direction: ltr;
+            `}>
+              {this.props.children}
+            </div>
           </div>
         </div>
       </div>

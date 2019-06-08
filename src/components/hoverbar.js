@@ -79,7 +79,7 @@ function Hoverbar(props) {
       {/* Small strip below icon to the side of the screen: */}
       <div id={stripId}
           css={css`
-            position: fixed;
+            position: absolute;
             z-index: 10;
             top: 4rem;
             ${props.whichSide}: 0;
