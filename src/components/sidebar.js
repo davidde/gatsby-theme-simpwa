@@ -29,8 +29,11 @@ class Sidebar extends React.Component {
           sidebar.left.transitionDuration : sidebar.right.transitionDuration;
     let direction = this.props.whichSide === 'left' ? 'ltr' : 'rtl';
 
+    let sidebarID = 'sidebar-' + this.props.whichSide;
+    let sidebarContentID = 'sb-content-' + this.props.whichSide;
     return (
-      <div css={css`
+      <div id={sidebarID}
+            css={css`
               grid-area: ${this.props.whichSide + 'side'};
               height: 100%;
               width: ${this.state.isActive ? '30vw' : widthStr };
@@ -71,13 +74,14 @@ class Sidebar extends React.Component {
           </div>
 
           {/* Content of the sidebar: */}
-          <div css={css`
-                box-sizing: border-box;
-                height: calc(100vh - 4rem);
-                padding: 1rem;
-                direction: ${direction};
-                overflow-y: auto;
-                visibility: ${this.state.isActive ? 'visible' : 'hidden' };
+          <div id={sidebarContentID}
+                css={css`
+                    box-sizing: border-box;
+                    height: calc(100vh - 4rem);
+                    padding: 1rem;
+                    direction: ${direction};
+                    overflow-y: auto;
+                    visibility: ${this.state.isActive ? 'visible' : 'hidden' };
           `}>
             <div css={css`
               direction: ltr;

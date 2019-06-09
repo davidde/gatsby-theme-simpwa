@@ -9,7 +9,8 @@ import { css } from "@emotion/core"
 export default ({ children }) => {
   return (
     /* Main user content goes in the 'content' grid-area: */
-    <div css={css`
+    <div id='content'
+          css={css`
           grid-area: content;
           height: calc(100vh - 4rem);
           width: 100%;

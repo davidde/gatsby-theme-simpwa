@@ -6,7 +6,7 @@ export default ({ theme, children }) => {
   if (!theme) {
     theme = 'joy';
   }
-  require('./themes/theme-' + theme + '.css');
+  require('./themes/theme-' + theme + '.scss');
 
   return (
     <div css={css`
