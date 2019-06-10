@@ -25,36 +25,26 @@ function Hoverbar(props) {
   let shadow = props.whichSide === 'left' ? '6px 0 15px 0 #888' : '-6px 0 15px 0 #888';
   let hoverShadow = props.whichSide === 'left' ? '6px 0 15px 0 #333' : '-6px 0 15px 0 #333';
 
-  let iconId = 'icon-' + props.whichSide;
-  let squareId = 'square-' + props.whichSide;
-  let stripId = 'strip-' + props.whichSide;
-
   let transitionDelay = props.whichSide === 'left' ?
           sidebar.left.transitionDuration : sidebar.right.transitionDuration;
 
   return (
     <div onClick={props.onClick}
           css={css`
+            --bg: ${backgroundColor};
+            --color: ${iconColor};
+            --border: 2px solid ${borderColor};
+            --shadow: ${shadow};
             &:hover {
               cursor: pointer;
-              /* Messy due to CSS limitations: cannot elegantly target element B when hovering element A. */
-              ${'#' + stripId} {
-                background: ${backgroundHoverColor};
-                ${'border-' + otherSide + ': 2px solid ' + borderHoverColor};
-                box-shadow: ${hoverShadow};
-              }
-              ${'#' + squareId} {
-                background: ${backgroundHoverColor};
-                ${'border-' + otherSide + ': 2px solid ' + borderHoverColor};
-              }
-              ${'#' + iconId} {
-                color: ${iconHoverColor};
-              }
+              --bg: ${backgroundHoverColor};
+              --color: ${iconHoverColor};
+              --border: 2px solid ${borderHoverColor};
+              --shadow: ${hoverShadow};
             }
     `}>
       {/* Square icon div: */}
-      <div id={squareId}
-          css={css`
+      <div css={css`
             position: fixed;
             z-index: 10;
             top: 0;
@@ -62,35 +52,33 @@ function Hoverbar(props) {
             height: 4rem;
             width: 4rem;
             text-align: center;
-            border-bottom: 2px solid ${borderColor};
-            ${'border-' + otherSide + ': 2px solid ' + borderColor};
-            background: ${backgroundColor};
+            background: var(--bg);
+            border-bottom: var(--border);
+            ${'border-' + otherSide}: var(--border);
       `}>
           <FontAwesomeIcon
-            id={iconId}
             icon={icon}
             css={css`
               font-size: 1.75rem;
               margin: 1rem;
-              color: ${iconColor};
+              color: var(--color);
           `}/>
       </div>
 
       {/* Small strip below icon to the side of the screen: */}
-      <div id={stripId}
-          css={css`
+      <div css={css`
             position: absolute;
             z-index: 10;
             top: 4rem;
             ${props.whichSide}: 0;
             height: 100%;
             width: ${width}rem;
-            background: ${backgroundColor};
-            ${'border-' + otherSide + ': 2px solid ' + borderColor};
+            background: var(--bg);
+            ${'border-' + otherSide}: var(--border);
             opacity: ${props.isActive ? 0 : 1 };
             transition-property: opacity;
             transition-delay: ${props.isActive ? '0s' : transitionDelay };
-            box-shadow: ${shadow};
+            box-shadow: var(--shadow);
       `}/>
 
     </div>
