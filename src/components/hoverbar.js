@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 /// Represents the inactive, hoverable sidebar
 function Hoverbar(props) {
   let width = props.whichSide === 'left' ? sidebar.left.width : sidebar.right.width;
-  let icon = props.whichSide === 'left' ? sidebar.left.icon : sidebar.right.icon;
   let otherSide = props.whichSide === 'left' ? 'right' : 'left';
 
   let backgroundColor = props.whichSide === 'left' ?
@@ -57,7 +56,7 @@ function Hoverbar(props) {
             ${'border-' + otherSide}: var(--border);
       `}>
           <FontAwesomeIcon
-            icon={icon}
+            icon={props.icon}
             css={css`
               font-size: 1.75rem;
               margin: 1rem;

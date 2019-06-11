@@ -1,4 +1,5 @@
 import React from 'react'
+import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 
 import Layout from '../components/layout'
 import Header from '../components/header'
@@ -9,7 +10,7 @@ import Content from '../components/content'
 export default () => (
   <Layout>
     <Header title='gatsby-theme-dualside' />
-    <Sidebar whichSide='right' title='Home'>
+    <Sidebar whichSide='right' title='Home' icon={faHome} >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius semper ligula, eu luctus nunc mollis in. Vestibulum vulputate metus metus, id rutrum magna imperdiet nec. Aenean at pharetra risus. Integer convallis ac enim id aliquet. Mauris pharetra mollis nulla, eget posuere mi accumsan eu. Curabitur urna nisl, varius rhoncus tristique et, egestas et augue. Vivamus ac libero faucibus, vehicula quam in, posuere felis. Aliquam erat volutpat. Maecenas pretium iaculis dui sed elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
       </p><br/>
@@ -51,7 +52,7 @@ export default () => (
       </p>
     </Sidebar>
 
-    <Sidebar whichSide='left' title='Contents'>
+    <Sidebar whichSide='left' title='Contents' icon={faBars} >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius semper ligula, eu luctus nunc mollis in. Vestibulum vulputate metus metus, id rutrum magna imperdiet nec. Aenean at pharetra risus. Integer convallis ac enim id aliquet. Mauris pharetra mollis nulla, eget posuere mi accumsan eu. Curabitur urna nisl, varius rhoncus tristique et, egestas et augue. Vivamus ac libero faucibus, vehicula quam in, posuere felis. Aliquam erat volutpat. Maecenas pretium iaculis dui sed elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
       </p><br/>

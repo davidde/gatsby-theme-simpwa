@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import { lighten, darken, adjustHue } from "polished";
 // CSS equivalents: filter: brightness(150%); filter: brightness(50%); filter: hue-rotate(-15deg);
 
@@ -22,7 +21,6 @@ export const header = {
 export const sidebar = {
   left: {
     width: 0.5, // in rem!
-    icon: faBars,
     transitionDuration: '0.5s',
     color: {
       // To log these colors in console, e.g.:
@@ -40,7 +38,6 @@ export const sidebar = {
 
   right: {
     width: 0.5, // in rem!
-    icon: faHome,
     transitionDuration: '0.5s',
     color: {
       background: darken(0.2, header.color.rightGradient), // dark violet: rgb(226, 40, 226)

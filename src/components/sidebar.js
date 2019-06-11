@@ -43,7 +43,12 @@ class Sidebar extends React.Component {
                 ${this.state.isActive ? 0 : '-100vw' }; */
               /* transition: ${this.props.whichSide} 0.7s, width 0.7s; */
       `}>
-        <Hoverbar whichSide={this.props.whichSide} onClick={this.toggleSidebar} isActive={this.state.isActive} />
+        <Hoverbar
+            whichSide={this.props.whichSide}
+            icon={this.props.icon}
+            isActive={this.state.isActive}
+            onClick={this.toggleSidebar}
+        />
 
         <div css={css`
               height: inherit;
