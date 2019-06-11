@@ -21,50 +21,33 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-#content {
-  /* Customize scrollbar track: */
+#content, .sidebar-content {
   &::-webkit-scrollbar {
     width: 0.6rem;
     background: transparent;
   }
-  /* Customize scrollbar thumb: */
-  &::-webkit-scrollbar-thumb {
-    border-radius: 0.6rem;
-    background: darken($bg, 10%);
-    // One problem with darken/lighten is that it cannot process a
-    // CSS custom property, since they are run-time properties,
-    // and sass functions work at compile-time.
-    // => This forces us to revert back to sass variables as input
-    //    for the darken/lighten functions.
-  }
 }
 
-#sb-content-left {
+#content::-webkit-scrollbar-thumb {
+  background: $bg;
+  border-radius: 0.6rem;
+}
+
+#sidebar-left {
   $bg: rgb(255, 101, 0);
   $fg: rgba(200, 0, 100, 0.8);
-  /* Customize scrollbar track: */
-  &::-webkit-scrollbar {
-    width: 0.6rem;
-    background: transparent;
-  }
-  /* Customize scrollbar thumb: */
-  &::-webkit-scrollbar-thumb {
-    border-radius: 0.6rem;
+  .sidebar-content::-webkit-scrollbar-thumb {
     background: lighten($bg, 20%);
+    border-radius: 0.6rem;
   }
 }
 
-#sb-content-right {
+#sidebar-right {
   $bg: rgb(226, 40, 226);
   $fg: rgba(200, 0, 100, 0.8);
-  /* Customize scrollbar track: */
-  &::-webkit-scrollbar {
-    width: 0.6rem;
-    background: transparent;
-  }
-  /* Customize scrollbar thumb: */
-  &::-webkit-scrollbar-thumb {
-    border-radius: 0.6rem;
+  .sidebar-content::-webkit-scrollbar-thumb {
     background: lighten($bg, 20%);
+    border-radius: 0.6rem;
   }
 }
+

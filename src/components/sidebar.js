@@ -30,7 +30,7 @@ class Sidebar extends React.Component {
     let direction = this.props.whichSide === 'left' ? 'ltr' : 'rtl';
 
     let sidebarID = 'sidebar-' + this.props.whichSide;
-    let sidebarContentID = 'sb-content-' + this.props.whichSide;
+
     return (
       <div id={sidebarID}
             css={css`
@@ -74,7 +74,7 @@ class Sidebar extends React.Component {
           </div>
 
           {/* Content of the sidebar: */}
-          <div id={sidebarContentID}
+          <div className='sidebar-content'
                 css={css`
                     box-sizing: border-box;
                     height: calc(100vh - 4rem);
