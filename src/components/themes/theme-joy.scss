@@ -1,53 +1,44 @@
 $bg: rgba(255, 255, 197, 0.9);
-$fg: rgba(200, 0, 100, 0.8);
+$col: rgba(200, 0, 100, 0.8);
 
-:root {
-  --bg: #{$bg};
-  --fg: #{$fg};
-}
-
-* {
-  /* border: 3px solid red; */
-}
+$left: (
+  'bg': rgb(255, 101, 0),
+);
+$right: (
+  'bg': rgb(226, 40, 226),
+);
 
 body {
+  /* border: 3px solid red; */
   min-height: 100vh;
   max-width: 100vw;
   margin: 0;
-  background: var(--bg);
-  color: var(--fg);
+  background: $bg;
+  color: $col;
   /* Disable scrolling on body: */
   overflow: hidden;
   font-family: "Open Sans", sans-serif;
 }
 
+// Scrollbar styling:
+#content::-webkit-scrollbar-thumb {
+  --bg: #{$bg};
+}
+#sidebar-left .sidebar-content::-webkit-scrollbar-thumb {
+  --bg: #{lighten(map-get($left, 'bg'), 20%)};
+}
+#sidebar-right .sidebar-content::-webkit-scrollbar-thumb {
+  --bg: #{lighten(map-get($right, 'bg'), 20%)};
+}
 #content, .sidebar-content {
   &::-webkit-scrollbar {
     width: 0.6rem;
     background: transparent;
   }
-}
-
-#content::-webkit-scrollbar-thumb {
-  background: $bg;
-  border-radius: 0.6rem;
-}
-
-#sidebar-left {
-  $bg: rgb(255, 101, 0);
-  $fg: rgba(200, 0, 100, 0.8);
-  .sidebar-content::-webkit-scrollbar-thumb {
-    background: lighten($bg, 20%);
+  &::-webkit-scrollbar-thumb {
+    background: var(--bg);
     border-radius: 0.6rem;
   }
-}
+} // End scrollbar styling
 
-#sidebar-right {
-  $bg: rgb(226, 40, 226);
-  $fg: rgba(200, 0, 100, 0.8);
-  .sidebar-content::-webkit-scrollbar-thumb {
-    background: lighten($bg, 20%);
-    border-radius: 0.6rem;
-  }
-}
 
