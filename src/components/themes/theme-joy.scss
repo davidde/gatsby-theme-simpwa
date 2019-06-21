@@ -1,3 +1,5 @@
+// Sass is used for global color variables to easily darken/lighten them.
+// Afterwards, they are assigned to CSS custom properties, which sass cannot modify.
 $bg: rgba(255, 255, 197, 0.9);
 $col: rgba(200, 0, 100, 0.8);
 
@@ -7,6 +9,16 @@ $left: (
 $right: (
   'bg': rgb(226, 40, 226),
 );
+
+:root {
+  --headerHeight: 4rem;
+  --sidestripWidth: 0.5rem;
+  // sidebar widths in portrait and landscape orientations:
+  --portraitWidth: 80vw;
+  --landscapeWidth: 30vw;
+  --borderWidth: 2px;
+  --transitionDuration: 0.5s;
+}
 
 body {
   /* border: 3px solid red; */
@@ -24,10 +36,10 @@ body {
 #content::-webkit-scrollbar-thumb {
   --bg: #{$bg};
 }
-#sidebar-left .sidebar-content::-webkit-scrollbar-thumb {
+.left .sidebar-content::-webkit-scrollbar-thumb {
   --bg: #{lighten(map-get($left, 'bg'), 20%)};
 }
-#sidebar-right .sidebar-content::-webkit-scrollbar-thumb {
+.right .sidebar-content::-webkit-scrollbar-thumb {
   --bg: #{lighten(map-get($right, 'bg'), 20%)};
 }
 #content, .sidebar-content {

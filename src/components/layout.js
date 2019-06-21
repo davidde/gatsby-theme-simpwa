@@ -18,9 +18,7 @@ class Layout extends React.Component {
       <div css={css`
             display: grid;
             grid-template-columns: auto 1fr auto;
-            grid-template-rows: calc(4rem + 2px) auto;
-            grid-template-areas: 'leftside header  rightside'
-                                'leftside content rightside';
+            grid-template-areas: 'left main right';
       `}>
 
         {this.props.children}

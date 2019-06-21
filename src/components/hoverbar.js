@@ -48,28 +48,29 @@ function Hoverbar(props) {
             z-index: 10;
             top: 0;
             ${props.whichSide}: 0;
-            height: 4rem;
+            /* float: ${props.whichSide}; */
             width: 4rem;
+            height: 4rem;
+            line-height: 4rem;
+            font-size: 1.75rem;
             text-align: center;
+            color: var(--color);
             background: var(--bg);
-            border-bottom: var(--border);
+            border-bottom: ${props.isActive ? 'var(--border)' : '0' };
+            /* transition-property: border-bottom;
+            transition-delay: ${props.isActive ? '0s' : transitionDelay }; */
             ${'border-' + otherSide}: var(--border);
       `}>
-          <FontAwesomeIcon
-            icon={props.icon}
-            css={css`
-              font-size: 1.75rem;
-              margin: 1rem;
-              color: var(--color);
-          `}/>
+          <FontAwesomeIcon icon={props.icon} />
       </div>
 
       {/* Small strip below icon to the side of the screen: */}
       <div css={css`
             position: absolute;
-            z-index: 10;
-            top: 4rem;
+            z-index: 5;
+            top: 0;
             ${props.whichSide}: 0;
+            /* float: ${props.whichSide}; */
             height: 100%;
             width: ${width}rem;
             background: var(--bg);

@@ -29,12 +29,10 @@ class Sidebar extends React.Component {
           sidebar.left.transitionDuration : sidebar.right.transitionDuration;
     let direction = this.props.whichSide === 'left' ? 'ltr' : 'rtl';
 
-    let sidebarID = 'sidebar-' + this.props.whichSide;
-
     return (
-      <div id={sidebarID}
+      <div className={`sidebar ${this.props.whichSide}`}
             css={css`
-              grid-area: ${this.props.whichSide + 'side'};
+              grid-area: ${this.props.whichSide};
               height: 100%;
               width: ${this.state.isActive ? '30vw' : widthStr };
               transition: width ${transitionDuration};
@@ -42,6 +40,12 @@ class Sidebar extends React.Component {
               /* ${this.props.whichSide}:
                 ${this.state.isActive ? 0 : '-100vw' }; */
               /* transition: ${this.props.whichSide} 0.7s, width 0.7s; */
+
+              background: ${backgroundColor};
+              ${'border-' + otherSide + ': 2px solid ' + borderColor};
+              /* border-right: 20px solid red; */
+              /* position: absolute; */
+              /* top: 0; */
       `}>
         <Hoverbar
             whichSide={this.props.whichSide}
@@ -50,18 +54,12 @@ class Sidebar extends React.Component {
             onClick={this.toggleSidebar}
         />
 
-        <div css={css`
-              height: inherit;
-              width: inherit;
-              background: ${backgroundColor};
-              ${'border-' + otherSide + ': 2px solid ' + borderColor};
-              position: absolute;
-              top: 0;
-        `}>
+        
           {/* Header of the sidebar: */}
           <div css={css`
               position: sticky;
               ${this.props.whichSide}: 4rem;
+              /* float: ${this.props.whichSide}; */
               height: 4rem;
               width: calc(100% - 4rem);
               border-bottom: 2px solid ${borderColor};
@@ -79,14 +77,15 @@ class Sidebar extends React.Component {
           </div>
 
           {/* Content of the sidebar: */}
-          <div className='sidebar-content'
+          <div className={`sidebar-content ${this.props.whichSide}`}
                 css={css`
                     box-sizing: border-box;
                     height: calc(100vh - 4rem);
-                    padding: 1rem;
+                    /* padding: 1rem; */
+                    padding: 5%;
                     direction: ${direction};
                     overflow-y: auto;
-                    visibility: ${this.state.isActive ? 'visible' : 'hidden' };
+                    /* visibility: ${this.state.isActive ? 'visible' : 'hidden' }; */
           `}>
             <div css={css`
               direction: ltr;
@@ -95,7 +94,7 @@ class Sidebar extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      
     );
   }
 }
