@@ -16,5 +16,20 @@ module.exports = {
       },
     },
     'gatsby-plugin-sass',
+    {
+      resolve: 'gatsby-plugin-postcss',
+      options: {
+        postCssPlugins: [
+          // require('postcss-preset-env')({
+          //   stage: 0,
+            
+          // }),
+          require('postcss-color-mod-function'),
+          require('postcss-nesting'),
+          require('postcss-simple-vars'),
+
+        ],
+      },
+    },
   ],
 }

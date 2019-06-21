@@ -10,7 +10,7 @@ class Layout extends React.Component {
     if (!theme) {
       theme = 'joy';
     }
-    require('./themes/theme-' + theme + '.scss');
+    require('./themes/theme-' + theme + '.css');
   }
 
   render() {
