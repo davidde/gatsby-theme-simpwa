@@ -1,7 +1,10 @@
 import React from "react"
 import { css } from "@emotion/core"
 import { header, sidebar } from "../constants"
+
 import Hoverbar from "./hoverbar"
+import Content from '../components/content'
+
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -30,7 +33,8 @@ class Sidebar extends React.Component {
     let direction = this.props.whichSide === 'left' ? 'ltr' : 'rtl';
 
     return (
-      <div className={`sidebar ${this.props.whichSide}`}
+      <div id={this.props.whichSide}
+            className={`sidebar ${this.props.whichSide}`}
             css={css`
               grid-area: ${this.props.whichSide};
               height: 100%;
@@ -62,12 +66,12 @@ class Sidebar extends React.Component {
               /* float: ${this.props.whichSide}; */
               height: 4rem;
               width: calc(100% - 4rem);
+              color: ${header.color.font};
               border-bottom: 2px solid ${borderColor};
           `}>
             <h1 css={css`
                 height: 100%;
                 margin: 0;
-                color: ${header.color.font};
                 line-height: calc(4rem - 2px); /* Vertical center */
                 text-align: center; /* Horizontal center */
                 overflow: hidden;
@@ -77,22 +81,9 @@ class Sidebar extends React.Component {
           </div>
 
           {/* Content of the sidebar: */}
-          <div className={`sidebar-content ${this.props.whichSide}`}
-                css={css`
-                    box-sizing: border-box;
-                    height: calc(100vh - 4rem);
-                    /* padding: 1rem; */
-                    padding: 5%;
-                    direction: ${direction};
-                    overflow-y: auto;
-                    /* visibility: ${this.state.isActive ? 'visible' : 'hidden' }; */
-          `}>
-            <div css={css`
-              direction: ltr;
-            `}>
+          <Content>
               {this.props.children}
-            </div>
-          </div>
+          </Content>
         </div>
       
     );

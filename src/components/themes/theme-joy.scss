@@ -1,13 +1,13 @@
 // Sass is used for global color variables to easily darken/lighten them.
 // Afterwards, they are assigned to CSS custom properties, which sass cannot modify.
-$bg: rgba(255, 255, 197, 0.9);
-$col: rgba(200, 0, 100, 0.8);
+$bg: hsla(60, 100, 88.6, 0.9);
+$col: hsla(330, 100, 39.2, 0.8);
 
 $left: (
-  'bg': rgb(255, 101, 0),
+  'bg': hsl(24, 100, 50),
 );
 $right: (
-  'bg': rgb(226, 40, 226),
+  'bg': hsl(300, 76.2, 52.2),
 );
 
 :root {
@@ -33,24 +33,42 @@ body {
 }
 
 // Scrollbar styling:
-#content::-webkit-scrollbar-thumb {
-  --bg: #{$bg};
+#main {
+  .content {
+    --direction: ltr;
+    --padding: 2rem 10% 3rem;
+    &::-webkit-scrollbar-thumb {
+      --bg: #{$bg};
+    }
+  }
 }
-.left .sidebar-content::-webkit-scrollbar-thumb {
-  --bg: #{lighten(map-get($left, 'bg'), 20%)};
+#left {
+  .content {
+    --direction: ltr;
+    --padding: 5%;
+    &::-webkit-scrollbar-thumb {
+      // --bg: #{hsl(24, 100, 70)};
+      --bg: #{lighten(map-get($left, 'bg'), 20%)};
+    }
+  }
 }
-.right .sidebar-content::-webkit-scrollbar-thumb {
-  --bg: #{lighten(map-get($right, 'bg'), 20%)};
+#right {
+  .content {
+    --direction: rtl;
+    --padding: 5%;
+    &::-webkit-scrollbar-thumb {
+      // --bg: #{hsl(300, 76.2, 72.2)};
+      --bg: #{lighten(map-get($right, 'bg'), 20%)};
+    }
+  }
 }
-#content, .sidebar-content {
-  &::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 0.6rem;
     background: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
+}
+::-webkit-scrollbar-thumb {
     background: var(--bg);
     border-radius: 0.6rem;
-  }
 } // End scrollbar styling
 
 

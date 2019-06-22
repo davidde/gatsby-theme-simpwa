@@ -7,8 +7,9 @@ import Content from '../components/content'
 
 function Main(props) {
   return (
-    <div css={css`
-          grid-area: main;
+    <div id='main'
+          css={css`
+            grid-area: main;
     `}>
 
       <Header title={props.title} />
