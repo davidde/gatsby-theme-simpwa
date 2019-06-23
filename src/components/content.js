@@ -4,33 +4,31 @@ import { css } from "@emotion/core"
 
 function Content(props) {
   return (
-    /* Main user content goes in the 'content' grid-area: */
     <div className='content'
           css={css`
-            /* Without border-box, the 10% left/right padding is added
+            /* Without border-box, the left/right padding is added
               to the 100% width, resulting in overflowing content! */
             box-sizing: border-box;
             height: calc(100vh - var(--headerHeight));
             padding: var(--padding);
             overflow-y: auto;
             direction: var(--direction);
-    `}>
-      {
-        (
-          () => {
-            if ( props.whichSide === 'right' ) {
-              return <div css={css`
-                    direction: ltr;
-              `}>
-                  props.children
-              </div>;
-            } else {
-              return props.children;
+            clear: both;
+            /* Scrollbar styling: */
+            ::-webkit-scrollbar {
+              width: 0.6rem;
+              background: transparent;
             }
-          }
-        )()
-      }
-      {/* {props.children} */}
+            ::-webkit-scrollbar-thumb {
+              background: var(--bg);
+              border-radius: 0.6rem;
+            } /* End scrollbar styling */
+    `}>
+      <div css={css`
+              direction: ltr;
+      `}>
+          {props.children}
+      </div>
     </div>
   )
 }
