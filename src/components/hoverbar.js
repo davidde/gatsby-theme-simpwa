@@ -5,6 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 /// Represents the inactive, hoverable sidebar
 function Hoverbar(props) {
+  // if (props.whichSide === 'left' ) {
+  //   let sidebar = sidebar.left;
+  // } else {
+  //   let sidebar = sidebar.right;
+  // }
   let width = props.whichSide === 'left' ? sidebar.left.width : sidebar.right.width;
   let otherSide = props.whichSide === 'left' ? 'right' : 'left';
 
@@ -43,7 +48,8 @@ function Hoverbar(props) {
             }
     `}>
       {/* Square icon div: */}
-      <div css={css`
+      <div className='iconSquare'
+          css={css`
             position: fixed;
             z-index: 10;
             top: 0;
@@ -56,7 +62,7 @@ function Hoverbar(props) {
             text-align: center;
             color: var(--color);
             background: var(--bg);
-            border-bottom: ${props.isActive ? 'var(--border)' : '0' };
+            border-bottom: var(--border); //${props.isActive ? 'var(--border)' : '0' };
             /* transition-property: border-bottom;
             transition-delay: ${props.isActive ? '0s' : transitionDelay }; */
             ${'border-' + otherSide}: var(--border);
@@ -65,7 +71,8 @@ function Hoverbar(props) {
       </div>
 
       {/* Small strip below icon to the side of the screen: */}
-      <div css={css`
+      <div className='sidestrip'
+          css={css`
             position: absolute;
             z-index: 5;
             top: 0;
@@ -81,6 +88,21 @@ function Hoverbar(props) {
             box-shadow: var(--shadow);
       `}/>
 
+      {/* This div covers the border between the iconSquare and sidestrip divs,
+          so it appears as a single whole: */}
+      <div className='borderPatch'
+          css={css`
+            position: absolute;
+            z-index: 15;
+            top: 3rem;
+            bottom: 5rem;
+            ${props.whichSide}: 0;
+            width: ${width}rem;
+            background: var(--bg);
+            opacity: ${props.isActive ? 0 : 1 };
+            transition-property: opacity;
+            transition-delay: ${props.isActive ? '0s' : transitionDelay };
+      `}/>
     </div>
   )
 }
