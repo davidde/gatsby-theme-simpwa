@@ -7,14 +7,14 @@ function Content(props) {
     <div className={`content ${props.which}`}
           css={css`
             /* Without border-box, the left/right padding is added
-              to the 100% width, resulting in overflowing content! */
+              to the 100% width, resulting in overflowing content! *
             box-sizing: border-box;
             height: calc(100vh - var(--headerHeight));
             padding: var(--padding);
             overflow-y: auto;
             direction: var(--direction);
             clear: both;
-            /* Scrollbar styling: */
+            /* Scrollbar styling: *
             ::-webkit-scrollbar {
               width: 0.6rem;
               background: transparent;
@@ -25,7 +25,7 @@ function Content(props) {
             } /* End scrollbar styling */
     `}>
       <div css={css`
-              direction: ltr;
+              /* direction: ltr; */
       `}>
           {props.children}
       </div>

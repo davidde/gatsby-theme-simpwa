@@ -42,27 +42,33 @@ body {
 }
 
 .header {
-  --color: #{$headerColor};
-  --border: var(--borderWidth) solid #{lighten($headerColor, 15%)};
-  --headerWidth: calc(100% - var(--headerHeight));
   &.main {
-    --bg: linear-gradient(to right, orange, violet);
-    --headerWidth: 100%;
-    --float: none;
+    background: linear-gradient(to right, orange, violet);
   }
   &.left {
-    --float: right;
+    float: right;
+    width: calc(100% - var(--headerHeight));
   }
   &.right {
-    --float: left;
+    float: left;
+    width: calc(100% - var(--headerHeight));
+  }
+  position: sticky;
+  height: var(--headerHeight);
+  color: #{$headerColor};
+  border-bottom: var(--borderWidth) solid #{lighten($headerColor, 15%)};
+  > h1 {
+    height: 100%;
+    margin: 0;
+    line-height: calc(var(--headerHeight) - var(--borderWidth)); /* Vertical center */
+    text-align: center; /* Horizontal center */
+    overflow: hidden;
   }
 }
 
 .content {
-  --direction: ltr;
-  --padding: 5%;
   &.main {
-    --padding: 2rem 10% 3rem;
+    padding: 2rem 10% 3rem;
     &::-webkit-scrollbar-thumb {
       --bg: #{$bg};
     }
@@ -73,11 +79,30 @@ body {
     }
   }
   &.right {
-    --direction: rtl;
+    direction: rtl;
+    > div {
+      direction: ltr;
+    }
     &::-webkit-scrollbar-thumb {
       --bg: #{lighten(map-get($right, 'bg'), 20%)};
     }
   }
+  /* Without border-box, the left/right padding is added
+  to the 100% width, resulting in overflowing content! */
+  box-sizing: border-box;
+  height: calc(100vh - var(--headerHeight));
+  padding: 5%;
+  overflow-y: auto;
+  clear: both;
+  /* Scrollbar styling: */
+  &::-webkit-scrollbar {
+    width: 0.6rem;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--bg);
+    border-radius: 0.6rem;
+  } /* End scrollbar styling */
 }
 
 // #main {
