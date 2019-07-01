@@ -12,8 +12,8 @@ function Main(props) {
             grid-area: main;
     `}>
 
-      <Header title={props.title} />
-      <Content>
+      <Header which='main' title={props.title} />
+      <Content which='main'>
         {props.children}
       </Content>
 

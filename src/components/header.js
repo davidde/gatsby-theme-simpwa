@@ -4,7 +4,7 @@ import { css } from "@emotion/core"
 
 function Header(props) {
   return (
-    <div className='header'
+    <div className={`header ${props.which}`}
         css={css`
           position: sticky;
           height: var(--headerHeight);

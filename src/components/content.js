@@ -4,7 +4,7 @@ import { css } from "@emotion/core"
 
 function Content(props) {
   return (
-    <div className='content'
+    <div className={`content ${props.which}`}
           css={css`
             /* Without border-box, the left/right padding is added
               to the 100% width, resulting in overflowing content! */

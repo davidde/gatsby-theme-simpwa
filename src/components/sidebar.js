@@ -58,10 +58,10 @@ class Sidebar extends React.Component {
           />
 
           {/* Header of the sidebar: */}
-          <Header title={this.props.title} />
+          <Header which={this.props.whichSide} title={this.props.title} />
 
           {/* Content of the sidebar: */}
-          <Content>
+          <Content which={this.props.whichSide}>
               {this.props.children}
           </Content>
       </div>
