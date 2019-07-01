@@ -32,8 +32,11 @@ function Hoverbar(props) {
   let transitionDelay = props.whichSide === 'left' ?
           sidebar.left.transitionDuration : sidebar.right.transitionDuration;
 
+  let active = props.isActive ? 'active' : '';
+
   return (
-    <div onClick={props.onClick}
+    <div className={`hoverbar ${props.whichSide}`}
+         onClick={props.onClick}
           css={css`
             --bg: ${backgroundColor};
             --color: ${iconColor};
@@ -48,7 +51,7 @@ function Hoverbar(props) {
             }
     `}>
       {/* Square icon div: */}
-      <div className='iconSquare'
+      <div className={`iconSquare ${props.whichSide} ${active}`}
           css={css`
             position: fixed;
             z-index: 10;
@@ -71,7 +74,7 @@ function Hoverbar(props) {
       </div>
 
       {/* Small strip below icon to the side of the screen: */}
-      <div className='sidestrip'
+      <div className={`sidestrip ${props.whichSide} ${active}`}
           css={css`
             position: absolute;
             z-index: 5;
@@ -90,7 +93,7 @@ function Hoverbar(props) {
 
       {/* This div covers the border between the iconSquare and sidestrip divs,
           so it appears as a single whole: */}
-      <div className='borderPatch'
+      <div className={`borderPatch ${props.whichSide} ${active}`}
           css={css`
             position: absolute;
             z-index: 15;

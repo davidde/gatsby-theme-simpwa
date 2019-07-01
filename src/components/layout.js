@@ -1,5 +1,4 @@
 import React from "react"
-import { css } from "@emotion/core"
 
 
 class Layout extends React.Component {
@@ -15,11 +14,7 @@ class Layout extends React.Component {
 
   render() {
     return (
-      <div css={css`
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            grid-template-areas: 'left main right';
-      `}>
+      <div id='layout'>
 
         {this.props.children}
 
