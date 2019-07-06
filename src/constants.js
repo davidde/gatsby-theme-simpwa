@@ -22,6 +22,7 @@ export const sidebar = {
   left: {
     width: 0.5, // in rem!
     icon: faBars,
+    transitionDuration: '0.5s',
     color: {
       background: adjustHue(-15, header.color.leftGradient), // dark orange
       backgroundHover: darken(0.12, adjustHue(-15, header.color.leftGradient)), // darker orange
@@ -37,6 +38,7 @@ export const sidebar = {
   right: {
     width: 0.5, // in rem!
     icon: faHome,
+    transitionDuration: '0.5s',
     color: {
       background: darken(0.2, header.color.rightGradient), // dark violet
       backgroundHover: darken(0.35, header.color.rightGradient), // darker violet

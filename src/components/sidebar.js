@@ -1,90 +1,87 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { sidebar } from "../constants"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { header, sidebar } from "../constants"
+import Hoverbar from "./hoverbar"
 
+class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActive: false,
+    };
+  }
 
-function Sidebar(props) {
-  let width = props.whichSide === 'left' ? sidebar.left.width : sidebar.right.width;
-  let icon = props.whichSide === 'left' ? sidebar.left.icon : sidebar.right.icon;
+  toggleSidebar = () => {
+    this.setState({isActive: !this.state.isActive});
+  }
 
-  let backgroundColor = props.whichSide === 'left' ?
-        sidebar.left.color.background : sidebar.right.color.background;
-  let backgroundHoverColor = props.whichSide === 'left' ?
-        sidebar.left.color.backgroundHover : sidebar.right.color.backgroundHover;
-  let iconColor = props.whichSide === 'left' ?
-        sidebar.left.color.icon : sidebar.right.color.icon;
-  let iconHoverColor = props.whichSide === 'left' ?
-        sidebar.left.color.iconHover : sidebar.right.color.iconHover;
-  let borderColor = props.whichSide === 'left' ?
-        sidebar.left.color.border : sidebar.right.color.border;
-  let borderHoverColor = props.whichSide === 'left' ?
-        sidebar.left.color.borderHover : sidebar.right.color.borderHover;
+  render() {
+    let widthStr = this.props.whichSide === 'left' ? sidebar.left.width + 'rem' : sidebar.right.width + 'rem';
+    let otherSide = this.props.whichSide === 'left' ? 'right' : 'left';
+    
+    let backgroundColor = this.props.whichSide === 'left' ?
+          sidebar.left.color.background : sidebar.right.color.background;
+    let borderColor = this.props.whichSide === 'left' ?
+          sidebar.left.color.border : sidebar.right.color.border;
 
-  let iconId = 'icon-' + props.whichSide;
-  let squareId = 'square-' + props.whichSide;
-  let stripId = 'strip-' + props.whichSide;
+    let shadow = this.props.whichSide === 'left' ? '6px 0 15px 0 #888' : '-6px 0 15px 0 #888';
+    let startHeader = this.props.whichSide === 'left' ? '4rem' : '0';
+    let transitionDuration = this.props.whichSide === 'left' ?
+          sidebar.left.transitionDuration : sidebar.right.transitionDuration;
 
-  return (
-    <div css={css`
-            &:hover {
-              cursor: pointer;
-              /* Messy due to CSS limitations: cannot elegantly target element B when hovering element A. */
-              ${'#' + stripId} {
-                background: ${backgroundHoverColor};
-                box-shadow: 0px 2px 0px 2px ${borderHoverColor};
-              }
-              ${'#' + squareId} {
-                background: ${backgroundHoverColor};
-                box-shadow: none;
-                border: 2px solid ${borderHoverColor};
-                ${'border-' + props.whichSide}: 0;
-              }
-              ${'#' + iconId} {
-                color: ${iconHoverColor};
-              }
-            }
-    `}>
-      {/* Square icon div: */}
-      <div id={squareId}
-          css={css`
-            position: fixed;
-            top: 0;
-            ${props.whichSide}: 0;
-            /* min-height: 2rem;
-            min-width: 2rem; */
-            height: 4rem;
-            width: 4rem;
-            border: 2px solid ${borderColor};
-            ${'border-' + props.whichSide}: 0;
-            background: ${backgroundColor};
-            text-align: center;
+    return (
+      <div css={css`
+              grid-area: ${this.props.whichSide + 'side'};
+              height: 100%;
+              width: ${this.state.isActive ? '30vw' : widthStr };
+              transition: width ${transitionDuration};
+              box-shadow: ${shadow};
+              /* ${this.props.whichSide}:
+                ${this.state.isActive ? 0 : '-100vw' }; */
+              /* transition: ${this.props.whichSide} 0.7s, width 0.7s; */
       `}>
-          <FontAwesomeIcon
-            id={iconId}
-            icon={icon}
-            css={css`
-              font-size: 1.75rem;
-              margin: 1rem;
-              color: ${iconColor};
-              z-index: 10;
-              
-          `}/>
-      </div>
+        <Hoverbar whichSide={this.props.whichSide} onClick={this.toggleSidebar} isActive={this.state.isActive} />
 
-      {/* Small strip below icon to the side of the screen: */}
-      <div id={stripId}
-          css={css`
-            position: fixed;
-            top: 3.9rem;
-            ${props.whichSide}: 0;
-            height: 100%;
-            width: ${width}rem;
-            background: ${backgroundColor};
-            box-shadow: 0px 2px 0px 2px ${borderColor};
-      `}/>
-    </div>
-  )
+        <div css={css`
+              height: inherit;
+              width: inherit;
+              background: ${backgroundColor};
+              ${'border-' + otherSide + ': 2px solid ' + borderColor};
+              position: fixed;
+              top: 0;
+        `}>
+          {/* Header of the sidebar: */}
+          <div css={css`
+              position: relative;
+              left: ${startHeader};
+              height: 4rem;
+              width: calc(100% - 4rem);
+              border-bottom: 2px solid ${borderColor};
+          `}>
+            <h1 css={css`
+                height: 100%;
+                color: ${header.color.font};
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            `}>
+              {this.props.title}
+            </h1>
+          </div>
+
+          {/* Content of the sidebar: */}
+          <div css={css`
+                height: calc(100vh - 4rem);
+                overflow-y: auto;
+                padding: 1rem;
+          `}>
+            {this.props.children}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Sidebar;

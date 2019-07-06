@@ -2,6 +2,11 @@ import React from "react"
 import { Global, css } from "@emotion/core"
 import { global } from "../constants"
 
+import Header from './header'
+import Sidebar from './sidebar'
+import Content from './content'
+
+
 export default ({ children }) => {
   return (
     <div css={css`
@@ -23,14 +28,25 @@ export default ({ children }) => {
               min-height: 100vh;
               max-width: 100vw;
               background-color: ${global.color.background};
-              /* Disable scrolling on body: */
-              overflow: hidden;
+              /* Make horizontal scrolling impossible: */
+              overflow-x: hidden;
+              /* Prevent scrollbars from displaying: */
+              scrollbar-width: none; /* Firefox */
+              -ms-overflow-style: none; /* IE 10+ */
+              ::-webkit-scrollbar {
+                display: none; /* Webkit */
+              }
             }
           `}
         />
 
-          {children}
+        <Header title='gatsby-theme-dualside' />
+        <Sidebar whichSide='right' title='Home' />
+        <Sidebar whichSide='left' title='Contents' />
 
+        <Content>
+          {children}
+        </Content>
     </div>
   )
 }
