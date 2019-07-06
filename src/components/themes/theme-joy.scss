@@ -1,0 +1,236 @@
+// Sass is used for global color variables to easily darken/lighten them.
+// Afterwards, they are assigned to CSS custom properties, which sass cannot modify.
+$bg: hsla(60, 100, 88.6, 0.9);
+$color: hsla(330, 100, 39.2, 0.8);
+$headerColor: rgb(82, 38, 228);
+$shadow: 6px 0 15px 0;
+
+$left: (
+  'gradient': orange,
+  'bg': hsl(24, 100, 50),
+);
+$right: (
+  'gradient': violet,
+  'bg': hsl(300, 76.2, 52.2),
+);
+
+:root {
+  --headerHeight: 4rem;
+  --sidestripWidth: 0.5rem;
+  // sidebar widths in portrait and landscape orientations:
+  --portraitWidth: 80vw;
+  --landscapeWidth: 30vw;
+  --borderWidth: 2px;
+  --transitionDuration: 0.5s;
+}
+
+body {
+  /* border: 3px solid red; */
+  min-height: 100vh;
+  max-width: 100vw;
+  margin: 0;
+  background: $bg;
+  color: $color;
+  /* Disable scrolling on body: */
+  overflow: hidden;
+  font-family: "Open Sans", sans-serif;
+}
+
+#layout {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: 'left main right';
+}
+
+#main {
+  grid-area: main;
+}
+
+.sidebar {
+  --color: #{$headerColor};
+  --border: var(--borderWidth) solid #{lighten($headerColor, 15%)};
+  &.left {
+    grid-area: left;
+    border-right: var(--border);
+    --bg: #{map-get($left, 'bg')};
+    --shade: #{$shadow};
+  }
+  &.right {
+    grid-area: right;
+    border-left: var(--border);
+    --bg: #{map-get($right, 'bg')};
+    --shade: -#{$shadow};
+  }
+
+  color: var(--color);
+  background: var(--bg);
+  --shadow: var(--shade) #888;
+  box-shadow: var(--shadow);
+  height: 100%;
+  width: var(--sidestripWidth);
+  transition: width var(--transitionDuration);
+  &.active {
+    width: var(--landscapeWidth);
+  }
+}
+
+/// Represents the inactive, hoverable sidebar that triggers activation by clicking on it:
+.hoverbar {
+  // --bg, --color, --border and --shadow are defined in .sidebar
+  &:hover {
+    cursor: pointer;
+    --color: #f1f1f1;
+    --border: var(--borderWidth) solid #{$headerColor};
+    --shadow: var(--shade) #333;
+    &.left {
+      --bg: #{darken(map-get($left, 'bg'), 12%)};
+    }
+    &.right {
+      --bg: #{darken(map-get($right, 'bg'), 15%)};
+    }
+  }
+
+  /// Square icon div:
+  .iconSquare {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    width: var(--headerHeight);
+    height: var(--headerHeight);
+    line-height: var(--headerHeight);
+    font-size: 1.75rem;
+    text-align: center;
+    color: var(--color);
+    background: var(--bg);
+    border-bottom: var(--border);
+    &.left {
+      border-right: var(--border);
+      left: 0;
+    }
+    &.right {
+      border-left: var(--border);
+      right: 0;
+    }
+  }
+
+  /// Small strip below icon to the side of the screen:
+  .sidestrip {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    height: 100%;
+    width: var(--sidestripWidth);
+    background: var(--bg);
+    box-shadow: var(--shadow);
+
+    transition-property: opacity;
+    opacity: 1;
+    transition-delay: var(--transitionDuration);
+    &.active {
+      opacity: 0;
+      transition-delay: 0s;
+    }
+
+    &.left {
+      border-right: var(--border);
+      left: 0;
+    }
+    &.right {
+      border-left: var(--border);
+      right: 0;
+    }
+  }
+
+  /// This class is a simple cosmetic touch that covers up the border between
+  /// .iconSquare and .sidestrip, so it appears as one whole:
+  .borderPatch {
+    position: absolute;
+    z-index: 15;
+    top: 3rem;
+    bottom: 5rem;
+    width: var(--sidestripWidth);
+    background: var(--bg);
+
+    transition-property: opacity;
+    opacity: 1;
+    transition-delay: var(--transitionDuration);
+    &.active {
+      opacity: 0;
+      transition-delay: 0s;
+    }
+
+    &.left {
+      left: 0;
+    }
+    &.right {
+      right: 0;
+    }
+  }
+
+}
+
+.header {
+  &.main {
+    background: linear-gradient(to right, map-get($left, 'gradient'), map-get($right, 'gradient'));
+    color: #{$headerColor};
+  }
+  &.left {
+    float: right;
+    width: calc(100% - var(--headerHeight));
+  }
+  &.right {
+    float: left;
+    width: calc(100% - var(--headerHeight));
+  }
+
+  height: var(--headerHeight);
+  border-bottom: var(--borderWidth) solid #{lighten($headerColor, 15%)};
+  > h1 {
+    margin: 0;
+    line-height: calc(var(--headerHeight) - var(--borderWidth)); /* Vertical center */
+    text-align: center; /* Horizontal center */
+    overflow: hidden;
+  }
+}
+
+.content {
+  &.main {
+    padding: 2rem 10% 3rem;
+    &::-webkit-scrollbar-thumb {
+      --bg: #{$bg};
+    }
+  }
+  &.left {
+    &::-webkit-scrollbar-thumb {
+      --bg: #{lighten(map-get($left, 'bg'), 20%)};
+    }
+  }
+  &.right {
+    direction: rtl;
+    > div {
+      direction: ltr;
+    }
+    &::-webkit-scrollbar-thumb {
+      --bg: #{lighten(map-get($right, 'bg'), 20%)};
+    }
+  }
+
+  /* Without border-box, the left/right padding is added
+  to the 100% width, resulting in overflowing content! */
+  box-sizing: border-box;
+  height: calc(100vh - var(--headerHeight));
+  padding: 5%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  clear: both;
+  color: #{$color};
+  /* Scrollbar styling: */
+  &::-webkit-scrollbar {
+    width: 0.6rem;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--bg);
+    border-radius: 0.6rem;
+  } /* End scrollbar styling */
+}

@@ -1,7 +1,9 @@
 import React from "react"
-import { css } from "@emotion/core"
-import { header, sidebar } from "../constants"
+
 import Hoverbar from "./hoverbar"
+import Content from './content'
+import Header from './header'
+
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -16,69 +18,23 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    let widthStr = this.props.whichSide === 'left' ? sidebar.left.width + 'rem' : sidebar.right.width + 'rem';
-    let otherSide = this.props.whichSide === 'left' ? 'right' : 'left';
-    
-    let backgroundColor = this.props.whichSide === 'left' ?
-          sidebar.left.color.background : sidebar.right.color.background;
-    let borderColor = this.props.whichSide === 'left' ?
-          sidebar.left.color.border : sidebar.right.color.border;
-
-    let shadow = this.props.whichSide === 'left' ? '6px 0 15px 0 #888' : '-6px 0 15px 0 #888';
-    let startHeader = this.props.whichSide === 'left' ? '4rem' : '0';
-    let transitionDuration = this.props.whichSide === 'left' ?
-          sidebar.left.transitionDuration : sidebar.right.transitionDuration;
+    let active = this.state.isActive ? 'active' : '';
 
     return (
-      <div css={css`
-              grid-area: ${this.props.whichSide + 'side'};
-              height: 100%;
-              width: ${this.state.isActive ? '30vw' : widthStr };
-              transition: width ${transitionDuration};
-              box-shadow: ${shadow};
-              /* ${this.props.whichSide}:
-                ${this.state.isActive ? 0 : '-100vw' }; */
-              /* transition: ${this.props.whichSide} 0.7s, width 0.7s; */
-      `}>
-        <Hoverbar whichSide={this.props.whichSide} onClick={this.toggleSidebar} isActive={this.state.isActive} />
+      <div className={`sidebar ${this.props.whichSide} ${active}`}>
+          {/* Hoverable part of the sidebar that triggers activation: */}
+          <Hoverbar
+              whichSide={this.props.whichSide}
+              icon={this.props.icon}
+              isActive={this.state.isActive}
+              onClick={this.toggleSidebar}
+          />
 
-        <div css={css`
-              height: inherit;
-              width: inherit;
-              background: ${backgroundColor};
-              ${'border-' + otherSide + ': 2px solid ' + borderColor};
-              position: fixed;
-              top: 0;
-        `}>
-          {/* Header of the sidebar: */}
-          <div css={css`
-              position: relative;
-              left: ${startHeader};
-              height: 4rem;
-              width: calc(100% - 4rem);
-              border-bottom: 2px solid ${borderColor};
-          `}>
-            <h1 css={css`
-                height: 100%;
-                color: ${header.color.font};
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                overflow: hidden;
-            `}>
-              {this.props.title}
-            </h1>
-          </div>
+          <Header which={this.props.whichSide} title={this.props.title} />
 
-          {/* Content of the sidebar: */}
-          <div css={css`
-                height: calc(100vh - 4rem);
-                overflow-y: auto;
-                padding: 1rem;
-          `}>
-            {this.props.children}
-          </div>
-        </div>
+          <Content which={this.props.whichSide}>
+              {this.props.children}
+          </Content>
       </div>
     );
   }

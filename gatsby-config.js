@@ -1,19 +1,20 @@
-const path = require("path")
+const path = require('path')
 
 module.exports = {
   plugins: [
-    "gatsby-plugin-emotion",
+    'gatsby-plugin-emotion',
     {
-      resolve: "gatsby-plugin-page-creator",
+      resolve: 'gatsby-plugin-page-creator',
       options: {
-        path: path.join(__dirname, "src", "pages"),
+        path: path.join(__dirname, 'src', 'pages'),
       },
     },
     {
-      resolve: "gatsby-plugin-compile-es6-packages",
+      resolve: 'gatsby-plugin-compile-es6-packages',
       options: {
-        modules: ["gatsby-theme-dualside"],
+        modules: ['gatsby-theme-dualside'],
       },
     },
+    'gatsby-plugin-sass',
   ],
 }
