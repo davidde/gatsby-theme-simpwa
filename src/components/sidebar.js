@@ -30,10 +30,8 @@ class Sidebar extends React.Component {
               onClick={this.toggleSidebar}
           />
 
-          {/* Header of the sidebar: */}
           <Header which={this.props.whichSide} title={this.props.title} />
 
-          {/* Content of the sidebar: */}
           <Content which={this.props.whichSide}>
               {this.props.children}
           </Content>

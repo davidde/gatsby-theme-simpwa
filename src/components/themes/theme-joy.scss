@@ -3,11 +3,14 @@
 $bg: hsla(60, 100, 88.6, 0.9);
 $color: hsla(330, 100, 39.2, 0.8);
 $headerColor: rgb(82, 38, 228);
+$shadow: 6px 0 15px 0;
 
 $left: (
+  'gradient': orange,
   'bg': hsl(24, 100, 50),
 );
 $right: (
+  'gradient': violet,
   'bg': hsl(300, 76.2, 52.2),
 );
 
@@ -19,7 +22,6 @@ $right: (
   --landscapeWidth: 30vw;
   --borderWidth: 2px;
   --transitionDuration: 0.5s;
-  --shadow: 6px 0 15px 0;
 }
 
 body {
@@ -45,19 +47,25 @@ body {
 }
 
 .sidebar {
+  --color: #{$headerColor};
+  --border: var(--borderWidth) solid #{lighten($headerColor, 15%)};
   &.left {
     grid-area: left;
-    border-right: var(--borderWidth) solid lighten($headerColor, 15%);
-    box-shadow: var(--shadow) #888;
-    background: map-get($left, 'bg');
+    border-right: var(--border);
+    --bg: #{map-get($left, 'bg')};
+    --shade: #{$shadow};
   }
   &.right {
     grid-area: right;
-    border-left: var(--borderWidth) solid lighten($headerColor, 15%);
-    box-shadow: -var(--shadow) #888;
-    background: map-get($right, 'bg');
+    border-left: var(--border);
+    --bg: #{map-get($right, 'bg')};
+    --shade: -#{$shadow};
   }
 
+  color: var(--color);
+  background: var(--bg);
+  --shadow: var(--shade) #888;
+  box-shadow: var(--shadow);
   height: 100%;
   width: var(--sidestripWidth);
   transition: width var(--transitionDuration);
@@ -66,9 +74,105 @@ body {
   }
 }
 
+/// Represents the inactive, hoverable sidebar that triggers activation by clicking on it:
+.hoverbar {
+  // --bg, --color, --border and --shadow are defined in .sidebar
+  &:hover {
+    cursor: pointer;
+    --color: #f1f1f1;
+    --border: var(--borderWidth) solid #{$headerColor};
+    --shadow: var(--shade) #333;
+    &.left {
+      --bg: #{darken(map-get($left, 'bg'), 12%)};
+    }
+    &.right {
+      --bg: #{darken(map-get($right, 'bg'), 15%)};
+    }
+  }
+
+  /// Square icon div:
+  .iconSquare {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    width: var(--headerHeight);
+    height: var(--headerHeight);
+    line-height: var(--headerHeight);
+    font-size: 1.75rem;
+    text-align: center;
+    color: var(--color);
+    background: var(--bg);
+    border-bottom: var(--border);
+    &.left {
+      border-right: var(--border);
+      left: 0;
+    }
+    &.right {
+      border-left: var(--border);
+      right: 0;
+    }
+  }
+
+  /// Small strip below icon to the side of the screen:
+  .sidestrip {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    height: 100%;
+    width: var(--sidestripWidth);
+    background: var(--bg);
+    box-shadow: var(--shadow);
+
+    transition-property: opacity;
+    opacity: 1;
+    transition-delay: var(--transitionDuration);
+    &.active {
+      opacity: 0;
+      transition-delay: 0s;
+    }
+
+    &.left {
+      border-right: var(--border);
+      left: 0;
+    }
+    &.right {
+      border-left: var(--border);
+      right: 0;
+    }
+  }
+
+  /// This class is a simple cosmetic touch that covers up the border between
+  /// .iconSquare and .sidestrip, so it appears as one whole:
+  .borderPatch {
+    position: absolute;
+    z-index: 15;
+    top: 3rem;
+    bottom: 5rem;
+    width: var(--sidestripWidth);
+    background: var(--bg);
+
+    transition-property: opacity;
+    opacity: 1;
+    transition-delay: var(--transitionDuration);
+    &.active {
+      opacity: 0;
+      transition-delay: 0s;
+    }
+
+    &.left {
+      left: 0;
+    }
+    &.right {
+      right: 0;
+    }
+  }
+
+}
+
 .header {
   &.main {
-    background: linear-gradient(to right, orange, violet);
+    background: linear-gradient(to right, map-get($left, 'gradient'), map-get($right, 'gradient'));
+    color: #{$headerColor};
   }
   &.left {
     float: right;
@@ -79,12 +183,9 @@ body {
     width: calc(100% - var(--headerHeight));
   }
 
-  position: sticky;
   height: var(--headerHeight);
-  color: #{$headerColor};
   border-bottom: var(--borderWidth) solid #{lighten($headerColor, 15%)};
   > h1 {
-    height: 100%;
     margin: 0;
     line-height: calc(var(--headerHeight) - var(--borderWidth)); /* Vertical center */
     text-align: center; /* Horizontal center */
@@ -122,6 +223,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   clear: both;
+  color: #{$color};
   /* Scrollbar styling: */
   &::-webkit-scrollbar {
     width: 0.6rem;
