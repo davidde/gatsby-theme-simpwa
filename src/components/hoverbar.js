@@ -10,7 +10,7 @@ function Hoverbar(props) {
          onClick={props.onClick} >
 
         {/* Square icon div: */}
-        <div className={`iconSquare ${props.whichSide}`} >
+        <div className={`iconSquare ${props.whichSide} ${active}`} >
             <FontAwesomeIcon icon={props.icon} />
         </div>
 
