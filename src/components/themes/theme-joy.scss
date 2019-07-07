@@ -71,6 +71,56 @@ body {
   transition: width var(--transitionDuration);
   &.active {
     width: var(--landscapeWidth);
+    @media (orientation: portrait) {
+      // For portrait styling, see .portraitSidebar!
+      width: var(--sidestripWidth);
+    }
+  }
+}
+
+@media (orientation: portrait) {
+  /// Mock background layer to hide the sidebar by clicking on it:
+  .mock-portrait-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    visibility: hidden;
+    &.active {
+      visibility: visible;
+    }
+  }
+
+  .portraitSidebar {
+    position: fixed;
+    z-index: 9;
+    width: var(--portraitWidth);
+    height: 100%;
+    background: var(--bg);
+
+    &.left {
+      left: -90vw;
+      transition: left var(--transitionDuration);
+      border-right: var(--border);
+    }
+    &.right {
+      right: -90vw;
+      transition: right var(--transitionDuration);
+      border-left: var(--border);
+    }
+    &.active {
+      &.left {
+        left: 0;
+      }
+      &.right {
+        right: 0;
+      }
+    }
+
+    
   }
 }
 

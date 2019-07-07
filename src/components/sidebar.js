@@ -30,11 +30,15 @@ class Sidebar extends React.Component {
               onClick={this.toggleSidebar}
           />
 
-          <Header which={this.props.whichSide} title={this.props.title} />
+          <div className={`mock-portrait-bg ${this.props.whichSide} ${active}`} onClick={this.toggleSidebar} />
 
-          <Content which={this.props.whichSide}>
-              {this.props.children}
-          </Content>
+          <div className={`portraitSidebar ${this.props.whichSide} ${active}`}>
+            <Header which={this.props.whichSide} title={this.props.title} />
+
+            <Content which={this.props.whichSide}>
+                {this.props.children}
+            </Content>
+          </div>
       </div>
     );
   }
