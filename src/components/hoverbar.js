@@ -19,7 +19,7 @@ function Hoverbar(props) {
 
         {/* This div is a simple cosmetic touch that covers up the border between
             the iconSquare and sidestrip divs, so it appears as one whole: */}
-        <div className={`borderPatch ${props.whichSide} ${active}`} />
+        <div className={`sidestripPatch ${props.whichSide} ${active}`} />
 
     </div>
   )
