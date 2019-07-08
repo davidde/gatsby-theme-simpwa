@@ -4,6 +4,7 @@ $bg: hsla(60, 100, 88.6, 0.9);
 $color: hsla(330, 100, 39.2, 0.8);
 $headerColor: rgb(82, 38, 228);
 $shadow: 6px 0 15px 0;
+$widthQuery: '(max-width : 800px)';
 
 $left: (
   'gradient': orange,
@@ -16,7 +17,15 @@ $right: (
 
 :root {
   --headerHeight: 4rem;
+  --headerFont: 1.75rem;
   --sidestripWidth: 0.5rem;
+  --patchTop: 3rem;
+  @media #{$widthQuery} {
+    --headerHeight: 3rem;
+    --headerFont: 1.35rem;
+    --sidestripWidth: 0.375rem;
+    --patchTop: 2rem;
+  }
   // sidebar widths in portrait and landscape orientations:
   --portraitWidth: 80vw;
   --landscapeWidth: 30vw;
@@ -70,30 +79,10 @@ body {
   transition: width var(--transitionDuration);
   &.active {
     width: var(--landscapeWidth);
-    @media (orientation: portrait) {
-      // For portrait styling, see .portraitSidebar!
-      width: var(--sidestripWidth);
-    }
   }
 }
 
-@media (orientation: portrait) {
-  /// Mock background layer to hide the sidebar by clicking on it:
-  .mock-portrait-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 20;
-    visibility: hidden;
-    &.active {
-      visibility: visible;
-      cursor: pointer;
-    }
-  }
-
+@media (orientation: portrait), #{$widthQuery} {
   /// In portrait mode the active sidebar should cover the main content,
   /// so styling is different from landscape mode:
   .portraitSidebar {
@@ -122,6 +111,22 @@ body {
       }
     }
   }
+
+  /// Mock background layer to hide the sidebar by clicking on it:
+  .mock-portrait-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    visibility: hidden;
+    &.active {
+      visibility: visible;
+      cursor: pointer;
+    }
+  }
 }
 
 /// Represents the inactive, hoverable sidebar that triggers activation by clicking on it:
@@ -148,7 +153,7 @@ body {
     width: var(--headerHeight);
     height: var(--headerHeight);
     line-height: var(--headerHeight);
-    font-size: 1.75rem;
+    font-size: var(--headerFont);
     text-align: center;
     color: var(--color);
     background: var(--bg);
@@ -168,7 +173,6 @@ body {
 
   /// Small strip below icon to the side of the screen:
   .sidestrip {
-    // border: 3px solid yellow;
     position: absolute;
     z-index: 5;
     top: 0;
@@ -199,10 +203,9 @@ body {
   /// This class is a simple cosmetic touch that covers up the border between
   /// .iconSquare and .sidestrip, so it appears as one whole:
   .sidestripPatch {
-    // border: 3px solid yellow;
     position: absolute;
     z-index: 15;
-    top: 3rem;
+    top: var(--patchTop);
     bottom: 0;
     width: var(--sidestripWidth);
     background: var(--bg);
@@ -243,9 +246,11 @@ body {
   border-bottom: var(--borderWidth) solid #{lighten($headerColor, 15%)};
   > h1 {
     margin: 0;
+    height: 100%; /* Required to prevent overflow! */
     line-height: calc(var(--headerHeight) - var(--borderWidth)); /* Vertical center */
     text-align: center; /* Horizontal center */
     overflow: hidden;
+    font-size: var(--headerFont);
   }
 }
 
