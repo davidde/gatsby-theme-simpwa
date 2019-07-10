@@ -2,13 +2,14 @@ import React from 'react'
 import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 
 import Layout from '../components/layout'
-import Sidebar from '../components/sidebar'
-import Main from '../components/main'
+import Leftside from '../components/sidebar/leftside'
+import Rightside from '../components/sidebar/rightside'
+import Main from '../components/main/main'
 
 
 export default () => (
   <Layout>
-    <Sidebar whichSide='right' title='Home' icon={faHome} >
+    <Rightside title='Home' icon={faHome} >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius semper ligula, eu luctus nunc mollis in. Vestibulum vulputate metus metus, id rutrum magna imperdiet nec. Aenean at pharetra risus. Integer convallis ac enim id aliquet. Mauris pharetra mollis nulla, eget posuere mi accumsan eu. Curabitur urna nisl, varius rhoncus tristique et, egestas et augue. Vivamus ac libero faucibus, vehicula quam in, posuere felis. Aliquam erat volutpat. Maecenas pretium iaculis dui sed elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
       </p><br/>
@@ -48,9 +49,9 @@ export default () => (
       <p>
         Praesent ligula arcu, scelerisque non placerat ullamcorper, pharetra sed tortor. Curabitur vel sagittis leo, non imperdiet lorem. Quisque hendrerit rutrum sem, vitae dictum ipsum mattis non. Etiam in nibh egestas, ullamcorper nisl nec, interdum ex. Proin et orci luctus, venenatis odio ut, dapibus quam. Integer aliquet aliquet consequat. Donec rutrum dui orci, at facilisis lectus fermentum a. Proin eleifend ornare odio luctus rhoncus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed a erat sit amet tellus gravida ultrices. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu arcu metus. Sed efficitur nulla diam, a mattis magna fringilla a. In vitae ante risus. Maecenas vel elit blandit, pharetra eros in, egestas eros. Nullam efficitur auctor quam, vitae pretium ante dapibus ut.
       </p>
-    </Sidebar>
+    </Rightside>
 
-    <Sidebar whichSide='left' title='Contents' icon={faBars} >
+    <Leftside title='Contents' icon={faBars} >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius semper ligula, eu luctus nunc mollis in. Vestibulum vulputate metus metus, id rutrum magna imperdiet nec. Aenean at pharetra risus. Integer convallis ac enim id aliquet. Mauris pharetra mollis nulla, eget posuere mi accumsan eu. Curabitur urna nisl, varius rhoncus tristique et, egestas et augue. Vivamus ac libero faucibus, vehicula quam in, posuere felis. Aliquam erat volutpat. Maecenas pretium iaculis dui sed elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
       </p><br/>
@@ -90,7 +91,7 @@ export default () => (
       <p>
         Praesent ligula arcu, scelerisque non placerat ullamcorper, pharetra sed tortor. Curabitur vel sagittis leo, non imperdiet lorem. Quisque hendrerit rutrum sem, vitae dictum ipsum mattis non. Etiam in nibh egestas, ullamcorper nisl nec, interdum ex. Proin et orci luctus, venenatis odio ut, dapibus quam. Integer aliquet aliquet consequat. Donec rutrum dui orci, at facilisis lectus fermentum a. Proin eleifend ornare odio luctus rhoncus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed a erat sit amet tellus gravida ultrices. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu arcu metus. Sed efficitur nulla diam, a mattis magna fringilla a. In vitae ante risus. Maecenas vel elit blandit, pharetra eros in, egestas eros. Nullam efficitur auctor quam, vitae pretium ante dapibus ut.
       </p>
-    </Sidebar>
+    </Leftside>
 
     <Main title='gatsby-theme-dualside' >
       <p>

@@ -1,8 +1,8 @@
 import React from "react"
 
 import Hoverbar from "./hoverbar"
-import Content from './content'
-import Header from './header'
+import Content from '../main/content'
+import Header from '../main/header'
 
 
 class Sidebar extends React.Component {
