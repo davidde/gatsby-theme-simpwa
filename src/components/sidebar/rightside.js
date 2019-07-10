@@ -10,17 +10,17 @@ class Rightside extends React.Component {
   }
 
   render() {
-    return (
+    return React.forwardRef((props, ref) => (
       <Sidebar
         whichSide='right'
-        ref={this.ref}
-        otherRef={this.props.otherRef}
-        title={this.props.title}
-        icon={this.props.icon}
+        ref={ref}
+        otherRef={props.otherRef}
+        title={props.title}
+        icon={props.icon}
       >
-        {this.props.children}
+        {props.children}
       </Sidebar>
-    );
+    ));
   }
 }
 
