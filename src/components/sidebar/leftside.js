@@ -4,23 +4,22 @@ import Sidebar from "./sidebar"
 
 
 class Leftside extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
     
-  }
+  // }
 
   render() {
-    return React.forwardRef((props, ref) => (
-      <Sidebar
+    return <Sidebar
         whichSide='left'
-        ref={ref}
-        otherRef={props.otherRef}
-        title={props.title}
-        icon={props.icon}
+        ref={this.props.myRef}
+        otherRef={this.props.otherRef}
+        title={this.props.title}
+        icon={this.props.icon}
       >
-        {props.children}
+        {this.props.children}
       </Sidebar>
-    ));
+    
   }
 }
 

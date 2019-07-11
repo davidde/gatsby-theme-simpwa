@@ -14,17 +14,23 @@ class Layout extends React.Component {
     }
     require('./themes/theme-' + theme + '.scss');
 
-    this.leftRef = React.createRef();
-    this.rightRef = React.createRef();
+    this.leftRef = null;
+    this.rightRef = null;
   }
 
   render() {
     const childrenWithRefs = React.Children.map(this.props.children,
       (child) => {
         if (child.type === Leftside) {
-          return React.cloneElement(child, { ref: this.leftRef, otherRef: this.rightRef });
+          return React.cloneElement(child, {
+            myRef: element => this.leftRef = element,
+            otherRef: this.rightRef,
+          });
         } else if (child.type === Rightside) {
-          return React.cloneElement(child, { ref: this.rightRef, otherRef: this.leftRef });
+          return React.cloneElement(child, {
+            myRef: element => this.rightRef = element,
+            otherRef: this.leftRef,
+          });
         } else {
           return child;
         }
