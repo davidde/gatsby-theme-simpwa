@@ -16,22 +16,20 @@ class Layout extends React.Component {
 
     this.leftRef = null;
     this.rightRef = null;
-
-    this.setLeft = element => this.leftRef = element;
-    this.setRight = element => this.rightRef = element;
   }
 
   render() {
     const childrenWithRefs = React.Children.map(this.props.children,
       (child) => {
-        if (child.type === Leftside) {
+        if (child.displayName === Leftside.displayName) {
+          console.log('leftRef = ', this.leftRef);
           return React.cloneElement(child, {
-            myRef: this.setLeft,
+            myRef: element => this.leftRef = element,
             otherRef: this.rightRef,
           });
-        } else if (child.type === Rightside) {
+        } else if (child.displayName === Rightside.displayName) {
           return React.cloneElement(child, {
-            myRef: this.setRight,
+            myRef: element => this.rightRef = element,
             otherRef: this.leftRef,
           });
         } else {

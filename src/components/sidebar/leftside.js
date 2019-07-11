@@ -9,7 +9,7 @@ class Leftside extends React.Component {
     
   // }
 
-  render() {
+  render() {          console.log('ref = ', this.props.myRef);
     return <Sidebar
         whichSide='left'
         ref={this.props.myRef}
