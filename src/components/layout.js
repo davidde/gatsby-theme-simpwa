@@ -16,6 +16,9 @@ class Layout extends React.Component {
 
     this.leftRef = null;
     this.rightRef = null;
+
+    this.setLeft = element => this.leftRef = element;
+    this.setRight = element => this.rightRef = element;
   }
 
   render() {
@@ -23,12 +26,12 @@ class Layout extends React.Component {
       (child) => {
         if (child.type === Leftside) {
           return React.cloneElement(child, {
-            myRef: element => this.leftRef = element,
+            myRef: this.setLeft,
             otherRef: this.rightRef,
           });
         } else if (child.type === Rightside) {
           return React.cloneElement(child, {
-            myRef: element => this.rightRef = element,
+            myRef: this.setRight,
             otherRef: this.leftRef,
           });
         } else {
