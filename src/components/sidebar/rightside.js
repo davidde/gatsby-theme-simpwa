@@ -1,25 +1,18 @@
 import React from "react"
-
 import Sidebar from "./sidebar"
 
 
 class Rightside extends React.Component {
-  // constructor(props) {
-  //   super(props);
-    
-  // }
-
   render() {
-    return <Sidebar
-        whichSide='right'
-        ref={this.props.myRef}
-        otherRef={this.props.otherRef}
-        title={this.props.title}
-        icon={this.props.icon}
-      >
-        {this.props.children}
-      </Sidebar>
-    
+      return <Sidebar
+                whichSide='right'
+                ref={this.props.myRef}
+                otherRef={this.props.otherRef}
+                title={this.props.title}
+                icon={this.props.icon}
+              >
+                {this.props.children}
+              </Sidebar>
   }
 }
 

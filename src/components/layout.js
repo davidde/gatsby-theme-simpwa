@@ -1,8 +1,5 @@
 import React from "react"
 
-import Leftside from './sidebar/leftside'
-import Rightside from './sidebar/rightside'
-
 
 class Layout extends React.Component {
   constructor(props) {
@@ -14,24 +11,28 @@ class Layout extends React.Component {
     }
     require('./themes/theme-' + theme + '.scss');
 
-    this.leftRef = null;
-    this.rightRef = null;
+    this.state = {
+      leftRef: null,
+      rightRef: null,
+    }
   }
+
+  setLeft = element => this.setState({ leftRef: element });
+  setRight = element => this.setState({ rightRef: element });
 
   render() {
     const childrenWithRefs = React.Children.map(this.props.children,
       (child) => {
-        if (child.displayName === Leftside.displayName) {
-          console.log('leftRef = ', this.leftRef);
-          return React.cloneElement(child, {
-            myRef: element => this.leftRef = element,
-            otherRef: this.rightRef,
-          });
-        } else if (child.displayName === Rightside.displayName) {
-          return React.cloneElement(child, {
-            myRef: element => this.rightRef = element,
-            otherRef: this.leftRef,
-          });
+        if (child.type.displayName === 'Leftside') {
+            return React.cloneElement(child, {
+                myRef: this.setLeft,
+                otherRef: this.state.rightRef,
+            });
+        } else if (child.type.displayName === 'Rightside') {
+            return React.cloneElement(child, {
+                myRef: this.setRight,
+                otherRef: this.state.leftRef,
+            });
         } else {
           return child;
         }

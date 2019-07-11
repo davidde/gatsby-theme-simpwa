@@ -14,12 +14,14 @@ class Sidebar extends React.Component {
   }
 
   toggleSidebar = () => {
+    this.setState({isActive: !this.state.isActive});
+
     let other = this.props.otherRef;
-    console.log('otherRef = ', this.props.otherRef);
+    console.log('other = ', other);
+
     if (other.state.isActive) {
       other.setState({isActive: !other.state.isActive});
     }
-    this.setState({isActive: !this.state.isActive});
   }
 
   render() {
