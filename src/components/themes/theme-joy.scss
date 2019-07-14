@@ -4,7 +4,8 @@ $bg: hsla(60, 100, 88.6, 0.9);
 $color: hsla(330, 100, 39.2, 0.8);
 $headerColor: rgb(82, 38, 228);
 $shadow: 6px 0 15px 0;
-$widthQuery: '(max-width : 800px)';
+$smallWidthQuery: '(max-width : 800px)';
+$mediumWidthQuery: '(max-width : 1200px)';
 
 $left: (
   'gradient': orange,
@@ -20,7 +21,7 @@ $right: (
   --headerFont: 1.75rem;
   --sidestripWidth: 0.5rem;
   --patchTop: 3rem;
-  @media #{$widthQuery} {
+  @media #{$smallWidthQuery} {
     --headerHeight: 3rem;
     --headerFont: 1.35rem;
     --sidestripWidth: 0.375rem;
@@ -29,6 +30,10 @@ $right: (
   // sidebar widths in portrait and landscape orientations:
   --portraitWidth: 80vw;
   --landscapeWidth: 30vw;
+  @media #{$mediumWidthQuery} {
+    --landscapeWidth: 40vw;
+  }
+  --mediumWidthQuery: #{$mediumWidthQuery};
   --borderWidth: 2px;
   --transitionDuration: 0.5s;
 }
@@ -47,7 +52,7 @@ body {
 
 #layout {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto 1fr;
   grid-template-areas: 'left main right';
 }
 
@@ -82,7 +87,7 @@ body {
   }
 }
 
-@media (orientation: portrait), #{$widthQuery} {
+@media (orientation: portrait), #{$smallWidthQuery} {
   /// In portrait mode the active sidebar should cover the main content,
   /// so styling is different from landscape mode:
   .portraitSidebar {
