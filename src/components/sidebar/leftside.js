@@ -6,8 +6,8 @@ class Leftside extends React.Component {
   render() {
       return <Sidebar
                 whichSide='left'
-                ref={this.props.myRef}
-                otherRef={this.props.otherRef}
+                isActive={this.props.isActive}
+                toggleSidebar={this.props.toggleSidebar}
                 title={this.props.title}
                 icon={this.props.icon}
               >
