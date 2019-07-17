@@ -234,25 +234,11 @@ body {
 }
 
 .header {
+  height: var(--headerHeight);
+  border-bottom: var(--borderWidth) solid #{lighten($headerColor, 15%)};
   &.main {
     background: linear-gradient(to right, map-get($left, 'gradient'), map-get($right, 'gradient'));
     color: #{$headerColor};
-
-    // border: 2px solid black;
-    // position: absolute;
-    // left: var(--headerHeight);
-    // // left: calc(var(--headerHeight) - var(--sidestripWidth));
-    // right: var(--headerHeight);
-    // // right: calc(var(--headerHeight) - var(--sidestripWidth));
-    // text-align: center;
-    // &.leftActive {
-    //   position: relative;
-    //   left: 0;
-    // }
-    // &.rightActive {
-    //   position: static;
-    //   right: 0;
-    // }
   }
   &.left {
     float: right;
@@ -265,27 +251,31 @@ body {
     
   }
 
-  height: var(--headerHeight);
-  border-bottom: var(--borderWidth) solid #{lighten($headerColor, 15%)};
   > h1 {
     margin: 0;
     height: 100%; /* Required to prevent overflow! */
+    font-size: var(--headerFont);
     line-height: calc(var(--headerHeight) - var(--borderWidth)); /* Vertical center */
     text-align: center; /* Horizontal center */
     overflow: hidden;
-    font-size: var(--headerFont);
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
-    
     &.main {
-      border: 2px solid black;
       position: relative;
-      left: var(--headerHeight);
+      --paddingFix: calc(var(--headerHeight) - var(--sidestripWidth));
+      left: var(--paddingFix);
+      width: calc(100vw - 2 * var(--headerHeight));
       &.leftActive {
         left: 0;
+        width: calc(100% - var(--paddingFix));
       }
-      right: var(--headerHeight);
+      &.leftActive.rightActive {
+        left: 0;
+        width: 100%;
+      }
       &.rightActive {
-        right: 0;
+        width: calc(100% - var(--paddingFix));
       }
     }
   }
