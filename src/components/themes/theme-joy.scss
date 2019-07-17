@@ -84,6 +84,9 @@ body {
   transition: width var(--transitionDuration);
   &.active {
     width: var(--landscapeWidth);
+    @media (orientation: portrait), #{$smallWidthQuery} {
+      width: var(--sidestripWidth);
+    }
   }
 }
 
@@ -234,6 +237,7 @@ body {
 }
 
 .header {
+  position: relative;
   height: var(--headerHeight);
   border-bottom: var(--borderWidth) solid #{lighten($headerColor, 15%)};
   &.main {
@@ -262,20 +266,15 @@ body {
     white-space: nowrap;
 
     &.main {
-      position: relative;
+      position: absolute;
       --paddingFix: calc(var(--headerHeight) - var(--sidestripWidth));
       left: var(--paddingFix);
-      width: calc(100vw - 2 * var(--headerHeight));
+      right: var(--paddingFix);
       &.leftActive {
         left: 0;
-        width: calc(100% - var(--paddingFix));
-      }
-      &.leftActive.rightActive {
-        left: 0;
-        width: 100%;
       }
       &.rightActive {
-        width: calc(100% - var(--paddingFix));
+        right: 0;
       }
     }
   }
