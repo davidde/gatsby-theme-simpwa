@@ -237,14 +237,32 @@ body {
   &.main {
     background: linear-gradient(to right, map-get($left, 'gradient'), map-get($right, 'gradient'));
     color: #{$headerColor};
+
+    // border: 2px solid black;
+    // position: absolute;
+    // left: var(--headerHeight);
+    // // left: calc(var(--headerHeight) - var(--sidestripWidth));
+    // right: var(--headerHeight);
+    // // right: calc(var(--headerHeight) - var(--sidestripWidth));
+    // text-align: center;
+    // &.leftActive {
+    //   position: relative;
+    //   left: 0;
+    // }
+    // &.rightActive {
+    //   position: static;
+    //   right: 0;
+    // }
   }
   &.left {
     float: right;
     width: calc(100% - var(--headerHeight));
+    
   }
   &.right {
     float: left;
     width: calc(100% - var(--headerHeight));
+    
   }
 
   height: var(--headerHeight);
@@ -256,6 +274,20 @@ body {
     text-align: center; /* Horizontal center */
     overflow: hidden;
     font-size: var(--headerFont);
+
+    
+    &.main {
+      border: 2px solid black;
+      position: relative;
+      left: var(--headerHeight);
+      &.leftActive {
+        left: 0;
+      }
+      right: var(--headerHeight);
+      &.rightActive {
+        right: 0;
+      }
+    }
   }
 }
 
