@@ -9,7 +9,7 @@ class Layout extends React.Component {
     if (!theme) {
       theme = 'joy';
     }
-    require('./themes/theme-' + theme + '.scss');
+    this.vars = require('./themes/theme-' + theme + '.scss');
 
     this.state = {
       leftActive: false,
@@ -27,7 +27,7 @@ class Layout extends React.Component {
   }
 
   isMediumViewport = () => {
-    let mediumWidthQuery = getComputedStyle(document.documentElement).getPropertyValue('--mediumWidthQuery');
+    let mediumWidthQuery = this.vars.mediumWidthQuery;
     let isMediumViewport = window.matchMedia(mediumWidthQuery).matches;
 
     if (this.state.isMediumViewport === null) {

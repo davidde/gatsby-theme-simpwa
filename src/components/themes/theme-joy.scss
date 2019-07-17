@@ -7,6 +7,9 @@ $shadow: 6px 0 15px 0;
 $smallWidthQuery: '(max-width : 800px)';
 $noSmallWidthQuery: '(min-width : 800px)';
 $mediumWidthQuery: '(max-width : 1200px)';
+:export {
+  mediumWidthQuery: $mediumWidthQuery;
+}
 
 $left: (
   'gradient': orange,
@@ -34,7 +37,6 @@ $right: (
   @media #{$mediumWidthQuery} {
     --landscapeWidth: 40vw;
   }
-  --mediumWidthQuery: #{$mediumWidthQuery};
   --borderWidth: 2px;
   --transitionDuration: 0.5s;
 }
@@ -248,12 +250,10 @@ body {
   &.left {
     float: right;
     width: calc(100% - var(--headerHeight));
-    
   }
   &.right {
     float: left;
     width: calc(100% - var(--headerHeight));
-    
   }
 
   > h1 {
