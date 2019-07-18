@@ -27,14 +27,14 @@ class Layout extends React.Component {
   }
 
   isMediumViewport = () => {
-    let mediumWidthQuery = this.vars.mediumWidthQuery;
-    let isMediumViewport = window.matchMedia(mediumWidthQuery).matches;
+    let isMediumViewport = window.matchMedia(this.vars.mediumWidthQuery).matches;
 
+    // Init in constructor:
     if (this.state.isMediumViewport === null) {
-      // Init in constructor:
       // eslint-disable-next-line
       this.state.isMediumViewport = isMediumViewport;
-    } else if (this.state.isMediumViewport !== isMediumViewport) {
+    } // In event listener (on window resize); update state if necessary:
+    else if (this.state.isMediumViewport !== isMediumViewport) {
       this.setState({ isMediumViewport });
     }
     // If both sides are active in medium viewport, unactivate one side:

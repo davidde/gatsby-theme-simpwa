@@ -4,11 +4,11 @@ $bg: hsla(60, 100, 88.6, 0.9);
 $color: hsla(330, 100, 39.2, 0.8);
 $headerColor: rgb(82, 38, 228);
 $shadow: 6px 0 15px 0;
-$smallWidthQuery: '(max-width : 800px)';
-$noSmallWidthQuery: '(min-width : 800px)';
-$mediumWidthQuery: '(max-width : 1200px)';
+$smallWidthQuery: '(max-width: 800px)';
+$noSmallWidthQuery: '(min-width: 800px)';
+$mediumWidthQuery: '(max-width: 1200px)';
 :export {
-  mediumWidthQuery: $mediumWidthQuery;
+  mediumWidthQuery: #{$mediumWidthQuery};
 }
 
 $left: (
@@ -250,10 +250,12 @@ body {
   &.left {
     float: right;
     width: calc(100% - var(--headerHeight));
+    
   }
   &.right {
     float: left;
     width: calc(100% - var(--headerHeight));
+    
   }
 
   > h1 {
@@ -267,6 +269,7 @@ body {
     white-space: nowrap;
 
     &.main {
+      // border: 2px solid black;
       position: absolute;
       left: calc(var(--headerHeight) - var(--sidestripWidth));
       right: calc(var(--headerHeight) - var(--sidestripWidth));
