@@ -143,17 +143,19 @@ body {
 
 /// Represents the inactive, hoverable sidebar that triggers activation by clicking on it:
 .hoverbar {
-  // --bg, --color, --border and --shadow are defined in .sidebar
-  &:hover {
-    cursor: pointer;
-    --color: #f1f1f1;
-    --border: var(--borderWidth) solid #{$headerColor};
-    --shadow: var(--shade) #333;
-    &.left {
-      --bg: #{darken(map-get($left, 'bg'), 12%)};
-    }
-    &.right {
-      --bg: #{darken(map-get($right, 'bg'), 15%)};
+  @media (hover: hover) { // Prevent :hover from being triggered on touch devices!
+    &:hover {
+      cursor: pointer;
+      // --color, --border, --shadow and --bg are defined in .sidebar
+      --color: #f1f1f1;
+      --border: var(--borderWidth) solid #{$headerColor};
+      --shadow: var(--shade) #333;
+      &.left {
+        --bg: #{darken(map-get($left, 'bg'), 12%)};
+      }
+      &.right {
+        --bg: #{darken(map-get($right, 'bg'), 15%)};
+      }
     }
   }
 

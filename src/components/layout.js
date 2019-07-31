@@ -83,21 +83,30 @@ class Layout extends React.Component {
         return;
     }
 
-    if ( Math.abs(this.clientX) > ((25/100) * (window.screen.width)) ) {
-      if ( !this.state.leftActive ) {
-        return;
-      }
-    }
-
     let xDelta = event.touches[0].clientX - this.clientX;
     let yDelta = event.touches[0].clientY - this.clientY;
 
-    if ( Math.abs(xDelta) > Math.abs(yDelta) ) {
-      // if xDelta > 0: right swipe
-      if (xDelta > 0) {
-        this.setState({ leftActive: true });
-      } else { // if xDelta < 0: left swipe
-        this.setState({ leftActive: false });
+    // Left sidebar:
+    if ( (Math.abs(this.clientX) < (25/100 * window.screen.width)) || this.state.leftActive ) {
+      if ( Math.abs(xDelta) > Math.abs(yDelta) ) {
+        // if xDelta > 0: swipe to right
+        if (xDelta > 0) {
+          this.setState({ leftActive: true });
+        } else { // if xDelta < 0: swipe to left
+          this.setState({ leftActive: false });
+        }
+      }
+    }
+
+    // Right sidebar:
+    if ( (Math.abs(this.clientX) > (75/100 * window.screen.width)) || this.state.rightActive ) {
+      if ( Math.abs(xDelta) > Math.abs(yDelta) ) {
+        // if xDelta > 0: swipe to right
+        if (xDelta > 0) {
+          this.setState({ rightActive: false });
+        } else { // if xDelta < 0: swipe to left
+          this.setState({ rightActive: true });
+        }
       }
     }
 
