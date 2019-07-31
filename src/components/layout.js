@@ -70,48 +70,39 @@ class Layout extends React.Component {
     // coordinates of one finger (the first).
     this.clientX = event.touches[0].clientX;
     // 'clientX' returns the X coordinate of the touch point
-    // relative to the left edge of the browser viewport,
+    // relative to the left edge of the browser viewport in pixels,
     // not including any scroll offset.
     this.clientY = event.touches[0].clientY;
     // 'clientY' returns the Y coordinate of the touch point
-    // relative to the top edge of the browser viewport,
+    // relative to the top edge of the browser viewport in pixels,
     // not including any scroll offset.
   }
 
   handleTouchMove = (event) => {
-    if ( !this.clientX || !this.clientY ) {
-        return;
-    }
-
     let xDelta = event.touches[0].clientX - this.clientX;
     let yDelta = event.touches[0].clientY - this.clientY;
 
+    if ( Math.abs(xDelta) <= Math.abs(yDelta) ) {
+      return;
+    }
+
     // Left sidebar:
-    if ( (Math.abs(this.clientX) < (25/100 * window.screen.width)) || this.state.leftActive ) {
-      if ( Math.abs(xDelta) > Math.abs(yDelta) ) {
-        // if xDelta > 0: swipe to right
-        if (xDelta > 0) {
-          this.setState({ leftActive: true });
-        } else { // if xDelta < 0: swipe to left
-          this.setState({ leftActive: false });
-        }
+    if ( this.clientX < (20/100 * window.screen.width) || this.state.leftActive ) {
+      if (xDelta > 0) { // Swipe to right:
+        this.setState({ leftActive: true });
+      } else { // Swipe to left:
+        this.setState({ leftActive: false });
       }
     }
 
     // Right sidebar:
-    if ( (Math.abs(this.clientX) > (75/100 * window.screen.width)) || this.state.rightActive ) {
-      if ( Math.abs(xDelta) > Math.abs(yDelta) ) {
-        // if xDelta > 0: swipe to right
-        if (xDelta > 0) {
-          this.setState({ rightActive: false });
-        } else { // if xDelta < 0: swipe to left
-          this.setState({ rightActive: true });
-        }
+    if ( this.clientX > (80/100 * window.screen.width) || this.state.rightActive ) {
+      if (xDelta > 0) { // Swipe to right:
+        this.setState({ rightActive: false });
+      } else { // Swipe to left:
+        this.setState({ rightActive: true });
       }
     }
-
-    this.clientX = null;
-    this.clientY = null;
   }
 
   render() {
