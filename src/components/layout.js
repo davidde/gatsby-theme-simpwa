@@ -10,6 +10,8 @@ class Layout extends React.Component {
       theme = 'joy';
     }
     this.vars = require('./themes/theme-' + theme + '.scss');
+    this.clientX = null;
+    this.clientY = null;
 
     this.state = {
       leftActive: false,
@@ -61,6 +63,48 @@ class Layout extends React.Component {
     }
   }
 
+  handleTouchStart = (event) => {
+    // 'touches' returns a list of all the touch objects
+    // that are currently in contact with the surface;
+    // touches[0] indicates that it will only show the
+    // coordinates of one finger (the first).
+    this.clientX = event.touches[0].clientX;
+    // 'clientX' returns the X coordinate of the touch point
+    // relative to the left edge of the browser viewport,
+    // not including any scroll offset.
+    this.clientY = event.touches[0].clientY;
+    // 'clientY' returns the Y coordinate of the touch point
+    // relative to the top edge of the browser viewport,
+    // not including any scroll offset.
+  }
+
+  handleTouchMove = (event) => {
+    if ( !this.clientX || !this.clientY ) {
+        return;
+    }
+
+    if ( Math.abs(this.clientX) > ((25/100) * (window.screen.width)) ) {
+      if ( !this.state.leftActive ) {
+        return;
+      }
+    }
+
+    let xDelta = event.touches[0].clientX - this.clientX;
+    let yDelta = event.touches[0].clientY - this.clientY;
+
+    if ( Math.abs(xDelta) > Math.abs(yDelta) ) {
+      // if xDelta > 0: right swipe
+      if (xDelta > 0) {
+        this.setState({ leftActive: true });
+      } else { // if xDelta < 0: left swipe
+        this.setState({ leftActive: false });
+      }
+    }
+
+    this.clientX = null;
+    this.clientY = null;
+  }
+
   render() {
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
@@ -84,7 +128,11 @@ class Layout extends React.Component {
     );
 
     return (
-      <div id='layout'>
+      <div
+        id='layout'
+        onTouchStart={this.handleTouchStart}
+        onTouchMove={this.handleTouchMove}
+      >
 
         {childrenWithProps}
 
