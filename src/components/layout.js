@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 
 class Layout extends React.Component {
@@ -22,10 +22,10 @@ class Layout extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener("resize", this.isMediumViewport);
+    window.addEventListener('resize', this.isMediumViewport);
   }
   componentWillUnmount() {
-      window.removeEventListener("resize", this.isMediumViewport);
+      window.removeEventListener('resize', this.isMediumViewport);
   }
 
   isMediumViewport = () => {
@@ -78,33 +78,69 @@ class Layout extends React.Component {
     // not including any scroll offset.
   }
 
-  handleTouchEnd = (event) => {
-    // 'changedTouches' returns a list of all the touch objects
-    // that were removed from the surface in a touchEnd event:
-    let xDelta = event.changedTouches[0].clientX - this.clientX;
-    let yDelta = event.changedTouches[0].clientY - this.clientY;
+  handleTouchMove = (event) => {
+    let xDelta = event.touches[0].clientX - this.clientX;
+    let yDelta = event.touches[0].clientY - this.clientY;
 
     if ( Math.abs(xDelta) <= Math.abs(yDelta) ) {
       return;
     }
 
     // Left sidebar:
-    if ( this.clientX < (20/100 * window.screen.width) || this.state.leftActive ) {
-      if (xDelta > 0) { // Swipe to right:
+    if ( this.clientX < (20/100 * window.screen.width) ) {
+      let portraitSidebar = document.getElementsByClassName('portraitSidebar left')[0];
+
+      if ( event.touches[0].clientX > (80/100 * window.screen.width) ) {
         this.setState({ leftActive: true });
-      } else { // Swipe to left:
-        this.setState({ leftActive: false });
+        portraitSidebar.style.setProperty('left', 0);
+      } else {
+        portraitSidebar.style.setProperty('left', `calc(var(--offset) + ${event.touches[0].clientX}px)`);
       }
     }
 
     // Right sidebar:
-    if ( this.clientX > (80/100 * window.screen.width) || this.state.rightActive ) {
-      if (xDelta > 0) { // Swipe to right:
-        this.setState({ rightActive: false });
-      } else { // Swipe to left:
-        this.setState({ rightActive: true });
-      }
+    // if ( this.clientX > (80/100 * window.screen.width) || this.state.rightActive ) {
+    //   if (xDelta > 0) { // Swipe to right:
+    //     this.setState({ rightActive: false });
+    //   } else { // Swipe to left:
+    //     this.setState({ rightActive: true });
+    //   }
+    // }
+  }
+
+  handleTouchEnd = (event) => {
+    if (!this.state.leftActive) {
+      let portraitSidebar = document.getElementsByClassName('portraitSidebar left')[0];
+      let offset = getComputedStyle(portraitSidebar).getPropertyValue('--offset');
+
+      portraitSidebar.style.setProperty('left', offset);
     }
+  //   // 'changedTouches' returns a list of all the touch objects
+  //   // that were removed from the surface in a touchEnd event:
+  //   let xDelta = event.changedTouches[0].clientX - this.clientX;
+  //   let yDelta = event.changedTouches[0].clientY - this.clientY;
+
+  //   if ( Math.abs(xDelta) <= Math.abs(yDelta) ) {
+  //     return;
+  //   }
+
+  //   // Left sidebar:
+  //   if ( this.clientX < (20/100 * window.screen.width) || this.state.leftActive ) {
+  //     if (xDelta > 0) { // Swipe to right:
+  //       this.setState({ leftActive: true });
+  //     } else { // Swipe to left:
+  //       this.setState({ leftActive: false });
+  //     }
+  //   }
+
+  //   // Right sidebar:
+  //   if ( this.clientX > (80/100 * window.screen.width) || this.state.rightActive ) {
+  //     if (xDelta > 0) { // Swipe to right:
+  //       this.setState({ rightActive: false });
+  //     } else { // Swipe to left:
+  //       this.setState({ rightActive: true });
+  //     }
+  //   }
   }
 
   render() {
@@ -133,6 +169,7 @@ class Layout extends React.Component {
       <div
         id='layout'
         onTouchStart={this.handleTouchStart}
+        onTouchMove={this.handleTouchMove}
         onTouchEnd={this.handleTouchEnd}
       >
 
