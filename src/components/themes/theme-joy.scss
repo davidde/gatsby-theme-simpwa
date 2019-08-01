@@ -103,13 +103,14 @@ body {
     width: var(--portraitWidth);
     background: var(--bg);
 
+    --offset: calc(-1 * var(--portraitWidth) - var(--borderWidth));
     &.left {
-      left: -90vw;
+      left: var(--offset);
       transition: left var(--transitionDuration);
       border-right: var(--border);
     }
     &.right {
-      right: -90vw;
+      right: var(--offset);
       transition: right var(--transitionDuration);
       border-left: var(--border);
     }
