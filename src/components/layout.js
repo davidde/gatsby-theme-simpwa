@@ -72,17 +72,17 @@ class Layout extends React.Component {
   render() {
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
-        if (child.type.name === 'Leftside') {
+        if (child.type.displayName === 'Leftside') {
             return React.cloneElement(child, {
                 isActive: this.state.leftActive,
                 toggleSidebar: this.toggleLeftSidebar,
             });
-        } else if (child.type.name === 'Rightside') {
+        } else if (child.type.displayName === 'Rightside') {
             return React.cloneElement(child, {
               isActive: this.state.rightActive,
               toggleSidebar: this.toggleRightSidebar,
             });
-        } else if (child.type.name === 'Main') {
+        } else if (child.type.displayName === 'Main') {
           return React.cloneElement(child, {
             leftActive: this.state.leftActive,
             rightActive: this.state.rightActive,

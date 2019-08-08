@@ -5,6 +5,8 @@ import Content from './content'
 
 
 class Main extends React.Component {
+  static displayName = 'Main';
+
   render() {
     return (
       <div id='main'>

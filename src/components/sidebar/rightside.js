@@ -3,6 +3,8 @@ import Sidebar from "./sidebar"
 
 
 class Rightside extends React.Component {
+  static displayName = 'Rightside';
+
   render() {
       return <Sidebar
                 whichSide='right'
