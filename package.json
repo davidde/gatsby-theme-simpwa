@@ -1,8 +1,8 @@
 {
   "name": "gatsby-theme-dualside",
-  "description": "Gatsby theme for PWA's",
+  "description": "Gatsby theme for simple, single-screen PWA's",
   "author": "David Deprost",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "main": "index.js",
   "keywords": [
     "gatsby-theme",
@@ -27,6 +27,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "gatsby-plugin-compile-es6-packages": "^1.1.0",
+    "gatsby-plugin-manifest": "^2.2.5",
+    "gatsby-plugin-offline": "^2.2.5",
     "gatsby-plugin-page-creator": "^2.0.12",
     "gatsby-plugin-sass": "^2.0.11",
     "node-sass": "^4.12.0"
