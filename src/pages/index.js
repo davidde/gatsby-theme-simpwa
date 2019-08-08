@@ -3,7 +3,7 @@ import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 // Prevent fontawesome from dynamically adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
-config.autoAddCss = false;
+config.autoAddCss = false; /* eslint-disable import/first */
 
 import Layout from '../components/layout'
 import Leftside from '../components/sidebar/leftside'
