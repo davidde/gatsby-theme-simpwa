@@ -16,7 +16,15 @@ class Layout extends React.Component {
       rightActive: false,
       isMediumViewport: null,
     }
-    this.isMediumViewport();
+    // To fix build problem:
+    if (typeof window !== `undefined`) {
+      this.isMediumViewport();
+    }
+    // Note:
+    // This is the first commit that exhibits an empty view in the browser for production build.
+    // Development builds are fine.
+    // Diff to check differences with previous commit:
+    // git diff 4350d9acc524 52d6a8e8d9f
   }
 
   componentDidMount() {
