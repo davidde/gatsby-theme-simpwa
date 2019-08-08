@@ -24,7 +24,7 @@ class Sidebar extends React.Component {
 
           {/* In portrait mode the active sidebar is styled differently: */}
           <div className={`portraitSidebar ${this.props.whichSide} ${active}`}>
-            <Header which={this.props.whichSide} title={this.props.title} />
+            <Header which={this.props.whichSide} title={this.props.header} />
 
             <Content which={this.props.whichSide}>
                 {this.props.children}

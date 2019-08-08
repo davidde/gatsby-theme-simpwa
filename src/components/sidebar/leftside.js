@@ -10,7 +10,7 @@ class Leftside extends React.Component {
                 whichSide='left'
                 isActive={this.props.isActive}
                 toggleSidebar={this.props.toggleSidebar}
-                title={this.props.title}
+                header={this.props.header}
                 icon={this.props.icon}
               >
                 {this.props.children}

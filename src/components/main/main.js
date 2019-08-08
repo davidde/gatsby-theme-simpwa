@@ -13,7 +13,7 @@ class Main extends React.Component {
 
         <Header
           which='main'
-          title={this.props.title}
+          title={this.props.header}
           leftActive={this.props.leftActive}
           rightActive={this.props.rightActive}
         />
