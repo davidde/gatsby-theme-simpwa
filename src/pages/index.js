@@ -1,5 +1,9 @@
 import React from 'react'
 import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+// Prevent fontawesome from dynamically adding its CSS since we did it manually above:
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 
 import Layout from '../components/layout'
 import Leftside from '../components/sidebar/leftside'
