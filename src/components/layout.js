@@ -18,7 +18,9 @@ class Layout extends React.Component {
       rightActive: false,
       isMediumViewport: null,
     }
-    this.isMediumViewport();
+    if (typeof window !== 'undefined') {
+      this.isMediumViewport();
+    }
   }
 
   componentDidMount() {
