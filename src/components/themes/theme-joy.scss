@@ -1,9 +1,5 @@
-// Sass is used for global color variables to easily darken/lighten them.
-// Afterwards, they are assigned to CSS custom properties, which sass cannot modify.
-$bg: hsla(60, 100, 88.6, 0.9);
-$color: hsla(330, 100, 39.2, 0.8);
-$headerColor: rgb(82, 38, 228);
-$shadow: 6px 0 15px 0;
+// Sass is used to easily darken/lighten color variables, and for media queries.
+// For other types of variables, we prefer to use CSS custom properties.
 $smallWidthQuery: '(max-width: 800px)';
 $noSmallWidthQuery: '(min-width: 800px)';
 $mediumWidthQuery: '(max-width: 1200px)';
@@ -11,13 +7,33 @@ $mediumWidthQuery: '(max-width: 1200px)';
   mediumWidthQuery: #{$mediumWidthQuery};
 }
 
+$bg: hsla(60, 100, 88.6, 0.9);
+$color: hsla(330, 100, 39.2, 0.8);
+$headerColor: rgb(82, 38, 228);
+$borderColor: lighten($headerColor, 15%);
+$shadow: 6px 0 15px 0;
+$shadowColor: #888;
+$shadowHoverColor: #333;
+$iconHoverColor: #f1f1f1;
+$dark-orange: hsl(24, 100, 50);
+$dark-violet: hsl(300, 76.2, 52.2);
+$gradient: linear-gradient(to right, orange, violet);
+
 $left: (
-  'gradient': orange,
-  'bg': hsl(24, 100, 50),
+  bg: $dark-orange,
+  hoverBg: darken($dark-orange, 12%),
+  scrollbarBg: lighten($dark-orange, 20%),
+  iconColor: $headerColor,
+  headerColor: $headerColor,
+  contentColor: lighten($dark-orange, 35%),
 );
 $right: (
-  'gradient': violet,
-  'bg': hsl(300, 76.2, 52.2),
+  bg: $dark-violet,
+  hoverBg: darken($dark-violet, 15%),
+  scrollbarBg: lighten($dark-violet, 20%),
+  iconColor: $headerColor,
+  headerColor: $headerColor,
+  contentColor: lighten($dark-violet, 30%),
 );
 
 :root {
@@ -33,7 +49,7 @@ $right: (
   }
   // sidebar widths in portrait and landscape orientations:
   --portraitWidth: 80vw;
-  --landscapeWidth: 30vw;
+  --landscapeWidth: 25vw;
   @media #{$mediumWidthQuery} {
     --landscapeWidth: 40vw;
   }
@@ -62,27 +78,33 @@ body {
 #main {
   grid-area: main;
   min-width: 0;
+  --headerColor: #{$headerColor};
+  --contentColor: #{$color};
 }
 
 .sidebar {
-  --color: #{$headerColor};
-  --border: var(--borderWidth) solid #{lighten($headerColor, 15%)};
+  --border: var(--borderWidth) solid #{$borderColor};
   &.left {
     grid-area: left;
     border-right: var(--border);
-    --bg: #{map-get($left, 'bg')};
+    --iconColor: #{map-get($left, iconColor)};
+    --headerColor: #{map-get($left, headerColor)};
+    --contentColor: #{map-get($left, contentColor)};
+    --bg: #{map-get($left, bg)};
     --shade: #{$shadow};
   }
   &.right {
     grid-area: right;
     border-left: var(--border);
-    --bg: #{map-get($right, 'bg')};
+    --iconColor: #{map-get($right, iconColor)};
+    --headerColor: #{map-get($right, headerColor)};
+    --contentColor: #{map-get($right, contentColor)};
+    --bg: #{map-get($right, bg)};
     --shade: -#{$shadow};
   }
 
-  color: var(--color);
   background: var(--bg);
-  --shadow: var(--shade) #888;
+  --shadow: var(--shade) #{$shadowColor};
   box-shadow: var(--shadow);
   width: var(--sidestripWidth);
   transition: width var(--transitionDuration);
@@ -147,15 +169,15 @@ body {
   @media (hover: hover) { // Prevent :hover from being triggered on touch devices!
     &:hover {
       cursor: pointer;
-      // --color, --border, --shadow and --bg are defined in .sidebar
-      --color: #f1f1f1;
+      // --iconColor, --border, --shadow and --bg are defined in .sidebar
+      --iconColor: #{$iconHoverColor};
       --border: var(--borderWidth) solid #{$headerColor};
-      --shadow: var(--shade) #333;
+      --shadow: var(--shade) #{$shadowHoverColor};
       &.left {
-        --bg: #{darken(map-get($left, 'bg'), 12%)};
+        --bg: #{map-get($left, hoverBg)};
       }
       &.right {
-        --bg: #{darken(map-get($right, 'bg'), 15%)};
+        --bg: #{map-get($right, hoverBg)};
       }
     }
   }
@@ -170,7 +192,6 @@ body {
     line-height: var(--headerHeight);
     font-size: var(--headerFont);
     text-align: center;
-    color: var(--color);
     background: var(--bg);
     border-bottom: var(--border);
     &.active {
@@ -179,10 +200,12 @@ body {
     &.left {
       border-right: var(--border);
       left: 0;
+      color: var(--iconColor);
     }
     &.right {
       border-left: var(--border);
       right: 0;
+      color: var(--iconColor);
     }
   }
 
@@ -246,20 +269,18 @@ body {
 .header {
   position: relative;
   height: var(--headerHeight);
-  border-bottom: var(--borderWidth) solid #{lighten($headerColor, 15%)};
+  border-bottom: var(--borderWidth) solid #{$borderColor};
+  color: var(--headerColor);
   &.main {
-    background: linear-gradient(to right, map-get($left, 'gradient'), map-get($right, 'gradient'));
-    color: #{$headerColor};
+    background: $gradient;
   }
   &.left {
     float: right;
     width: calc(100% - var(--headerHeight));
-    
   }
   &.right {
     float: left;
     width: calc(100% - var(--headerHeight));
-    
   }
 
   > h1 {
@@ -273,7 +294,6 @@ body {
     white-space: nowrap;
 
     &.main {
-      // border: 2px solid black;
       position: absolute;
       left: calc(var(--headerHeight) - var(--sidestripWidth));
       right: calc(var(--headerHeight) - var(--sidestripWidth));
@@ -299,7 +319,7 @@ body {
   }
   &.left {
     &::-webkit-scrollbar-thumb {
-      --bg: #{lighten(map-get($left, 'bg'), 20%)};
+      --bg: #{map-get($left, scrollbarBg)};
     }
   }
   &.right {
@@ -308,7 +328,7 @@ body {
       direction: ltr;
     }
     &::-webkit-scrollbar-thumb {
-      --bg: #{lighten(map-get($right, 'bg'), 20%)};
+      --bg: #{map-get($right, scrollbarBg)};
     }
   }
 
@@ -320,7 +340,8 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   clear: both;
-  color: #{$color};
+  color: var(--contentColor);
+
   /* Scrollbar styling: */
   &::-webkit-scrollbar {
     width: 0.6rem;
