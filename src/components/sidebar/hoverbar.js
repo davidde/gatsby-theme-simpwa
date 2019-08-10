@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 /// Represents the inactive, hoverable sidebar that triggers activation by clicking on it:
 function Hoverbar(props) {
-  let active = props.isActive ? 'active' : '';
+  let active = props.isActive ? 'active' : 'inactive';
 
   return (
-    <div className={`hoverbar ${props.whichSide}`}
+    <div className={`hoverbar ${props.whichSide} ${active}`}
          onClick={props.onClick} >
 
         {/* Square icon div: */}
