@@ -31,4 +31,7 @@ $mediumWidthQuery: (max-width: 1200px);
     --rightLandscapeWidth: 40vw;
   }
   --transitionDuration: 0.5s;
+  // Make these 0 if you don't want default paddings in Sidebars and Main:
+  --contentPadding: 5%;
+  --mainContentPadding: 2rem 15% 3rem;
 }

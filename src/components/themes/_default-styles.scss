@@ -266,7 +266,7 @@ body {
 
 .content {
   &.main {
-    padding: 2rem 10% 3rem;
+    padding: var(--mainContentPadding);
     &::-webkit-scrollbar-thumb {
       --bg: #{$bg};
     }
@@ -290,7 +290,7 @@ body {
   to the 100% width, resulting in overflowing content! */
   box-sizing: border-box;
   height: calc(100vh - var(--headerHeight));
-  padding: 5%;
+  padding: var(--contentPadding);
   overflow-y: auto;
   overflow-x: hidden;
   clear: both;
