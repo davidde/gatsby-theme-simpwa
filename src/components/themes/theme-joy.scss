@@ -1,9 +1,9 @@
 // Sass is used to easily darken/lighten color variables, and for media queries.
 // For other types of variables, we prefer to use CSS custom properties.
-$smallWidthQuery: '(max-width: 800px)';
-$noSmallWidthQuery: '(min-width: 800px)';
-$mediumWidthQuery: '(max-width: 1200px)';
+$smallWidthQuery: (orientation: portrait), (max-width: 800px);
+$mediumWidthQuery: (max-width: 1200px);
 :export {
+  smallWidthQuery: #{$smallWidthQuery};
   mediumWidthQuery: #{$mediumWidthQuery};
 }
 
@@ -106,7 +106,7 @@ body {
     --shade: #{$shadow};
     &.active {
       width: var(--leftLandscapeWidth);
-      @media (orientation: portrait), #{$smallWidthQuery} {
+      @media #{$smallWidthQuery} {
         width: var(--sidestripWidth);
       }
     }
@@ -122,7 +122,7 @@ body {
     --shade: -#{$shadow};
     &.active {
       width: var(--rightLandscapeWidth);
-      @media (orientation: portrait), #{$smallWidthQuery} {
+      @media #{$smallWidthQuery} {
         width: var(--sidestripWidth);
       }
     }
@@ -135,7 +135,7 @@ body {
   transition: width var(--transitionDuration);
 }
 
-@media (orientation: portrait), #{$smallWidthQuery} {
+@media #{$smallWidthQuery} {
   /// In portrait mode the active sidebar should cover the main content,
   /// so styling is different from landscape mode:
   .portraitSidebar {
@@ -320,16 +320,14 @@ body {
     &.main {
       position: absolute;
       left: calc(var(--headerHeight) - var(--sidestripWidth));
-      right: calc(var(--headerHeight) - var(--sidestripWidth));
-      transition: left var(--transitionDuration), right var(--transitionDuration);
-      @media (orientation: landscape), #{$noSmallWidthQuery} {
-        &.leftActive {
-          left: 0;
-        }
-        &.rightActive {
-          right: 0;
-        }
+      &.leftActive {
+        left: 0;
       }
+      right: calc(var(--headerHeight) - var(--sidestripWidth));
+      &.rightActive {
+        right: 0;
+      }
+      transition: left var(--transitionDuration), right var(--transitionDuration);
     }
   }
 }

@@ -16,54 +16,81 @@ class Layout extends React.Component {
     this.state = {
       leftActive: false,
       rightActive: false,
-      isMediumViewport: null,
     }
-    // Prevent 'this.isMediumViewport()' being called while building;
-    // this would fail because the browser global 'window' won't exist:
+    // Prevent the browser global 'window' from being referenced while building (= build error):
     if (typeof window !== 'undefined') {
-      this.isMediumViewport();
+      this.isSmallViewport = window.matchMedia(this.vars.smallWidthQuery).matches;
+      this.isMediumViewport = window.matchMedia(this.vars.mediumWidthQuery).matches;
+    }
+
+    if (!this.isSmallViewport) {
+      if (this.props.startActive === 'left') {
+        this.state.leftActive = true;
+      }
+      else if (this.props.startActive === 'right') {
+        this.state.rightActive = true;
+      }
+      else if (this.props.startActive === 'both') {
+        this.state.leftActive = true;
+        this.state.rightActive = true;
+      }
+      // If both sides are active in medium viewport or when mutex is set, unactivate one side:
+      if (this.state.leftActive && this.state.rightActive) {
+        if (this.isMediumViewport || this.props.mutex) {
+          this.state.rightActive = false;
+        }
+      }
     }
   }
 
   componentDidMount() {
-    window.addEventListener("resize", this.isMediumViewport);
+    window.addEventListener('resize', this.updateViewports);
   }
   componentWillUnmount() {
-      window.removeEventListener("resize", this.isMediumViewport);
+      window.removeEventListener('resize', this.updateViewports);
   }
 
-  isMediumViewport = () => {
-    let isMediumViewport = window.matchMedia(this.vars.mediumWidthQuery).matches;
+  updateViewports = () => {
+    let wasSmall = this.isSmallViewport;
+    this.isSmallViewport = window.matchMedia(this.vars.smallWidthQuery).matches;
+    this.isMediumViewport = window.matchMedia(this.vars.mediumWidthQuery).matches;
 
-    // Init in constructor:
-    if (this.state.isMediumViewport === null) {
-      // eslint-disable-next-line
-      this.state.isMediumViewport = isMediumViewport;
-    } // In event listener (on window resize); update state if necessary:
-    else if (this.state.isMediumViewport !== isMediumViewport) {
-      this.setState({ isMediumViewport });
+    // If either side is active while transitioning to a small viewport, unactivate both sides:
+    if (!wasSmall && this.isSmallViewport) {
+      if (this.state.leftActive || this.state.rightActive) {
+        this.setState({
+          leftActive: false,
+          rightActive: false
+        });
+      }
     }
-    // If both sides are active in medium viewport, unactivate one side:
-    if (this.state.leftActive && this.state.rightActive && isMediumViewport) {
-      this.setState({ rightActive: false });
+    // If both sides are active while transitioning to a medium viewport, unactivate one side:
+    if (this.state.leftActive && this.state.rightActive) {
+      if (this.isMediumViewport) {
+        this.setState({ rightActive: false });
+      }
     }
   }
 
   toggleLeftSidebar = () => {
     this.setState({leftActive: !this.state.leftActive});
 
-    // If other side is active in medium viewport, unactivate other side:
-    if (this.state.rightActive && this.state.isMediumViewport) {
-      this.setState({ rightActive: false });
+    // If other side is active in medium viewport or when mutex is set, unactivate other side:
+    if (this.state.rightActive) {
+      if (this.isMediumViewport || this.props.mutex) {
+        this.setState({ rightActive: false });
+      }
     }
   }
 
   toggleRightSidebar = () => {
     this.setState({rightActive: !this.state.rightActive});
 
-    // If other side is active in medium viewport, unactivate other side:
-    if (this.state.leftActive && this.state.isMediumViewport) {
-      this.setState({ leftActive: false });
+    // If other side is active in medium viewport or when mutex is set, unactivate other side:
+    if (this.state.leftActive) {
+      if (this.isMediumViewport || this.props.mutex) {
+        this.setState({ leftActive: false });
+      }
     }
   }
 
@@ -126,8 +153,9 @@ class Layout extends React.Component {
             });
         } else if (child.type.displayName === 'Main') {
           return React.cloneElement(child, {
-            leftActive: this.state.leftActive,
-            rightActive: this.state.rightActive,
+            // These props are used to change the text offset in the Main header:
+            leftActive: this.state.leftActive && !this.isSmallViewport,
+            rightActive: this.state.rightActive && !this.isSmallViewport,
           });
         } // else return child;
       }
