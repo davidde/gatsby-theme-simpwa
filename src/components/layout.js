@@ -56,7 +56,7 @@ class Layout extends React.Component {
     this.isMediumViewport = window.matchMedia(this.vars.mediumWidthQuery).matches;
 
     // If either side is active while transitioning to a small viewport, unactivate both sides:
-    if (!wasSmall && this.isSmallViewport) {
+    if (wasSmall !== this.isSmallViewport) {
       if (this.state.leftActive || this.state.rightActive) {
         this.setState({
           leftActive: false,
