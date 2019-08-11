@@ -1,0 +1,37 @@
+// The colors.scss file holds all color variables for its specific theme:
+$bg: hsla(60, 100, 88.6, 0.9);
+$color: hsla(330, 100, 39.2, 0.8);
+$headerColor: hsla(254, 78%, 52%, 0.75);
+
+$leftSidebarBg: hsla(24, 100, 50, 1);
+$leftGradient: orange;
+$left: (
+  bg: $leftSidebarBg,
+  hoverBg: darken($leftSidebarBg, 12%),
+  scrollbarBg: lighten($leftSidebarBg, 20%),
+  headerColor: lighten($leftGradient, 35%),
+  contentColor: lighten($leftSidebarBg, 35%),
+  iconColor: lighten($leftGradient, 35%),
+  iconHoverColor: #f1f1f1,
+  borderColor: lighten($leftSidebarBg, 25%),
+  borderHoverColor: darken($leftSidebarBg, 7%),
+);
+
+$rightSidebarBg: hsla(300, 76.2, 52.2, 1);
+$rightGradient: violet;
+$right: (
+  bg: $rightSidebarBg,
+  hoverBg: darken($rightSidebarBg, 15%),
+  scrollbarBg: lighten($rightSidebarBg, 20%),
+  headerColor: lighten($rightGradient, 15%),
+  contentColor: lighten($rightSidebarBg, 34%),
+  iconColor: lighten($rightGradient, 15%),
+  iconHoverColor: #f1f1f1,
+  borderColor: lighten($rightSidebarBg, 25%),
+  borderHoverColor: darken($rightSidebarBg, 9%),
+);
+
+$gradient: linear-gradient(to right, $leftGradient, $rightGradient);
+$shadow: 6px 0 15px 0;
+$shadowColor: #888;
+$shadowHoverColor: #333;

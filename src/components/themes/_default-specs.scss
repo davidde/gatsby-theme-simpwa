@@ -1,0 +1,34 @@
+// The specs.scss file holds all specification variables that aren't colors;
+// mostly sizes and media queries
+$smallWidthQuery: (orientation: portrait), (max-width: 800px);
+$mediumWidthQuery: (max-width: 1200px);
+:export {
+  smallWidthQuery: #{$smallWidthQuery};
+  mediumWidthQuery: #{$mediumWidthQuery};
+  startActive: both;
+  mutex: false;
+}
+
+:root {
+  --headerHeight: 4rem;
+  --headerFont: 1.75rem;
+  --sidestripWidth: 0.5rem;
+  --patchTop: 3rem;
+  --borderWidth: 2px;
+  @media #{$smallWidthQuery} {
+    --headerHeight: 3rem;
+    --headerFont: 1.35rem;
+    --sidestripWidth: 0.375rem;
+    --patchTop: 2rem;
+    --borderWidth: 1px;
+  }
+  // sidebar widths in portrait and landscape orientations:
+  --portraitWidth: 80vw;
+  --leftLandscapeWidth: 25vw;
+  --rightLandscapeWidth: 25vw;
+  @media #{$mediumWidthQuery} {
+    --leftLandscapeWidth: 40vw;
+    --rightLandscapeWidth: 40vw;
+  }
+  --transitionDuration: 0.5s;
+}

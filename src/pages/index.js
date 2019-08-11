@@ -12,7 +12,7 @@ import Main from '../components/main/main'
 
 
 export default () => (
-  <Layout startActive='both'>
+  <Layout>
     <Rightside header='Home' icon={faHome} >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius semper ligula, eu luctus nunc mollis in. Vestibulum vulputate metus metus, id rutrum magna imperdiet nec. Aenean at pharetra risus. Integer convallis ac enim id aliquet. Mauris pharetra mollis nulla, eget posuere mi accumsan eu. Curabitur urna nisl, varius rhoncus tristique et, egestas et augue. Vivamus ac libero faucibus, vehicula quam in, posuere felis. Aliquam erat volutpat. Maecenas pretium iaculis dui sed elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.

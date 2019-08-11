@@ -7,9 +7,9 @@ class Layout extends React.Component {
     
     let theme = this.props.theme;
     if (!theme) {
-      theme = 'joy';
+      theme = 'default';
     }
-    this.vars = require('./themes/theme-' + theme + '.scss');
+    this.vars = require('./themes/' + theme + '-theme.scss');
     this.clientX = null;
     this.clientY = null;
 
@@ -24,19 +24,19 @@ class Layout extends React.Component {
     }
 
     if (!this.isSmallViewport) {
-      if (this.props.startActive === 'left') {
+      if (this.vars.startActive === 'left') {
         this.state.leftActive = true;
       }
-      else if (this.props.startActive === 'right') {
+      else if (this.vars.startActive === 'right') {
         this.state.rightActive = true;
       }
-      else if (this.props.startActive === 'both') {
+      else if (this.vars.startActive === 'both') {
         this.state.leftActive = true;
         this.state.rightActive = true;
       }
       // If both sides are active in medium viewport or when mutex is set, unactivate one side:
       if (this.state.leftActive && this.state.rightActive) {
-        if (this.isMediumViewport || this.props.mutex) {
+        if (this.isMediumViewport || this.vars.mutex === 'true') {
           this.state.rightActive = false;
         }
       }
@@ -77,7 +77,7 @@ class Layout extends React.Component {
 
     // If other side is active in medium viewport or when mutex is set, unactivate other side:
     if (this.state.rightActive) {
-      if (this.isMediumViewport || this.props.mutex) {
+      if (this.isMediumViewport || this.vars.mutex === 'true') {
         this.setState({ rightActive: false });
       }
     }
@@ -88,7 +88,7 @@ class Layout extends React.Component {
 
     // If other side is active in medium viewport or when mutex is set, unactivate other side:
     if (this.state.leftActive) {
-      if (this.isMediumViewport || this.props.mutex) {
+      if (this.isMediumViewport || this.vars.mutex === 'true') {
         this.setState({ leftActive: false });
       }
     }
