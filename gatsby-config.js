@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Theme Dualside',
+    title: 'Gatsby Theme simPWA',
     author: 'David Deprost',
     description: 'Configurable template for building simple PWA\'s',
   },
@@ -8,14 +8,14 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-compile-es6-packages',
       options: {
-        modules: ['gatsby-theme-dualside'],
+        modules: ['gatsby-theme-simpwa'],
       },
     },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-theme-dualside',
-        short_name: 'gatsby-theme-dualside',
+        name: 'gatsby-theme-simpwa',
+        short_name: 'gatsby-theme-simpwa',
         start_url: '/',
         background_color: '#6b37bf',
         theme_color: '#6b37bf',

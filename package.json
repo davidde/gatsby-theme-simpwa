@@ -1,16 +1,20 @@
 {
-  "name": "gatsby-theme-dualside",
-  "description": "Gatsby theme for simple, single-screen PWA's",
+  "name": "gatsby-theme-simpwa",
+  "description": "Configurable template for building simple PWA's",
   "author": "David Deprost",
   "version": "1.0.0",
   "main": "index.js",
   "keywords": [
+    "gatsby",
     "gatsby-theme",
-    "PWA"
+    "PWA",
+    "sidebar",
+    "react"
   ],
   "license": "MIT",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DavidDeprost/gatsby-theme-simpwa"
   },
   "devDependencies": {
     "gatsby": "^2.13.51",
