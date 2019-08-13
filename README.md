@@ -18,22 +18,22 @@ Focus is on:
 
 ## Usage
 The theme provides 4 simple components to build your app; a parent `<Layout>` component,
-and its 3 children, `<Leftside>`, `<Main>` and `<Rightside>`.
+and its 3 children, `<Main>`, `<Leftside>` and `<Rightside>`.
 
-### <Layout>
+### \<Layout> component
 The parent component that enables its 3 children components to work properly.
 
 Props:
 - **theme**: The theme to use for your app. Defaults to 'default-theme'.
 
-### <Main>
+### \<Main> component
 The main content of your app. Should be a direct descendant of `<Layout>`.
 
 Props:
 - **header**: The header of your app.
 
-### <Leftside>
-The **left sidebar** of your app. Should be a direct descendant of `<Layout>`.
+### \<Leftside> component
+The **left sidebar** of your app. Should be a direct descendant of `<Layout>`.  
 Can be omitted if you don't want a left sidebar.
 
 Props:
@@ -41,8 +41,8 @@ Props:
 - **icon**: Font Awesome icon from `@fortawesome/free-solid-svg-icons`
   that triggers the left sidebar.
 
-### <Rightside>
-The **right sidebar** of your app. Should be a direct descendant of `<Layout>`.
+### \<Rightside> component
+The **right sidebar** of your app. Should be a direct descendant of `<Layout>`.  
 Can be omitted if you don't want a right sidebar.
 
 Props:
@@ -56,8 +56,8 @@ Customization is fairly simple due to a modular approach to styling/theming.
 
 > Even the theme 's got themes!
 
-Each theme consists of 3 .scss partials: a 'colors', 'specs', and 'styles' file,
-which define color variables, spec variables (like sizes and media queries), and
-the general styles of the theme respectively.
+Each theme consists of 3 .scss partials: a **colors**, **specs**, and **styles** file,
+which define *color variables*, *spec variables* (like sizes and media queries), and
+the *general styles* of the theme respectively.  
 You can shadow any of these files for a quick change, or create your personal
 theme by putting together 3 modified partials.
