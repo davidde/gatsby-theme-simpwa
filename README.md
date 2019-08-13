@@ -18,7 +18,7 @@ Focus is on:
 
 ## Usage
 The theme provides 4 simple components to build your app; a parent `<Layout>` component,
-and its 3 children, `<Main>`, `<Leftside>` and `<Rightside>`.
+and its 3 children, `<MainView>`, `<Leftside>` and `<Rightside>`.
 
 ### \<Layout> component
 The parent component that enables its 3 children components to work properly.
@@ -26,7 +26,7 @@ The parent component that enables its 3 children components to work properly.
 Props:
 - **theme**: The theme to use for your app. Defaults to 'default-theme'.
 
-### \<Main> component
+### \<MainView> component
 The main content of your app. Should be a direct descendant of `<Layout>`.
 
 Props:

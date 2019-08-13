@@ -4,8 +4,8 @@ import Header from './header'
 import Content from './content'
 
 
-class Main extends React.Component {
-  static displayName = 'Main';
+class MainView extends React.Component {
+  static displayName = 'MainView';
 
   render() {
     return (
@@ -26,4 +26,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default MainView;

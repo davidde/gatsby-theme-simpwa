@@ -151,7 +151,7 @@ class Layout extends React.Component {
               isActive: this.state.rightActive,
               toggleSidebar: this.toggleRightSidebar,
             });
-        } else if (child.type.displayName === 'Main') {
+        } else if (child.type.displayName === 'MainView') {
           return React.cloneElement(child, {
             // These props are used to change the text offset in the Main header:
             leftActive: this.state.leftActive && !this.isSmallViewport,
