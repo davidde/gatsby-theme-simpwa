@@ -17,33 +17,29 @@ class Layout extends React.Component {
       leftActive: false,
       rightActive: false,
     }
-    // Prevent the browser global 'window' from being referenced while building (= build error):
-    if (typeof window !== 'undefined') {
-      this.isSmallViewport = window.matchMedia(this.vars.smallWidthQuery).matches;
-      this.isMediumViewport = window.matchMedia(this.vars.mediumWidthQuery).matches;
-    }
-
-    if (!this.isSmallViewport) {
-      if (this.vars.startActive === 'left') {
-        this.state.leftActive = true;
-      }
-      else if (this.vars.startActive === 'right') {
-        this.state.rightActive = true;
-      }
-      else if (this.vars.startActive === 'both') {
-        this.state.leftActive = true;
-        this.state.rightActive = true;
-      }
-      // If both sides are active in medium viewport or when mutex is set, unactivate one side:
-      if (this.state.leftActive && this.state.rightActive) {
-        if (this.isMediumViewport || this.vars.mutex === 'true') {
-          this.state.rightActive = false;
-        }
-      }
-    }
   }
 
   componentDidMount() {
+    this.isSmallViewport = window.matchMedia(this.vars.smallWidthQuery).matches;
+    this.isMediumViewport = window.matchMedia(this.vars.mediumWidthQuery).matches;
+
+    if (!this.isSmallViewport) {
+      if (this.vars.startActive === 'left') {
+        this.setState({ leftActive: true });
+      }
+      else if (this.vars.startActive === 'right') {
+        this.setState({ rightActive: true });
+      }
+      else if (this.vars.startActive === 'both') {
+        // In medium viewport or when mutex is set, only activate one side:
+        if (this.isMediumViewport || this.vars.mutex === 'true') {
+          this.setState({ leftActive: true });
+        } else { // Otherwise activate both:
+          this.setState({ leftActive: true });
+          this.setState({ rightActive: true });
+        }
+      }
+    }
     window.addEventListener('resize', this.updateViewports);
   }
   componentWillUnmount() {
