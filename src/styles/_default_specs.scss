@@ -5,8 +5,10 @@ $mediumWidthQuery: (max-width: 1200px);
 :export {
   smallWidthQuery: #{$smallWidthQuery};
   mediumWidthQuery: #{$mediumWidthQuery};
-  startActive: both;
-  mutex: false;
+  // Specify which sidebars should be active on first load:
+  startActive: both; // can be either both, left, right or none
+  mutex: false; // Set to true if sidebars should never be active at the same time
+  // On smaller viewports, sidebars will never be active at the same time!
 }
 
 :root {

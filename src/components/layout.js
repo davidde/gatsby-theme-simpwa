@@ -9,7 +9,7 @@ class Layout extends React.Component {
     if (!theme) {
       theme = 'default';
     }
-    this.vars = require('./themes/' + theme + '-theme.scss');
+    this.vars = require('../styles/' + theme + '_theme.scss');
     this.clientX = null;
     this.clientY = null;
 

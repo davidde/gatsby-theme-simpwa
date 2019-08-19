@@ -73,6 +73,34 @@ Customization is fairly simple due to a modular approach to styling/theming.
 
 Each theme consists of 3 .scss partials: a **colors**, **specs**, and **styles** file,
 which define *color variables*, *spec variables* (like sizes and media queries), and
-the *general styles* of the theme respectively.  
-You can shadow any of these files for a quick change, or create your personal
-theme by putting together 3 modified partials.
+the *general styles* of the theme respectively:
+```
+src/styles
+├── _default_colors.scss
+├── _default_specs.scss
+├── _default_styles.scss
+└── default_theme.scss
+```
+
+For a quick change, it's straightforward to shadow these files, and modify your version:
+```bash
+cp -r ./node_modules/gatsby-theme-simpwa/src/styles ./src/gatsby-theme-simpwa/styles
+```
+(Note that you need all 4 of them since they are interdependent.)
+
+Additionally, you can create your own theme by putting together 3 modified partials:
+- Copy a partial and modify it:
+  ```bash
+  cp ./src/gatsby-theme-simpwa/styles/_default_colors.scss ./src/gatsby-theme-simpwa/styles/_flashy_colors.scss
+  ```
+- Put together a new theme:
+  ```bash
+  cat > src/gatsby-theme-simpwa/styles/flashy_theme.scss
+  [Paste: @import 'flashy_colors', 'default_specs', 'default_styles';]
+  [CTRL+D]
+  ```
+- You can then activate your theme by providing it to the `<Layout>` component's `theme` prop:
+  ```js
+  <Layout theme='flashy'>
+  ```
+This same process also works for modifying the specs and styles partials.
