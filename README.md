@@ -13,42 +13,57 @@ Focus is on:
 
 
 ## Installation
-(Coming soon)
+```bash
+npm install gatsby-theme-simpwa
+```
+Then, in your gatsby-config.js, add the theme to your plugins:
+```js
+module.exports = {
+  plugins: [
+    `gatsby-theme-simpwa`,
+  ],
+}
+```
+If you want the full PWA experience, you'll also want to install the
+[gatsby-plugin-manifest](https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/) and
+[gatsby-plugin-offline](https://www.gatsbyjs.org/packages/gatsby-plugin-offline/) plugins,
+which aren't included in this theme because this makes them hard to customize.
 
+Alternatively, you could opt for the all-in-one experience by using this theme's starter,
+which does include those plugins:
+```bash
+gatsby new my-awesome-app https://github.com/DavidDeprost/gatsby-starter-simpwa
+```
 
 ## Usage
 The theme provides 4 simple components to build your app; a parent `<Layout>` component,
 and its 3 children, `<MainView>`, `<Leftside>` and `<Rightside>`.
 
-### \<Layout> component
+Simply import them into your code to start building:
+```js
+import { Layout, MainView, Leftside, Rightside } from 'gatsby-theme-simpwa'
+```
+
+### The \<Layout> component
 The parent component that enables its 3 children components to work properly.
 
 Props:
 - **theme**: The theme to use for your app. Defaults to 'default-theme'.
 
-### \<MainView> component
+### The \<MainView> component
 The main content of your app. Should be a direct descendant of `<Layout>`.
 
 Props:
 - **header**: The header of your app.
 
-### \<Leftside> component
-The **left sidebar** of your app. Should be a direct descendant of `<Layout>`.  
-Can be omitted if you don't want a left sidebar.
+### The \<Leftside> and \<Rightside> components
+The **left and right sidebars** of your app. Should be direct descendants of `<Layout>`.  
+Either can be omitted if you only want a single sidebar.
 
 Props:
-- **header**: The header of the left sidebar.
+- **header**: The header of the sidebar.
 - **icon**: Font Awesome icon from `@fortawesome/free-solid-svg-icons`
-  that triggers the left sidebar.
-
-### \<Rightside> component
-The **right sidebar** of your app. Should be a direct descendant of `<Layout>`.  
-Can be omitted if you don't want a right sidebar.
-
-Props:
-- **header**: The header of the right sidebar.
-- **icon**: Font Awesome icon from `@fortawesome/free-solid-svg-icons`
-  that triggers the right sidebar.
+  that triggers the sidebar.
 
 
 ## Customization
