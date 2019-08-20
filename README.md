@@ -48,22 +48,22 @@ import { Layout, MainView, Leftside, Rightside } from 'gatsby-theme-simpwa'
 The parent component that enables its 3 children components to work properly.
 
 Props:
-- **theme**: The theme to use for your app. Defaults to 'default-theme'.
+  - **theme**: The theme to use for your app. Defaults to 'default-theme'.
 
 ### The \<MainView> component
 The main content of your app. Should be a direct descendant of `<Layout>`.
 
 Props:
-- **header**: The header of your app.
+  - **header**: The header of your app.
 
 ### The \<Leftside> and \<Rightside> components
 The **left and right sidebars** of your app. Should be direct descendants of `<Layout>`.  
 Either can be omitted if you only want a single sidebar.
 
 Props:
-- **header**: The header of the sidebar.
-- **icon**: Font Awesome icon from `@fortawesome/free-solid-svg-icons`
-  that triggers the sidebar.
+  - **header**: The header of the sidebar.
+  - **icon**: Font Awesome icon from `@fortawesome/free-solid-svg-icons`
+    that triggers the sidebar.
 
 
 ## Customization
@@ -84,6 +84,7 @@ src/styles
 
 For a quick change, it's straightforward to shadow these files, and modify your version:
 ```bash
+mkdir ./src/gatsby-theme-simpwa
 cp -r ./node_modules/gatsby-theme-simpwa/src/styles ./src/gatsby-theme-simpwa/styles
 ```
 (Note that you need all 4 of them since they are interdependent.)
