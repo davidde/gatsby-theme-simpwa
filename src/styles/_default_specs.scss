@@ -17,12 +17,14 @@ $mediumWidthQuery: (max-width: 1200px);
   --sidestripWidth: 0.5rem;
   --patchTop: 3rem;
   --borderWidth: 2px;
+  --headerBorderWidth: 2px;
   @media #{$smallWidthQuery} {
     --headerHeight: 3rem;
     --headerFont: 1.35rem;
     --sidestripWidth: 0.375rem;
     --patchTop: 2rem;
     --borderWidth: 1px;
+    --headerBorderWidth: 1px;
   }
   // sidebar widths in portrait and landscape orientations:
   --portraitWidth: 80vw;

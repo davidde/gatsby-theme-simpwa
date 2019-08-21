@@ -29,7 +29,8 @@ If you want the full PWA experience, you'll also want to install the
 [gatsby-plugin-offline](https://www.gatsbyjs.org/packages/gatsby-plugin-offline/) plugins,
 which aren't included in this theme because this makes them hard to customize.
 
-Alternatively, you could opt for the all-in-one experience by using this theme's starter,
+Alternatively, you could opt for the **all-in-one experience** by using
+[this theme's starter](https://github.com/DavidDeprost/gatsby-starter-simpwa),
 which does include those plugins:
 ```bash
 gatsby new my-awesome-app https://github.com/DavidDeprost/gatsby-starter-simpwa

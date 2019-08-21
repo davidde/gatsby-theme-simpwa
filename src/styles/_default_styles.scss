@@ -5,8 +5,8 @@ body {
   min-height: 100vh;
   max-width: 100vw;
   margin: 0;
-  background: $bg;
-  color: $color;
+  background: map-get($main, bg);
+  color: map-get($main, color);
   /* Disable scrolling on body: */
   overflow: hidden;
   font-family: "Open Sans", sans-serif;
@@ -21,8 +21,8 @@ body {
 #main {
   grid-area: main;
   min-width: 0;
-  --headerColor: #{$headerColor};
-  --contentColor: #{$color};
+  --headerColor: #{map-get($main, headerColor)};
+  --contentColor: #{map-get($main, color)};
 }
 
 .sidebar {
@@ -114,6 +114,8 @@ body {
 
 /// Represents the inactive, hoverable sidebar that triggers activation by clicking on it:
 .hoverbar {
+  --border: var(--borderWidth) solid var(--borderColor);
+  --headerBorder: var(--headerBorderWidth) solid var(--borderColor);
   @media (hover: hover) { // Prevent :hover from being triggered on touch devices!
     &:hover {
       cursor: pointer;
@@ -124,6 +126,7 @@ body {
         --iconColor: #{map-get($left, iconHoverColor)};
         &.inactive {
           --border: var(--borderWidth) solid #{map-get($left, borderHoverColor)};
+          --headerBorder: var(--headerBorderWidth) solid #{map-get($left, borderHoverColor)};
         }
       }
       &.right {
@@ -131,6 +134,7 @@ body {
         --iconColor: #{map-get($right, iconHoverColor)};
         &.inactive {
           --border: var(--borderWidth) solid #{map-get($right, borderHoverColor)};
+          --headerBorder: var(--headerBorderWidth) solid #{map-get($right, borderHoverColor)};
         }
       }
     }
@@ -147,17 +151,17 @@ body {
     font-size: var(--headerFont);
     text-align: center;
     background: var(--bg);
-    border-bottom: var(--border);
+    border-bottom: var(--headerBorder);
     &.active {
       z-index: 100;
     }
     &.left {
-      border-right: var(--border);
+      border-right: var(--headerBorder);
       left: 0;
       color: var(--iconColor);
     }
     &.right {
-      border-left: var(--border);
+      border-left: var(--headerBorder);
       right: 0;
       color: var(--iconColor);
     }
@@ -225,18 +229,18 @@ body {
   height: var(--headerHeight);
   color: var(--headerColor);
   &.main {
-    background: $gradient;
-    height: calc(var(--headerHeight) + var(--borderWidth));
+    background: map-get($main, headerBg);
+    height: calc(var(--headerHeight) + var(--headerBorderWidth));
   }
   &.left {
     float: right;
     width: calc(100% - var(--headerHeight));
-    border-bottom: var(--borderWidth) solid #{map-get($left, borderColor)};
+    border-bottom: var(--headerBorderWidth) solid #{map-get($left, borderColor)};
   }
   &.right {
     float: left;
     width: calc(100% - var(--headerHeight));
-    border-bottom: var(--borderWidth) solid #{map-get($right, borderColor)};
+    border-bottom: var(--headerBorderWidth) solid #{map-get($right, borderColor)};
   }
 
   > h1 {
@@ -268,7 +272,7 @@ body {
   &.main {
     padding: var(--mainContentPadding);
     &::-webkit-scrollbar-thumb {
-      --bg: #{$bg};
+      --bg: #{map-get($main, scrollbarBg)};
     }
   }
   &.left {
