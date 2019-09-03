@@ -1,0 +1,43 @@
+// The colors.scss file holds all color variables for its specific theme:
+
+// Helper variables (not required outside this file):
+$bg: black;
+
+// Theme variables (required!):
+$main: (
+  headerBg: $bg,
+  headerColor: lighten($bg, 65%),
+  contentBg: lighten($bg, 3%),
+  contentColor: lighten($bg, 55%),
+  scrollbarBg: lighten($bg, 13%),
+);
+
+// Left and right sidebars are identical:
+$left: (
+  headerBg: $bg,
+  headerColor: lighten($bg, 50%),
+  contentBg: $bg,
+  contentColor: lighten($bg, 30%),
+  iconColor: lighten($bg, 50%),
+  iconHoverColor: #f1f1f1,
+  borderColor: lighten($bg, 10%),
+  borderHoverColor: lighten($bg, 15%),
+  hoverBg: lighten($bg, 10%),
+  scrollbarBg: lighten($bg, 8%),
+);
+$right: (
+  headerBg: map-get($left, headerBg),
+  headerColor: map-get($left, headerColor),
+  contentBg: map-get($left, contentBg),
+  contentColor: map-get($left, contentColor),
+  iconColor: map-get($left, iconColor),
+  iconHoverColor: map-get($left, iconHoverColor),
+  borderColor: map-get($left, borderColor),
+  borderHoverColor: map-get($left, borderHoverColor),
+  hoverBg: map-get($left, hoverBg),
+  scrollbarBg: map-get($left, scrollbarBg),
+);
+
+$shadow: 0;
+$shadowColor: #888;
+$shadowHoverColor: #333;
