@@ -1,4 +1,4 @@
 // A theme consists of 3 .scss files that need to be imported:
 // a colors, specs ands styles file.
 // This way, the UI is both customisable and maintainable.
-@import 'colors/light_colors', 'specs/default_specs', 'styles/default_styles';
+@import 'partials/colors_light', 'partials/specs_default', 'partials/styles_default';

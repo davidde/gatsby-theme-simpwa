@@ -49,7 +49,9 @@ import { Layout, MainView, Leftside, Rightside } from 'gatsby-theme-simpwa'
 The parent component that enables its 3 children components to work properly.
 
 Props:
-  - **theme**: The theme to use for your app: light, dark or joy. Defaults to 'light'.
+  - **theme**: The theme to use for your app:  
+    'light', 'light_minimal', 'dark', 'dark_minimal', 'joy' or 'joy_minimal'  
+    Defaults to `light`.
 
 ### The \<MainView> component
 The main content of your app. Should be a direct descendant of `<Layout>`.
@@ -77,10 +79,19 @@ which define *color variables*, *spec variables* (like sizes and media queries),
 the *general styles* of the theme respectively:
 ```
 src/styles
-├── _default_colors.scss
-├── _default_specs.scss
-├── _default_styles.scss
-└── default_theme.scss
+├── dark_minimal_theme.scss
+├── dark_theme.scss
+├── joy_minimal_theme.scss
+├── joy_theme.scss
+├── light_minimal_theme.scss
+├── light_theme.scss
+└── partials
+    ├── _colors_dark.scss
+    ├── _colors_joy.scss
+    ├── _colors_light.scss
+    ├── _specs_default.scss
+    ├── _specs_minimal.scss
+    └── _styles_default.scss
 ```
 
 For a quick change, it's straightforward to shadow these files, and modify your version:
@@ -88,17 +99,17 @@ For a quick change, it's straightforward to shadow these files, and modify your 
 mkdir ./src/gatsby-theme-simpwa
 cp -r ./node_modules/gatsby-theme-simpwa/src/styles ./src/gatsby-theme-simpwa/styles
 ```
-(Note that you need all 4 of them since they are interdependent.)
+(Note that it's required to shadow all 4 files of a specific theme because they are interdependent.)
 
 Additionally, you can create your own theme by putting together 3 modified partials:
 - Copy a partial and modify it:
   ```bash
-  cp ./src/gatsby-theme-simpwa/styles/_default_colors.scss ./src/gatsby-theme-simpwa/styles/_flashy_colors.scss
+  cp ./src/gatsby-theme-simpwa/styles/partials/_colors_joy.scss ./src/gatsby-theme-simpwa/styles/partials/_colors_flashy.scss
   ```
 - Put together a new theme:
   ```bash
   cat > src/gatsby-theme-simpwa/styles/flashy_theme.scss
-  [Paste: @import 'flashy_colors', 'default_specs', 'default_styles';]
+  [Paste: @import 'partials/colors_flashy', 'partials/specs_default', 'partials/styles_default';]
   [CTRL+D]
   ```
 - You can then activate your theme by providing it to the `<Layout>` component's `theme` prop:
