@@ -8,35 +8,37 @@ $rightDark: hsla(300, 76.2, 52.2, 1);
 
 // Theme variables (required!):
 $main: (
-  bg: hsla(60, 100, 88.6, 0.9),
-  color: hsla(330, 100, 39.2, 0.8),
-  headerColor: hsla(254, 78%, 52%, 0.75),
   headerBg: linear-gradient(to right, $leftLight, $rightLight),
+  headerColor: hsla(254, 78%, 52%, 0.75),
+  contentBg: hsla(60, 100, 88.6, 0.9),
+  contentColor: hsla(330, 100, 39.2, 0.8),
   scrollbarBg: hsla(60, 100, 88.6, 0.9),
 );
 
 $left: (
-  bg: $leftDark,
-  hoverBg: darken($leftDark, 12%),
-  scrollbarBg: lighten($leftDark, 20%),
+  headerBg: $leftDark,
   headerColor: lighten($leftLight, 35%),
+  contentBg: $leftDark,
   contentColor: lighten($leftDark, 35%),
   iconColor: lighten($leftLight, 35%),
   iconHoverColor: #f1f1f1,
   borderColor: lighten($leftDark, 25%),
   borderHoverColor: darken($leftDark, 7%),
+  hoverBg: darken($leftDark, 12%),
+  scrollbarBg: lighten($leftDark, 20%),
 );
 
 $right: (
-  bg: $rightDark,
-  hoverBg: darken($rightDark, 15%),
-  scrollbarBg: lighten($rightDark, 20%),
+  headerBg: $rightDark,
   headerColor: lighten($rightLight, 15%),
+  contentBg: $rightDark,
   contentColor: lighten($rightDark, 34%),
   iconColor: lighten($rightLight, 15%),
   iconHoverColor: #f1f1f1,
   borderColor: lighten($rightDark, 25%),
   borderHoverColor: darken($rightDark, 9%),
+  hoverBg: darken($rightDark, 15%),
+  scrollbarBg: lighten($rightDark, 20%),
 );
 
 $shadow: 6px 0 15px 0;

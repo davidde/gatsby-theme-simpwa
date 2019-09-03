@@ -5,8 +5,8 @@ body {
   min-height: 100vh;
   max-width: 100vw;
   margin: 0;
-  background: map-get($main, bg);
-  color: map-get($main, color);
+  background: map-get($main, contentBg);
+  color: map-get($main, contentColor);
   /* Disable scrolling on body: */
   overflow: hidden;
   font-family: "Open Sans", sans-serif;
@@ -22,7 +22,7 @@ body {
   grid-area: main;
   min-width: 0;
   --headerColor: #{map-get($main, headerColor)};
-  --contentColor: #{map-get($main, color)};
+  --contentColor: #{map-get($main, contentColor)};
 }
 
 .sidebar {
@@ -34,7 +34,6 @@ body {
     --iconColor: #{map-get($left, iconColor)};
     --headerColor: #{map-get($left, headerColor)};
     --borderColor: #{map-get($left, borderColor)};
-    --bg: #{map-get($left, bg)};
     --shade: #{$shadow};
     &.active {
       width: var(--leftLandscapeWidth);
@@ -50,7 +49,6 @@ body {
     --iconColor: #{map-get($right, iconColor)};
     --headerColor: #{map-get($right, headerColor)};
     --borderColor: #{map-get($right, borderColor)};
-    --bg: #{map-get($right, bg)};
     --shade: -#{$shadow};
     &.active {
       width: var(--rightLandscapeWidth);
@@ -60,7 +58,6 @@ body {
     }
   }
 
-  background: var(--bg);
   --shadow: var(--shade) #{$shadowColor}; // CSS prop is modified on :hover!
   box-shadow: var(--shadow);
   width: var(--sidestripWidth);
@@ -74,7 +71,6 @@ body {
     position: fixed;
     z-index: 30;
     width: var(--portraitWidth);
-    background: var(--bg);
 
     --offset: calc(-1 * var(--portraitWidth) - var(--borderWidth));
     &.left {
@@ -116,10 +112,16 @@ body {
 .hoverbar {
   --border: var(--borderWidth) solid var(--borderColor);
   --headerBorder: var(--headerBorderWidth) solid var(--borderColor);
+  &.left {
+    --bg: #{map-get($left, headerBg)};
+  }
+  &.right {
+    --bg: #{map-get($right, headerBg)};
+  }
   @media (hover: hover) { // Prevent :hover from being triggered on touch devices!
     &:hover {
       cursor: pointer;
-      // --shadow, --bg, --iconColor and --border are defined in .sidebar
+      // --shadow, --iconColor and --border are defined in .sidebar
       --shadow: var(--shade) #{$shadowHoverColor};
       &.left {
         --bg: #{map-get($left, hoverBg)};
@@ -233,11 +235,13 @@ body {
     height: calc(var(--headerHeight) + var(--headerBorderWidth));
   }
   &.left {
+    background: map-get($left, headerBg);
     float: right;
     width: calc(100% - var(--headerHeight));
     border-bottom: var(--headerBorderWidth) solid #{map-get($left, borderColor)};
   }
   &.right {
+    background: map-get($right, headerBg);
     float: left;
     width: calc(100% - var(--headerHeight));
     border-bottom: var(--headerBorderWidth) solid #{map-get($right, borderColor)};
@@ -270,17 +274,20 @@ body {
 
 .content {
   &.main {
+    background: map-get($main, contentBg);
     padding: var(--mainContentPadding);
     &::-webkit-scrollbar-thumb {
       --bg: #{map-get($main, scrollbarBg)};
     }
   }
   &.left {
+    background: map-get($left, contentBg);
     &::-webkit-scrollbar-thumb {
       --bg: #{map-get($left, scrollbarBg)};
     }
   }
   &.right {
+    background: map-get($right, contentBg);
     direction: rtl;
     > div {
       direction: ltr;
