@@ -49,7 +49,7 @@ import { Layout, MainView, Leftside, Rightside } from 'gatsby-theme-simpwa'
 The parent component that enables its 3 children components to work properly.
 
 Props:
-  - **theme**: The theme to use for your app. Defaults to 'default-theme'.
+  - **theme**: The theme to use for your app: light, dark or joy. Defaults to 'light'.
 
 ### The \<MainView> component
 The main content of your app. Should be a direct descendant of `<Layout>`.

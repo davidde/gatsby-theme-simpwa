@@ -7,7 +7,7 @@ class Layout extends React.Component {
     
     let theme = this.props.theme;
     if (!theme) {
-      theme = 'default';
+      theme = 'light';
     }
     this.vars = require('../styles/' + theme + '_theme.scss');
     this.clientX = null;
