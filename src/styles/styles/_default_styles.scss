@@ -34,6 +34,7 @@ body {
     --iconColor: #{map-get($left, iconColor)};
     --headerColor: #{map-get($left, headerColor)};
     --borderColor: #{map-get($left, borderColor)};
+    --bg: #{map-get($left, contentBg)};
     --shade: #{$shadow};
     &.active {
       width: var(--leftLandscapeWidth);
@@ -49,6 +50,7 @@ body {
     --iconColor: #{map-get($right, iconColor)};
     --headerColor: #{map-get($right, headerColor)};
     --borderColor: #{map-get($right, borderColor)};
+    --bg: #{map-get($right, contentBg)};
     --shade: -#{$shadow};
     &.active {
       width: var(--rightLandscapeWidth);
@@ -58,6 +60,7 @@ body {
     }
   }
 
+  background: var(--bg);
   --shadow: var(--shade) #{$shadowColor}; // CSS prop is modified on :hover!
   box-shadow: var(--shadow);
   width: var(--sidestripWidth);
@@ -71,6 +74,7 @@ body {
     position: fixed;
     z-index: 30;
     width: var(--portraitWidth);
+    background: var(--bg);
 
     --offset: calc(-1 * var(--portraitWidth) - var(--borderWidth));
     &.left {
@@ -274,7 +278,6 @@ body {
 
 .content {
   &.main {
-    background: map-get($main, contentBg);
     padding: var(--mainContentPadding);
     &::-webkit-scrollbar-thumb {
       --bg: #{map-get($main, scrollbarBg)};
