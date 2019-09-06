@@ -5,8 +5,8 @@ body {
   min-height: 100vh;
   max-width: 100vw;
   margin: 0;
-  background: map-get($main, contentBg);
-  color: map-get($main, contentColor);
+  background: var(--contentBg);
+  color: var(--contentColor);
   /* Disable scrolling on body: */
   overflow: hidden;
   font-family: "Open Sans", sans-serif;
@@ -21,8 +21,8 @@ body {
 #main {
   grid-area: main;
   min-width: 0;
-  --headerColor: #{map-get($main, headerColor)};
-  --contentColor: #{map-get($main, contentColor)};
+  // --headerColor: #{map-get($main, headerColor)};
+  // --contentColor: #{map-get($main, contentColor)};
 }
 
 .sidebar {
@@ -30,12 +30,12 @@ body {
   &.left {
     grid-area: left;
     border-right: var(--border);
-    --contentColor: #{map-get($left, contentColor)};
-    --iconColor: #{map-get($left, iconColor)};
-    --headerColor: #{map-get($left, headerColor)};
-    --borderColor: #{map-get($left, borderColor)};
-    --bg: #{map-get($left, contentBg)};
-    --shade: #{$shadow};
+    // --contentColor: #{map-get($left, contentColor)};
+    // --iconColor: #{map-get($left, iconColor)};
+    // --headerColor: #{map-get($left, headerColor)};
+    // --borderColor: #{map-get($left, borderColor)};
+    // --bg: #{map-get($left, contentBg)};
+    // --shade: #{$shadow};
     &.active {
       width: var(--leftLandscapeWidth);
       @media #{$smallWidthQuery} {
@@ -46,12 +46,12 @@ body {
   &.right {
     grid-area: right;
     border-left: var(--border);
-    --contentColor: #{map-get($right, contentColor)};
-    --iconColor: #{map-get($right, iconColor)};
-    --headerColor: #{map-get($right, headerColor)};
-    --borderColor: #{map-get($right, borderColor)};
-    --bg: #{map-get($right, contentBg)};
-    --shade: -#{$shadow};
+    // --contentColor: #{map-get($right, contentColor)};
+    // --iconColor: #{map-get($right, iconColor)};
+    // --headerColor: #{map-get($right, headerColor)};
+    // --borderColor: #{map-get($right, borderColor)};
+    // --bg: #{map-get($right, contentBg)};
+    // --shade: -#{$shadow};
     &.active {
       width: var(--rightLandscapeWidth);
       @media #{$smallWidthQuery} {
@@ -60,8 +60,8 @@ body {
     }
   }
 
-  background: var(--bg);
-  --shadow: var(--shade) #{$shadowColor}; // CSS prop is modified on :hover!
+  background: var(--contentBg);
+  // --shadow: var(--shade) #{$shadowColor}; // CSS prop is modified on :hover!
   box-shadow: var(--shadow);
   width: var(--sidestripWidth);
   transition: width var(--transitionDuration);
@@ -74,7 +74,7 @@ body {
     position: fixed;
     z-index: 30;
     width: var(--portraitWidth);
-    background: var(--bg);
+    background: var(--contentBg);
 
     --offset: calc(-1 * var(--portraitWidth) - var(--borderWidth));
     &.left {
@@ -116,33 +116,40 @@ body {
 .hoverbar {
   --border: var(--borderWidth) solid var(--borderColor);
   --headerBorder: var(--headerBorderWidth) solid var(--borderColor);
-  &.left {
-    --bg: #{map-get($left, headerBg)};
-  }
-  &.right {
-    --bg: #{map-get($right, headerBg)};
-  }
+  --hoverableBg: var(--headerBg);
+  // &.left {
+  //   --bg: #{map-get($left, headerBg)};
+  // }
+  // &.right {
+  //   --bg: #{map-get($right, headerBg)};
+  // }
   @media (hover: hover) { // Prevent :hover from being triggered on touch devices!
     &:hover {
       cursor: pointer;
       // --shadow, --iconColor and --border are defined in .sidebar
-      --shadow: var(--shade) #{$shadowHoverColor};
-      &.left {
-        --bg: #{map-get($left, hoverBg)};
-        --iconColor: #{map-get($left, iconHoverColor)};
-        &.inactive {
-          --border: var(--borderWidth) solid #{map-get($left, borderHoverColor)};
-          --headerBorder: var(--headerBorderWidth) solid #{map-get($left, borderHoverColor)};
-        }
+      --shadowColor: var(--shadowHoverColor);
+      --hoverableBg: var(--hoverBg);
+      --iconColor: var(--iconHoverColor);
+      &.inactive {
+        --border: var(--borderWidth) solid var(--borderHoverColor);
+        --headerBorder: var(--headerBorderWidth) solid var(--borderHoverColor);
       }
-      &.right {
-        --bg: #{map-get($right, hoverBg)};
-        --iconColor: #{map-get($right, iconHoverColor)};
-        &.inactive {
-          --border: var(--borderWidth) solid #{map-get($right, borderHoverColor)};
-          --headerBorder: var(--headerBorderWidth) solid #{map-get($right, borderHoverColor)};
-        }
-      }
+      // &.left {
+        // --bg: #{map-get($left, hoverBg)};
+        // --iconColor: #{map-get($left, iconHoverColor)};
+      //   &.inactive {
+      //     --border: var(--borderWidth) solid #{map-get($left, borderHoverColor)};
+      //     --headerBorder: var(--headerBorderWidth) solid #{map-get($left, borderHoverColor)};
+      //   }
+      // }
+      // &.right {
+        // --bg: #{map-get($right, hoverBg)};
+        // --iconColor: #{map-get($right, iconHoverColor)};
+      //   &.inactive {
+      //     --border: var(--borderWidth) solid #{map-get($right, borderHoverColor)};
+      //     --headerBorder: var(--headerBorderWidth) solid #{map-get($right, borderHoverColor)};
+      //   }
+      // }
     }
   }
 
@@ -156,7 +163,7 @@ body {
     line-height: var(--headerHeight);
     font-size: var(--headerFont);
     text-align: center;
-    background: var(--bg);
+    background: var(--hoverableBg);
     border-bottom: var(--headerBorder);
     &.active {
       z-index: 100;
@@ -180,7 +187,7 @@ body {
     top: 0;
     height: 100%;
     width: var(--sidestripWidth);
-    background: var(--bg);
+    background: var(--hoverableBg);
     box-shadow: var(--shadow);
 
     transition-property: opacity;
@@ -210,7 +217,7 @@ body {
     top: var(--patchTop);
     bottom: 0;
     width: var(--sidestripWidth);
-    background: var(--bg);
+    background: var(--hoverableBg);
 
     transition-property: opacity;
     opacity: 1;
@@ -234,21 +241,22 @@ body {
   position: relative;
   height: var(--headerHeight);
   color: var(--headerColor);
+  background: var(--headerBg);
   &.main {
-    background: map-get($main, headerBg);
+    // background: var(--headerBg);
     height: calc(var(--headerHeight) + var(--headerBorderWidth));
   }
   &.left {
-    background: map-get($left, headerBg);
+    // background: var(--headerBg);
     float: right;
     width: calc(100% - var(--headerHeight));
-    border-bottom: var(--headerBorderWidth) solid #{map-get($left, borderColor)};
+    border-bottom: var(--headerBorderWidth) solid var(--borderColor);
   }
   &.right {
-    background: map-get($right, headerBg);
+    // background: var(--headerBg);
     float: left;
     width: calc(100% - var(--headerHeight));
-    border-bottom: var(--headerBorderWidth) solid #{map-get($right, borderColor)};
+    border-bottom: var(--headerBorderWidth) solid var(--borderColor);
   }
 
   > h1 {
@@ -279,25 +287,25 @@ body {
 .content {
   &.main {
     padding: var(--mainContentPadding);
-    &::-webkit-scrollbar-thumb {
-      --bg: #{map-get($main, scrollbarBg)};
-    }
+    // &::-webkit-scrollbar-thumb {
+    //   --bg: #{map-get($main, scrollbarBg)};
+    // }
   }
   &.left {
-    background: map-get($left, contentBg);
-    &::-webkit-scrollbar-thumb {
-      --bg: #{map-get($left, scrollbarBg)};
-    }
+    background: var(--contentBg);
+    // &::-webkit-scrollbar-thumb {
+    //   --bg: #{map-get($left, scrollbarBg)};
+    // }
   }
   &.right {
-    background: map-get($right, contentBg);
+    background: var(--contentBg);
     direction: rtl;
     > div {
       direction: ltr;
     }
-    &::-webkit-scrollbar-thumb {
-      --bg: #{map-get($right, scrollbarBg)};
-    }
+    // &::-webkit-scrollbar-thumb {
+    //   --bg: #{map-get($right, scrollbarBg)};
+    // }
   }
 
   /* Without border-box, the left/right padding is added
@@ -316,7 +324,7 @@ body {
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: var(--bg);
+    background: var(--scrollbarBg);
     border-radius: 0.6rem;
   } /* End scrollbar styling */
 }
