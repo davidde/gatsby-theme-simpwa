@@ -21,8 +21,6 @@ body {
 #main {
   grid-area: main;
   min-width: 0;
-  // --headerColor: #{map-get($main, headerColor)};
-  // --contentColor: #{map-get($main, contentColor)};
 }
 
 .sidebar {
@@ -30,12 +28,6 @@ body {
   &.left {
     grid-area: left;
     border-right: var(--border);
-    // --contentColor: #{map-get($left, contentColor)};
-    // --iconColor: #{map-get($left, iconColor)};
-    // --headerColor: #{map-get($left, headerColor)};
-    // --borderColor: #{map-get($left, borderColor)};
-    // --bg: #{map-get($left, contentBg)};
-    // --shade: #{$shadow};
     &.active {
       width: var(--leftLandscapeWidth);
       @media #{$smallWidthQuery} {
@@ -46,12 +38,6 @@ body {
   &.right {
     grid-area: right;
     border-left: var(--border);
-    // --contentColor: #{map-get($right, contentColor)};
-    // --iconColor: #{map-get($right, iconColor)};
-    // --headerColor: #{map-get($right, headerColor)};
-    // --borderColor: #{map-get($right, borderColor)};
-    // --bg: #{map-get($right, contentBg)};
-    // --shade: -#{$shadow};
     &.active {
       width: var(--rightLandscapeWidth);
       @media #{$smallWidthQuery} {
@@ -61,8 +47,7 @@ body {
   }
 
   background: var(--contentBg);
-  // --shadow: var(--shade) #{$shadowColor}; // CSS prop is modified on :hover!
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow) var(--shadowColor);
   width: var(--sidestripWidth);
   transition: width var(--transitionDuration);
 }
@@ -117,16 +102,9 @@ body {
   --border: var(--borderWidth) solid var(--borderColor);
   --headerBorder: var(--headerBorderWidth) solid var(--borderColor);
   --hoverableBg: var(--headerBg);
-  // &.left {
-  //   --bg: #{map-get($left, headerBg)};
-  // }
-  // &.right {
-  //   --bg: #{map-get($right, headerBg)};
-  // }
   @media (hover: hover) { // Prevent :hover from being triggered on touch devices!
     &:hover {
       cursor: pointer;
-      // --shadow, --iconColor and --border are defined in .sidebar
       --shadowColor: var(--shadowHoverColor);
       --hoverableBg: var(--hoverBg);
       --iconColor: var(--iconHoverColor);
@@ -134,22 +112,6 @@ body {
         --border: var(--borderWidth) solid var(--borderHoverColor);
         --headerBorder: var(--headerBorderWidth) solid var(--borderHoverColor);
       }
-      // &.left {
-        // --bg: #{map-get($left, hoverBg)};
-        // --iconColor: #{map-get($left, iconHoverColor)};
-      //   &.inactive {
-      //     --border: var(--borderWidth) solid #{map-get($left, borderHoverColor)};
-      //     --headerBorder: var(--headerBorderWidth) solid #{map-get($left, borderHoverColor)};
-      //   }
-      // }
-      // &.right {
-        // --bg: #{map-get($right, hoverBg)};
-        // --iconColor: #{map-get($right, iconHoverColor)};
-      //   &.inactive {
-      //     --border: var(--borderWidth) solid #{map-get($right, borderHoverColor)};
-      //     --headerBorder: var(--headerBorderWidth) solid #{map-get($right, borderHoverColor)};
-      //   }
-      // }
     }
   }
 
@@ -188,7 +150,7 @@ body {
     height: 100%;
     width: var(--sidestripWidth);
     background: var(--hoverableBg);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow) var(--shadowColor);
 
     transition-property: opacity;
     opacity: 1;
@@ -243,17 +205,14 @@ body {
   color: var(--headerColor);
   background: var(--headerBg);
   &.main {
-    // background: var(--headerBg);
     height: calc(var(--headerHeight) + var(--headerBorderWidth));
   }
   &.left {
-    // background: var(--headerBg);
     float: right;
     width: calc(100% - var(--headerHeight));
     border-bottom: var(--headerBorderWidth) solid var(--borderColor);
   }
   &.right {
-    // background: var(--headerBg);
     float: left;
     width: calc(100% - var(--headerHeight));
     border-bottom: var(--headerBorderWidth) solid var(--borderColor);
@@ -287,15 +246,9 @@ body {
 .content {
   &.main {
     padding: var(--mainContentPadding);
-    // &::-webkit-scrollbar-thumb {
-    //   --bg: #{map-get($main, scrollbarBg)};
-    // }
   }
   &.left {
     background: var(--contentBg);
-    // &::-webkit-scrollbar-thumb {
-    //   --bg: #{map-get($left, scrollbarBg)};
-    // }
   }
   &.right {
     background: var(--contentBg);
@@ -303,9 +256,6 @@ body {
     > div {
       direction: ltr;
     }
-    // &::-webkit-scrollbar-thumb {
-    //   --bg: #{map-get($right, scrollbarBg)};
-    // }
   }
 
   /* Without border-box, the left/right padding is added
