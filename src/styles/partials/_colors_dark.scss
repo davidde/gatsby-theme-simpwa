@@ -41,3 +41,27 @@ $right: (
 $shadow: 0;
 $shadowColor: #888;
 $shadowHoverColor: #333;
+
+body {
+  --headerBg: hsla(0, 0%, 0%, 1);
+  --headerColor: hsla(0, 0%, 65%, 1);
+  --contentBg: hsla(0, 0%, 3%, 1);
+  --contentColor: hsla(0, 0%, 55%, 1);
+  --scrollbarBg: hsla(0, 0%, 15%, 1);
+  --shadowColor: #888;
+  --shadowHoverColor: #333;
+}
+
+.sidebar.left, .sidebar.right {
+  --headerBg: hsla(0, 0%, 0%, 1);
+  --headerColor: hsla(0, 0%, 50%, 1);
+  --contentBg: hsla(0, 0%, 0%, 1);
+  --contentColor: hsla(0, 0%, 30%, 1);
+  --iconColor: hsla(0, 0%, 50%, 1);
+  --iconHoverColor: #f1f1f1;
+  --borderColor: hsla(0, 0%, 10%, 1);
+  --borderHoverColor: hsla(0, 0%, 15%, 1);
+  --hoverBg: hsla(0, 0%, 10%, 1);
+  --scrollbarBg: hsla(0, 0%, 8%, 1);
+  --shadow: 0;
+}
