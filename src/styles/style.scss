@@ -1,5 +1,6 @@
-// The styles.scss file holds all .scss rules for the entire theme.
-// It requires a compatible colors.scss and specs.scss file.
+@import 'vars';
+
+
 body {
   /* border: 3px solid red; */
   min-height: 100vh;

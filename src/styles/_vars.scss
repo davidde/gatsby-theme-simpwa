@@ -1,0 +1,130 @@
+// The _vars.scss partial holds all variables:
+// sizes, media queries, theme colors, etc.
+$smallWidthQuery: (orientation: portrait), (max-width: 800px);
+$mediumWidthQuery: (max-width: 1200px);
+:export {
+  smallWidthQuery: #{$smallWidthQuery};
+  mediumWidthQuery: #{$mediumWidthQuery};
+  // Specify which sidebars should be active on first load:
+  startActive: both; // can be either both, left, right or none
+  mutex: false; // Set to true if sidebars should never be active at the same time
+  // On smaller viewports, sidebars will never be active at the same time!
+}
+
+:root {
+  --headerHeight: 4rem;
+  --headerFont: 1.75rem;
+  --sidestripWidth: 0.5rem;
+  --patchTop: 3rem;
+  --borderWidth: 2px;
+  --headerBorderWidth: 2px;
+  @media #{$smallWidthQuery} {
+    --headerHeight: 3rem;
+    --headerFont: 1.35rem;
+    --sidestripWidth: 0.375rem;
+    --patchTop: 2rem;
+    --borderWidth: 1px;
+    --headerBorderWidth: 1px;
+  }
+  // sidebar widths in portrait and landscape orientations:
+  --portraitWidth: 80vw;
+  --leftLandscapeWidth: 25vw;
+  --rightLandscapeWidth: 25vw;
+  @media #{$mediumWidthQuery} {
+    --leftLandscapeWidth: 40vw;
+    --rightLandscapeWidth: 40vw;
+  }
+  --transitionDuration: 0.5s;
+  // Make these 0 if you don't want default paddings in Sidebars and Main:
+  --contentPadding: 5%;
+  --mainContentPadding: 2rem 15% 3rem;
+}
+
+// Light theme Colors:
+body.lightTheme {
+  --headerBg: hsla(221, 28%, 94%, 1);
+  --headerColor: hsla(254, 78%, 52%, 0.75);
+  --contentBg: hsla(221, 28%, 97%, 1);
+  --contentColor: hsla(255, 26%, 18%, 0.75);
+  --scrollbarBg: hsla(221, 28%, 91%, 1);
+  --shadowColor: #888;
+  --shadowHoverColor: #333;
+}
+
+.sidebar.left.lightTheme, .sidebar.right.lightTheme {
+  --headerBg: hsla(221, 28%, 87%, 1);
+  --headerColor: hsla(254, 78%, 52%, 0.75);
+  --contentBg: hsla(221, 28%, 87%, 1);
+  --contentColor: hsla(254, 78%, 62%, 0.75);
+  --iconColor: hsla(254, 78%, 52%, 0.75);
+  --iconHoverColor: hsla(254, 78%, 42%, 0.75);
+  --borderColor: hsla(221, 28%, 94%, 1);
+  --borderHoverColor: hsla(221, 28%, 72%, 1);
+  --hoverBg: hsla(221, 28%, 75%, 1);
+  --scrollbarBg: hsla(221, 28%, 94%, 1);
+  --shadow: 0;
+}
+
+// Dark theme Colors:
+body.darkTheme {
+  --headerBg: hsla(0, 0%, 0%, 1);
+  --headerColor: hsla(0, 0%, 65%, 1);
+  --contentBg: hsla(0, 0%, 3%, 1);
+  --contentColor: hsla(0, 0%, 55%, 1);
+  --scrollbarBg: hsla(0, 0%, 15%, 1);
+  --shadowColor: #888;
+  --shadowHoverColor: #333;
+}
+
+.sidebar.left.darkTheme, .sidebar.right.darkTheme {
+  --headerBg: hsla(0, 0%, 0%, 1);
+  --headerColor: hsla(0, 0%, 50%, 1);
+  --contentBg: hsla(0, 0%, 0%, 1);
+  --contentColor: hsla(0, 0%, 30%, 1);
+  --iconColor: hsla(0, 0%, 50%, 1);
+  --iconHoverColor: #f1f1f1;
+  --borderColor: hsla(0, 0%, 10%, 1);
+  --borderHoverColor: hsla(0, 0%, 15%, 1);
+  --hoverBg: hsla(0, 0%, 10%, 1);
+  --scrollbarBg: hsla(0, 0%, 8%, 1);
+  --shadow: 0;
+}
+
+// Joy theme Colors:
+body.joyTheme {
+  --headerBg: linear-gradient(to right, hsla(39, 100%, 50%, 1), hsla(300, 76%, 72%, 1));
+  --headerColor: hsla(254, 78%, 52%, 0.75);
+  --contentBg: hsla(60, 100%, 88.6%, 0.9);
+  --contentColor: hsla(330, 100%, 39.2%, 0.8);
+  --scrollbarBg: hsla(60, 100%, 88.6%, 0.9);
+  --shadowColor: #888;
+  --shadowHoverColor: #333;
+}
+
+.sidebar.left.joyTheme {
+  --headerBg: hsla(24, 100%, 50%, 1);
+  --headerColor: hsla(39, 100%, 85%, 1);
+  --contentBg: hsla(24, 100%, 50%, 1);
+  --contentColor: hsla(24, 100%, 85%, 1);
+  --iconColor: hsla(39, 100%, 85%, 1);
+  --iconHoverColor: #f1f1f1;
+  --borderColor: hsla(24, 100%, 75%, 1);
+  --borderHoverColor: hsla(24, 100%, 43%, 1);
+  --hoverBg: hsla(24, 100%, 38%, 1);
+  --scrollbarBg: hsla(24, 100%, 70%, 1);
+  --shadow: 6px 0 15px 0;
+}
+
+.sidebar.right.joyTheme {
+  --headerBg: hsla(300, 76.2%, 52.2%, 1);
+  --headerColor: hsla(300, 76%, 87%, 1);
+  --contentBg: hsla(300, 76.2%, 52.2%, 1);
+  --contentColor: hsla(300, 76.2%, 86.2%, 1);
+  --iconColor: hsla(300, 76%, 87%, 1);
+  --iconHoverColor: #f1f1f1;
+  --borderColor: hsla(300, 76.2%, 77.2%, 1);
+  --borderHoverColor: hsla(300, 76.2%, 43.2%, 1);
+  --hoverBg: hsla(300, 76.2%, 37.2%, 1);
+  --scrollbarBg: hsla(300, 76.2%, 72.2%, 1);
+  --shadow: -6px 0 15px 0;
+}

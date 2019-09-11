@@ -1,5 +1,6 @@
 import React from 'react';
 import ThemeContext from './common/theme-context';
+import vars from '../styles/style.scss';
 
 
 class Layout extends React.Component {
@@ -13,23 +14,23 @@ class Layout extends React.Component {
       rightActive: false,
       theme: this.props.theme ? this.props.theme : 'light',
     }
-    this.vars = require('../styles/' + this.state.theme + '_theme.scss');
+    document.body.classList.add(this.state.theme + 'Theme');
   }
 
   componentDidMount() {
-    this.isSmallViewport = window.matchMedia(this.vars.smallWidthQuery).matches;
-    this.isMediumViewport = window.matchMedia(this.vars.mediumWidthQuery).matches;
+    this.isSmallViewport = window.matchMedia(vars.smallWidthQuery).matches;
+    this.isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
 
     if (!this.isSmallViewport) {
-      if (this.vars.startActive === 'left') {
+      if (vars.startActive === 'left') {
         this.setState({ leftActive: true });
       }
-      else if (this.vars.startActive === 'right') {
+      else if (vars.startActive === 'right') {
         this.setState({ rightActive: true });
       }
-      else if (this.vars.startActive === 'both') {
+      else if (vars.startActive === 'both') {
         // In medium viewport or when mutex is set, only activate one side:
-        if (this.isMediumViewport || this.vars.mutex === 'true') {
+        if (this.isMediumViewport || vars.mutex === 'true') {
           this.setState({ leftActive: true });
         } else { // Otherwise activate both:
           this.setState({ leftActive: true });
@@ -45,8 +46,8 @@ class Layout extends React.Component {
 
   updateViewports = () => {
     let wasSmall = this.isSmallViewport;
-    this.isSmallViewport = window.matchMedia(this.vars.smallWidthQuery).matches;
-    this.isMediumViewport = window.matchMedia(this.vars.mediumWidthQuery).matches;
+    this.isSmallViewport = window.matchMedia(vars.smallWidthQuery).matches;
+    this.isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
 
     // If either side is active while transitioning to a small viewport, unactivate both sides:
     if (wasSmall !== this.isSmallViewport) {
@@ -70,7 +71,7 @@ class Layout extends React.Component {
 
     // If other side is active in medium viewport or when mutex is set, unactivate other side:
     if (this.state.rightActive) {
-      if (this.isMediumViewport || this.vars.mutex === 'true') {
+      if (this.isMediumViewport || vars.mutex === 'true') {
         this.setState({ rightActive: false });
       }
     }
@@ -81,7 +82,7 @@ class Layout extends React.Component {
 
     // If other side is active in medium viewport or when mutex is set, unactivate other side:
     if (this.state.leftActive) {
-      if (this.isMediumViewport || this.vars.mutex === 'true') {
+      if (this.isMediumViewport || vars.mutex === 'true') {
         this.setState({ leftActive: false });
       }
     }
@@ -133,8 +134,8 @@ class Layout extends React.Component {
 
   changeTheme = (event) => {
     let theme = event.target.value;
-    console.log('theme = ', theme);
-    require('../styles/partials/_colors_' + theme + '.scss');
+    document.body.classList.remove(this.state.theme + 'Theme');
+    document.body.classList.add(theme + 'Theme');
     this.setState({ theme });
   }
 
