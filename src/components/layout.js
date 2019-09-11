@@ -1,22 +1,19 @@
-import React from "react"
+import React from 'react';
+import ThemeContext from './common/theme-context';
 
 
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-    
-    let theme = this.props.theme;
-    if (!theme) {
-      theme = 'light';
-    }
-    this.vars = require('../styles/' + theme + '_theme.scss');
     this.clientX = null;
     this.clientY = null;
 
     this.state = {
       leftActive: false,
       rightActive: false,
+      theme: this.props.theme ? this.props.theme : 'light',
     }
+    this.vars = require('../styles/' + this.state.theme + '_theme.scss');
   }
 
   componentDidMount() {
@@ -134,6 +131,13 @@ class Layout extends React.Component {
     }
   }
 
+  changeTheme = (event) => {
+    let theme = event.target.value;
+    console.log('theme = ', theme);
+    require('../styles/partials/_colors_' + theme + '.scss');
+    this.setState({ theme });
+  }
+
   render() {
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
@@ -157,16 +161,23 @@ class Layout extends React.Component {
       }
     );
 
+    let themeProvider = {
+      theme: this.state.theme,
+      changeTheme: this.changeTheme,
+    }
+
     return (
-      <div
-        id='layout'
-        onTouchStart={this.handleTouchStart}
-        onTouchEnd={this.handleTouchEnd}
-      >
+      <ThemeContext.Provider value={themeProvider}>
+        <div
+          id='layout'
+          onTouchStart={this.handleTouchStart}
+          onTouchEnd={this.handleTouchEnd}
+        >
 
-        {childrenWithProps}
+          {childrenWithProps}
 
-      </div>
+        </div>
+      </ThemeContext.Provider>
     )
   }
 }

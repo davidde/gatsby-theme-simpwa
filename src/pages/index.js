@@ -1,20 +1,22 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from 'react';
+import { graphql } from 'gatsby';
 import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 // Prevent fontawesome from dynamically adding its CSS since we did it manually above:
-import { config } from "@fortawesome/fontawesome-svg-core";
+import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false; /* eslint-disable import/first */
 
-import Layout from '../components/layout'
-import MainView from '../components/main/main-view'
-import Leftside from '../components/sidebar/leftside'
-import Rightside from '../components/sidebar/rightside'
+import Layout from '../components/layout';
+import MainView from '../components/main/main-view';
+import Leftside from '../components/sidebar/leftside';
+import Rightside from '../components/sidebar/rightside';
+import ThemeSwitcher from '../components/common/theme-switcher';
 
 
 export default ({ data }) => (
   <Layout theme='joy'>
     <Leftside header='Contents' icon={faBars} >
+      <ThemeSwitcher />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius semper ligula, eu luctus nunc mollis in. Vestibulum vulputate metus metus, id rutrum magna imperdiet nec. Aenean at pharetra risus. Integer convallis ac enim id aliquet. Mauris pharetra mollis nulla, eget posuere mi accumsan eu. Curabitur urna nisl, varius rhoncus tristique et, egestas et augue. Vivamus ac libero faucibus, vehicula quam in, posuere felis. Aliquam erat volutpat. Maecenas pretium iaculis dui sed elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
       </p><br/>
