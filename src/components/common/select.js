@@ -13,6 +13,24 @@ class Select extends React.Component {
     }
   }
 
+  componentDidMount() {
+    document.addEventListener('click', this.closeSelect);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.closeSelect);
+  }
+
+  closeSelect = (event) => {
+    event.preventDefault();
+    // If the Select is open, and this click event was NOT on the select itself,
+    // then close the select box:
+    if ( this.state.isOpen && !(event.target.classList[0] === 'active-option' ||
+          event.target.classList[0] === 'select-arrow-active')) {
+            this.toggleSelect();
+    }
+  }
+
   toggleSelect = () => {
     this.setState({ isOpen: !this.state.isOpen });
   }
