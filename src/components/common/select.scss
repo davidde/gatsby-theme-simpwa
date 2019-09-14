@@ -8,55 +8,56 @@
     // Hide original SELECT element:
     display: none;
   }
-}
 
-.active-option {
-  background-color: red;
-}
+  .active-option {
+    background-color: red;
+  }
 
-/* Style the arrow inside the select element: */
-.active-option:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
-}
+  // Style the arrow inside the select element:
+  .active-option:after {
+    position: absolute;
+    content: "";
+    top: 18px;
+    right: 12px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
 
-/* Point the arrow upwards when the select box is open (active): */
-.active-option.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
-}
+  // Point the arrow upwards when the select box is open:
+  .active-option.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 9px;
+  }
 
-/* Style the items (options), including the selected item: */
-.select-options div, .active-option {
-  color: #ffffff;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-  user-select: none;
-}
+  // Style the select options, including the selected one:
+  .select-options div, .active-option {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+  }
 
-/* Style items (options): */
-.select-options {
-  position: absolute;
-  background-color: red;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
-}
+  // Style select options only:
+  .select-options {
+    position: absolute;
+    background-color: red;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
 
-/* Hide the items when the select box is closed: */
-.hidden {
-  display: none;
-}
+  // Hide the select options when the select box is closed:
+  .hidden {
+    display: none;
+  }
 
-.select-options div:hover, .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
+  // Make the hovered option a tad darker:
+  .select-options div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }
