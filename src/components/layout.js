@@ -132,8 +132,7 @@ class Layout extends React.Component {
     }
   }
 
-  changeTheme = (event) => {
-    let theme = event.target.value;
+  changeTheme = (theme) => {
     document.body.classList.remove(this.state.theme + 'Theme');
     document.body.classList.add(theme + 'Theme');
     this.setState({ theme });
