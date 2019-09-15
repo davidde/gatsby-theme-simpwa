@@ -38,6 +38,10 @@ $mediumWidthQuery: (max-width: 1200px);
   // Make these 0 if you don't want default paddings in Sidebars and Main:
   --contentPadding: 5%;
   --mainContentPadding: 2rem 15% 3rem;
+  --overlay-transparency: 0;
+  --overlay-bg: hsla(0, 0%, 0%, var(--overlay-transparency));
+  --overlay-transparency-sub: 0.6;
+  --overlay-bg-sub: hsla(0, 0%, 0%, var(--overlay-transparency-sub));
 }
 
 // Light theme Colors:
@@ -74,6 +78,8 @@ body.darkTheme {
   --scrollbarBg: hsla(0, 0%, 15%, 1);
   --shadowColor: #888;
   --shadowHoverColor: #333;
+  --overlay-transparency: 0.15;
+  --overlay-bg: hsla(0, 0%, 100%, var(--overlay-transparency));
 }
 
 .sidebar.left.darkTheme, .sidebar.right.darkTheme {

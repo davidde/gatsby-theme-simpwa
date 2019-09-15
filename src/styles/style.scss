@@ -81,19 +81,37 @@ body {
     }
   }
 
-  /// Mock background layer to hide the sidebar by clicking on it:
+  /// Mock background layers to hide the sidebar by clicking on it:
+  /// 2 layers are provided so dark themes can first be darkened (to darken their lighter elements),
+  /// and then lightened so they are distinguished from the rest of the theme.
   .mock-portrait-bg {
+    /// Top mock background layer which is used by default for clicking.
+    /// Will be completely transparent on non-dark themes and white-transparent on dark themes.
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--overlay-bg);
     z-index: 20;
     visibility: hidden;
     &.active {
       visibility: visible;
       cursor: pointer;
+    }
+  }
+  .mock-portrait-bg-sub {
+    /// Bottom mock background layer which is used by default for coloring black-transparent.
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: 19;
+    background: var(--overlay-bg-sub);
+    visibility: hidden;
+    &.active {
+      visibility: visible;
     }
   }
 }

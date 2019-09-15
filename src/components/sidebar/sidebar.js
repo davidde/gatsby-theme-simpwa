@@ -23,8 +23,9 @@ class Sidebar extends React.Component {
                     onClick={this.props.toggleSidebar}
                 />
 
-                {/* Mock background layer to hide the portrait sidebar by clicking on it: */}
+                {/* Mock background layers to hide the portrait sidebar by clicking on it: */}
                 <div className={`mock-portrait-bg ${this.props.whichSide} ${active}`} onClick={this.props.toggleSidebar} />
+                <div className={`mock-portrait-bg-sub ${this.props.whichSide} ${active}`} />
 
                 {/* In portrait mode the active sidebar is styled differently: */}
                 <div className={`portraitSidebar ${this.props.whichSide} ${active}`}>
