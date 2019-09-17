@@ -51,6 +51,7 @@ body.lightTheme {
   --contentBg: hsla(221, 28%, 97%, 1);
   --contentColor: hsla(255, 26%, 18%, 0.75);
   --scrollbarBg: hsla(221, 28%, 91%, 1);
+  --borderColor: hsla(221, 28%, 94%, 1);
   --shadowColor: #888;
   --shadowHoverColor: #333;
   --black-overlay-transparency: 0.5;
@@ -73,27 +74,34 @@ body.lightTheme {
 // Dark theme Colors:
 body.darkTheme {
   --headerBg: hsla(0, 0%, 0%, 1);
-  --headerColor: hsla(0, 0%, 65%, 1);
+  --headerColor: hsla(205, 20%, 62%, 1);
   --contentBg: hsla(0, 0%, 3%, 1);
-  --contentColor: hsla(0, 0%, 55%, 1);
-  --scrollbarBg: hsla(0, 0%, 15%, 1);
+  --contentColor: hsla(205, 11%, 61%, 0.9);
+  --scrollbarBg: hsla(0, 0%, 10%, 1);
+  --borderColor: hsla(240, 30%, 9%, 1);
   --shadowColor: #888;
   --shadowHoverColor: #333;
   --overlay-lightness: 100%; // 100% = white!
   --overlay-transparency: 0.15;
+  --borderWidth: 3px;
+  --headerBorderWidth: 3px;
+  @media #{$smallWidthQuery} {
+    --borderWidth: 2px;
+    --headerBorderWidth: 2px;
+  }
 }
 
 .sidebar.left.darkTheme, .sidebar.right.darkTheme {
-  --headerBg: hsla(0, 0%, 0%, 1);
-  --headerColor: hsla(0, 0%, 50%, 1);
-  --contentBg: hsla(0, 0%, 0%, 1);
-  --contentColor: hsla(0, 0%, 30%, 1);
-  --iconColor: hsla(0, 0%, 50%, 1);
+  --headerBg: hsla(240, 43%, 7%, 1);
+  --headerColor: hsla(240, 13%, 73%, 0.9);
+  --contentBg: hsla(240, 43%, 5%, 1);
+  --contentColor: hsla(240, 15%, 71%, 0.7);
+  --iconColor: hsla(240, 20%, 72%, 0.9);
   --iconHoverColor: #f1f1f1;
-  --borderColor: hsla(0, 0%, 10%, 1);
-  --borderHoverColor: hsla(0, 0%, 15%, 1);
-  --hoverBg: hsla(0, 0%, 10%, 1);
-  --scrollbarBg: hsla(0, 0%, 8%, 1);
+  --borderColor: hsla(240, 30%, 14%, 1);
+  --borderHoverColor: hsla(240, 30%, 25%, 1);
+  --hoverBg: hsla(240, 43%, 15%, 1);
+  --scrollbarBg: hsla(240, 30%, 16%, 1);
   --shadow: 0;
 }
 
@@ -104,6 +112,7 @@ body.joyTheme {
   --contentBg: hsla(60, 100%, 88.6%, 0.9);
   --contentColor: hsla(330, 100%, 39.2%, 0.8);
   --scrollbarBg: hsla(60, 100%, 88.6%, 0.9);
+  --borderColor: hsla(254, 78%, 52%, 0.05);
   --shadowColor: #888;
   --shadowHoverColor: #333;
 }

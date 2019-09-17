@@ -225,7 +225,8 @@ body {
   color: var(--headerColor);
   background: var(--headerBg);
   &.main {
-    height: calc(var(--headerHeight) + var(--headerBorderWidth));
+    height: calc(var(--headerHeight));
+    border-bottom: var(--headerBorderWidth) solid var(--borderColor);
   }
   &.left {
     float: right;
