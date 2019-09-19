@@ -1,5 +1,6 @@
 import React from 'react';
 import ThemeContext from './theme-context';
+import Select from './css-select';
 
 
 function ThemeSwitcher() {
@@ -9,11 +10,11 @@ function ThemeSwitcher() {
         ({ theme, changeTheme }) => (
             <form>
                 <label>Theme: &nbsp;
-                  <select name='theme' value={theme} onChange={changeTheme} >
+                  <Select name='theme' value={theme} onChange={changeTheme} >
                     <option value='light'>light</option>
                     <option value='dark'>dark</option>
                     <option value='joy'>joy</option>
-                  </select>
+                  </Select>
                 </label>
             </form>
         )
