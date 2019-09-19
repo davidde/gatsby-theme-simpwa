@@ -1,63 +1,77 @@
 .custom-select {
   position: relative;
   display: inline-block;
-  font-family: Arial;
+  cursor: pointer;
+  user-select: none; // Disable text selection on double-click
   width: 6rem;
+  font-family: Arial;
+  --optionPadding: 8px 16px;
+  --borderRadius: 10px;
 
-  select {
-    // Hide original SELECT element:
-    display: none;
+  // Style the selected option that is always visible at the top:
+  .selected-option {
+    background: var(--contentBg);
+    color: var(--contentColor);
+    padding: var(--optionPadding);
+    border: var(--headerBorderWidth) solid var(--contentColor);
+    border-radius: var(--borderRadius);
+
+    &.open {
+      border-radius: var(--borderRadius) var(--borderRadius) 0px 0px;
+    }
+    // Style the arrow inside the selected option:
+    &::after {
+      position: absolute;
+      content: "";
+      top: 18px;
+      right: 12px;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+    }
+    // Point the arrow downwards when the select box is closed:
+    &.closed::after {
+      border-top: 6px solid var(--contentColor);
+    }
+    // Point the arrow upwards when the select box is open:
+    &.open::after {
+      top: 12px;
+      border-bottom: 6px solid var(--contentColor);
+    }
   }
 
-  .active-option {
-    background-color: red;
-  }
-
-  // Style the arrow inside the select element:
-  .active-option:after {
+  // Style the select options-box (box below the selected option):
+  .options-box {
     position: absolute;
-    content: "";
-    top: 18px;
-    right: 12px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #fff transparent transparent transparent;
-  }
-
-  // Point the arrow upwards when the select box is open:
-  .active-option.select-arrow-active:after {
-    border-color: transparent transparent #fff transparent;
-    top: 9px;
-  }
-
-  // Style the select options, including the selected one:
-  .select-options div, .active-option {
-    color: #ffffff;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  // Style select options only:
-  .select-options {
-    position: absolute;
-    background-color: red;
+    background: var(--contentBg);
+    color: var(--contentColor);
+    border: var(--headerBorderWidth) solid var(--contentColor);
+    border-radius: 0px 0px var(--borderRadius) var(--borderRadius);
+    margin-top: calc(-1 * var(--headerBorderWidth));
     top: 100%;
     left: 0;
     right: 0;
-    z-index: 99;
-  }
+    z-index: 1000;
 
-  // Hide the select options when the select box is closed:
-  .hidden {
-    display: none;
-  }
+    // Style the individual select options:
+    div {
+      padding: var(--optionPadding);
+      border-top: var(--headerBorderWidth) solid var(--contentColor);
 
-  // Make the hovered option a tad darker:
-  .select-options div:hover, .same-as-selected {
-    background-color: rgba(0, 0, 0, 0.1);
+      // Kill double border on top option:
+      &:nth-child(1) {
+        border-top: 0;
+      }
+      // Make the hovered or selected option a tad darker:
+      // (or lighter for dark themes)
+      &:hover, &.selected {
+        background: hsla(0, 0%, var(--overlay-lightness), 0.1);
+      }
+    }
+
+    // Hide the entire options-box when it is closed:
+    &.closed {
+      display: none;
+    }
   }
 }

@@ -25,8 +25,9 @@ class Select extends React.Component {
     event.preventDefault();
     // If the Select is open, and this click event was NOT on the select itself,
     // then close the select box:
-    if ( this.state.isOpen && !(event.target.classList[0] === 'active-option' ||
-          event.target.classList[0] === 'select-arrow-active')) {
+    if ( this.state.isOpen && !(event.target.classList[0] === 'selected-option' ||
+          event.target.classList[0] === 'open' ||
+          event.target.classList[0] === 'closed')) {
             this.toggleSelect();
     }
   }
@@ -45,25 +46,22 @@ class Select extends React.Component {
   }
 
   render() {
-    let hidden = this.state.isOpen ? '' : 'hidden';
-    let active = this.state.isOpen ? 'select-arrow-active' : '';
+    let isOpen = this.state.isOpen ? 'open' : 'closed';
 
     return (
       <div className='custom-select' >
-          <select {...this.props} >
-            {this.props.children}
-          </select>
-
-          <div className={`active-option ${active}`} onClick={this.toggleSelect} >
+          <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
             {this.state.activeOption}
           </div>
 
-          <div className={`select-options ${hidden}`} >
+          <div className={`options-box ${isOpen}`} >
             {
               React.Children.map(this.props.children,
                 (child) => {
+                  let selected = this.state.activeOption === child.props.children ?
+                                   'selected' : '';
                   return (
-                    <div onClick={() => this.selectOption(child.props.children)} >
+                    <div className={selected} onClick={() => this.selectOption(child.props.children)} >
                       {child.props.children}
                     </div>
                   );
