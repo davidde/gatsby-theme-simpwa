@@ -9,7 +9,8 @@ function ThemeSwitcher() {
       {
         ({ theme, changeTheme }) => (
             <form>
-                <label>Theme: &nbsp;
+                <label>
+                  <span>Theme: &nbsp;</span>
                   <Select name='theme' value={theme} onChange={changeTheme} >
                     <option value='light'>light</option>
                     <option value='dark'>dark</option>
