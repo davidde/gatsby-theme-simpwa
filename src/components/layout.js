@@ -132,7 +132,9 @@ class Layout extends React.Component {
     }
   }
 
-  changeTheme = (theme) => {
+  changeTheme = (event) => {
+    // For DivSelect the event argument is no event, but the theme name:
+    let theme = event.target ? event.target.value : event;
     document.body.classList.remove(this.state.theme + 'Theme');
     document.body.classList.add(theme + 'Theme');
     this.setState({ theme });

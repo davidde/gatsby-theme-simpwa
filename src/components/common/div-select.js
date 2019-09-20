@@ -8,7 +8,6 @@ class DivSelect extends React.Component {
 
     this.state = {
       isOpen: false,
-      activeOption: this.props.value,
     }
   }
 
@@ -36,10 +35,8 @@ class DivSelect extends React.Component {
   }
 
   selectOption = (activeOption) => {
-    let isOpen = !this.state.isOpen;
     this.setState({
-      isOpen,
-      activeOption,
+      isOpen: !this.state.isOpen
     });
     this.props.onChange(activeOption);
   }
@@ -50,14 +47,14 @@ class DivSelect extends React.Component {
     return (
       <div className='div-select' >
           <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
-            {this.state.activeOption}
+            {this.props.value}
           </div>
 
           <div className={`options-box ${isOpen}`} >
             {
               React.Children.map(this.props.children,
                 (child) => {
-                  let selected = this.state.activeOption === child.props.children ?
+                  let selected = this.props.value === child.props.children ?
                                    'selected' : '';
                   return (
                     <div className={selected} onClick={() => this.selectOption(child.props.children)} >
