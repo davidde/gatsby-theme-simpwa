@@ -1,9 +1,8 @@
 import React from 'react';
-import './select.scss';
+import './div-select.scss';
 
 
-/// Adapted from https://www.w3schools.com/howto/howto_custom_select.asp (non-React)
-class Select extends React.Component {
+class DivSelect extends React.Component {
   constructor(props) {
     super(props);
 
@@ -49,7 +48,7 @@ class Select extends React.Component {
     let isOpen = this.state.isOpen ? 'open' : 'closed';
 
     return (
-      <div className='custom-select' >
+      <div className='div-select' >
           <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
             {this.state.activeOption}
           </div>
@@ -75,4 +74,4 @@ class Select extends React.Component {
 }
 
 
-export default Select;
+export default DivSelect;

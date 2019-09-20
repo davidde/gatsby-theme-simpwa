@@ -1,17 +1,19 @@
-.custom-select {
+.div-select {
   position: relative;
   display: inline-block;
   cursor: pointer;
   user-select: none; // Disable text selection on double-click
+  box-sizing: border-box;
   width: 6rem;
   font-family: Arial;
-  --optionPadding: 8px 16px;
-  --borderRadius: 10px;
+  --optionPadding: 0.4rem 0.8rem;
+  --borderRadius: 0.5rem;
 
   // Style the selected option that is always visible at the top:
   .selected-option {
     background: var(--contentBg);
     color: var(--contentColor);
+    font-weight: 900;
     padding: var(--optionPadding);
     border: var(--headerBorderWidth) solid var(--contentColor);
     border-radius: var(--borderRadius);
@@ -23,20 +25,20 @@
     &::after {
       position: absolute;
       content: "";
-      top: 18px;
-      right: 12px;
+      top: 0.9rem;
+      right: 0.6rem;
       width: 0;
       height: 0;
-      border: 6px solid transparent;
+      border: 0.3rem solid transparent;
     }
     // Point the arrow downwards when the select box is closed:
     &.closed::after {
-      border-top: 6px solid var(--contentColor);
+      border-top: 0.3rem solid var(--contentColor);
     }
     // Point the arrow upwards when the select box is open:
     &.open::after {
-      top: 12px;
-      border-bottom: 6px solid var(--contentColor);
+      top: 0.6rem;
+      border-bottom: 0.3rem solid var(--contentColor);
     }
   }
 

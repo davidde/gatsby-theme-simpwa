@@ -1,6 +1,6 @@
 import React from 'react';
 import ThemeContext from './theme-context';
-import Select from './select';
+import DivSelect from './div-select';
 
 
 function ThemeSwitcher() {
@@ -10,11 +10,11 @@ function ThemeSwitcher() {
         ({ theme, changeTheme }) => (
             <form>
                 <label>Theme: &nbsp;
-                  <Select name='theme' value={theme} onChange={changeTheme} >
+                  <DivSelect name='theme' value={theme} onChange={changeTheme} >
                     <option value='light'>light</option>
                     <option value='dark'>dark</option>
                     <option value='joy'>joy</option>
-                  </Select>
+                  </DivSelect>
                 </label>
             </form>
         )
