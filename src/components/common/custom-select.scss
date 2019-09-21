@@ -1,4 +1,4 @@
-.div-select {
+.custom-select {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -6,39 +6,42 @@
   box-sizing: border-box;
   width: 6rem;
   font-family: Arial;
-  --optionPadding: 0.4rem 0.8rem;
+  --verticalPadding: 0.3rem;
+  --horizontalPadding: 0.8rem;
   --borderRadius: 0.5rem;
+  --arrowHeight: 0.35rem;
 
   // Style the selected option that is always visible at the top:
   .selected-option {
     background: var(--contentBg);
     color: var(--contentColor);
     font-weight: 900;
-    padding: var(--optionPadding);
+    padding: var(--verticalPadding) var(--horizontalPadding);
     border: var(--headerBorderWidth) solid var(--contentColor);
     border-radius: var(--borderRadius);
 
     &.open {
       border-radius: var(--borderRadius) var(--borderRadius) 0px 0px;
     }
-    // Style the arrow inside the selected option:
+    // Create the arrow inside the selected option:
     &::after {
       position: absolute;
       content: "";
-      top: 0.9rem;
-      right: 0.6rem;
+      right: 0.7rem;
+      // Make 4 transparent triangles by creating borders around nothing:
       width: 0;
       height: 0;
-      border: 0.3rem solid transparent;
+      border: var(--arrowHeight) solid transparent;
     }
     // Point the arrow downwards when the select box is closed:
     &.closed::after {
-      border-top: 0.3rem solid var(--contentColor);
+      top: calc(50% - var(--arrowHeight) / 2);
+      border-top: var(--arrowHeight) solid var(--contentColor);
     }
     // Point the arrow upwards when the select box is open:
     &.open::after {
-      top: 0.6rem;
-      border-bottom: 0.3rem solid var(--contentColor);
+      bottom: calc(50% - var(--arrowHeight) / 2);
+      border-bottom: var(--arrowHeight) solid var(--contentColor);
     }
   }
 
@@ -57,8 +60,9 @@
 
     // Style the individual select options:
     div {
-      padding: var(--optionPadding);
+      padding: var(--verticalPadding) var(--horizontalPadding) var(--verticalPadding) calc(1.5 * var(--horizontalPadding));
       border-top: var(--headerBorderWidth) solid var(--contentColor);
+      font-size: 0.9rem;
 
       // Kill double border on top option:
       &:nth-child(1) {

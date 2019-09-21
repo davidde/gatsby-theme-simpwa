@@ -1,8 +1,10 @@
 import React from 'react';
-import './div-select.scss';
+import './custom-select.scss';
 
 
-class DivSelect extends React.Component {
+/// This CustomSelect can be styled any way possible,
+/// because it uses divs internally instead of an actual select element:
+class CustomSelect extends React.Component {
   constructor(props) {
     super(props);
 
@@ -45,7 +47,7 @@ class DivSelect extends React.Component {
     let isOpen = this.state.isOpen ? 'open' : 'closed';
 
     return (
-      <div className='div-select' >
+      <div className='custom-select' >
           <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
             {this.props.value}
           </div>
@@ -71,4 +73,4 @@ class DivSelect extends React.Component {
 }
 
 
-export default DivSelect;
+export default CustomSelect;
