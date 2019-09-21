@@ -122,16 +122,17 @@ body {
   --border: var(--borderWidth) solid var(--borderColor);
   --headerBorder: var(--headerBorderWidth) solid var(--borderColor);
   --hoverableBg: var(--headerBg);
-  @media (hover: hover) { // Prevent :hover from being triggered on touch devices!
-    &:hover {
-      cursor: pointer;
-      --shadowColor: var(--shadowHoverColor);
-      --hoverableBg: var(--hoverBg);
-      --iconColor: var(--iconHoverColor);
-      &.inactive {
-        --border: var(--borderWidth) solid var(--borderHoverColor);
-        --headerBorder: var(--headerBorderWidth) solid var(--borderHoverColor);
-      }
+  // @media (hover: hover) { -> Prevents hover effects on touch devices,
+  // but it also prevents desktop Linux Firefox from accessing :hover effects (bug!)
+  // => We create a .canHover class that does work on desktop Linux Firefox:
+  &.canHover:hover {
+    cursor: pointer;
+    --shadowColor: var(--shadowHoverColor);
+    --hoverableBg: var(--hoverBg);
+    --iconColor: var(--iconHoverColor);
+    &.inactive {
+      --border: var(--borderWidth) solid var(--borderHoverColor);
+      --headerBorder: var(--headerBorderWidth) solid var(--borderHoverColor);
     }
   }
 

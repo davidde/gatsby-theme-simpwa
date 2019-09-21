@@ -6,7 +6,7 @@ function Hoverbar(props) {
   let active = props.isActive ? 'active' : 'inactive';
 
   return (
-    <div className={`hoverbar ${props.whichSide} ${active}`}
+    <div className={`hoverbar ${props.canHover} ${active}`}
          onClick={props.onClick} >
 
         {/* Square icon div: */}

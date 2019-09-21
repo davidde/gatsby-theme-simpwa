@@ -21,6 +21,7 @@ class Sidebar extends React.Component {
                     icon={this.props.icon}
                     isActive={this.props.isActive}
                     onClick={this.props.toggleSidebar}
+                    canHover={this.props.canHover}
                 />
 
                 {/* Mock background layers to hide the portrait sidebar by clicking on it: */}

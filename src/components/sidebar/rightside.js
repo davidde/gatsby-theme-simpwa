@@ -8,10 +8,7 @@ class Rightside extends React.Component {
   render() {
       return <Sidebar
                 whichSide='right'
-                isActive={this.props.isActive}
-                toggleSidebar={this.props.toggleSidebar}
-                header={this.props.header}
-                icon={this.props.icon}
+                {...this.props}
               >
                 {this.props.children}
               </Sidebar>

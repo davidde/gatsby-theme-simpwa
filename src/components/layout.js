@@ -14,12 +14,13 @@ class Layout extends React.Component {
       rightActive: false,
       theme: this.props.theme ? this.props.theme : 'light',
     }
-    document.body.classList.add(this.state.theme + 'Theme');
   }
 
   componentDidMount() {
     this.isSmallViewport = window.matchMedia(vars.smallWidthQuery).matches;
     this.isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
+    // Prevents mobile hover effects and fixes a desktop linux firefox bug:
+    this.canHover = !window.matchMedia('(hover: none)').matches ? 'canHover' : '';
 
     if (!this.isSmallViewport) {
       if (vars.startActive === 'left') {
@@ -39,6 +40,7 @@ class Layout extends React.Component {
       }
     }
     window.addEventListener('resize', this.updateViewports);
+    document.body.classList.add(this.state.theme + 'Theme');
   }
   componentWillUnmount() {
       window.removeEventListener('resize', this.updateViewports);
@@ -147,11 +149,13 @@ class Layout extends React.Component {
             return React.cloneElement(child, {
                 isActive: this.state.leftActive,
                 toggleSidebar: this.toggleLeftSidebar,
+                canHover: this.canHover,
             });
         } else if (child.type.displayName === 'Rightside') {
             return React.cloneElement(child, {
               isActive: this.state.rightActive,
               toggleSidebar: this.toggleRightSidebar,
+              canHover: this.canHover,
             });
         } else if (child.type.displayName === 'MainView') {
           return React.cloneElement(child, {
