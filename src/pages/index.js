@@ -15,7 +15,7 @@ import ThemeSwitcherDiv from '../components/common/theme-switcher-div';
 
 
 export default ({ data }) => (
-  <Layout theme='joy'>
+  <Layout theme='joy' sidestrip='hidden' >
     <Leftside header='Contents' icon={faBars} >
       <ThemeSwitcher /><br/>
       <ThemeSwitcherDiv />

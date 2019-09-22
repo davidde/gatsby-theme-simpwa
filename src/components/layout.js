@@ -12,7 +12,11 @@ class Layout extends React.Component {
     this.state = {
       leftActive: false,
       rightActive: false,
+      // Theme: light, dark or joy
       theme: this.props.theme ? this.props.theme : 'light',
+      // Sidestrip: on, off or hidden
+      sidestrip: this.props.sidestrip ? this.props.sidestrip : 'on',
+      canHover: null,
     }
   }
 
@@ -20,7 +24,8 @@ class Layout extends React.Component {
     this.isSmallViewport = window.matchMedia(vars.smallWidthQuery).matches;
     this.isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
     // Prevents mobile hover effects and fixes a desktop linux firefox bug:
-    this.canHover = !window.matchMedia('(hover: none)').matches ? 'canHover' : '';
+    let canHover = !window.matchMedia('(hover: none)').matches;
+    this.setState({ canHover });
 
     if (!this.isSmallViewport) {
       if (vars.startActive === 'left') {
@@ -39,8 +44,13 @@ class Layout extends React.Component {
         }
       }
     }
-    window.addEventListener('resize', this.updateViewports);
+
+    if (this.state.sidestrip !== 'on') {
+      this.updateSidestrips();
+    }
+
     document.body.classList.add(this.state.theme + 'Theme');
+    window.addEventListener('resize', this.updateViewports);
   }
   componentWillUnmount() {
       window.removeEventListener('resize', this.updateViewports);
@@ -142,6 +152,27 @@ class Layout extends React.Component {
     this.setState({ theme });
   }
 
+  updateSidestrips = () => {
+    if (this.state.sidestrip === 'hidden') {
+      let sidestrips = document.getElementsByClassName('sidestrip');
+      let sidestripPatches = document.getElementsByClassName('sidestripPatch');
+      let bodyColor = getComputedStyle(document.body).backgroundColor;
+      console.log(bodyColor)
+      for (let i = 0; i < sidestrips.length; i++) {
+        // Turn off sidestripPatch:
+        sidestripPatches[i].style.background = 'transparent';
+        // Blend sidestrip with background:
+        sidestrips[i].style.backgroundColor = bodyColor;
+        sidestrips[i].style.borderColor = bodyColor;
+        sidestrips[i].style.boxShadow = 'none';
+      }
+    } else if (this.state.sidestrip === 'off') {
+      document.body.style.setProperty('--sidestripWidth', 0 + 'rem');
+      // Borders remain visible unless explicitly zero'd:
+      document.body.style.setProperty('--sidestripBorderWidth', 0 + 'rem');
+    }
+  }
+
   render() {
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
@@ -149,13 +180,13 @@ class Layout extends React.Component {
             return React.cloneElement(child, {
                 isActive: this.state.leftActive,
                 toggleSidebar: this.toggleLeftSidebar,
-                canHover: this.canHover,
+                canHover: this.state.canHover,
             });
         } else if (child.type.displayName === 'Rightside') {
             return React.cloneElement(child, {
               isActive: this.state.rightActive,
               toggleSidebar: this.toggleRightSidebar,
-              canHover: this.canHover,
+              canHover: this.state.canHover,
             });
         } else if (child.type.displayName === 'MainView') {
           return React.cloneElement(child, {
@@ -170,6 +201,10 @@ class Layout extends React.Component {
     let themeProvider = {
       theme: this.state.theme,
       changeTheme: this.changeTheme,
+    }
+
+    if (this.state.sidestrip !== 'on') {
+      this.updateSidestrips();
     }
 
     return (

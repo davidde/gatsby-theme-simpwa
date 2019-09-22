@@ -17,7 +17,7 @@
     color: var(--contentColor);
     font-weight: 900;
     padding: var(--verticalPadding) var(--horizontalPadding);
-    border: var(--headerBorderWidth) solid var(--contentColor);
+    border: var(--borderWidth) solid var(--contentColor);
     border-radius: var(--borderRadius);
 
     &.open {
@@ -50,9 +50,9 @@
     position: absolute;
     background: var(--contentBg);
     color: var(--contentColor);
-    border: var(--headerBorderWidth) solid var(--contentColor);
+    border: var(--borderWidth) solid var(--contentColor);
     border-radius: 0px 0px var(--borderRadius) var(--borderRadius);
-    margin-top: calc(-1 * var(--headerBorderWidth));
+    margin-top: calc(-1 * var(--borderWidth));
     top: 100%;
     left: 0;
     right: 0;
@@ -61,7 +61,7 @@
     // Style the individual select options:
     div {
       padding: var(--verticalPadding) var(--horizontalPadding) var(--verticalPadding) calc(1.5 * var(--horizontalPadding));
-      border-top: var(--headerBorderWidth) solid var(--contentColor);
+      border-top: var(--borderWidth) solid var(--contentColor);
       font-size: 0.9rem;
 
       // Kill double border on top option:

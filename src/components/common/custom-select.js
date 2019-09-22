@@ -58,6 +58,7 @@ class CustomSelect extends React.Component {
                 (child) => {
                   let selected = this.props.value === child.props.children ?
                                    'selected' : '';
+                  // Unicode checkmark = &#10003; -> Useful for selected option!
                   return (
                     <div className={selected} onClick={() => this.selectOption(child.props.children)} >
                       {child.props.children}

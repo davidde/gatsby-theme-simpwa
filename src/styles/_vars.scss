@@ -17,14 +17,14 @@ $mediumWidthQuery: (max-width: 1200px);
   --sidestripWidth: 0.5rem;
   --patchTop: 3rem;
   --borderWidth: 2px;
-  --headerBorderWidth: 2px;
+  --sidestripBorderWidth: 2px;
   @media #{$smallWidthQuery} {
     --headerHeight: 3rem;
     --headerFont: 1.35rem;
     --sidestripWidth: 0.375rem;
     --patchTop: 2rem;
     --borderWidth: 1px;
-    --headerBorderWidth: 1px;
+    --sidestripBorderWidth: 1px;
   }
   // sidebar widths in portrait and landscape orientations:
   --portraitWidth: 80vw;
@@ -38,10 +38,13 @@ $mediumWidthQuery: (max-width: 1200px);
   // Make these 0 if you don't want default paddings in Sidebars and Main:
   --contentPadding: 5%;
   --mainContentPadding: 2rem 15% 3rem;
-
+  // These determine the style of the inactive background when sidebar is active in portrait:
   --overlay-lightness: 0%; // 0% = black!
   --overlay-transparency: 0; // invisible by default
   --black-overlay-transparency: 0.6;
+  // General colors for shadows:
+  --shadowColor: #888;
+  --shadowHoverColor: #333;
 }
 
 // Light theme Colors:
@@ -52,8 +55,6 @@ body.lightTheme {
   --contentColor: hsla(255, 26%, 18%, 0.75);
   --scrollbarBg: hsla(221, 28%, 91%, 1);
   --borderColor: hsla(221, 28%, 94%, 1);
-  --shadowColor: #888;
-  --shadowHoverColor: #333;
   --black-overlay-transparency: 0.5;
 }
 
@@ -79,15 +80,13 @@ body.darkTheme {
   --contentColor: hsla(205, 11%, 61%, 0.9);
   --scrollbarBg: hsla(0, 0%, 10%, 1);
   --borderColor: hsla(240, 30%, 9%, 1);
-  --shadowColor: #888;
-  --shadowHoverColor: #333;
   --overlay-lightness: 100%; // 100% = white!
   --overlay-transparency: 0.15;
   --borderWidth: 3px;
-  --headerBorderWidth: 3px;
+  --sidestripBorderWidth: 3px;
   @media #{$smallWidthQuery} {
     --borderWidth: 2px;
-    --headerBorderWidth: 2px;
+    --sidestripBorderWidth: 2px;
   }
 }
 
@@ -109,12 +108,10 @@ body.darkTheme {
 body.joyTheme {
   --headerBg: linear-gradient(to right, hsla(39, 100%, 50%, 1), hsla(300, 76%, 72%, 1));
   --headerColor: hsla(254, 78%, 52%, 0.75);
-  --contentBg: hsla(60, 100%, 88.6%, 0.9);
-  --contentColor: hsla(330, 100%, 39.2%, 0.8);
-  --scrollbarBg: hsla(60, 100%, 88.6%, 0.9);
+  --contentBg: hsla(60, 100%, 89%, 1);
+  --contentColor: hsla(330, 100%, 39%, 0.8);
+  --scrollbarBg: hsla(60, 79%, 82%, 1);
   --borderColor: hsla(254, 78%, 52%, 0.05);
-  --shadowColor: #888;
-  --shadowHoverColor: #333;
 }
 
 .sidebar.left.joyTheme {
@@ -132,15 +129,15 @@ body.joyTheme {
 }
 
 .sidebar.right.joyTheme {
-  --headerBg: hsla(300, 76.2%, 52.2%, 1);
+  --headerBg: hsla(300, 76%, 52%, 1);
   --headerColor: hsla(300, 76%, 87%, 1);
-  --contentBg: hsla(300, 76.2%, 52.2%, 1);
-  --contentColor: hsla(300, 76.2%, 86.2%, 1);
+  --contentBg: hsla(300, 76%, 52%, 1);
+  --contentColor: hsla(300, 76%, 86%, 1);
   --iconColor: hsla(300, 76%, 87%, 1);
   --iconHoverColor: #f1f1f1;
-  --borderColor: hsla(300, 76.2%, 77.2%, 1);
-  --borderHoverColor: hsla(300, 76.2%, 43.2%, 1);
-  --hoverBg: hsla(300, 76.2%, 37.2%, 1);
-  --scrollbarBg: hsla(300, 76.2%, 72.2%, 1);
+  --borderColor: hsla(300, 76%, 77%, 1);
+  --borderHoverColor: hsla(300, 76%, 43%, 1);
+  --hoverBg: hsla(300, 76%, 37%, 1);
+  --scrollbarBg: hsla(300, 76%, 72%, 1);
   --shadow: -6px 0 15px 0;
 }
