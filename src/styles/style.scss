@@ -96,7 +96,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100%;
+    min-height: 120vh; // Fix chrome mobile bug due to address bar
     background: hsla(0, 0%, var(--overlay-lightness), var(--overlay-transparency));
     z-index: 20;
     visibility: hidden;
@@ -112,7 +112,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100%;
+    min-height: 120vh; // Fix chrome mobile bug due to address bar
     z-index: 19;
     background: hsla(0, 0%, 0%, var(--black-overlay-transparency));
     visibility: hidden;
@@ -168,7 +168,7 @@ body {
     position: absolute;
     z-index: 5;
     top: 0;
-    height: 100%;
+    height: 100vh; // Fix chrome mobile bug due to address bar
     width: var(--sidestripWidth);
     background: var(--hoverableBg);
     box-shadow: var(--shadow) var(--shadowColor);
