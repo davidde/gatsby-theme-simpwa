@@ -21,13 +21,13 @@ class Layout extends React.Component {
   }
 
   componentDidMount() {
-    this.isSmallViewport = window.matchMedia(vars.smallWidthQuery).matches;
+    this.isPortrait = window.matchMedia(vars.portraitQuery).matches;
     this.isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
     // Prevents mobile hover effects and fixes a desktop linux firefox bug:
     let canHover = !window.matchMedia('(hover: none)').matches;
     this.setState({ canHover });
 
-    if (!this.isSmallViewport) {
+    if (!this.isPortrait) {
       if (vars.startActive === 'left') {
         this.setState({ leftActive: true });
       }
@@ -57,12 +57,12 @@ class Layout extends React.Component {
   }
 
   updateViewports = () => {
-    let wasSmall = this.isSmallViewport;
-    this.isSmallViewport = window.matchMedia(vars.smallWidthQuery).matches;
+    let wasPortrait = this.isPortrait;
+    this.isPortrait = window.matchMedia(vars.portraitQuery).matches;
     this.isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
 
-    // If either side is active while transitioning to a small viewport, unactivate both sides:
-    if (wasSmall !== this.isSmallViewport) {
+    // If either side is active while transitioning to a portrait viewport, unactivate both sides:
+    if (wasPortrait !== this.isPortrait) {
       if (this.state.leftActive || this.state.rightActive) {
         this.setState({
           leftActive: false,
@@ -157,7 +157,6 @@ class Layout extends React.Component {
       let sidestrips = document.getElementsByClassName('sidestrip');
       let sidestripPatches = document.getElementsByClassName('sidestripPatch');
       let bodyColor = getComputedStyle(document.body).backgroundColor;
-      console.log(bodyColor)
       for (let i = 0; i < sidestrips.length; i++) {
         // Turn off sidestripPatch:
         sidestripPatches[i].style.background = 'transparent';
@@ -191,8 +190,8 @@ class Layout extends React.Component {
         } else if (child.type.displayName === 'MainView') {
           return React.cloneElement(child, {
             // These props are used to change the text offset in the Main header:
-            leftActive: this.state.leftActive && !this.isSmallViewport,
-            rightActive: this.state.rightActive && !this.isSmallViewport,
+            leftActive: this.state.leftActive && !this.isPortrait,
+            rightActive: this.state.rightActive && !this.isPortrait,
           });
         } // else return child;
       }

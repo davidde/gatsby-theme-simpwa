@@ -1,9 +1,10 @@
 // The _vars.scss partial holds all variables:
 // sizes, media queries, theme colors, etc.
-$smallWidthQuery: (orientation: portrait), (max-width: 800px);
+$portraitQuery: screen and (orientation: portrait);
+$smallWidthQuery: (max-width: 800px);
 $mediumWidthQuery: (max-width: 1200px);
 :export {
-  smallWidthQuery: #{$smallWidthQuery};
+  portraitQuery: #{$portraitQuery};
   mediumWidthQuery: #{$mediumWidthQuery};
   // Specify which sidebars should be active on first load:
   startActive: both; // can be either both, left, right or none

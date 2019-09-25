@@ -38,7 +38,7 @@ body {
       box-shadow: var(--shadow) var(--shadowColor);
       width: var(--leftLandscapeWidth);
       --scrollbarWidth: auto;
-      @media #{$smallWidthQuery} {
+      @media #{$portraitQuery} {
         width: var(--sidestripWidth);
       }
     }
@@ -51,14 +51,14 @@ body {
       box-shadow: var(--shadow) var(--shadowColor);
       width: var(--rightLandscapeWidth);
       --scrollbarWidth: auto;
-      @media #{$smallWidthQuery} {
+      @media #{$portraitQuery} {
         width: var(--sidestripWidth);
       }
     }
   }
 }
 
-@media #{$smallWidthQuery} {
+@media #{$portraitQuery} {
   /// In portrait mode the active sidebar should cover the main content,
   /// so styling is different from landscape mode:
   .portraitSidebar {
