@@ -117,11 +117,9 @@ class Layout extends React.Component {
     // not including any scroll offset.
   }
 
-  handleTouchEnd = (event) => {
-    // 'changedTouches' returns a list of all the touch objects
-    // that were removed from the surface in a touchEnd event:
-    let xDelta = event.changedTouches[0].clientX - this.clientX;
-    let yDelta = event.changedTouches[0].clientY - this.clientY;
+  handleTouchMove = (event) => {
+    let xDelta = event.touches[0].clientX - this.clientX;
+    let yDelta = event.touches[0].clientY - this.clientY;
 
     if ( Math.abs(xDelta) <= Math.abs(yDelta) ) {
       return;
@@ -144,6 +142,8 @@ class Layout extends React.Component {
         this.setState({ rightActive: true });
       }
     }
+
+    event.preventDefault();
   }
 
   changeTheme = (event) => {
@@ -213,7 +213,7 @@ class Layout extends React.Component {
         <div
           id='layout'
           onTouchStart={this.handleTouchStart}
-          onTouchEnd={this.handleTouchEnd}
+          onTouchMove={this.handleTouchMove}
         >
 
           {childrenWithProps}
