@@ -10,10 +10,20 @@ class CustomSelect extends React.Component {
 
     this.state = {
       isOpen: false,
+      activeOption: null,
     }
   }
 
   componentDidMount() {
+    this.props.children.map(
+      (child) => {
+        if (this.props.value === child.props.value) {
+          this.setState({
+            activeOption: child.props.children,
+          });
+        }
+      }
+    );
     document.addEventListener('click', this.closeSelect);
   }
 
@@ -36,11 +46,12 @@ class CustomSelect extends React.Component {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
-  selectOption = (activeOption) => {
+  selectOption = (activeValue, activeOption) => {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
+      activeOption,
     });
-    this.props.onChange(activeOption);
+    this.props.onChange(activeValue);
   }
 
   render() {
@@ -49,18 +60,23 @@ class CustomSelect extends React.Component {
     return (
       <div className='custom-select' style={{width: this.props.width}} >
           <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
-            {this.props.value}
+            {this.state.activeOption}
           </div>
 
           <div className={`options-box ${isOpen}`} >
-            {
+            { // Map over the child options:
               React.Children.map(this.props.children,
                 (child) => {
-                  let selected = this.props.value === child.props.children ?
-                                   'selected' : '';
+                  // this.props.value = 'value' prop of CustomSelect
+                  // child.props.value = 'value' prop of the option
+                  // child.props.children = string inside the option
+                  let selected = this.props.value === child.props.value ? 'selected' : '';
                   // Unicode checkmark = &#10003; -> Useful for selected option!
                   return (
-                    <div className={selected} onClick={() => this.selectOption(child.props.children)} >
+                    <div
+                      className={selected}
+                      onClick={() => this.selectOption(child.props.value, child.props.children)}
+                    >
                       {child.props.children}
                     </div>
                   );

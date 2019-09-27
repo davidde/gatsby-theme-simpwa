@@ -19,9 +19,9 @@ function SidestripSwitcher() {
                   >
                     <option value='on'>on</option>
                     <option value='off'>off</option>
+                    <option value='mobileOff'>off (mobile)</option>
                     <option value='hidden'>hidden</option>
-                    <option value='mobileOff'>mobileOff</option>
-                    <option value='mobileHidden'>mobileHidden</option>
+                    <option value='mobileHidden'>hidden (mobile)</option>
                   </CustomSelect>
                 </label>
             </form>

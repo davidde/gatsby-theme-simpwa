@@ -13,7 +13,7 @@ class Layout extends React.Component {
       rightActive: false,
       // Theme: light, dark or joy
       theme: this.props.theme ? this.props.theme : 'light',
-      // Sidestrip: on, off or hidden
+      // Sidestrip: on, off, mobileOff, hidden or mobileHidden
       sidestrip: this.props.sidestrip ? this.props.sidestrip : 'on',
       // To prevent :hover styles on touchscreens,
       // and circumvent a desktop linux firefox bug:
