@@ -1,47 +1,62 @@
-import React from "react"
+import React from 'react';
 
 import Hoverbar from './hoverbar';
 import Content from '../main/content';
 import Header from '../main/header';
 import ThemeContext from '../common/theme-context';
+import SidestripContext from '../common/sidestrip-context';
 
 
-class Sidebar extends React.Component {
-  render() {
-    let active = this.props.isActive ? 'active' : '';
+function Sidebar(props) {
+  let active = props.isActive ? 'active' : '';
 
-    return (
-      <ThemeContext.Consumer>
+  return (
+    <ThemeContext.Consumer>
+    {
+      ({ theme }) => (
+        <SidestripContext.Consumer>
         {
-          ({ theme }) => (
-            <div className={`sidebar ${this.props.whichSide} ${theme + 'Theme'} ${active}`}>
+          ({ sidestrip }) => (
+            <div className={`
+                sidebar
+                ${props.whichSide}
+                ${active}
+                ${theme + 'Theme'}
+                ${sidestrip === 'off' ? 'sidestripOff' : ''}
+            `}>
                 {/* Hoverable part of the sidebar that triggers activation: */}
                 <Hoverbar
-                    whichSide={this.props.whichSide}
-                    icon={this.props.icon}
-                    isActive={this.props.isActive}
-                    onClick={this.props.toggleSidebar}
-                    touchscreen={this.props.touchscreen}
+                    whichSide={props.whichSide}
+                    icon={props.icon}
+                    isActive={props.isActive}
+                    onClick={props.toggleSidebar}
+                    touchscreen={props.touchscreen}
+                    sidestrip={sidestrip}
                 />
 
                 {/* Mock background layers to hide the portrait sidebar by clicking on it: */}
-                <div className={`mock-portrait-bg ${this.props.whichSide} ${active}`} onClick={this.props.toggleSidebar} />
-                <div className={`mock-portrait-bg-sub ${this.props.whichSide} ${active}`} />
+                <div
+                  className={`mock-portrait-bg ${props.whichSide} ${active}`}
+                  onClick={props.toggleSidebar}
+                />
+                <div className={`mock-portrait-bg-sub ${props.whichSide} ${active}`} />
 
                 {/* In portrait mode the active sidebar is styled differently: */}
-                <div className={`portraitSidebar ${this.props.whichSide} ${active}`}>
-                  <Header which={this.props.whichSide} title={this.props.header} />
+                <div className={`portraitSidebar ${props.whichSide} ${active}`}>
+                  <Header which={props.whichSide} title={props.header} />
 
-                  <Content which={this.props.whichSide}>
-                      {this.props.children}
+                  <Content which={props.whichSide}>
+                      {props.children}
                   </Content>
                 </div>
             </div>
           )
         }
-      </ThemeContext.Consumer>
-    );
-  }
+        </SidestripContext.Consumer>
+      )
+    }
+    </ThemeContext.Consumer>
+  );
 }
 
 export default Sidebar;

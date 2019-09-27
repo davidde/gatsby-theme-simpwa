@@ -1,5 +1,6 @@
 import React from 'react';
 import ThemeContext from './common/theme-context';
+import SidestripContext from './common/sidestrip-context';
 import vars from '../styles/style.scss';
 
 
@@ -44,10 +45,6 @@ class Layout extends React.Component {
           this.setState({ rightActive: true });
         }
       }
-    }
-
-    if (this.state.sidestrip !== 'on') {
-      this.updateSidestrips();
     }
 
     document.body.classList.add(this.state.theme + 'Theme');
@@ -147,31 +144,17 @@ class Layout extends React.Component {
   }
 
   changeTheme = (event) => {
-    // For DivSelect the event argument is no event, but the theme name:
+    // For CustomSelect the event argument is no event, but the theme name:
     let theme = event.target ? event.target.value : event;
     document.body.classList.remove(this.state.theme + 'Theme');
     document.body.classList.add(theme + 'Theme');
     this.setState({ theme });
   }
 
-  updateSidestrips = () => {
-    if (this.state.sidestrip === 'hidden') {
-      let sidestrips = document.getElementsByClassName('sidestrip');
-      let sidestripPatches = document.getElementsByClassName('sidestripPatch');
-      let bodyColor = getComputedStyle(document.body).backgroundColor;
-      for (let i = 0; i < sidestrips.length; i++) {
-        // Turn off sidestripPatch:
-        sidestripPatches[i].style.background = 'transparent';
-        // Blend sidestrip with background:
-        sidestrips[i].style.backgroundColor = bodyColor;
-        sidestrips[i].style.borderColor = bodyColor;
-        sidestrips[i].style.boxShadow = 'none';
-      }
-    } else if (this.state.sidestrip === 'off') {
-      document.body.style.setProperty('--sidestripWidth', 0 + 'rem');
-      // Borders remain visible unless explicitly zero'd:
-      document.body.style.setProperty('--sidestripBorderWidth', 0 + 'rem');
-    }
+  changeSidestrip = (event) => {
+    // For CustomSelect the event argument is no event, but the state of sidestrip:
+    let sidestrip = event.target ? event.target.value : event;
+    this.setState({ sidestrip });
   }
 
   render() {
@@ -185,40 +168,39 @@ class Layout extends React.Component {
             });
         } else if (child.type.displayName === 'Rightside') {
             return React.cloneElement(child, {
-              isActive: this.state.rightActive,
-              toggleSidebar: this.toggleRightSidebar,
-              touchscreen: this.state.touchscreen,
+                isActive: this.state.rightActive,
+                toggleSidebar: this.toggleRightSidebar,
+                touchscreen: this.state.touchscreen,
             });
         } else if (child.type.displayName === 'MainView') {
-          return React.cloneElement(child, {
-            // These props are used to change the text offset in the Main header:
-            leftActive: this.state.leftActive && !this.state.isPortrait,
-            rightActive: this.state.rightActive && !this.state.isPortrait,
-          });
+            return React.cloneElement(child, {
+                // These props are used to change the text offset in the Main header:
+                leftActive: this.state.leftActive && !this.state.isPortrait,
+                rightActive: this.state.rightActive && !this.state.isPortrait,
+            });
         } // else return child;
       }
     );
 
-    let themeProvider = {
-      theme: this.state.theme,
-      changeTheme: this.changeTheme,
-    }
-
-    if (this.state.sidestrip !== 'on') {
-      this.updateSidestrips();
-    }
-
     return (
-      <ThemeContext.Provider value={themeProvider}>
-        <div
-          id='layout'
-          onTouchStart={this.handleTouchStart}
-          onTouchMove={this.handleTouchMove}
-        >
+      <ThemeContext.Provider value={{
+        theme: this.state.theme,
+        changeTheme: this.changeTheme,
+      }}>
+        <SidestripContext.Provider value={{
+          sidestrip: this.state.sidestrip,
+          changeSidestrip: this.changeSidestrip,
+        }}>
+            <div
+              id='layout'
+              onTouchStart={this.handleTouchStart}
+              onTouchMove={this.handleTouchMove}
+            >
 
-          {childrenWithProps}
+              {childrenWithProps}
 
-        </div>
+            </div>
+        </SidestripContext.Provider>
       </ThemeContext.Provider>
     )
   }

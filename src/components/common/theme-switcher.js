@@ -6,7 +6,7 @@ import Select from './css-select';
 function ThemeSwitcher() {
   return (
     <ThemeContext.Consumer>
-      {
+    {
         ({ theme, changeTheme }) => (
             <form>
                 <label>
@@ -19,7 +19,7 @@ function ThemeSwitcher() {
                 </label>
             </form>
         )
-      }
+    }
     </ThemeContext.Consumer>
   );
 }

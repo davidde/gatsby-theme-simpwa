@@ -52,8 +52,8 @@ $mediumWidthQuery: (max-width: 1200px);
 body.lightTheme {
   --headerBg: hsla(221, 28%, 94%, 1);
   --headerColor: hsla(254, 78%, 52%, 0.75);
-  --contentBg: hsla(221, 28%, 97%, 1);
-  --contentColor: hsla(255, 26%, 18%, 0.75);
+  --bodyBg: hsla(221, 28%, 97%, 1);
+  --bodyColor: hsla(255, 26%, 18%, 0.75);
   --scrollbarBg: hsla(221, 28%, 91%, 1);
   --borderColor: hsla(221, 28%, 94%, 1);
   --black-overlay-transparency: 0.5;
@@ -77,8 +77,8 @@ body.lightTheme {
 body.darkTheme {
   --headerBg: hsla(0, 0%, 0%, 1);
   --headerColor: hsla(205, 20%, 62%, 1);
-  --contentBg: hsla(0, 0%, 3%, 1);
-  --contentColor: hsla(205, 11%, 61%, 0.9);
+  --bodyBg: hsla(0, 0%, 3%, 1);
+  --bodyColor: hsla(205, 11%, 61%, 0.9);
   --scrollbarBg: hsla(0, 0%, 10%, 1);
   --borderColor: hsla(240, 30%, 9%, 1);
   --overlay-lightness: 100%; // 100% = white!
@@ -109,8 +109,8 @@ body.darkTheme {
 body.joyTheme {
   --headerBg: linear-gradient(to right, hsla(39, 100%, 50%, 1), hsla(300, 76%, 72%, 1));
   --headerColor: hsla(254, 78%, 52%, 0.75);
-  --contentBg: hsla(60, 100%, 89%, 1);
-  --contentColor: hsla(330, 100%, 39%, 0.8);
+  --bodyBg: hsla(60, 100%, 89%, 1);
+  --bodyColor: hsla(330, 100%, 39%, 0.8);
   --scrollbarBg: hsla(60, 79%, 82%, 1);
   --borderColor: hsla(254, 78%, 52%, 0.05);
 }
