@@ -11,10 +11,17 @@ function SidestripSwitcher() {
             <form>
                 <label>
                   <span>Sidestrip: &nbsp;</span>
-                  <CustomSelect name='sidestrip' value={sidestrip} onChange={changeSidestrip} >
+                  <CustomSelect
+                    name='sidestrip'
+                    width='10rem'
+                    value={sidestrip}
+                    onChange={changeSidestrip}
+                  >
                     <option value='on'>on</option>
                     <option value='off'>off</option>
                     <option value='hidden'>hidden</option>
+                    <option value='mobileOff'>mobileOff</option>
+                    <option value='mobileHidden'>mobileHidden</option>
                   </CustomSelect>
                 </label>
             </form>

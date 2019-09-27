@@ -11,7 +11,12 @@ function ThemeSwitcher() {
             <form>
                 <label>
                   <span>Theme: &nbsp;</span>
-                  <Select name='theme' value={theme} onChange={changeTheme} >
+                  <Select
+                    name='theme'
+                    width='8rem'
+                    value={theme}
+                    onChange={changeTheme}
+                  >
                     <option value='light'>light</option>
                     <option value='dark'>dark</option>
                     <option value='joy'>joy</option>

@@ -23,6 +23,7 @@ function Sidebar(props) {
                 ${active}
                 ${theme + 'Theme'}
                 ${sidestrip === 'off' ? 'sidestripOff' : ''}
+                ${props.touchscreen && sidestrip === 'mobileOff' ? 'sidestripOff' : ''}
             `}>
                 {/* Hoverable part of the sidebar that triggers activation: */}
                 <Hoverbar

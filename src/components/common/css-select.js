@@ -8,7 +8,7 @@ import './css-select.scss';
 /// worth it because most colors will clash with this blue hover color ...
 function Select(props) {
   return (
-    <select className='css-select' {...props} >
+    <select className='css-select' {...props} style={{width: props.width}}>
       {props.children}
     </select>
   );

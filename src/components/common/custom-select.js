@@ -47,7 +47,7 @@ class CustomSelect extends React.Component {
     let isOpen = this.state.isOpen ? 'open' : 'closed';
 
     return (
-      <div className='custom-select' >
+      <div className='custom-select' style={{width: this.props.width}} >
           <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
             {this.props.value}
           </div>
