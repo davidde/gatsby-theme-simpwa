@@ -1,6 +1,6 @@
 import React from 'react';
 import ThemeContext from './theme-context';
-import Select from './css-select';
+import Select from './styled-select';
 
 
 function ThemeSwitcher() {
@@ -13,7 +13,6 @@ function ThemeSwitcher() {
                   <span>Theme: &nbsp;</span>
                   <Select
                     name='theme'
-                    width='8rem'
                     value={theme}
                     onChange={changeTheme}
                   >

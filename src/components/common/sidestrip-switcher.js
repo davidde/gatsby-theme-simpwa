@@ -13,7 +13,6 @@ function SidestripSwitcher() {
                   <span>Sidestrip: &nbsp;</span>
                   <CustomSelect
                     name='sidestrip'
-                    width='10rem'
                     value={sidestrip}
                     onChange={changeSidestrip}
                   >

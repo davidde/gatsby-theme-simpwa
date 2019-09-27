@@ -3,7 +3,7 @@ import './custom-select.scss';
 
 
 /// This CustomSelect can be styled any way possible,
-/// because it uses divs internally instead of an actual select element:
+/// because it uses divs internally instead of an actual select element
 class CustomSelect extends React.Component {
   constructor(props) {
     super(props);
@@ -15,8 +15,12 @@ class CustomSelect extends React.Component {
   }
 
   componentDidMount() {
-    this.props.children.map(
+    let longestChildLength = this.props.children[0].props.children.length;
+    this.props.children.forEach(
       (child) => {
+        if (child.props.children.length > longestChildLength) {
+          longestChildLength = child.props.children.length;
+        }
         if (this.props.value === child.props.value) {
           this.setState({
             activeOption: child.props.children,
@@ -24,6 +28,8 @@ class CustomSelect extends React.Component {
         }
       }
     );
+
+    this.autoWidth = longestChildLength * 0.62 + 3 + 'em';
     document.addEventListener('click', this.closeSelect);
   }
 
@@ -56,9 +62,10 @@ class CustomSelect extends React.Component {
 
   render() {
     let isOpen = this.state.isOpen ? 'open' : 'closed';
+    let width = this.props.width ? this.props.width : this.autoWidth;
 
     return (
-      <div className='custom-select' style={{width: this.props.width}} >
+      <div className='custom-select' style={{ width: width }} >
           <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
             {this.state.activeOption}
           </div>

@@ -4,12 +4,12 @@
   cursor: pointer;
   user-select: none; // Disable text selection on double-click
   box-sizing: border-box;
-  width: 6rem;
-  font-family: Arial;
-  --verticalPadding: 0.3rem;
-  --horizontalPadding: 0.8rem;
-  --borderRadius: 0.5rem;
-  --arrowHeight: 0.35rem;
+  font-family: monospace;
+  font-size: 1.05em;
+  --verticalPadding: 0.3em;
+  --horizontalPadding: 0.8em;
+  --borderRadius: 0.5em;
+  --arrowHeight: 0.35em;
 
   // Style the selected option that is always visible at the top:
   .selected-option {
@@ -27,7 +27,7 @@
     &::after {
       position: absolute;
       content: "";
-      right: 0.7rem;
+      right: 0.7em;
       // Make 4 transparent triangles by creating borders around nothing:
       width: 0;
       height: 0;
@@ -60,9 +60,9 @@
 
     // Style the individual select options:
     div {
-      padding: var(--verticalPadding) var(--horizontalPadding) var(--verticalPadding) calc(1.5 * var(--horizontalPadding));
-      border-top: var(--borderWidth) solid var(--contentColor);
-      font-size: 0.9rem;
+      padding: var(--verticalPadding) var(--horizontalPadding) var(--verticalPadding) calc(2.5 * var(--horizontalPadding));
+      border-top: 1px solid var(--contentColor);
+      font-size: 0.9em;
 
       // Kill double border on top option:
       &:nth-child(1) {
