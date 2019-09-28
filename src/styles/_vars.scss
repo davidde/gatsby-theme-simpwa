@@ -65,9 +65,9 @@ body.lightTheme {
   --contentBg: hsla(221, 28%, 87%, 1);
   --contentColor: hsla(254, 78%, 62%, 0.75);
   --iconColor: hsla(254, 78%, 52%, 0.75);
-  --iconHoverColor: hsla(254, 78%, 42%, 0.75);
+  --iconHoverColor: white;
   --borderColor: hsla(221, 28%, 94%, 1);
-  --borderHoverColor: hsla(221, 28%, 72%, 1);
+  --borderHoverColor: #f1f1f1;
   --hoverBg: hsla(221, 28%, 75%, 1);
   --scrollbarBg: hsla(221, 28%, 94%, 1);
   --shadow: 0;
@@ -80,27 +80,25 @@ body.darkTheme {
   --bodyBg: hsla(0, 0%, 3%, 1);
   --bodyColor: hsla(205, 11%, 61%, 0.9);
   --scrollbarBg: hsla(0, 0%, 10%, 1);
-  --borderColor: hsla(240, 30%, 9%, 1);
+  --borderColor: hsla(240, 30%, 14%, 1);
   --overlay-lightness: 100%; // 100% = white!
   --overlay-transparency: 0.15;
   --borderWidth: 3px;
-  --sidestripBorderWidth: 3px;
   @media #{$smallWidthQuery} {
     --borderWidth: 2px;
-    --sidestripBorderWidth: 2px;
   }
 }
 
 .sidebar.left.darkTheme, .sidebar.right.darkTheme {
-  --headerBg: hsla(240, 50%, 5%, 1);
+  --headerBg: hsla(240, 50%, 6%, 1);
   --headerColor: hsla(240, 13%, 73%, 0.9);
-  --contentBg: hsla(240, 36%, 5%, 1);
+  --contentBg: hsla(240, 36%, 9.5%, 1);
   --contentColor: hsla(240, 15%, 71%, 0.7);
   --iconColor: hsla(240, 20%, 72%, 0.9);
   --iconHoverColor: #f1f1f1;
-  --borderColor: hsla(240, 30%, 12%, 1);
-  --borderHoverColor: hsla(240, 30%, 18%, 1);
-  --hoverBg: hsla(240, 43%, 13%, 1);
+  --borderColor: hsla(240, 30%, 20%, 1);
+  --borderHoverColor: hsla(240, 30%, 28%, 1);
+  --hoverBg: hsla(240, 43%, 15%, 1);
   --scrollbarBg: hsla(240, 30%, 16%, 1);
   --shadow: 0;
 }
@@ -123,7 +121,7 @@ body.joyTheme {
   --iconColor: hsla(39, 100%, 85%, 1);
   --iconHoverColor: #f1f1f1;
   --borderColor: hsla(24, 100%, 75%, 1);
-  --borderHoverColor: hsla(24, 100%, 43%, 1);
+  --borderHoverColor: hsla(24, 100%, 65%, 1);
   --hoverBg: hsla(24, 100%, 38%, 1);
   --scrollbarBg: hsla(24, 100%, 70%, 1);
   --shadow: 6px 0 15px 0;
@@ -137,7 +135,7 @@ body.joyTheme {
   --iconColor: hsla(300, 76%, 87%, 1);
   --iconHoverColor: #f1f1f1;
   --borderColor: hsla(300, 76%, 77%, 1);
-  --borderHoverColor: hsla(300, 76%, 43%, 1);
+  --borderHoverColor: hsla(300, 76%, 67%, 1);
   --hoverBg: hsla(300, 76%, 37%, 1);
   --scrollbarBg: hsla(300, 76%, 72%, 1);
   --shadow: -6px 0 15px 0;
