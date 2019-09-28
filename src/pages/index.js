@@ -15,7 +15,7 @@ import SidestripSwitcher from '../components/common/sidestrip-switcher';
 
 
 export default ({ data }) => (
-  <Layout theme='joy' sidestrip='hidden' >
+  <Layout theme='joy' >
     <Leftside header='Contents' icon={faBars} >
       <ThemeSwitcher /><br/>
       <SidestripSwitcher />
