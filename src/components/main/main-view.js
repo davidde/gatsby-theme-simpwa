@@ -1,7 +1,7 @@
 import React from "react"
 
-import Header from './header'
-import Content from './content'
+import Header from '../common/header'
+import Content from '../common/content'
 
 
 class MainView extends React.Component {

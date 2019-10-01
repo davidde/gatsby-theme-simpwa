@@ -6,7 +6,7 @@ import './styled-select.scss';
 /// is impossible to get rid of the blue hover color on its options.
 /// As a result, styling the select global background-color is not really
 /// worth it because most colors will clash with this blue hover color ...
-class Select extends React.Component {
+class StyledSelect extends React.Component {
   componentDidMount() {
     let longestChildLength = this.props.children[0].props.children.length;
     this.props.children.forEach(
@@ -25,7 +25,7 @@ class Select extends React.Component {
 
     return (
       <select
-        className='css-select'
+        className='styled-select'
         style={{ width: width }}
         {...this.props}
       >
@@ -36,4 +36,4 @@ class Select extends React.Component {
 }
 
 
-export default Select;
+export default StyledSelect;

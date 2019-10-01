@@ -1,9 +1,9 @@
 import React from 'react';
-import ThemeContext from './theme-context';
-import Select from './styled-select';
+import ThemeContext from '../contexts/theme-context';
+import CustomSelect from '../selects/custom-select';
 
 
-function ThemeSwitcher() {
+function ThemeSwitcherCustom() {
   return (
     <ThemeContext.Consumer>
     {
@@ -11,7 +11,7 @@ function ThemeSwitcher() {
             <form>
                 <label>
                   <span>Theme: &nbsp;</span>
-                  <Select
+                  <CustomSelect
                     name='theme'
                     value={theme}
                     onChange={changeTheme}
@@ -19,7 +19,7 @@ function ThemeSwitcher() {
                     <option value='light'>light</option>
                     <option value='dark'>dark</option>
                     <option value='joy'>joy</option>
-                  </Select>
+                  </CustomSelect>
                 </label>
             </form>
         )
@@ -29,4 +29,4 @@ function ThemeSwitcher() {
 }
 
 
-export default ThemeSwitcher;
+export default ThemeSwitcherCustom;

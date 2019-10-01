@@ -1,7 +1,7 @@
 import React from 'react';
-import ThemeContext from './common/theme-context';
-import SidestripContext from './common/sidestrip-context';
-import vars from '../styles/style.scss';
+import ThemeContext from '../common/contexts/theme-context';
+import SidestripContext from '../common/contexts/sidestrip-context';
+import vars from './layout.scss';
 
 
 class Layout extends React.Component {

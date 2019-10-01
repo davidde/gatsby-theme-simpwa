@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Hoverbar from './hoverbar';
-import Content from '../main/content';
-import Header from '../main/header';
-import ThemeContext from '../common/theme-context';
-import SidestripContext from '../common/sidestrip-context';
+import Content from '../common/content';
+import Header from '../common/header';
+import ThemeContext from '../common/contexts/theme-context';
+import SidestripContext from '../common/contexts/sidestrip-context';
 
 
 function Sidebar(props) {
