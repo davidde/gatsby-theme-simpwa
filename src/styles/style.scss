@@ -298,8 +298,7 @@ body {
   box-sizing: border-box;
   height: calc(100vh - var(--headerHeight));
   padding: var(--contentPadding);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
   clear: both;
   color: var(--contentColor);
 
