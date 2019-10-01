@@ -3,7 +3,10 @@ import './custom-select.scss';
 
 
 /// This CustomSelect can be styled any way possible,
-/// because it uses divs internally instead of an actual select element
+/// because it uses divs internally instead of an actual select element.
+/// The disadvantage is that every attribute/event of native selects
+/// needs to be specifically implemented; currently only the 'onChange'
+/// event is implemented, which covers most basic uses.
 class CustomSelect extends React.Component {
   constructor(props) {
     super(props);

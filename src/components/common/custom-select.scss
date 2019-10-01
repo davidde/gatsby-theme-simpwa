@@ -20,9 +20,6 @@
     border: var(--borderWidth) solid var(--contentColor);
     border-radius: var(--borderRadius);
 
-    &.open {
-      border-radius: var(--borderRadius) var(--borderRadius) 0px 0px;
-    }
     // Create the arrow inside the selected option:
     &::after {
       position: absolute;
@@ -51,7 +48,7 @@
     background: var(--contentBg);
     color: var(--contentColor);
     border: var(--borderWidth) solid var(--contentColor);
-    border-radius: 0px 0px var(--borderRadius) var(--borderRadius);
+    border-radius: var(--borderRadius);
     margin-top: calc(-1 * var(--borderWidth));
     top: 100%;
     left: 0;
