@@ -1,9 +1,13 @@
 import React from 'react';
 import SidestripContext from '../contexts/sidestrip-context';
-import StyledSelect from '../selects/styled-select';
 
 
-function SidestripSwitcherStyled() {
+function SidestripSwitcher(props) {
+  let SelectTag = 'select';
+  if (props.select === 'custom' || props.select === 'styled') {
+    SelectTag = require('../selects/' + props.select + '-select.js').default;
+  }
+
   return (
     <SidestripContext.Consumer>
     {
@@ -11,7 +15,7 @@ function SidestripSwitcherStyled() {
             <form>
                 <label>
                   <span>Sidestrip: &nbsp;</span>
-                  <StyledSelect
+                  <SelectTag
                     name='sidestrip'
                     value={sidestrip}
                     onChange={changeSidestrip}
@@ -21,7 +25,7 @@ function SidestripSwitcherStyled() {
                     <option value='mobileOff'>off (mobile)</option>
                     <option value='hidden'>hidden</option>
                     <option value='mobileHidden'>hidden (mobile)</option>
-                  </StyledSelect>
+                  </SelectTag>
                 </label>
             </form>
         )
@@ -31,4 +35,4 @@ function SidestripSwitcherStyled() {
 }
 
 
-export default SidestripSwitcherStyled;
+export default SidestripSwitcher;

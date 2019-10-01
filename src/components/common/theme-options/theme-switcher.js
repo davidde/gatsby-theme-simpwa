@@ -1,9 +1,13 @@
 import React from 'react';
 import ThemeContext from '../contexts/theme-context';
-import CustomSelect from '../selects/custom-select';
 
 
-function ThemeSwitcherCustom() {
+function ThemeSwitcher(props) {
+  let SelectTag = 'select';
+  if (props.select === 'custom' || props.select === 'styled') {
+    SelectTag = require('../selects/' + props.select + '-select.js').default;
+  }
+
   return (
     <ThemeContext.Consumer>
     {
@@ -11,7 +15,7 @@ function ThemeSwitcherCustom() {
             <form>
                 <label>
                   <span>Theme: &nbsp;</span>
-                  <CustomSelect
+                  <SelectTag
                     name='theme'
                     value={theme}
                     onChange={changeTheme}
@@ -19,7 +23,7 @@ function ThemeSwitcherCustom() {
                     <option value='light'>light</option>
                     <option value='dark'>dark</option>
                     <option value='joy'>joy</option>
-                  </CustomSelect>
+                  </SelectTag>
                 </label>
             </form>
         )
@@ -29,4 +33,4 @@ function ThemeSwitcherCustom() {
 }
 
 
-export default ThemeSwitcherCustom;
+export default ThemeSwitcher;
