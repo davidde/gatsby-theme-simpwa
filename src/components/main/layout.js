@@ -9,10 +9,12 @@ class Layout extends React.Component {
     super(props);
 
     this.state = {
-      leftActive: false,
-      rightActive: false,
-      startActive: this.props.startActive ? this.props.startActive : vars.startActive,
-      mutex: (this.props.mutex ? this.props.mutex : vars.mutex) === 'true' ? true : false,
+      leftActive: (this.props.leftActive ? this.props.leftActive : vars.leftActive)
+                    === 'true' ? true : false,
+      rightActive: (this.props.rightActive ? this.props.rightActive : vars.rightActive)
+                    === 'true' ? true : false,
+      mutex: (this.props.mutex ? this.props.mutex : vars.mutex)
+                    === 'true' ? true : false,
       sidestrip: this.props.sidestrip ? this.props.sidestrip : vars.sidestrip,
       theme: this.props.theme ? this.props.theme : vars.theme,
       // To prevent :hover styles on touchscreens,
@@ -29,24 +31,15 @@ class Layout extends React.Component {
     let touchscreen = window.matchMedia('(hover: none)').matches;
     this.setState({ isPortrait, isMediumViewport, touchscreen });
 
-    if (!isPortrait) {
-      if (this.state.startActive === 'left') {
-        this.setState({ leftActive: true });
-      }
-      else if (this.state.startActive === 'right') {
-        this.setState({ rightActive: true });
-      }
-      else if (this.state.startActive === 'both') {
-        // In medium viewport or when mutex is set, only activate one side:
-        if (isMediumViewport || this.state.mutex) {
-          this.setState({ leftActive: true });
-        } else { // Otherwise activate both:
-          this.setState({
-            leftActive: true,
-            rightActive: true
-          });
-        }
-      }
+    if (isPortrait) {
+      this.setState({
+        leftActive: false,
+        rightActive: false,
+      });
+    } else if ( this.state.leftActive &&
+                this.state.rightActive &&
+                (isMediumViewport || this.state.mutex) ) {
+        this.setState({ rightActive: false });
     }
 
     document.body.classList.add(this.state.theme + 'Theme');
@@ -84,7 +77,7 @@ class Layout extends React.Component {
 
     // If other side is active in medium viewport or when mutex is set, unactivate other side:
     if (this.state.rightActive) {
-      if (this.state.isMediumViewport || this.state.mutex) {
+      if (this.state.isMediumViewport || this.state.isPortrait || this.state.mutex) {
         this.setState({ rightActive: false });
       }
     }
@@ -95,7 +88,7 @@ class Layout extends React.Component {
 
     // If other side is active in medium viewport or when mutex is set, unactivate other side:
     if (this.state.leftActive) {
-      if (this.state.isMediumViewport || this.state.mutex) {
+      if (this.state.isMediumViewport || this.state.isPortrait || this.state.mutex) {
         this.setState({ leftActive: false });
       }
     }

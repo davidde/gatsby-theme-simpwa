@@ -7,14 +7,14 @@ $mediumWidthQuery: (max-width: 1200px);
   portraitQuery: #{$portraitQuery};
   mediumWidthQuery: #{$mediumWidthQuery};
   // Specify which sidebars should be active on first load:
-  // both, left, right or none
-  startActive: both;
+  leftActive: true;
+  rightActive: true;
   // Set mutex to true if sidebars should never be active at the same time:
   // (On smaller viewports, sidebars will never be active at the same time regardless of mutex)
   mutex: false;
   // Set the appearance of the sidestrip (hoverable strip at the side of screen to activate sidebar):
   // on, off, mobileOff, hidden or mobileHidden
-  sidestrip: on;
+  sidestrip: mobileOff;
   // Set the theme: light, dark or joy
   theme: light;
   /// NOTE: The props specified in the Layout component take precedence over these variables!
