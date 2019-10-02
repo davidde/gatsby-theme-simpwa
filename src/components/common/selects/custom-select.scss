@@ -5,7 +5,7 @@
   user-select: none; // Disable text selection on double-click
   box-sizing: border-box;
   font-family: monospace;
-  font-size: 1.05em;
+  font-size: 1em;
   --verticalPadding: 0.3em;
   --horizontalPadding: 0.8em;
   --borderRadius: 0.5em;
@@ -57,7 +57,7 @@
 
     // Style the individual select options:
     div {
-      padding: var(--verticalPadding) var(--horizontalPadding);
+      padding: var(--verticalPadding) 0 var(--verticalPadding) var(--horizontalPadding);
       border-top: 1px solid var(--contentColor);
       font-size: 0.9em;
 

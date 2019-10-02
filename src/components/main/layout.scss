@@ -1,5 +1,9 @@
 @import 'vars';
 
+html {
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+}
 
 body {
   /* outline: 3px solid red; */
@@ -10,7 +14,17 @@ body {
   color: var(--bodyColor);
   /* Disable scrolling on body: */
   overflow: hidden;
-  font-family: "Open Sans", sans-serif;
+
+  font-size: 0.8rem;
+  --headerFontSize: 1.3em;
+  &.notMobile {
+    font-size: 1rem;
+    --headerFontSize: 1.7em;
+    @media #{$smallWidthQuery} {
+      --headerHeight: 3rem;
+      --headerFontSize: 1.3em;
+    }
+  }
 }
 
 #layout {
@@ -148,7 +162,7 @@ body {
     width: var(--headerHeight);
     height: var(--headerHeight);
     line-height: var(--headerHeight);
-    font-size: var(--headerFont);
+    font-size: calc(var(--headerHeight) / 3 + 0.25rem);
     text-align: center;
     background: var(--hoverableBg);
     border-bottom: var(--borderWidth) solid var(--borderColor);
@@ -211,7 +225,7 @@ body {
   .sidestripPatch {
     position: absolute;
     z-index: 15;
-    top: var(--patchTop);
+    top: calc(var(--headerHeight) * 3/4);
     bottom: 0;
     width: var(--sidestripWidth);
     background: var(--hoverableBg);
@@ -241,9 +255,6 @@ body {
   color: var(--headerColor);
   background: var(--headerBg);
   border-bottom: var(--borderWidth) solid var(--borderColor);
-  &.main {
-    height: calc(var(--headerHeight));
-  }
   &.left {
     float: right;
     width: calc(100% - var(--headerHeight));
@@ -256,14 +267,14 @@ body {
   > h1 {
     margin: 0;
     height: 100%; /* Required to prevent overflow! */
-    font-size: var(--headerFont);
     line-height: calc(var(--headerHeight) - var(--borderWidth)); /* Vertical center */
     text-align: center; /* Horizontal center */
+    font-size: var(--headerFontSize);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    &.main {
+    &.main { // Make main h2 offset adaptive to sidebar status:
       position: absolute;
       left: calc(var(--headerHeight) - var(--sidestripWidth));
       &.leftActive {

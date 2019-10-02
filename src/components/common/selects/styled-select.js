@@ -25,7 +25,7 @@ class StyledSelect extends React.Component {
       }
     );
 
-    let width = longestChildLength * 0.62 + 3 + 'em';
+    let width = longestChildLength * 0.6135 + 3 + 'em';
     this.setState({ width });
   }
 

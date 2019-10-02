@@ -42,7 +42,8 @@ class Layout extends React.Component {
         this.setState({ rightActive: false });
     }
 
-    document.body.classList.add(this.state.theme + 'Theme');
+    let mobileClass = isMobile ? 'isMobile' : 'notMobile';
+    document.body.classList.add(this.state.theme + 'Theme', mobileClass);
     window.addEventListener('resize', this.updateViewports);
   }
   componentWillUnmount() {

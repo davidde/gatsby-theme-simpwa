@@ -37,7 +37,7 @@ class CustomSelect extends React.Component {
       }
     );
 
-    let width = longestChildLength * 0.62 + 3 + 'em';
+    let width = longestChildLength * 0.6135 + 3 + 'em';
     this.setState({ width });
     document.addEventListener('click', this.closeSelect);
   }

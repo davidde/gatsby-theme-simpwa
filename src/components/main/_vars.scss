@@ -22,16 +22,12 @@ $mediumWidthQuery: (max-width: 1200px);
 
 :root {
   --headerHeight: 4rem;
-  --headerFont: 1.75rem;
   --sidestripWidth: 0.5rem;
-  --patchTop: 3rem;
   --borderWidth: 2px;
   --sidestripBorderWidth: 2px;
   @media #{$smallWidthQuery} {
-    --headerHeight: 3rem;
-    --headerFont: 1.35rem;
-    --sidestripWidth: 0.375rem;
-    --patchTop: 2rem;
+    --headerHeight: 2.75rem;
+    --sidestripWidth: 0.4rem;
     --borderWidth: 1px;
     --sidestripBorderWidth: 1px;
   }
