@@ -15,21 +15,21 @@ class Layout extends React.Component {
                     === 'true' ? true : false,
       mutex: (this.props.mutex ? this.props.mutex : vars.mutex)
                     === 'true' ? true : false,
-      sidestrip: this.props.sidestrip ? this.props.sidestrip : vars.sidestrip,
       theme: this.props.theme ? this.props.theme : vars.theme,
-      // To prevent :hover styles on touchscreens,
+      sidestrip: this.props.sidestrip ? this.props.sidestrip : vars.sidestrip,
+      // To prevent :hover styles on mobile,
       // and circumvent a desktop linux firefox bug:
-      touchscreen: null,
+      isMobile: null,
       isPortrait: null,
       isMediumViewport: null,
     }
   }
 
   componentDidMount() {
+    let isMobile = window.matchMedia('(hover: none)').matches;
     let isPortrait = window.matchMedia(vars.portraitQuery).matches;
     let isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
-    let touchscreen = window.matchMedia('(hover: none)').matches;
-    this.setState({ isPortrait, isMediumViewport, touchscreen });
+    this.setState({ isMobile, isPortrait, isMediumViewport });
 
     if (isPortrait) {
       this.setState({
@@ -159,13 +159,13 @@ class Layout extends React.Component {
             return React.cloneElement(child, {
                 isActive: this.state.leftActive,
                 toggleSidebar: this.toggleLeftSidebar,
-                touchscreen: this.state.touchscreen,
+                isMobile: this.state.isMobile,
             });
         } else if (child.type.displayName === 'Rightside') {
             return React.cloneElement(child, {
                 isActive: this.state.rightActive,
                 toggleSidebar: this.toggleRightSidebar,
-                touchscreen: this.state.touchscreen,
+                isMobile: this.state.isMobile,
             });
         } else if (child.type.displayName === 'MainView') {
             return React.cloneElement(child, {
