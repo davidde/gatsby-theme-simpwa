@@ -57,7 +57,7 @@
 
     // Style the individual select options:
     div {
-      padding: var(--verticalPadding) var(--horizontalPadding) var(--verticalPadding) calc(2.5 * var(--horizontalPadding));
+      padding: var(--verticalPadding) var(--horizontalPadding);
       border-top: 1px solid var(--contentColor);
       font-size: 0.9em;
 
@@ -69,6 +69,13 @@
       // (or lighter for dark themes)
       &:hover, &.selected {
         background: hsla(0, 0%, var(--overlay-lightness), 0.1);
+      }
+
+      .checkmark {
+        visibility: hidden;
+        &.selected {
+          visibility: visible;
+        }
       }
     }
 

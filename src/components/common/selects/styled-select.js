@@ -7,6 +7,14 @@ import './styled-select.scss';
 /// As a result, styling the select global background-color is not really
 /// worth it because most colors will clash with this blue hover color ...
 class StyledSelect extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      width: null,
+    }
+  }
+
   componentDidMount() {
     let longestChildLength = this.props.children[0].props.children.length;
     this.props.children.forEach(
@@ -17,11 +25,12 @@ class StyledSelect extends React.Component {
       }
     );
 
-    this.autoWidth = longestChildLength * 0.62 + 3 + 'em';
+    let width = longestChildLength * 0.62 + 3 + 'em';
+    this.setState({ width });
   }
 
   render() {
-    let width = this.props.width ? this.props.width : this.autoWidth;
+    let width = this.props.width ? this.props.width : this.state.width;
 
     return (
       <select

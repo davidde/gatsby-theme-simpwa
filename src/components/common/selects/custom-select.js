@@ -14,6 +14,7 @@ class CustomSelect extends React.Component {
     this.state = {
       isOpen: false,
       activeOption: null,
+      width: null,
     }
   }
 
@@ -24,6 +25,10 @@ class CustomSelect extends React.Component {
         if (child.props.children.length > longestChildLength) {
           longestChildLength = child.props.children.length;
         }
+        // this.props.value = 'value' prop of CustomSelect
+        // this.props.children = options of CustomSelect
+        // child.props.value = 'value' prop of the option
+        // child.props.children = string inside the option
         if (this.props.value === child.props.value) {
           this.setState({
             activeOption: child.props.children,
@@ -32,7 +37,8 @@ class CustomSelect extends React.Component {
       }
     );
 
-    this.autoWidth = longestChildLength * 0.62 + 3 + 'em';
+    let width = longestChildLength * 0.62 + 3 + 'em';
+    this.setState({ width });
     document.addEventListener('click', this.closeSelect);
   }
 
@@ -65,7 +71,7 @@ class CustomSelect extends React.Component {
 
   render() {
     let isOpen = this.state.isOpen ? 'open' : 'closed';
-    let width = this.props.width ? this.props.width : this.autoWidth;
+    let width = this.props.width ? this.props.width : this.state.width;
 
     return (
       <div className='custom-select' style={{ width: width }} >
@@ -77,16 +83,13 @@ class CustomSelect extends React.Component {
             { // Map over the child options:
               React.Children.map(this.props.children,
                 (child) => {
-                  // this.props.value = 'value' prop of CustomSelect
-                  // child.props.value = 'value' prop of the option
-                  // child.props.children = string inside the option
                   let selected = this.props.value === child.props.value ? 'selected' : '';
-                  // Unicode checkmark = &#10003; -> Useful for selected option!
                   return (
                     <div
                       className={selected}
                       onClick={() => this.selectOption(child.props.value, child.props.children)}
                     >
+                      <span className={`checkmark ${selected}`}>&#10003; &nbsp;</span>
                       {child.props.children}
                     </div>
                   );
