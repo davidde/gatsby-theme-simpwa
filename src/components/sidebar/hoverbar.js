@@ -6,9 +6,6 @@ function Hoverbar(props) {
   let active = props.isActive ? 'active' : 'inactive';
   let canHover = props.isMobile ? '' : 'canHover';
   let sidestripHidden = props.sidestrip === 'hidden' ? 'sidestripHidden' : '';
-  if (props.isMobile && props.sidestrip === 'mobileHidden') {
-    sidestripHidden = 'sidestripHidden';
-  }
 
   return (
     <div className={`hoverbar ${canHover} ${active}`}
