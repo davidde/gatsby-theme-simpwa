@@ -75,6 +75,7 @@ class CustomSelect extends React.Component {
 
     return (
       <div className='custom-select' style={{ width: width }} >
+          <select className='hidden-native-select' {...this.props}>{this.props.children}</select>
           <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
             {this.state.activeOption}
           </div>

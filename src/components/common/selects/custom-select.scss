@@ -11,6 +11,11 @@
   --borderRadius: 0.5em;
   --arrowHeight: 0.35em;
 
+  // Hide the native select (it still exists to enable form submissions):
+  .hidden-native-select {
+    display: none;
+  }
+
   // Style the selected option that is always visible at the top:
   .selected-option {
     background: var(--contentBg);
