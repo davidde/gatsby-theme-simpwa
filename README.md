@@ -49,9 +49,20 @@ import { Layout, MainView, Leftside, Rightside } from 'gatsby-theme-simpwa'
 The parent component that enables its 3 children components to work properly.
 
 Props:
-  - **theme**: The theme to use for your app:  
-    'light', 'light_minimal', 'dark', 'dark_minimal', 'joy' or 'joy_minimal'  
-    Defaults to `light`.
+  - **theme**: The theme to use for your app: 'light', 'dark' or 'joy'.
+  - **leftActive**: true/false *string* indicating whether
+  the left sidebar should be active on first load
+  - **rightActive**: true/false *string* indicating whether
+  the right sidebar should be active on first load
+  - **mutex**: true/false *string* indicating whether the sidebars should
+  mutually exclude each other from being active
+  - **sidestrip**: string indicating the status of the small hoverable strip
+  at the edge of the screen: 'on', 'off', 'hidden', 'mobileOff', 'mobileHidden'
+
+**NOTE:**  
+The Layout component's props are initialisation props.
+They will not trigger a rerender on subsequent updates, since they are immediately written to state.
+If you do not specify a prop, its state will default to the value set for it in the stylesheet's variables.
 
 ### The \<MainView> component
 The main content of your app. Should be a direct descendant of `<Layout>`.
@@ -74,46 +85,6 @@ Customization is fairly simple due to a modular approach to styling/theming.
 
 > Even the theme 's got themes!
 
-Each theme consists of 3 .scss partials: a **colors**, **specs**, and **styles** file,
-which define *color variables*, *spec variables* (like sizes and media queries), and
-the *general styles* of the theme respectively:
-```
-src/styles
-├── dark_minimal_theme.scss
-├── dark_theme.scss
-├── joy_minimal_theme.scss
-├── joy_theme.scss
-├── light_minimal_theme.scss
-├── light_theme.scss
-└── partials
-    ├── _colors_dark.scss
-    ├── _colors_joy.scss
-    ├── _colors_light.scss
-    ├── _specs_default.scss
-    ├── _specs_minimal.scss
-    └── _styles_default.scss
-```
-
-For a quick change, it's straightforward to shadow these files, and modify your version:
-```bash
-mkdir ./src/gatsby-theme-simpwa
-cp -r ./node_modules/gatsby-theme-simpwa/src/styles ./src/gatsby-theme-simpwa/styles
-```
-(Note that it's required to shadow all 4 files of a specific theme because they are interdependent.)
-
-Additionally, you can create your own theme by putting together 3 modified partials:
-- Copy a partial and modify it:
-  ```bash
-  cp ./src/gatsby-theme-simpwa/styles/partials/_colors_joy.scss ./src/gatsby-theme-simpwa/styles/partials/_colors_flashy.scss
-  ```
-- Put together a new theme:
-  ```bash
-  cat > src/gatsby-theme-simpwa/styles/flashy_theme.scss
-  [Paste: @import 'partials/colors_flashy', 'partials/specs_default', 'partials/styles_default';]
-  [CTRL+D]
-  ```
-- You can then activate your theme by providing it to the `<Layout>` component's `theme` prop:
-  ```js
-  <Layout theme='flashy'>
-  ```
-This same process also works for modifying the specs and styles partials.
+These themes are defined in the scss partial `_vars.scss` in `/src/components/main/`.
+You can shadow this file together with the main `layout.scss` and modify the themes,
+or create your own themes altogether!
