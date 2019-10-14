@@ -13,27 +13,23 @@ class CustomSelect extends React.Component {
 
     this.state = {
       isOpen: false,
-      activeOption: null,
       width: null,
     }
+    this.optionValuesToNames = {};
   }
 
   componentDidMount() {
     let longestChildLength = this.props.children[0].props.children.length;
+    // this.props.value = 'value' prop of CustomSelect
+    // this.props.children = options of CustomSelect
+    // child.props.value = 'value' prop of the option
+    // child.props.children = string inside the option
     this.props.children.forEach(
       (child) => {
         if (child.props.children.length > longestChildLength) {
           longestChildLength = child.props.children.length;
         }
-        // this.props.value = 'value' prop of CustomSelect
-        // this.props.children = options of CustomSelect
-        // child.props.value = 'value' prop of the option
-        // child.props.children = string inside the option
-        if (this.props.value === child.props.value) {
-          this.setState({
-            activeOption: child.props.children,
-          });
-        }
+        this.optionValuesToNames[child.props.value] = child.props.children;
       }
     );
 
@@ -61,11 +57,8 @@ class CustomSelect extends React.Component {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
-  selectOption = (activeValue, activeOption) => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-      activeOption,
-    });
+  selectOption = (activeValue) => {
+    this.setState({ isOpen: !this.state.isOpen });
     this.props.onChange(activeValue);
   }
 
@@ -77,7 +70,7 @@ class CustomSelect extends React.Component {
       <div className='custom-select' style={{ width: width }} >
           <select className='hidden-native-select' {...this.props}>{this.props.children}</select>
           <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
-            {this.state.activeOption}
+            {this.optionValuesToNames[this.props.value]}
           </div>
 
           <div className={`options-box ${isOpen}`} >
@@ -88,7 +81,7 @@ class CustomSelect extends React.Component {
                   return (
                     <div
                       className={selected}
-                      onClick={() => this.selectOption(child.props.value, child.props.children)}
+                      onClick={() => this.selectOption(child.props.value)}
                     >
                       <span className={`checkmark ${selected}`}>&#10003; &nbsp;</span>
                       {child.props.children}
