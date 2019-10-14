@@ -6,11 +6,12 @@
   box-sizing: border-box;
   font-family: monospace;
   font-size: 1em;
-  --mainBg: linear-gradient(hsla(24, 100%, 85%, 0.9) 20%, hsla(24, 68%, 64%, 0.9) 80%);
-  --optionBg: hsla(24, 90%, 75%, 1);
-  --textColor: hsla(254, 78%, 52%, 0.65);
-  --symbolColor: hsla(254, 78%, 52%, 0.95);
-  --selectedColor: var(--textColor);
+
+  --optionsBg: var(--buttonBgMid);//hsla(24, 90%, 75%, 1);
+  --selectedBg: linear-gradient(var(--buttonBgLight) 25%, var(--buttonBgDark) 85%);
+  // linear-gradient(hsla(39, 100%, 90%, 0.9) 25%, hsla(39, 100%, 65%, 0.9) 85%);
+  // linear-gradient(hsla(24, 100%, 85%, 0.9) 20%, hsla(24, 68%, 64%, 0.9) 80%);
+  --selectedColor: var(--buttonColor);
   --borderColor: var(--shadowColor);
   --borderWidth: 1px;
   --borderRadius: 0.5em;
@@ -19,8 +20,8 @@
   --arrowHeight: 0.35em;
 
   &:hover {
-    box-shadow: 0 0 15px 5px var(--contentColor);
-    --selectedColor: var(--symbolColor);
+    box-shadow: 0 0 15px 5px var(--buttonShadowColor);
+    --selectedColor: var(--buttonHoverColor);
     border-radius: var(--borderRadius);
   }
 
@@ -31,7 +32,7 @@
 
   // Style the selected option that is always visible at the top:
   .selected-option {
-    background: var(--mainBg);
+    background: var(--selectedBg);
     color: var(--selectedColor);
     font-weight: 900;
     padding: var(--verticalPadding) var(--horizontalPadding);
@@ -56,23 +57,23 @@
     // Point the arrow downwards when the select box is closed:
     &.closed::after {
       top: calc(50% - var(--arrowHeight) / 2);
-      border-top: var(--arrowHeight) solid var(--symbolColor);
+      border-top: var(--arrowHeight) solid var(--selectedColor);
     }
     // Point the arrow upwards when the select box is open:
     &.open::after {
       bottom: calc(50% - var(--arrowHeight) / 2);
-      border-bottom: var(--arrowHeight) solid var(--symbolColor);
+      border-bottom: var(--arrowHeight) solid var(--selectedColor);
     }
   }
 
   // Style the select options-box (box below the selected option):
   .options-box {
     position: absolute;
-    background: var(--optionBg);
-    color: var(--textColor);
+    background: var(--optionsBg);
+    color: var(--buttonColor);
     border: var(--borderWidth) solid var(--borderColor);
     border-radius: var(--borderRadius);
-    margin-top: calc(-1 * var(--borderWidth));
+    // margin-top: calc(-1 * var(--borderWidth));
     top: 100%;
     left: 0;
     right: 0;
@@ -91,13 +92,14 @@
       // Make the hovered or selected option a tad darker:
       // (or lighter for dark themes)
       &:hover {
-        background: hsla(24, 83%, 60%, 0.5);
+        background: var(--buttonHoverBg);
       }
       &.selected {
-        color: var(--symbolColor);
+        color: var(--buttonHoverColor);
       }
 
       .checkmark {
+        color: var(--checkmarkColor, green);
         visibility: hidden;
         &.selected {
           visibility: visible;

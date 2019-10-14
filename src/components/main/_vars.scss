@@ -54,37 +54,45 @@ $mediumWidthQuery: (max-width: 1200px);
 
 // Light theme Colors:
 body.lightTheme {
-  --headerBg: hsla(221, 28%, 94%, 1);
-  --headerColor: hsla(254, 78%, 52%, 0.75);
-  --bodyBg: hsla(221, 28%, 97%, 1);
-  --bodyColor: hsla(255, 26%, 18%, 0.75);
-  --scrollbarBg: hsla(221, 28%, 91%, 1);
-  --borderColor: hsla(221, 28%, 94%, 1);
+  --bodyHeaderBg: hsl(221, 28%, 94%);
+  --bodyHeaderColor: hsla(254, 78%, 52%, 0.75);
+  --bodyContentBg: hsl(221, 28%, 97%);
+  --bodyContentColor: hsla(255, 26%, 18%, 0.75);
+  --scrollbarBg: hsl(221, 28%, 91%);
+  --borderColor: hsl(221, 28%, 94%);
   --black-overlay-transparency: 0.5;
 }
 
 .sidebar.left.lightTheme, .sidebar.right.lightTheme {
-  --headerBg: hsla(221, 28%, 87%, 1);
-  --headerColor: hsla(254, 78%, 52%, 0.75);
-  --contentBg: hsla(221, 28%, 87%, 1);
+  --headerBg: hsl(221, 28%, 87%);
+  --headerColor: var(--bodyHeaderColor);
+  --contentBg: hsl(221, 28%, 87%);
   --contentColor: hsla(254, 78%, 62%, 0.75);
-  --iconColor: hsla(254, 78%, 52%, 0.75);
+  --iconColor: var(--bodyHeaderColor);
   --iconHoverColor: white;
-  --borderColor: hsla(221, 28%, 94%, 1);
+  --borderColor: hsl(221, 28%, 94%);
   --borderHoverColor: #f1f1f1;
-  --hoverBg: hsla(221, 28%, 75%, 1);
-  --scrollbarBg: hsla(221, 28%, 94%, 1);
+  --hoverBg: hsl(221, 28%, 75%);
+  --scrollbarBg: hsl(221, 28%, 94%);
   --shadow: 0;
+
+  --buttonColor: hsla(254, 78%, 52%, 0.65);
+  --buttonHoverColor: hsla(254, 78%, 52%, 0.9);
+  --buttonBgLight: hsl(221, 28%, 97%);
+  --buttonBgMid: hsl(221, 28%, 90%);
+  --buttonBgDark: hsl(221, 28%, 75%);
+  --buttonHoverBg: hsla(221, 28%, 70%, 0.3);
+  --buttonShadowColor: var(--iconHoverColor);
 }
 
 // Dark theme Colors:
 body.darkTheme {
-  --headerBg: hsla(0, 0%, 0%, 1);
-  --headerColor: hsla(205, 20%, 62%, 1);
-  --bodyBg: hsla(0, 0%, 3%, 1);
-  --bodyColor: hsla(205, 11%, 61%, 0.9);
-  --scrollbarBg: hsla(0, 0%, 10%, 1);
-  --borderColor: hsla(240, 30%, 14%, 1);
+  --bodyHeaderBg: hsl(0, 0%, 0%);
+  --bodyHeaderColor: hsl(205, 20%, 62%);
+  --bodyContentBg: hsl(0, 0%, 3%);
+  --bodyContentColor: hsla(205, 11%, 61%, 0.9);
+  --scrollbarBg: hsl(0, 0%, 10%);
+  --borderColor: hsl(240, 30%, 14%);
   --overlay-lightness: 100%; // 100% = white!
   --overlay-transparency: 0.15;
   --borderWidth: 3px;
@@ -94,53 +102,77 @@ body.darkTheme {
 }
 
 .sidebar.left.darkTheme, .sidebar.right.darkTheme {
-  --headerBg: hsla(240, 50%, 6%, 1);
+  --headerBg: hsl(240, 50%, 6%);
   --headerColor: hsla(240, 13%, 73%, 0.9);
-  --contentBg: hsla(240, 36%, 9.5%, 1);
+  --contentBg: hsl(240, 36%, 9.5%);
   --contentColor: hsla(240, 15%, 71%, 0.7);
   --iconColor: hsla(240, 20%, 72%, 0.9);
   --iconHoverColor: #f1f1f1;
-  --borderColor: hsla(240, 30%, 20%, 1);
-  --borderHoverColor: hsla(240, 30%, 28%, 1);
-  --hoverBg: hsla(240, 43%, 15%, 1);
-  --scrollbarBg: hsla(240, 30%, 16%, 1);
+  --borderColor: hsl(240, 30%, 20%);
+  --borderHoverColor: hsl(240, 30%, 28%);
+  --hoverBg: hsl(240, 43%, 15%);
+  --scrollbarBg: hsl(240, 30%, 16%);
   --shadow: 0;
+
+  --buttonColor: hsla(0, 0%, 3%, 0.75);
+  --buttonHoverColor: hsl(0, 0%, 3%);
+  --buttonBgLight: hsl(0, 0%, 70%);
+  --buttonBgMid: hsl(0, 0%, 65%);
+  --buttonBgDark: hsl(0, 0%, 50%);
+  --buttonHoverBg: hsla(0, 0%, 35%, 0.25);
+  --buttonShadowColor: var(--buttonBgDark);
 }
 
 // Joy theme Colors:
 body.joyTheme {
-  --headerBg: linear-gradient(to right, hsla(39, 100%, 50%, 1), hsla(300, 76%, 72%, 1));
-  --headerColor: hsla(254, 78%, 52%, 0.75);
-  --bodyBg: hsla(60, 100%, 89%, 1);
-  --bodyColor: hsla(330, 100%, 39%, 0.8);
-  --scrollbarBg: hsla(60, 79%, 82%, 1);
+  --bodyHeaderBg: linear-gradient(to right, hsl(39, 100%, 50%), hsl(300, 76%, 72%));
+  --bodyHeaderColor: hsla(254, 78%, 52%, 0.75);
+  --bodyContentBg: hsl(60, 100%, 89%);
+  --bodyContentColor: hsla(330, 100%, 39%, 0.8);
+  --scrollbarBg: hsl(60, 79%, 82%);
   --borderColor: hsla(254, 78%, 52%, 0.05);
 }
 
 .sidebar.left.joyTheme {
-  --headerBg: hsla(24, 100%, 50%, 1);
-  --headerColor: hsla(39, 100%, 85%, 1);
-  --contentBg: hsla(24, 100%, 50%, 1);
-  --contentColor: hsla(24, 100%, 85%, 1);
-  --iconColor: hsla(39, 100%, 85%, 1);
+  --headerBg: hsl(24, 100%, 50%);
+  --headerColor: hsl(39, 100%, 85%);
+  --contentBg: hsl(24, 100%, 50%);
+  --contentColor: hsl(24, 100%, 85%);
+  --iconColor: hsl(39, 100%, 85%);
   --iconHoverColor: #f1f1f1;
-  --borderColor: hsla(24, 100%, 75%, 1);
-  --borderHoverColor: hsla(24, 100%, 65%, 1);
-  --hoverBg: hsla(24, 100%, 38%, 1);
-  --scrollbarBg: hsla(24, 100%, 70%, 1);
+  --borderColor: hsl(24, 100%, 75%);
+  --borderHoverColor: hsl(24, 100%, 65%);
+  --hoverBg: hsl(24, 100%, 38%);
+  --scrollbarBg: hsl(24, 100%, 70%);
   --shadow: 6px 0 15px 0;
+
+  --buttonColor: hsla(254, 78%, 52%, 0.65);
+  --buttonHoverColor: hsla(254, 78%, 52%, 0.9);
+  --buttonBgLight: hsl(39, 100%, 90%);
+  --buttonBgMid: hsl(39, 100%, 80%);
+  --buttonBgDark: hsl(39, 100%, 65%);
+  --buttonHoverBg: hsla(24, 100%, 50%, 0.25);
+  --buttonShadowColor: var(--contentColor);
 }
 
 .sidebar.right.joyTheme {
-  --headerBg: hsla(300, 76%, 52%, 1);
-  --headerColor: hsla(300, 76%, 87%, 1);
-  --contentBg: hsla(300, 76%, 52%, 1);
-  --contentColor: hsla(300, 76%, 86%, 1);
-  --iconColor: hsla(300, 76%, 87%, 1);
+  --headerBg: hsl(300, 76%, 52%);
+  --headerColor: hsl(300, 76%, 87%);
+  --contentBg: hsl(300, 76%, 52%);
+  --contentColor: hsl(300, 76%, 86%);
+  --iconColor: hsl(300, 76%, 87%);
   --iconHoverColor: #f1f1f1;
-  --borderColor: hsla(300, 76%, 77%, 1);
-  --borderHoverColor: hsla(300, 76%, 67%, 1);
-  --hoverBg: hsla(300, 76%, 37%, 1);
-  --scrollbarBg: hsla(300, 76%, 72%, 1);
+  --borderColor: hsl(300, 76%, 77%);
+  --borderHoverColor: hsl(300, 76%, 67%);
+  --hoverBg: hsl(300, 76%, 37%);
+  --scrollbarBg: hsl(300, 76%, 72%);
   --shadow: -6px 0 15px 0;
+
+  --buttonColor: hsla(254, 78%, 52%, 0.65);
+  --buttonHoverColor: hsla(254, 78%, 52%, 0.9);
+  --buttonBgLight: hsl(300, 76%, 95%);
+  --buttonBgMid: hsl(300, 76%, 88%);
+  --buttonBgDark: hsl(300, 76%, 75%);
+  --buttonHoverBg: hsla(300, 76%, 65%, 0.25);
+  --buttonShadowColor: var(--contentColor);
 }
