@@ -6,16 +6,23 @@
   box-sizing: border-box;
   font-family: monospace;
   font-size: 1em;
-  --mainBg: linear-gradient(to bottom,
-    hsla(24, 100%, 86%, 0.9), hsla(24, 100%, 82%, 0.9), hsla(24, 95%, 80%, 0.9), hsla(24, 90%, 70%, 0.9), hsla(24, 68%, 64%, 0.9));
-  --optionBg: hsla(24, 95%, 80%, 1);
-  --textColor: hsla(254, 78%, 52%, 0.75);
-  --borderColor: #888;
+  --mainBg: linear-gradient(hsla(24, 100%, 85%, 0.9) 20%, hsla(24, 68%, 64%, 0.9) 80%);
+  --optionBg: hsla(24, 90%, 75%, 1);
+  --textColor: hsla(254, 78%, 52%, 0.65);
+  --symbolColor: hsla(254, 78%, 52%, 0.95);
+  --selectedColor: var(--textColor);
+  --borderColor: var(--shadowColor);
   --borderWidth: 1px;
   --borderRadius: 0.5em;
   --verticalPadding: 0.3em;
   --horizontalPadding: 0.8em;
   --arrowHeight: 0.35em;
+
+  &:hover {
+    box-shadow: 0 0 15px 5px var(--contentColor);
+    --selectedColor: var(--symbolColor);
+    border-radius: var(--borderRadius);
+  }
 
   // Hide the native select (it still exists to enable form submissions):
   .hidden-native-select {
@@ -25,11 +32,16 @@
   // Style the selected option that is always visible at the top:
   .selected-option {
     background: var(--mainBg);
-    color: var(--textColor);
+    color: var(--selectedColor);
     font-weight: 900;
     padding: var(--verticalPadding) var(--horizontalPadding);
     border: var(--borderWidth) solid var(--borderColor);
     border-radius: var(--borderRadius);
+
+    // &:hover {
+    //   // box-shadow: 0 0 15px 5px var(--contentColor);
+    //   color: var(--selectedColor);
+    // }
 
     // Create the arrow inside the selected option:
     &::after {
@@ -44,12 +56,12 @@
     // Point the arrow downwards when the select box is closed:
     &.closed::after {
       top: calc(50% - var(--arrowHeight) / 2);
-      border-top: var(--arrowHeight) solid var(--textColor);
+      border-top: var(--arrowHeight) solid var(--symbolColor);
     }
     // Point the arrow upwards when the select box is open:
     &.open::after {
       bottom: calc(50% - var(--arrowHeight) / 2);
-      border-bottom: var(--arrowHeight) solid var(--textColor);
+      border-bottom: var(--arrowHeight) solid var(--symbolColor);
     }
   }
 
@@ -82,7 +94,7 @@
         background: hsla(24, 83%, 60%, 0.5);
       }
       &.selected {
-
+        color: var(--symbolColor);
       }
 
       .checkmark {
