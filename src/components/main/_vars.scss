@@ -1,8 +1,8 @@
 // The _vars.scss partial holds all variables:
 // sizes, media queries, theme colors, etc.
 $portraitQuery: screen and (orientation: portrait);
-$smallWidthQuery: (max-width: 800px);
-$mediumWidthQuery: (max-width: 1200px);
+$smallWidthQuery: (max-width: 40rem);
+$mediumWidthQuery: (max-width: 60rem);
 :export {
   portraitQuery: #{$portraitQuery};
   mediumWidthQuery: #{$mediumWidthQuery};
@@ -61,66 +61,60 @@ body.lightTheme {
   --scrollbarBg: hsl(221, 28%, 91%);
   --borderColor: hsl(221, 28%, 94%);
   --black-overlay-transparency: 0.5;
+  // 'button' and 'select' styling:
+  --buttonBg: linear-gradient(hsl(221, 28%, 97%) 25%, hsl(221, 28%, 80%) 85%);
+  --buttonColor: hsla(254, 78%, 52%, 0.65);
+  --buttonHoverColor: hsla(254, 78%, 52%, 0.9);
+  --buttonShadowColor: white;
+  --optionsBg: hsl(221, 28%, 90%);
+  --optionHoverBg: hsla(221, 28%, 70%, 0.3);
 }
 
-.sidebar.left.lightTheme, .sidebar.right.lightTheme {
+.sidebar.lightTheme {
   --headerBg: hsl(221, 28%, 87%);
-  --headerColor: var(--bodyHeaderColor);
+  --headerColor: hsl(252, 56%, 61%);
   --contentBg: hsl(221, 28%, 87%);
   --contentColor: hsla(254, 78%, 62%, 0.75);
-  --iconColor: var(--bodyHeaderColor);
+  --iconColor: hsl(252, 56%, 61%);
   --iconHoverColor: white;
   --borderColor: hsl(221, 28%, 94%);
   --borderHoverColor: #f1f1f1;
   --hoverBg: hsl(221, 28%, 75%);
   --scrollbarBg: hsl(221, 28%, 94%);
   --shadow: 0;
-
-  --buttonColor: hsla(254, 78%, 52%, 0.65);
-  --buttonHoverColor: hsla(254, 78%, 52%, 0.9);
-  --buttonBgLight: hsl(221, 28%, 97%);
-  --buttonBgMid: hsl(221, 28%, 90%);
-  --buttonBgDark: hsl(221, 28%, 75%);
-  --buttonHoverBg: hsla(221, 28%, 70%, 0.3);
-  --buttonShadowColor: var(--iconHoverColor);
 }
 
 // Dark theme Colors:
 body.darkTheme {
   --bodyHeaderBg: hsl(0, 0%, 0%);
-  --bodyHeaderColor: hsl(205, 20%, 62%);
-  --bodyContentBg: hsl(0, 0%, 3%);
-  --bodyContentColor: hsla(205, 11%, 61%, 0.9);
-  --scrollbarBg: hsl(0, 0%, 10%);
-  --borderColor: hsl(240, 30%, 14%);
+  --bodyHeaderColor: hsla(34, 100%, 94%, 0.95);
+  --bodyContentBg: hsl(210, 25%, 7%);
+  --bodyContentColor: hsla(0, 0%, 77%, 0.9);
+  --scrollbarBg: hsl(210, 25%, 14%);
+  --borderColor: hsl(213, 22%, 13%);
   --overlay-lightness: 100%; // 100% = white!
   --overlay-transparency: 0.15;
-  --borderWidth: 3px;
-  @media #{$smallWidthQuery} {
-    --borderWidth: 2px;
-  }
-}
-
-.sidebar.left.darkTheme, .sidebar.right.darkTheme {
-  --headerBg: hsl(240, 50%, 6%);
-  --headerColor: hsla(240, 13%, 73%, 0.9);
-  --contentBg: hsl(240, 36%, 9.5%);
-  --contentColor: hsla(240, 15%, 71%, 0.7);
-  --iconColor: hsla(240, 20%, 72%, 0.9);
-  --iconHoverColor: #f1f1f1;
-  --borderColor: hsl(240, 30%, 20%);
-  --borderHoverColor: hsl(240, 30%, 28%);
-  --hoverBg: hsl(240, 43%, 15%);
-  --scrollbarBg: hsl(240, 30%, 16%);
-  --shadow: 0;
-
+  // 'button' and 'select' styling:
+  --buttonBg: linear-gradient(hsl(0, 0%, 70%) 25%, hsl(0, 0%, 50%) 85%);
   --buttonColor: hsla(0, 0%, 3%, 0.75);
   --buttonHoverColor: hsl(0, 0%, 3%);
-  --buttonBgLight: hsl(0, 0%, 70%);
-  --buttonBgMid: hsl(0, 0%, 65%);
-  --buttonBgDark: hsl(0, 0%, 50%);
-  --buttonHoverBg: hsla(0, 0%, 35%, 0.25);
-  --buttonShadowColor: var(--buttonBgDark);
+  --buttonShadowColor: hsl(0, 0%, 40%);
+  --optionsBg: hsl(0, 0%, 65%);
+  --optionHoverBg: hsla(0, 0%, 35%, 0.25);
+}
+
+.sidebar.darkTheme {
+  --headerBg: hsl(213, 22%, 10%);
+  --headerColor: hsl(237, 21%, 85%);
+  --contentBg: hsl(213, 22%, 10%);
+  --contentColor: hsla(237, 21%, 85%, 0.9);
+  --iconColor: hsla(237, 21%, 82%, 0.8);
+  --iconHoverColor: #f1f1f1;
+  --borderColor: hsl(213, 22%, 18%);
+  --borderHoverColor: hsl(240, 30%, 20%);
+  --hoverBg: hsl(213, 22%, 15%);
+  --scrollbarBg: hsl(213, 22%, 17%);
+  --shadow: 0;
 }
 
 // Joy theme Colors:
@@ -131,6 +125,13 @@ body.joyTheme {
   --bodyContentColor: hsla(330, 100%, 39%, 0.8);
   --scrollbarBg: hsl(60, 79%, 82%);
   --borderColor: hsla(254, 78%, 52%, 0.05);
+  // 'button' and 'select' styling:
+  --buttonBg: linear-gradient(hsl(39, 100%, 90%) 25%, hsl(54, 100%, 72%) 85%);
+  --buttonColor: hsla(254, 78%, 52%, 0.65);
+  --buttonHoverColor: hsla(254, 78%, 52%, 0.9);
+  --buttonShadowColor: hsl(24, 100%, 85%);
+  --optionsBg: hsl(58, 100%, 85%);
+  --optionHoverBg: hsl(58, 100%, 78%);
 }
 
 .sidebar.left.joyTheme {
@@ -145,14 +146,13 @@ body.joyTheme {
   --hoverBg: hsl(24, 100%, 38%);
   --scrollbarBg: hsl(24, 100%, 70%);
   --shadow: 6px 0 15px 0;
-
+  // 'button' and 'select' styling:
+  --buttonBg: linear-gradient(hsl(39, 100%, 90%) 25%, hsl(39, 100%, 65%) 85%);
   --buttonColor: hsla(254, 78%, 52%, 0.65);
   --buttonHoverColor: hsla(254, 78%, 52%, 0.9);
-  --buttonBgLight: hsl(39, 100%, 90%);
-  --buttonBgMid: hsl(39, 100%, 80%);
-  --buttonBgDark: hsl(39, 100%, 65%);
-  --buttonHoverBg: hsla(24, 100%, 50%, 0.25);
   --buttonShadowColor: var(--contentColor);
+  --optionsBg: hsl(39, 100%, 80%);
+  --optionHoverBg: hsla(24, 100%, 50%, 0.25);
 }
 
 .sidebar.right.joyTheme {
@@ -167,12 +167,11 @@ body.joyTheme {
   --hoverBg: hsl(300, 76%, 37%);
   --scrollbarBg: hsl(300, 76%, 72%);
   --shadow: -6px 0 15px 0;
-
+  // 'button' and 'select' styling:
+  --buttonBg: linear-gradient(hsl(300, 76%, 95%) 25%, hsl(300, 76%, 75%) 85%);
   --buttonColor: hsla(254, 78%, 52%, 0.65);
   --buttonHoverColor: hsla(254, 78%, 52%, 0.9);
-  --buttonBgLight: hsl(300, 76%, 95%);
-  --buttonBgMid: hsl(300, 76%, 88%);
-  --buttonBgDark: hsl(300, 76%, 75%);
-  --buttonHoverBg: hsla(300, 76%, 65%, 0.25);
   --buttonShadowColor: var(--contentColor);
+  --optionsBg: hsl(300, 76%, 88%);
+  --optionHoverBg: hsla(300, 76%, 65%, 0.25);
 }
