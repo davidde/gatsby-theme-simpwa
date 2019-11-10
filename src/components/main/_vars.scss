@@ -65,7 +65,7 @@ body.lightTheme {
   --buttonBg: linear-gradient(hsl(221, 28%, 97%) 25%, hsl(221, 28%, 80%) 85%);
   --buttonColor: hsla(254, 78%, 52%, 0.65);
   --buttonHoverColor: hsla(254, 78%, 52%, 0.9);
-  --buttonShadowColor: white;
+  --buttonShadowColor: hsl(223, 34%, 80%);
   --optionsBg: hsl(221, 28%, 90%);
   --optionHoverBg: hsla(221, 28%, 70%, 0.3);
 }
@@ -82,6 +82,7 @@ body.lightTheme {
   --hoverBg: hsl(221, 28%, 75%);
   --scrollbarBg: hsl(221, 28%, 94%);
   --shadow: 0;
+  --buttonShadowColor: white;
 }
 
 // Dark theme Colors:

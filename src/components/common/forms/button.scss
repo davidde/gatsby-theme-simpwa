@@ -1,0 +1,16 @@
+.themed-button {
+  cursor: pointer;
+  user-select: none; // Disable text selection on double-click
+  outline: none; // Disable focus outline
+  box-sizing: border-box;
+  font-family: 'Lucida Console', monospace;
+  font-size: 1em;
+  background: var(--buttonBg);
+  color: var(--buttonColor);
+  border-radius: 0.4em;
+
+  &:hover, &:focus {
+    color: var(--buttonHoverColor);
+    box-shadow: 0 0 15px 5px var(--buttonShadowColor);
+  }
+}

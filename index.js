@@ -8,5 +8,6 @@ export { default as SidestripSwitcher } from './src/components/common/theme-opti
 
 export { default as CustomSelect } from './src/components/common/forms/custom-select';
 export { default as StyledSelect } from './src/components/common/forms/styled-select';
+export { default as Button } from './src/components/common/forms/button';
 
 export { default as ThemeContext } from './src/components/common/contexts/theme-context';
