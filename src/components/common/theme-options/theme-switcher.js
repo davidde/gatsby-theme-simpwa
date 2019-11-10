@@ -5,7 +5,7 @@ import ThemeContext from '../contexts/theme-context';
 function ThemeSwitcher(props) {
   let SelectTag = 'select';
   if (props.select === 'custom' || props.select === 'styled') {
-    SelectTag = require('../selects/' + props.select + '-select.js').default;
+    SelectTag = require('../forms/' + props.select + '-select.js').default;
   }
 
   return (
