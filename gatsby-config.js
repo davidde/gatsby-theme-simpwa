@@ -5,6 +5,7 @@ module.exports = {
     description: 'Configurable template for building simple PWA\'s',
   },
   plugins: [
+    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-compile-es6-packages',
       options: {

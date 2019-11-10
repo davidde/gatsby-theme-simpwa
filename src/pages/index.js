@@ -10,6 +10,7 @@ import Layout from '../components/main/layout';
 import MainView from '../components/main/main-view';
 import Leftside from '../components/sidebar/leftside';
 import Rightside from '../components/sidebar/rightside';
+import SEO from '../components/common/seo';
 import ThemeSwitcher from '../components/common/theme-options/theme-switcher';
 import SidestripSwitcher from '../components/common/theme-options/sidestrip-switcher';
 import Button from '../components/common/forms/button';
@@ -17,6 +18,7 @@ import Button from '../components/common/forms/button';
 
 export default ({ data }) => (
   <Layout theme='joy' >
+    <SEO />
     <Leftside header='Contents' icon={faBars} >
       <Button>Button</Button><br/><br/>
       <ThemeSwitcher select='styled' /><br/>
