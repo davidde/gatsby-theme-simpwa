@@ -39,11 +39,17 @@ class CustomSelect extends React.Component {
 
   closeSelect = () => {
     if (this.state.isOpen) {
-      this.toggleSelect();
+      this.setState({ isOpen: false });
     }
   }
 
-  toggleSelect = () => {
+  toggleSelect = (event) => {
+    // When a label wraps an input element
+    // (instead of using the html 'for' or React 'htmlFor' attributes)
+    // its associated event handler is called twice;
+    // once for the label and once for its input.
+    // In order to prevent this double call, we need to use `event.preventDefault()`:
+    event.preventDefault();
     this.setState({ isOpen: !this.state.isOpen });
   }
 
@@ -57,10 +63,16 @@ class CustomSelect extends React.Component {
     let width = this.props.width ? this.props.width : this.state.width;
 
     return (
-      // tabIndex='0' gives any element the capacity to have focus!
-      <div className='custom-select' tabIndex='0' onBlur={this.closeSelect} style={{ width: width }} >
-          <select className='hidden-native-select' {...this.props}>{this.props.children}</select>
-          <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
+      <div
+          className='custom-select'
+          tabIndex='0' // -> Gives any element the capacity to have focus/onBlur:
+          onBlur={this.closeSelect}
+          onClick={this.toggleSelect}
+          style={{ width: width }}
+      >
+          <select className='hidden-native-select' {...this.props} />
+
+          <div className={`selected-option ${isOpen}`} >
             {this.optionValuesToNames[this.props.value]}
           </div>
 
