@@ -41,8 +41,8 @@ $mediumWidthQuery: (max-width: 60rem);
   }
   --transitionDuration: 0.5s;
   // Make these 0 if you don't want default paddings in Sidebars and Main:
-  --contentPadding: 5%;
-  --mainContentPadding: 2rem 15% 3rem;
+  --contentPadding: 2rem 5%;
+  --mainContentPadding: 2rem 15%;
   // These determine the style of the inactive background when sidebar is active in portrait:
   --overlay-lightness: 0%; // 0% = black!
   --overlay-transparency: 0; // invisible by default
