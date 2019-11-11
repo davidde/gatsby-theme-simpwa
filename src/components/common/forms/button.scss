@@ -15,4 +15,8 @@
     color: var(--buttonHoverColor);
     box-shadow: 0 0 15px 5px var(--buttonShadowColor);
   }
+  &::-moz-focus-inner {
+    // Remove Firefox's inner dotted outline on buttons:
+    border: 0;
+  }
 }
