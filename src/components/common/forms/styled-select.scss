@@ -11,14 +11,12 @@
   box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
   color: #444;
   background-color: #fff;
+  outline: none;
 
-  &:hover {
+  &:hover, &:focus {
     border-color: #888;
     box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
     color: #222;
-  }
-  &:focus {
-    outline: none;
   }
   &:-moz-focusring {
     color: transparent;
