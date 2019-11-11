@@ -9,6 +9,8 @@
   cursor: pointer;
   background-color: grey;
   transition: background-color .2s;
+  // Disable Blue Highlight on Touch:
+  -webkit-tap-highlight-color: transparent;
 
   .toggle-checkbox {
     height: 0;

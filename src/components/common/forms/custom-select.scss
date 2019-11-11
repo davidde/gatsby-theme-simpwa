@@ -4,6 +4,8 @@
   cursor: pointer;
   user-select: none; // Disable text selection on double-click
   outline: none; // Disable focus outline
+  // Disable Blue Highlight on Touch:
+  -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
   font-family: 'Lucida Console', monospace;
   font-size: 1em;

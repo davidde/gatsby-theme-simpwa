@@ -8,6 +8,8 @@
   background: var(--buttonBg);
   color: var(--buttonColor);
   border-radius: 0.4em;
+  // Disable Blue Highlight on Touch:
+  -webkit-tap-highlight-color: transparent;
 
   &:hover, &:focus {
     color: var(--buttonHoverColor);
