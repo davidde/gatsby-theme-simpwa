@@ -3,6 +3,7 @@
   display: inline-block;
   cursor: pointer;
   user-select: none; // Disable text selection on double-click
+  outline: none; // Disable focus outline
   box-sizing: border-box;
   font-family: 'Lucida Console', monospace;
   font-size: 1em;
@@ -15,7 +16,7 @@
   --horizontalPadding: 0.8em;
   --arrowHeight: 0.35em;
 
-  &:hover {
+  &:hover, &:focus {
     --hoverableColor: var(--buttonHoverColor);
     box-shadow: 0 0 15px 5px var(--buttonShadowColor);
     border-radius: var(--borderRadius);

@@ -35,21 +35,11 @@ class CustomSelect extends React.Component {
 
     let width = longestChildLength * 0.6135 + 3 + 'em';
     this.setState({ width });
-    document.addEventListener('click', this.closeSelect);
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('click', this.closeSelect);
-  }
-
-  closeSelect = (event) => {
-    event.preventDefault();
-    // If the Select is open, and this click event was NOT on the select itself,
-    // then close the select box:
-    if ( this.state.isOpen && !(event.target.classList[0] === 'selected-option' ||
-          event.target.classList[0] === 'open' ||
-          event.target.classList[0] === 'closed')) {
-            this.toggleSelect();
+  closeSelect = () => {
+    if (this.state.isOpen) {
+      this.toggleSelect();
     }
   }
 
@@ -67,7 +57,8 @@ class CustomSelect extends React.Component {
     let width = this.props.width ? this.props.width : this.state.width;
 
     return (
-      <div className='custom-select' style={{ width: width }} >
+      // tabIndex='0' gives any element the capacity to have focus!
+      <div className='custom-select' tabIndex='0' onBlur={this.closeSelect} style={{ width: width }} >
           <select className='hidden-native-select' {...this.props}>{this.props.children}</select>
           <div className={`selected-option ${isOpen}`} onClick={this.toggleSelect} >
             {this.optionValuesToNames[this.props.value]}
