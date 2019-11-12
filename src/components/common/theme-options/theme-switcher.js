@@ -12,7 +12,7 @@ function ThemeSwitcher(props) {
     <ThemeContext.Consumer>
     {
         ({ theme, changeTheme }) => (
-            <form>
+            <form style={{margin: '1em 0'}}>
                 <label>
                   <span>Theme: &nbsp;</span>
                   <SelectTag

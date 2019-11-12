@@ -12,7 +12,7 @@ function SidestripSwitcher(props) {
     <SidestripContext.Consumer>
     {
         ({ sidestrip, changeSidestrip }) => (
-            <form>
+            <form style={{margin: '1em 0'}}>
                 <label>
                   <span>Sidestrip: &nbsp;</span>
                   <SelectTag

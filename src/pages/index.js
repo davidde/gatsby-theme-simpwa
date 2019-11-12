@@ -21,9 +21,10 @@ export default ({ data }) => (
   <Layout theme='joy' >
     <SEO />
     <Leftside header='Contents' icon={faBars} >
-      <ThemeToggle /><br/>
-      <Button>Button</Button><br/><br/>
-      <ThemeSwitcher select='styled' /><br/>
+      <ThemeToggle /><br/><br/>
+      <Button>Button</Button>
+      <ThemeSwitcher select='styled' />
+      <SidestripSwitcher select='custom' />
       <SidestripSwitcher select='custom' />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius semper ligula, eu luctus nunc mollis in. Vestibulum vulputate metus metus, id rutrum magna imperdiet nec. Aenean at pharetra risus. Integer convallis ac enim id aliquet. Mauris pharetra mollis nulla, eget posuere mi accumsan eu. Curabitur urna nisl, varius rhoncus tristique et, egestas et augue. Vivamus ac libero faucibus, vehicula quam in, posuere felis. Aliquam erat volutpat. Maecenas pretium iaculis dui sed elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
@@ -67,9 +68,9 @@ export default ({ data }) => (
     </Leftside>
 
     <MainView header={data.site.siteMetadata.title} >
-      <ThemeToggle /><br/>
-      <Button>Button</Button><br/><br/>
-      <ThemeSwitcher select='styled' /><br/>
+      <ThemeToggle /><br/><br/>
+      <Button>Button</Button>
+      <ThemeSwitcher select='styled' />
       <SidestripSwitcher select='custom' />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius semper ligula, eu luctus nunc mollis in. Vestibulum vulputate metus metus, id rutrum magna imperdiet nec. Aenean at pharetra risus. Integer convallis ac enim id aliquet. Mauris pharetra mollis nulla, eget posuere mi accumsan eu. Curabitur urna nisl, varius rhoncus tristique et, egestas et augue. Vivamus ac libero faucibus, vehicula quam in, posuere felis. Aliquam erat volutpat. Maecenas pretium iaculis dui sed elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
@@ -113,9 +114,9 @@ export default ({ data }) => (
     </MainView>
 
     <Rightside header='Home' icon={faHome} >
-      <ThemeToggle /><br/>
-      <Button>Button</Button><br/><br/>
-      <ThemeSwitcher select='styled' /><br/>
+    <ThemeToggle /><br/><br/>
+      <Button>Button</Button>
+      <ThemeSwitcher select='styled' />
       <SidestripSwitcher select='custom' />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius semper ligula, eu luctus nunc mollis in. Vestibulum vulputate metus metus, id rutrum magna imperdiet nec. Aenean at pharetra risus. Integer convallis ac enim id aliquet. Mauris pharetra mollis nulla, eget posuere mi accumsan eu. Curabitur urna nisl, varius rhoncus tristique et, egestas et augue. Vivamus ac libero faucibus, vehicula quam in, posuere felis. Aliquam erat volutpat. Maecenas pretium iaculis dui sed elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
