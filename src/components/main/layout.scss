@@ -10,20 +10,20 @@ body {
   min-height: 100vh;
   max-width: 100vw;
   margin: 0;
-  background: var(--contentBg);
-  color: var(--contentColor);
-  --bodyContentBg: var(--contentBg); // Make this color accessible in sidebars!
+  background: var(--bg-content);
+  color: var(--fg-content);
+  --bg-content-body: var(--bg-content); // Make this color accessible in sidebars!
   /* Disable scrolling on body: */
   overflow: hidden;
 
   font-size: 0.8rem;
-  --headerFontSize: 1.3em;
+  --header-font-size: 1.3em;
   &.notMobile {
     font-size: 1rem;
-    --headerFontSize: 1.7em;
+    --header-font-size: 1.7em;
     @media #{$smallWidthQuery} {
-      --headerHeight: 3rem;
-      --headerFontSize: 1.3em;
+      --header-height: 3rem;
+      --header-font-size: 1.3em;
     }
   }
 }
@@ -40,40 +40,40 @@ body {
 }
 
 .sidebar {
-  background: var(--contentBg);
-  width: var(--sidestripWidth);
-  transition: width var(--transitionDuration);
-  --scrollbarWidth: none;
+  background: var(--bg-content);
+  width: var(--sidestrip-width);
+  transition: width var(--transition-duration);
+  --scrollbar-width: none;
 
   &.left {
     grid-area: left;
-    border-right: var(--sidestripBorderWidth) solid var(--borderColor);
+    border-right: var(--border-width) solid var(--bg-border);
     &.active {
-      border-right: var(--borderWidth) solid var(--borderColor);
-      box-shadow: var(--shadow) var(--shadowColor);
-      width: var(--leftLandscapeWidth);
-      --scrollbarWidth: auto;
+      border-right: var(--border-width) solid var(--bg-border);
+      box-shadow: var(--shadow) var(--bg-shadow);
+      width: var(--sb-landscape-width-left);
+      --scrollbar-width: auto;
       @media #{$portraitQuery} {
-        width: var(--sidestripWidth);
+        width: var(--sidestrip-width);
       }
     }
   }
   &.right {
     grid-area: right;
-    border-left: var(--sidestripBorderWidth) solid var(--borderColor);
+    border-left: var(--border-width) solid var(--bg-border);
     &.active {
-      border-left: var(--borderWidth) solid var(--borderColor);
-      box-shadow: var(--shadow) var(--shadowColor);
-      width: var(--rightLandscapeWidth);
-      --scrollbarWidth: auto;
+      border-left: var(--border-width) solid var(--bg-border);
+      box-shadow: var(--shadow) var(--bg-shadow);
+      width: var(--sb-landscape-width-right);
+      --scrollbar-width: auto;
       @media #{$portraitQuery} {
-        width: var(--sidestripWidth);
+        width: var(--sidestrip-width);
       }
     }
   }
   &.sidestripOff {
-    --sidestripWidth: 0rem;
-    --sidestripBorderWidth: 0px;
+    --sidestrip-width: 0rem;
+    --border-width: 0px;
   }
 }
 
@@ -83,25 +83,25 @@ body {
   .portraitSidebar {
     position: fixed;
     z-index: 30;
-    width: var(--portraitWidth);
-    background: var(--contentBg);
+    width: var(--sb-portrait-width);
+    background: var(--bg-content);
 
-    --offset: calc(-1 * var(--portraitWidth) - var(--borderWidth));
+    --offset: calc(-1 * var(--sb-portrait-width) - var(--border-width));
     &.left {
       &.active {
         left: 0;
       }
       left: var(--offset);
-      transition: left var(--transitionDuration);
-      border-right: var(--borderWidth) solid var(--borderColor);
+      transition: left var(--transition-duration);
+      border-right: var(--border-width) solid var(--bg-border);
     }
     &.right {
       &.active {
         right: 0;
       }
       right: var(--offset);
-      transition: right var(--transitionDuration);
-      border-left: var(--borderWidth) solid var(--borderColor);
+      transition: right var(--transition-duration);
+      border-left: var(--border-width) solid var(--bg-border);
     }
   }
 
@@ -143,16 +143,16 @@ body {
 
 /// Represents the inactive, hoverable sidebar that triggers activation by clicking on it:
 .hoverbar {
-  --hoverableBg: var(--headerBg);
+  --bg-hoverable: var(--bg-header);
   // @media (hover: hover) { -> Prevents hover effects on touch devices,
   // but it also prevents desktop Linux Firefox from accessing :hover effects (bug!)
   // => We create a .canHover class that does work on desktop Linux Firefox:
   &.canHover:hover {
     cursor: pointer;
-    --hoverableBg: var(--hoverBg);
-    --shadowColor: var(--shadowHoverColor);
-    --iconColor: var(--iconHoverColor);
-    --borderColor: var(--borderHoverColor);
+    --bg-hoverable: var(--bg-sidestrip-hover);
+    --bg-shadow: var(--bg-shadow-hover);
+    --fg-icon: var(--fg-icon-hover);
+    --bg-border: var(--bg-border-hover);
   }
 
   /// Square icon div:
@@ -160,25 +160,25 @@ body {
     position: fixed;
     z-index: 10;
     top: 0;
-    width: var(--headerHeight);
-    height: var(--headerHeight);
-    line-height: var(--headerHeight);
-    font-size: calc(var(--headerHeight) / 3 + 0.25rem);
+    width: var(--header-height);
+    height: var(--header-height);
+    line-height: var(--header-height);
+    font-size: calc(var(--header-height) / 3 + 0.25rem);
     text-align: center;
-    background: var(--hoverableBg);
-    border-bottom: var(--borderWidth) solid var(--borderColor);
+    background: var(--bg-hoverable);
+    border-bottom: var(--border-width) solid var(--bg-border);
     &.active {
       z-index: 100;
     }
     &.left {
-      border-right: var(--borderWidth) solid var(--borderColor);
+      border-right: var(--border-width) solid var(--bg-border);
       left: 0;
-      color: var(--iconColor);
+      color: var(--fg-icon);
     }
     &.right {
-      border-left: var(--borderWidth) solid var(--borderColor);
+      border-left: var(--border-width) solid var(--bg-border);
       right: 0;
-      color: var(--iconColor);
+      color: var(--fg-icon);
     }
   }
 
@@ -188,13 +188,13 @@ body {
     z-index: 5;
     top: 0;
     height: 100vh; // Fix chrome mobile bug due to address bar
-    width: var(--sidestripWidth);
-    background: var(--hoverableBg);
-    box-shadow: var(--shadow) var(--shadowColor);
+    width: var(--sidestrip-width);
+    background: var(--bg-hoverable);
+    box-shadow: var(--shadow) var(--bg-shadow);
 
     transition-property: opacity;
     opacity: 1;
-    transition-delay: var(--transitionDuration);
+    transition-delay: var(--transition-duration);
     &.active {
       z-index: 99;
       opacity: 0;
@@ -203,19 +203,19 @@ body {
 
     &.left {
       left: 0;
-      border-right: var(--sidestripBorderWidth) solid var(--borderColor);
+      border-right: var(--border-width) solid var(--bg-border);
       &.sidestripHidden {
-        border-color: var(--bodyContentBg);
-        background: var(--bodyContentBg);
+        border-color: var(--bg-content-body);
+        background: var(--bg-content-body);
         box-shadow: none;
       }
     }
     &.right {
       right: 0;
-      border-left: var(--sidestripBorderWidth) solid var(--borderColor);
+      border-left: var(--border-width) solid var(--bg-border);
       &.sidestripHidden {
-        border-color: var(--bodyContentBg);
-        background: var(--bodyContentBg);
+        border-color: var(--bg-content-body);
+        background: var(--bg-content-body);
         box-shadow: none;
       }
     }
@@ -226,17 +226,17 @@ body {
   .sidestripPatch {
     position: absolute;
     z-index: 15;
-    top: calc(var(--headerHeight) * 3/4);
+    top: calc(var(--header-height) * 3/4);
     bottom: 0;
-    width: var(--sidestripWidth);
-    background: var(--hoverableBg);
+    width: var(--sidestrip-width);
+    background: var(--bg-hoverable);
     &.sidestripHidden {
       background: transparent;
     }
 
     transition-property: opacity;
     opacity: 1;
-    transition-delay: var(--transitionDuration);
+    transition-delay: var(--transition-duration);
     &.active {
       opacity: 0;
       transition-delay: 0s;
@@ -252,53 +252,53 @@ body {
 
 .header {
   position: relative;
-  height: var(--headerHeight);
-  color: var(--headerColor);
-  background: var(--headerBg);
-  border-bottom: var(--borderWidth) solid var(--borderColor);
+  height: var(--header-height);
+  color: var(--fg-header);
+  background: var(--bg-header);
+  border-bottom: var(--border-width) solid var(--bg-border);
   &.left {
     float: right;
-    width: calc(100% - var(--headerHeight));
+    width: calc(100% - var(--header-height));
   }
   &.right {
     float: left;
-    width: calc(100% - var(--headerHeight));
+    width: calc(100% - var(--header-height));
   }
 
   > h1 {
     margin: 0;
     height: 100%; /* Required to prevent overflow! */
-    line-height: calc(var(--headerHeight) - var(--borderWidth)); /* Vertical center */
+    line-height: calc(var(--header-height) - var(--border-width)); /* Vertical center */
     text-align: center; /* Horizontal center */
-    font-size: var(--headerFontSize);
+    font-size: var(--header-font-size);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 
     &.main { // Make main h2 offset adaptive to sidebar status:
       position: absolute;
-      left: calc(var(--headerHeight) - var(--sidestripWidth));
+      left: calc(var(--header-height) - var(--sidestrip-width));
       &.leftActive {
         left: 0;
       }
-      right: calc(var(--headerHeight) - var(--sidestripWidth));
+      right: calc(var(--header-height) - var(--sidestrip-width));
       &.rightActive {
         right: 0;
       }
-      transition: left var(--transitionDuration), right var(--transitionDuration);
+      transition: left var(--transition-duration), right var(--transition-duration);
     }
   }
 }
 
 .content {
   &.main {
-    padding: var(--mainContentPadding);
+    padding: var(--padding-content-main);
   }
   &.left {
-    background: var(--contentBg);
+    background: var(--bg-content);
   }
   &.right {
-    background: var(--contentBg);
+    background: var(--bg-content);
     direction: rtl;
     > div {
       direction: ltr;
@@ -308,11 +308,11 @@ body {
   /* Without border-box, the left/right padding is added
   to the 100% width, resulting in overflowing content! */
   box-sizing: border-box;
-  height: calc(100vh - var(--headerHeight));
-  padding: var(--contentPadding);
+  height: calc(100vh - var(--header-height));
+  padding: var(--padding-content-sidebars);
   overflow: auto;
   clear: both;
-  color: var(--contentColor);
+  color: var(--fg-content);
 
   // Scrollbar styling:
   &::-webkit-scrollbar {
@@ -320,8 +320,8 @@ body {
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: var(--scrollbarBg);
+    background: var(--bg-scrollbar);
     border-radius: 0.6rem;
   } // Hide overflowing sidebar scrollbars on Mac Firefox:
-  scrollbar-width: var(--scrollbarWidth);
+  scrollbar-width: var(--scrollbar-width);
 }
