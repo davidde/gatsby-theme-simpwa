@@ -54,10 +54,10 @@ $mediumWidthQuery: (max-width: 60rem);
 
 // Light theme Colors:
 body.lightTheme {
-  --bodyHeaderBg: hsl(221, 28%, 94%);
-  --bodyHeaderColor: hsla(254, 78%, 52%, 0.75);
-  --bodyContentBg: hsl(221, 28%, 97%);
-  --bodyContentColor: hsla(255, 26%, 18%, 0.75);
+  --headerBg: hsl(221, 28%, 94%);
+  --headerColor: hsla(254, 78%, 52%, 0.75);
+  --contentBg: hsl(221, 28%, 97%);
+  --contentColor: hsla(255, 26%, 18%, 0.75);
   --scrollbarBg: hsl(221, 28%, 91%);
   --borderColor: hsl(221, 28%, 94%);
   --black-overlay-transparency: 0.5;
@@ -87,10 +87,10 @@ body.lightTheme {
 
 // Dark theme Colors:
 body.darkTheme {
-  --bodyHeaderBg: hsl(0, 0%, 0%);
-  --bodyHeaderColor: hsla(34, 100%, 94%, 0.95);
-  --bodyContentBg: hsl(210, 25%, 7%);
-  --bodyContentColor: hsla(0, 0%, 77%, 0.9);
+  --headerBg: hsl(0, 0%, 0%);
+  --headerColor: hsla(34, 100%, 94%, 0.95);
+  --contentBg: hsl(210, 25%, 7%);
+  --contentColor: hsla(0, 0%, 77%, 0.9);
   --scrollbarBg: hsl(210, 25%, 14%);
   --borderColor: hsl(213, 22%, 13%);
   --overlay-lightness: 100%; // 100% = white!
@@ -120,10 +120,10 @@ body.darkTheme {
 
 // Joy theme Colors:
 body.joyTheme {
-  --bodyHeaderBg: linear-gradient(to right, hsl(39, 100%, 50%), hsl(300, 76%, 72%));
-  --bodyHeaderColor: hsla(254, 78%, 52%, 0.75);
-  --bodyContentBg: hsl(60, 100%, 89%);
-  --bodyContentColor: hsla(330, 100%, 39%, 0.8);
+  --headerBg: linear-gradient(to right, hsl(39, 100%, 50%), hsl(300, 76%, 72%));
+  --headerColor: hsla(254, 78%, 52%, 0.75);
+  --contentBg: hsl(60, 100%, 89%);
+  --contentColor: hsla(330, 100%, 39%, 0.8);
   --scrollbarBg: hsl(60, 79%, 82%);
   --borderColor: hsla(254, 78%, 52%, 0.05);
   // 'button' and 'select' styling:
