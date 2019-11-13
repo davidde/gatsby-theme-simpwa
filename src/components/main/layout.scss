@@ -44,10 +44,11 @@ body {
   width: var(--sidestrip-width);
   transition: width var(--transition-duration);
   --scrollbar-width: none;
+  --sidestrip-border-width: var(--border-width);
 
   &.left {
     grid-area: left;
-    border-right: var(--border-width) solid var(--bg-border);
+    border-right: var(--sidestrip-border-width) solid var(--bg-border);
     &.active {
       border-right: var(--border-width) solid var(--bg-border);
       box-shadow: var(--shadow) var(--bg-shadow);
@@ -60,7 +61,7 @@ body {
   }
   &.right {
     grid-area: right;
-    border-left: var(--border-width) solid var(--bg-border);
+    border-left: var(--sidestrip-border-width) solid var(--bg-border);
     &.active {
       border-left: var(--border-width) solid var(--bg-border);
       box-shadow: var(--shadow) var(--bg-shadow);
@@ -73,7 +74,7 @@ body {
   }
   &.sidestripOff {
     --sidestrip-width: 0rem;
-    --border-width: 0px;
+    --sidestrip-border-width: 0px;
   }
 }
 
@@ -203,7 +204,7 @@ body {
 
     &.left {
       left: 0;
-      border-right: var(--border-width) solid var(--bg-border);
+      border-right: var(--sidestrip-border-width) solid var(--bg-border);
       &.sidestripHidden {
         border-color: var(--bg-main-content);
         background: var(--bg-main-content);
@@ -212,7 +213,7 @@ body {
     }
     &.right {
       right: 0;
-      border-left: var(--border-width) solid var(--bg-border);
+      border-left: var(--sidestrip-border-width) solid var(--bg-border);
       &.sidestripHidden {
         border-color: var(--bg-main-content);
         background: var(--bg-main-content);
