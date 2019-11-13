@@ -16,17 +16,17 @@ class Layout extends React.Component {
       sidestrip: this.props.sidestrip,
       // To prevent :hover styles on mobile,
       // and circumvent a desktop linux firefox bug:
-      isMobile: null,
+      hasTouchscreen: null,
       isPortrait: null,
       isMediumViewport: null,
     }
   }
 
   componentDidMount() {
-    let isMobile = window.matchMedia('(hover: none)').matches;
+    let hasTouchscreen = window.matchMedia('(hover: none)').matches;
     let isPortrait = window.matchMedia(vars.portraitQuery).matches;
     let isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
-    this.setState({ isMobile, isPortrait, isMediumViewport });
+    this.setState({ hasTouchscreen, isPortrait, isMediumViewport });
 
     if (!isPortrait) {
       if (this.props.leftActive) {
@@ -39,7 +39,7 @@ class Layout extends React.Component {
       }
     }
 
-    let mobileClass = isMobile ? 'isMobile' : 'notMobile';
+    let mobileClass = hasTouchscreen ? '' : 'noTouchscreen';
     document.body.classList.add(this.state.theme + 'Theme', mobileClass);
     window.addEventListener('resize', this.updateViewports);
   }
@@ -157,13 +157,13 @@ class Layout extends React.Component {
             return React.cloneElement(child, {
                 isActive: this.state.leftActive,
                 toggleSidebar: this.toggleLeftSidebar,
-                isMobile: this.state.isMobile,
+                hasTouchscreen: this.state.hasTouchscreen,
             });
         } else if (child.type.displayName === 'Rightside') {
             return React.cloneElement(child, {
                 isActive: this.state.rightActive,
                 toggleSidebar: this.toggleRightSidebar,
-                isMobile: this.state.isMobile,
+                hasTouchscreen: this.state.hasTouchscreen,
             });
         } else if (child.type.displayName === 'MainView') {
             return React.cloneElement(child, {

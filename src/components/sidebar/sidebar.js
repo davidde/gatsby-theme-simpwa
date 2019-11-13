@@ -23,7 +23,7 @@ function Sidebar(props) {
                 ${active}
                 ${theme + 'Theme'}
                 ${sidestrip === 'off' ? 'sidestripOff' : ''}
-                ${props.isMobile && (sidestrip === 'mobileOff' ||
+                ${props.hasTouchscreen && (sidestrip === 'mobileOff' ||
                                      sidestrip === 'hidden') ? 'sidestripOff' : ''}
             `}>
                 {/* Hoverable part of the sidebar that triggers activation: */}
@@ -32,7 +32,7 @@ function Sidebar(props) {
                     icon={props.icon}
                     isActive={props.isActive}
                     onClick={props.toggleSidebar}
-                    isMobile={props.isMobile}
+                    hasTouchscreen={props.hasTouchscreen}
                     sidestrip={sidestrip}
                 />
 
