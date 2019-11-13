@@ -9,14 +9,11 @@ class Layout extends React.Component {
     super(props);
 
     this.state = {
-      leftActive: (this.props.leftActive ? this.props.leftActive : vars.leftActive)
-                    === 'true' ? true : false,
-      rightActive: (this.props.rightActive ? this.props.rightActive : vars.rightActive)
-                    === 'true' ? true : false,
-      mutex: (this.props.mutex ? this.props.mutex : vars.mutex)
-                    === 'true' ? true : false,
-      theme: this.props.theme ? this.props.theme : vars.theme,
-      sidestrip: this.props.sidestrip ? this.props.sidestrip : vars.sidestrip,
+      leftActive: this.props.leftActive === 'true' ? true : false,
+      rightActive: this.props.rightActive === 'true' ? true : false,
+      mutex: this.props.mutex === 'true' ? true : false,
+      theme: this.props.theme,
+      sidestrip: this.props.sidestrip,
       // To prevent :hover styles on mobile,
       // and circumvent a desktop linux firefox bug:
       isMobile: null,
@@ -201,5 +198,13 @@ class Layout extends React.Component {
     )
   }
 }
+
+Layout.defaultProps = {
+  leftActive: vars.leftActive,
+  rightActive: vars.rightActive,
+  mutex: vars.mutex,
+  theme: vars.theme,
+  sidestrip: vars.sidestrip,
+};
 
 export default Layout;
