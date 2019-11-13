@@ -1,5 +1,7 @@
 .custom-toggle {
   margin: 1em 1em 1em 0;
+  user-select: none; // Disable text selection on double-click
+  border-radius: 3em;
 
   .toggle-label {
     vertical-align: middle;
