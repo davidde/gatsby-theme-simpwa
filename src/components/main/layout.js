@@ -9,9 +9,9 @@ class Layout extends React.Component {
     super(props);
 
     this.state = {
-      leftActive: this.props.leftActive === 'true' ? true : false,
-      rightActive: this.props.rightActive === 'true' ? true : false,
-      mutex: this.props.mutex === 'true' ? true : false,
+      leftActive: false,
+      rightActive: false,
+      mutex: this.props.mutex,
       theme: this.props.theme,
       sidestrip: this.props.sidestrip,
       // To prevent :hover styles on mobile,
@@ -28,15 +28,15 @@ class Layout extends React.Component {
     let isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
     this.setState({ isMobile, isPortrait, isMediumViewport });
 
-    if (isPortrait) {
-      this.setState({
-        leftActive: false,
-        rightActive: false,
-      });
-    } else if ( this.state.leftActive &&
-                this.state.rightActive &&
-                (isMediumViewport || this.state.mutex) ) {
-        this.setState({ rightActive: false });
+    if (!isPortrait) {
+      if (this.props.leftActive) {
+        this.setState({ leftActive: true });
+        if (this.props.rightActive && !(isMediumViewport || this.state.mutex)) {
+          this.setState({ rightActive: true });
+        }
+      } else if (this.props.rightActive) {
+        this.setState({ rightActive: true });
+      }
     }
 
     let mobileClass = isMobile ? 'isMobile' : 'notMobile';
@@ -200,9 +200,9 @@ class Layout extends React.Component {
 }
 
 Layout.defaultProps = {
-  leftActive: vars.leftActive,
-  rightActive: vars.rightActive,
-  mutex: vars.mutex,
+  leftActive: vars.leftActive === 'true',
+  rightActive: vars.rightActive === 'true',
+  mutex: vars.mutex === 'true',
   theme: vars.theme,
   sidestrip: vars.sidestrip,
 };

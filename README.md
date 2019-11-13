@@ -50,14 +50,14 @@ The parent component that enables its 3 children components to work properly.
 
 Props:
   - **theme**: The theme to use for your app: 'light', 'dark' or 'joy'.
-  - **leftActive**: true/false *string* indicating whether
-  the left sidebar should be active on first load
-  - **rightActive**: true/false *string* indicating whether
-  the right sidebar should be active on first load
-  - **mutex**: true/false *string* indicating whether the sidebars should
-  mutually exclude each other from being active
-  - **sidestrip**: string indicating the status of the small hoverable strip
-  at the edge of the screen: 'on', 'off', 'hidden', 'mobileOff', 'mobileHidden'
+  - **leftActive**: Bool indicating whether the left sidebar
+    should be active on first load.
+  - **rightActive**: Bool indicating whether the right sidebar
+    should be active on first load.
+  - **mutex**: Bool indicating whether the sidebars should mutually
+    exclude each other from being active.
+  - **sidestrip**: String indicating the status of the small hoverable strip
+  at the edge of the screen: 'on', 'hidden', 'off', 'mobileOff'.
 
 **NOTE:**  
 The Layout component's props are initialisation props.
