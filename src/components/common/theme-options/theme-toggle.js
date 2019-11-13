@@ -8,7 +8,7 @@ function ThemeToggle() {
   // }
   return (
     <>
-      <Toggle />
+      <Toggle label='Theme:' />
     </>
   );
 }

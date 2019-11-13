@@ -12,7 +12,8 @@ body {
   margin: 0;
   background: var(--bg-content);
   color: var(--fg-content);
-  --bg-content-body: var(--bg-content); // Make this color accessible in sidebars!
+  --bg-main-content: var(--bg-content); // Make these colors accessible in sidebars!
+  --bg-toggle-thumb: var(--bg-header);
   /* Disable scrolling on body: */
   overflow: hidden;
 
@@ -205,8 +206,8 @@ body {
       left: 0;
       border-right: var(--border-width) solid var(--bg-border);
       &.sidestripHidden {
-        border-color: var(--bg-content-body);
-        background: var(--bg-content-body);
+        border-color: var(--bg-main-content);
+        background: var(--bg-main-content);
         box-shadow: none;
       }
     }
@@ -214,8 +215,8 @@ body {
       right: 0;
       border-left: var(--border-width) solid var(--bg-border);
       &.sidestripHidden {
-        border-color: var(--bg-content-body);
-        background: var(--bg-content-body);
+        border-color: var(--bg-main-content);
+        background: var(--bg-main-content);
         box-shadow: none;
       }
     }
