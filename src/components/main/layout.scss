@@ -12,8 +12,7 @@ body {
   margin: 0;
   background: var(--bg-content);
   color: var(--fg-content);
-  --bg-main-content: var(--bg-content); // Make these colors accessible in sidebars!
-  --bg-toggle-thumb: var(--bg-header);
+  --bg-main-content: var(--bg-content); // Make this color accessible in sidebars!
   /* Disable scrolling on body: */
   overflow: hidden;
 

@@ -67,7 +67,7 @@ export default ({ data }) => (
     </Leftside>
 
     <MainView header={data.site.siteMetadata.title} >
-      <ThemeToggle /><br/><br/>
+      <ThemeToggle label='Theme:' /><br/><br/>
       <Button>Button</Button>
       <ThemeSwitcher select='styled' />
       <SidestripSwitcher select='custom' />

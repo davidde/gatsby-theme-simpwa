@@ -2,7 +2,7 @@ import React from 'react';
 import './toggle.scss';
 
 
-function Toggle(props) { // props.label, props.value, props.onChange
+function Toggle(props) {
   return (
     <label className='custom-toggle'>
         { props.label ? <span className='toggle-label'>{props.label}</span> : '' }
@@ -10,7 +10,9 @@ function Toggle(props) { // props.label, props.value, props.onChange
           <input
             className='hidden-native-checkbox'
             type='checkbox'
-            aria-label='Switch between Light and Dark mode'
+            checked={props.checked}
+            onChange={props.onChange}
+            aria-label={props.ariaLabel}
           />
           <span className='toggle-thumb' />
         </div>

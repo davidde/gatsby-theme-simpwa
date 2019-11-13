@@ -18,6 +18,10 @@
     // Disable Blue Highlight on Touch:
     -webkit-tap-highlight-color: transparent;
 
+    &:hover {
+      box-shadow: 0 0 15px 5px var(--bg-button-shadow);
+    }
+
     .hidden-native-checkbox {
       display: none;
 
