@@ -39,7 +39,7 @@ class Layout extends React.Component {
       }
     }
 
-    let mobileClass = hasTouchscreen ? '' : 'noTouchscreen';
+    let mobileClass = hasTouchscreen ? 'hasTouchscreen' : 'noTouchscreen';
     document.body.classList.add(this.state.theme + 'Theme', mobileClass);
     window.addEventListener('resize', this.updateViewports);
   }
