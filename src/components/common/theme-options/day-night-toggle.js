@@ -2,10 +2,8 @@ import React from 'react';
 import Toggle from '../forms/toggle';
 import ThemeContext from '../contexts/theme-context';
 
-function ThemeToggle(props) {
-  // onChange={event =>
-  //   event.target.checked ? 'dark' : 'light'
-  // }
+
+function DayNightToggle(props) {
   return (
     <ThemeContext.Consumer>
     {
@@ -33,4 +31,4 @@ function ThemeToggle(props) {
   );
 }
 
-export default ThemeToggle;
+export default DayNightToggle;

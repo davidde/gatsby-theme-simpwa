@@ -14,14 +14,14 @@ import SEO from '../components/common/seo';
 import ThemeSwitcher from '../components/common/theme-options/theme-switcher';
 import SidestripSwitcher from '../components/common/theme-options/sidestrip-switcher';
 import Button from '../components/common/forms/button';
-import ThemeToggle from '../components/common/theme-options/theme-toggle';
+import DayNightToggle from '../components/common/theme-options/day-night-toggle';
 
 
 export default ({ data }) => (
   <Layout theme='joy' >
     <SEO />
     <Leftside header='Contents' icon={faBars} >
-      <ThemeToggle /><br/><br/>
+      <DayNightToggle /><br/><br/>
       <Button>Button</Button>
       <ThemeSwitcher select='styled' />
       <SidestripSwitcher select='custom' />
@@ -67,7 +67,7 @@ export default ({ data }) => (
     </Leftside>
 
     <MainView header={data.site.siteMetadata.title} >
-      <ThemeToggle label='Theme:' /><br/><br/>
+      <DayNightToggle /><br/><br/>
       <Button>Button</Button>
       <ThemeSwitcher select='styled' />
       <SidestripSwitcher select='custom' />
@@ -113,7 +113,7 @@ export default ({ data }) => (
     </MainView>
 
     <Rightside header='Home' icon={faHome} >
-    <ThemeToggle /><br/><br/>
+      <DayNightToggle /><br/><br/>
       <Button>Button</Button>
       <ThemeSwitcher select='styled' />
       <SidestripSwitcher select='custom' />
