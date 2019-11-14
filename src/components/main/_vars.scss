@@ -69,21 +69,21 @@ body.lightTheme {
   --bg-toggle-thumb: var(--bg-scrollbar);
   // Inactive background of portrait sidebar:
   --black-overlay-transparency: 0.5;
-}
 
-.sidebar.lightTheme {
-  --bg-header: hsl(221, 28%, 87%);
-  --fg-header: hsl(252, 56%, 61%);
-  --bg-content: hsl(221, 28%, 87%);
-  --fg-content: hsla(254, 78%, 62%, 0.75);
-  --bg-border: hsl(221, 28%, 94%);
-  --bg-border-hover: #f1f1f1;
-  --bg-sidestrip-hover: hsl(221, 28%, 75%);
-  --fg-icon: hsl(252, 56%, 61%);
-  --fg-icon-hover: white;
-  --bg-scrollbar: hsl(221, 28%, 94%);
-  --bg-button-shadow: white;
-  --shadow: 0;
+  .sidebar {
+    --bg-header: hsl(221, 28%, 87%);
+    --fg-header: hsl(252, 56%, 61%);
+    --bg-content: hsl(221, 28%, 87%);
+    --fg-content: hsla(254, 78%, 62%, 0.75);
+    --bg-border: hsl(221, 28%, 94%);
+    --bg-border-hover: #f1f1f1;
+    --bg-sidestrip-hover: hsl(221, 28%, 75%);
+    --fg-icon: hsl(252, 56%, 61%);
+    --fg-icon-hover: white;
+    --bg-scrollbar: hsl(221, 28%, 94%);
+    --bg-button-shadow: white;
+    --shadow: 0;
+  }
 }
 
 // Dark theme Colors:
@@ -106,20 +106,20 @@ body.darkTheme {
   // Inactive background of portrait sidebar:
   --overlay-lightness: 100%; // 100% = white!
   --overlay-transparency: 0.15;
-}
 
-.sidebar.darkTheme {
-  --bg-header: hsl(213, 22%, 10%);
-  --fg-header: hsl(237, 21%, 85%);
-  --bg-content: hsl(213, 22%, 10%);
-  --fg-content: hsla(237, 21%, 85%, 0.9);
-  --bg-border: hsl(213, 22%, 18%);
-  --bg-border-hover: hsl(240, 30%, 20%);
-  --bg-sidestrip-hover: hsl(213, 22%, 15%);
-  --fg-icon: hsla(237, 21%, 82%, 0.8);
-  --fg-icon-hover: #f1f1f1;
-  --bg-scrollbar: hsl(213, 22%, 17%);
-  --shadow: 0;
+  .sidebar {
+    --bg-header: hsl(213, 22%, 10%);
+    --fg-header: hsl(237, 21%, 85%);
+    --bg-content: hsl(213, 22%, 10%);
+    --fg-content: hsla(237, 21%, 85%, 0.9);
+    --bg-border: hsl(213, 22%, 18%);
+    --bg-border-hover: hsl(240, 30%, 20%);
+    --bg-sidestrip-hover: hsl(213, 22%, 15%);
+    --fg-icon: hsla(237, 21%, 82%, 0.8);
+    --fg-icon-hover: #f1f1f1;
+    --bg-scrollbar: hsl(213, 22%, 17%);
+    --shadow: 0;
+  }
 }
 
 // Joy theme Colors:
@@ -139,42 +139,42 @@ body.joyTheme {
   --bg-option-hover: hsl(58, 100%, 78%);
   --bg-toggle-track: hsl(213, 22%, 25%);
   --bg-toggle-thumb: var(--bg-header);
-}
 
-.sidebar.left.joyTheme {
-  --bg-header: hsl(24, 100%, 50%);
-  --fg-header: hsl(39, 100%, 85%);
-  --bg-content: hsl(24, 100%, 50%);
-  --fg-content: hsl(24, 100%, 85%);
-  --bg-border: hsl(24, 100%, 75%);
-  --bg-border-hover: hsl(24, 100%, 65%);
-  --bg-sidestrip-hover: hsl(24, 100%, 38%);
-  --fg-icon: hsl(39, 100%, 85%);
-  --fg-icon-hover: #f1f1f1;
-  --bg-scrollbar: hsl(24, 100%, 70%);
-  --shadow: 6px 0 15px 0;
-  // 'button' and 'select' styling:
-  --bg-button: linear-gradient(hsl(39, 100%, 90%) 25%, hsl(39, 100%, 65%) 85%);
-  --bg-button-shadow: var(--fg-content);
-  --bg-options: hsl(39, 100%, 80%);
-  --bg-option-hover: hsla(24, 100%, 50%, 0.25);
-}
+  .sidebar.left {
+    --bg-header: hsl(24, 100%, 50%);
+    --fg-header: hsl(39, 100%, 85%);
+    --bg-content: hsl(24, 100%, 50%);
+    --fg-content: hsl(24, 100%, 85%);
+    --bg-border: hsl(24, 100%, 75%);
+    --bg-border-hover: hsl(24, 100%, 65%);
+    --bg-sidestrip-hover: hsl(24, 100%, 38%);
+    --fg-icon: hsl(39, 100%, 85%);
+    --fg-icon-hover: #f1f1f1;
+    --bg-scrollbar: hsl(24, 100%, 70%);
+    --shadow: 6px 0 15px 0;
+    // 'button' and 'select' styling:
+    --bg-button: linear-gradient(hsl(39, 100%, 90%) 25%, hsl(39, 100%, 65%) 85%);
+    --bg-button-shadow: var(--fg-content);
+    --bg-options: hsl(39, 100%, 80%);
+    --bg-option-hover: hsla(24, 100%, 50%, 0.25);
+  }
 
-.sidebar.right.joyTheme {
-  --bg-header: hsl(300, 76%, 52%);
-  --fg-header: hsl(300, 76%, 87%);
-  --bg-content: hsl(300, 76%, 52%);
-  --fg-content: hsl(300, 76%, 86%);
-  --bg-border: hsl(300, 76%, 77%);
-  --bg-border-hover: hsl(300, 76%, 67%);
-  --bg-sidestrip-hover: hsl(300, 76%, 37%);
-  --fg-icon: hsl(300, 76%, 87%);
-  --fg-icon-hover: #f1f1f1;
-  --bg-scrollbar: hsl(300, 76%, 72%);
-  --shadow: -6px 0 15px 0;
-  // 'button' and 'select' styling:
-  --bg-button: linear-gradient(hsl(300, 76%, 95%) 25%, hsl(300, 76%, 75%) 85%);
-  --bg-button-shadow: var(--fg-content);
-  --bg-options: hsl(300, 76%, 88%);
-  --bg-option-hover: hsla(300, 76%, 65%, 0.25);
+  .sidebar.right {
+    --bg-header: hsl(300, 76%, 52%);
+    --fg-header: hsl(300, 76%, 87%);
+    --bg-content: hsl(300, 76%, 52%);
+    --fg-content: hsl(300, 76%, 86%);
+    --bg-border: hsl(300, 76%, 77%);
+    --bg-border-hover: hsl(300, 76%, 67%);
+    --bg-sidestrip-hover: hsl(300, 76%, 37%);
+    --fg-icon: hsl(300, 76%, 87%);
+    --fg-icon-hover: #f1f1f1;
+    --bg-scrollbar: hsl(300, 76%, 72%);
+    --shadow: -6px 0 15px 0;
+    // 'button' and 'select' styling:
+    --bg-button: linear-gradient(hsl(300, 76%, 95%) 25%, hsl(300, 76%, 75%) 85%);
+    --bg-button-shadow: var(--fg-content);
+    --bg-options: hsl(300, 76%, 88%);
+    --bg-option-hover: hsla(300, 76%, 65%, 0.25);
+  }
 }
