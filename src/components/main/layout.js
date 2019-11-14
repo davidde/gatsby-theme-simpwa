@@ -11,8 +11,8 @@ class Layout extends React.Component {
     this.state = {
       leftActive: false,
       rightActive: false,
-      mutex: this.props.mutex,
-      theme: this.props.theme,
+      mutex: false,
+      theme: 'joy',
       sidestrip: '',
       // To prevent :hover styles on mobile,
       // and circumvent a desktop linux firefox bug:
@@ -41,7 +41,7 @@ class Layout extends React.Component {
     }
 
     let mobileClass = hasTouchscreen ? 'hasTouchscreen' : 'noTouchscreen';
-    document.body.classList.add(this.state.theme + 'Theme', mobileClass);
+    document.body.classList.add(mobileClass);
     window.addEventListener('resize', this.updateViewports);
   }
   componentWillUnmount() {
@@ -140,8 +140,6 @@ class Layout extends React.Component {
   changeTheme = (event) => {
     // For CustomSelect the event argument is no event, but the theme name:
     let theme = event.target ? event.target.value : event;
-    document.body.classList.remove(this.state.theme + 'Theme');
-    document.body.classList.add(theme + 'Theme');
     this.setState({ theme });
   }
 
@@ -187,6 +185,7 @@ class Layout extends React.Component {
         }}>
             <div
               id='layout'
+              className={this.state.theme + 'Theme'}
               onTouchStart={this.handleTouchStart}
               onTouchMove={this.handleTouchMove}
             >
@@ -201,6 +200,9 @@ class Layout extends React.Component {
 }
 
 Layout.defaultProps = {
+  // It appears that the sass imported `vars` are undefined on build,
+  // so these default props should be assigned in `componentDidMount`,
+  // and never in the constructor!
   leftActive: vars.leftActive === 'true',
   rightActive: vars.rightActive === 'true',
   mutex: vars.mutex === 'true',

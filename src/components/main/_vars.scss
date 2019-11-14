@@ -51,7 +51,7 @@ $mediumWidthQuery: (max-width: 60rem);
 }
 
 // Light theme Colors:
-body.lightTheme {
+#layout.lightTheme {
   --bg-header: hsl(221, 28%, 94%);
   --fg-header: hsla(254, 78%, 52%, 0.75);
   --bg-content: hsl(221, 28%, 97%);
@@ -87,7 +87,7 @@ body.lightTheme {
 }
 
 // Dark theme Colors:
-body.darkTheme {
+#layout.darkTheme {
   --bg-header: hsl(0, 0%, 0%);
   --fg-header: hsla(34, 100%, 94%, 0.95);
   --bg-content: hsl(210, 25%, 7%);
@@ -123,7 +123,7 @@ body.darkTheme {
 }
 
 // Joy theme Colors:
-body.joyTheme {
+#layout.joyTheme {
   --bg-header: linear-gradient(to right, hsl(39, 100%, 50%), hsl(300, 76%, 72%));
   --fg-header: hsla(254, 78%, 52%, 0.75);
   --bg-content: hsl(60, 100%, 89%);
