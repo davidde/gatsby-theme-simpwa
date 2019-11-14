@@ -13,7 +13,7 @@ class Layout extends React.Component {
       rightActive: false,
       mutex: this.props.mutex,
       theme: this.props.theme,
-      sidestrip: this.props.sidestrip,
+      sidestrip: '',
       // To prevent :hover styles on mobile,
       // and circumvent a desktop linux firefox bug:
       hasTouchscreen: null,
@@ -26,7 +26,8 @@ class Layout extends React.Component {
     let hasTouchscreen = window.matchMedia('(hover: none)').matches;
     let isPortrait = window.matchMedia(vars.portraitQuery).matches;
     let isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
-    this.setState({ hasTouchscreen, isPortrait, isMediumViewport });
+    let sidestrip = this.props.sidestrip;
+    this.setState({ hasTouchscreen, isPortrait, isMediumViewport, sidestrip });
 
     if (!isPortrait) {
       if (this.props.leftActive) {
