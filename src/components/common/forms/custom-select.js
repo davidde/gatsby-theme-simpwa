@@ -78,20 +78,19 @@ class CustomSelect extends React.Component {
 
           <div className={`options-box ${isOpen}`} >
             { // Map over the child options:
-              React.Children.map(this.props.children,
-                (child) => {
-                  let selected = this.props.value === child.props.value ? 'selected' : '';
+              React.Children.map(this.props.children, child => {
+                  let active = this.props.value === child.props.value ? 'active-option' : 'passive-option';
+
                   return (
                     <div
-                      className={selected}
+                      className={active}
                       onClick={() => this.selectOption(child.props.value)}
                     >
-                      <span className={`checkmark ${selected}`}>&#10003; &nbsp;</span>
+                      <span className={`checkmark ${active}`}>&#10003; &nbsp;</span>
                       {child.props.children}
                     </div>
                   );
-                }
-              )
+              })
             }
           </div>
       </div>

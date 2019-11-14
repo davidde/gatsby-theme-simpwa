@@ -91,14 +91,14 @@
       &:hover {
         background: var(--bg-option-hover);
       }
-      &.selected {
+      &.active-option {
         color: var(--fg-button-hover);
       }
 
       .checkmark {
         color: var(--fg-checkmark, green);
         visibility: hidden;
-        &.selected {
+        &.active-option {
           visibility: visible;
         }
       }
