@@ -50,11 +50,11 @@ The parent component that enables its 3 children components to work properly.
 
 Props:
   - **theme**: The theme to use for your app: 'light', 'dark' or 'joy'.
-  - **leftActive**: Bool indicating whether the left sidebar
+  - **leftActive**: *Bool* (not string) indicating whether the left sidebar
     should be active on first load.
-  - **rightActive**: Bool indicating whether the right sidebar
+  - **rightActive**: *Bool* (not string) indicating whether the right sidebar
     should be active on first load.
-  - **mutex**: Bool indicating whether the sidebars should mutually
+  - **mutex**: *Bool* (not string) indicating whether the sidebars should mutually
     exclude each other from being active.
   - **sidestrip**: String indicating the status of the small hoverable strip
   at the edge of the screen: 'on', 'hidden', 'off', 'mobileOff'.
