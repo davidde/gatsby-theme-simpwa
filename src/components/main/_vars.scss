@@ -29,10 +29,9 @@ $mediumWidthQuery: (max-width: 60rem);
   // Make these 0 if you don't want default paddings in Main and Sidebars:
   --padding-content-main: 2rem 15%;
   --padding-content-sidebars: 2rem 5%;
-  // These determine the style of the inactive background when sidebar is active in portrait:
-  --overlay-lightness: 0%; // 0% = black!
-  --overlay-transparency: 0; // invisible by default
-  --black-overlay-transparency: 0.6;
+  // Color intensity of the inactive background of the portrait-mode sidebar:
+  --white-overlay-transparency: 0.12;
+  --black-overlay-transparency: 0.5;
   // General colors for shadows:
   --bg-shadow: #888;
   --bg-shadow-hover: #333;
@@ -56,9 +55,6 @@ $mediumWidthQuery: (max-width: 60rem);
   --bg-option-hover: hsla(221, 28%, 70%, 0.3);
   --bg-toggle-track: hsl(213, 22%, 40%);
   --bg-toggle-thumb: var(--bg-scrollbar);
-
-  // Inactive background of portrait sidebar:
-  --black-overlay-transparency: 0.5;
 
   .sidebar {
     --bg-icon: hsl(221, 28%, 87%);
@@ -98,10 +94,6 @@ $mediumWidthQuery: (max-width: 60rem);
   --bg-toggle-track: hsl(221, 28%, 80%);
   --bg-toggle-thumb: var(--bg-scrollbar);
 
-  // Inactive background of portrait sidebar:
-  --overlay-lightness: 100%; // 100% = white!
-  --overlay-transparency: 0.15;
-
   .sidebar {
     --bg-icon: hsl(0, 0%, 0%);
     --bg-icon-hover: hsl(213, 22%, 17%);
@@ -128,6 +120,7 @@ $mediumWidthQuery: (max-width: 60rem);
   --fg-content: hsla(330, 100%, 39%, 0.8);
   --bg-border: hsla(254, 78%, 52%, 0.05);
   --bg-scrollbar: hsl(60, 79%, 82%);
+  --black-overlay-transparency: 0.75;
 
   // 'button' and 'select' styling:
   --bg-button: linear-gradient(hsl(39, 100%, 90%) 25%, hsl(54, 100%, 72%) 85%);

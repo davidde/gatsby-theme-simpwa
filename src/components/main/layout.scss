@@ -112,7 +112,7 @@ body {
     left: 0;
     width: 100vw;
     min-height: 120vh; // Fix chrome mobile bug due to address bar
-    background: hsla(0, 0%, var(--overlay-lightness), var(--overlay-transparency));
+    background: hsla(0, 0%, 100%, var(--white-overlay-transparency));
     z-index: 20;
     visibility: hidden;
     &.active {
