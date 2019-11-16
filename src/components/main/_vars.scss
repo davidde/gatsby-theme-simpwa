@@ -77,7 +77,7 @@ $mediumWidthQuery: (max-width: 60rem);
 // Dark theme Colors:
 #layout.darkTheme {
   --bg-header: hsl(0, 0%, 0%);
-  --fg-header: hsla(34, 100%, 94%, 0.95);
+  --fg-header: hsla(237, 21%, 82%, 1);//hsl(237, 21%, 85%);//hsla(34, 100%, 94%, 0.95);
   --bg-content: hsl(210, 25%, 7%);
   --fg-content: hsla(0, 0%, 77%, 0.9);
   --bg-border: hsl(213, 22%, 13%);
@@ -96,15 +96,15 @@ $mediumWidthQuery: (max-width: 60rem);
   --overlay-transparency: 0.15;
 
   .sidebar {
-    --bg-header: hsl(213, 22%, 10%);
+    --bg-header: hsl(213, 22%, 12%);
     --fg-header: hsl(237, 21%, 85%);
-    --bg-content: hsl(213, 22%, 10%);
-    --fg-content: hsla(237, 21%, 85%, 0.9);
-    --bg-border: hsl(213, 22%, 18%);
-    --bg-border-hover: hsl(240, 30%, 20%);
-    --bg-sidestrip-hover: hsl(213, 22%, 15%);
+    --bg-content: hsl(213, 22%, 12%);
+    --fg-content: hsla(237, 21%, 90%, 0.75);
+    --bg-border: hsl(213, 22%, 20%);
+    --bg-border-hover: hsl(213, 22%, 25%); //(240, 30%, 25%);
+    --bg-sidestrip-hover: hsl(213, 22%, 17%);
     --fg-icon: hsla(237, 21%, 82%, 0.8);
-    --fg-icon-hover: #f1f1f1;
+    --fg-icon-hover: white;
     --bg-scrollbar: hsl(213, 22%, 17%);
     --shadow: 0;
   }
