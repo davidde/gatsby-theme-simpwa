@@ -76,11 +76,11 @@ $mediumWidthQuery: (max-width: 60rem);
 
 // Dark theme Colors:
 #layout.darkTheme {
-  --bg-header: hsl(0, 0%, 0%);
-  --fg-header: hsla(237, 21%, 82%, 1);//hsl(237, 21%, 85%);//hsla(34, 100%, 94%, 0.95);
+  --bg-header: hsl(210, 25%, 11%);
+  --fg-header: hsla(237, 21%, 82%, 1);
   --bg-content: hsl(210, 25%, 7%);
   --fg-content: hsla(0, 0%, 77%, 0.9);
-  --bg-border: hsl(213, 22%, 13%);
+  --bg-border: hsl(213, 22%, 15%);
   --bg-scrollbar: hsl(210, 25%, 14%);
   // 'button' and 'select' styling:
   --bg-button: linear-gradient(hsl(0, 0%, 70%) 25%, hsl(0, 0%, 50%) 85%);
@@ -96,12 +96,12 @@ $mediumWidthQuery: (max-width: 60rem);
   --overlay-transparency: 0.15;
 
   .sidebar {
-    --bg-header: hsl(213, 22%, 12%);
+    --bg-header: hsl(0, 0%, 0%);
     --fg-header: hsl(237, 21%, 85%);
-    --bg-content: hsl(213, 22%, 12%);
-    --fg-content: hsla(237, 21%, 90%, 0.75);
-    --bg-border: hsl(213, 22%, 20%);
-    --bg-border-hover: hsl(213, 22%, 25%); //(240, 30%, 25%);
+    --bg-content: hsl(0, 6%, 6%);
+    --fg-content: hsla(237, 21%, 85%, 0.7);
+    --bg-border: hsl(213, 22%, 16%);
+    --bg-border-hover: hsl(213, 22%, 25%);
     --bg-sidestrip-hover: hsl(213, 22%, 17%);
     --fg-icon: hsla(237, 21%, 82%, 0.8);
     --fg-icon-hover: white;
