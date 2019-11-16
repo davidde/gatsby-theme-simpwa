@@ -6,18 +6,6 @@ $mediumWidthQuery: (max-width: 60rem);
 :export {
   portraitQuery: #{$portraitQuery};
   mediumWidthQuery: #{$mediumWidthQuery};
-  // Specify which sidebars should be active on first load:
-  leftActive: true;
-  rightActive: true;
-  // Set mutex to true if sidebars should never be active at the same time:
-  // (On smaller viewports, sidebars will never be active at the same time regardless of mutex)
-  mutex: false;
-  // Set the appearance of the sidestrip (hoverable strip at the side of screen to activate sidebar):
-  // on, off, mobileOff, hidden or mobileHidden
-  sidestrip: mobileOff;
-  // Set the theme: light, dark or joy
-  theme: light;
-  /// NOTE: The props specified in the Layout component take precedence over these variables!
 }
 
 :root {
@@ -34,8 +22,8 @@ $mediumWidthQuery: (max-width: 60rem);
   --sb-landscape-width-left: 25vw;
   --sb-landscape-width-right: 25vw;
   @media #{$mediumWidthQuery} {
-    --sb-landscape-width-left: 40vw;
-    --sb-landscape-width-right: 40vw;
+    --sb-landscape-width-left: 35vw;
+    --sb-landscape-width-right: 35vw;
   }
   --transition-duration: 0.5s;
   // Make these 0 if you don't want default paddings in Main and Sidebars:

@@ -5,15 +5,23 @@ import vars from './layout.scss';
 
 
 class Layout extends React.Component {
+  static defaultProps = {
+    leftActive: true,
+    rightActive: true,
+    mutex: false,
+    theme: 'light',
+    sidestrip: 'mobileOff',
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
       leftActive: false,
       rightActive: false,
-      mutex: false,
-      theme: 'light',
-      sidestrip: 'mobileOff',
+      mutex: this.props.mutex,
+      theme: this.props.theme,
+      sidestrip: this.props.sidestrip,
       // To prevent :hover styles on mobile,
       // and circumvent a desktop linux firefox bug:
       hasTouchscreen: null,
@@ -26,22 +34,29 @@ class Layout extends React.Component {
     let hasTouchscreen = window.matchMedia('(hover: none)').matches;
     let isPortrait = window.matchMedia(vars.portraitQuery).matches;
     let isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
-    let sidestrip = this.props.sidestrip;
-    this.setState({ hasTouchscreen, isPortrait, isMediumViewport, sidestrip });
+    let leftActive = this.props.leftActive;
+    let rightActive = this.props.rightActive;
 
-    if (!isPortrait) {
-      if (this.props.leftActive) {
-        this.setState({ leftActive: true });
-        if (this.props.rightActive && !(isMediumViewport || this.state.mutex)) {
-          this.setState({ rightActive: true });
-        }
-      } else if (this.props.rightActive) {
-        this.setState({ rightActive: true });
+    if (isPortrait) {
+      leftActive = false;
+      rightActive = false;
+    } else if (isMediumViewport || this.state.mutex) {
+      if (leftActive && rightActive) {
+        rightActive = false;
       }
     }
 
+    this.setState({
+      hasTouchscreen,
+      isPortrait,
+      isMediumViewport,
+      leftActive,
+      rightActive,
+    });
+
     window.addEventListener('resize', this.updateViewports);
   }
+
   componentWillUnmount() {
       window.removeEventListener('resize', this.updateViewports);
   }
@@ -196,16 +211,5 @@ class Layout extends React.Component {
     )
   }
 }
-
-Layout.defaultProps = {
-  // It appears that the sass imported `vars` are undefined on build,
-  // so these default props should be assigned in `componentDidMount`,
-  // and never in the constructor!
-  leftActive: vars.leftActive === 'true',
-  rightActive: vars.rightActive === 'true',
-  mutex: vars.mutex === 'true',
-  theme: vars.theme,
-  sidestrip: vars.sidestrip,
-};
 
 export default Layout;
