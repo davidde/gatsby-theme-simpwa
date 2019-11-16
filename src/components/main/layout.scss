@@ -13,15 +13,10 @@ body {
   /* Disable scrolling on body: */
   overflow: hidden;
 
-  font-size: 0.8rem;
-  --header-font-size: 1.3em;
-  &.noTouchscreen {
-    font-size: 1rem;
-    --header-font-size: 1.7em;
-    @media #{$smallWidthQuery} {
-      --header-height: 3rem;
-      --header-font-size: 1.3em;
-    }
+  --header-font-size: 1.7em;
+  @media #{$smallWidthQuery} {
+    font-size: 0.8rem;
+    --header-font-size: 1.3em;
   }
 }
 

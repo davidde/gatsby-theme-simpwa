@@ -12,8 +12,8 @@ class Layout extends React.Component {
       leftActive: false,
       rightActive: false,
       mutex: false,
-      theme: 'joy',
-      sidestrip: '',
+      theme: 'light',
+      sidestrip: 'mobileOff',
       // To prevent :hover styles on mobile,
       // and circumvent a desktop linux firefox bug:
       hasTouchscreen: null,
@@ -40,8 +40,6 @@ class Layout extends React.Component {
       }
     }
 
-    let mobileClass = hasTouchscreen ? 'hasTouchscreen' : 'noTouchscreen';
-    document.body.classList.add(mobileClass);
     window.addEventListener('resize', this.updateViewports);
   }
   componentWillUnmount() {
