@@ -139,15 +139,14 @@ body {
 
 /// Represents the inactive, hoverable sidebar that triggers activation by clicking on it:
 .hoverbar {
-  --bg-hoverable: var(--bg-header);
   // @media (hover: hover) { -> Prevents hover effects on touch devices,
   // but it also prevents desktop Linux Firefox from accessing :hover effects (bug!)
   // => We create a .canHover class that does work on desktop Linux Firefox:
   &.canHover:hover {
     cursor: pointer;
-    --bg-hoverable: var(--bg-sidestrip-hover);
-    --bg-shadow: var(--bg-shadow-hover);
+    --bg-icon: var(--bg-icon-hover);
     --fg-icon: var(--fg-icon-hover);
+    --bg-shadow: var(--bg-shadow-hover);
     --bg-border: var(--bg-border-hover);
   }
 
@@ -161,7 +160,7 @@ body {
     line-height: var(--header-height);
     font-size: calc(var(--header-height) / 3 + 0.25rem);
     text-align: center;
-    background: var(--bg-hoverable);
+    background: var(--bg-icon);
     border-bottom: var(--border-width) solid var(--bg-border);
     &.active {
       z-index: 100;
@@ -185,7 +184,7 @@ body {
     top: 0;
     height: 100vh; // Fix chrome mobile bug due to address bar
     width: var(--sidestrip-width);
-    background: var(--bg-hoverable);
+    background: var(--bg-icon);
     box-shadow: var(--shadow) var(--bg-shadow);
 
     transition-property: opacity;
@@ -225,7 +224,7 @@ body {
     top: calc(var(--header-height) * 3/4);
     bottom: 0;
     width: var(--sidestrip-width);
-    background: var(--bg-hoverable);
+    background: var(--bg-icon);
     &.sidestripHidden {
       background: transparent;
     }

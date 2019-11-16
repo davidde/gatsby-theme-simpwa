@@ -46,6 +46,7 @@ $mediumWidthQuery: (max-width: 60rem);
   --fg-content: hsla(255, 26%, 18%, 0.75);
   --bg-border: hsl(221, 28%, 94%);
   --bg-scrollbar: hsl(221, 28%, 91%);
+
   // 'button' and 'select' styling:
   --bg-button: linear-gradient(hsl(221, 28%, 97%) 25%, hsl(221, 28%, 80%) 85%);
   --bg-button-shadow: hsl(223, 34%, 80%);
@@ -55,19 +56,23 @@ $mediumWidthQuery: (max-width: 60rem);
   --bg-option-hover: hsla(221, 28%, 70%, 0.3);
   --bg-toggle-track: hsl(213, 22%, 40%);
   --bg-toggle-thumb: var(--bg-scrollbar);
+
   // Inactive background of portrait sidebar:
   --black-overlay-transparency: 0.5;
 
   .sidebar {
-    --bg-header: hsl(221, 28%, 87%);
-    --fg-header: hsl(252, 56%, 61%);
-    --bg-content: hsl(221, 28%, 87%);
-    --fg-content: hsla(254, 78%, 62%, 0.75);
-    --bg-border: hsl(221, 28%, 94%);
-    --bg-border-hover: #f1f1f1;
-    --bg-sidestrip-hover: hsl(221, 28%, 75%);
+    --bg-icon: hsl(221, 28%, 87%);
+    --bg-icon-hover: hsl(221, 28%, 75%);
     --fg-icon: hsl(252, 56%, 61%);
     --fg-icon-hover: white;
+
+    --bg-header: var(--bg-icon);
+    --fg-header: hsl(252, 56%, 61%);
+    --bg-content: var(--bg-icon);
+    --fg-content: hsla(254, 78%, 62%, 0.75);
+
+    --bg-border: hsl(221, 28%, 94%);
+    --bg-border-hover: #f1f1f1;
     --bg-scrollbar: hsl(221, 28%, 94%);
     --bg-button-shadow: white;
     --shadow: 0;
@@ -82,6 +87,7 @@ $mediumWidthQuery: (max-width: 60rem);
   --fg-content: hsla(0, 0%, 77%, 0.9);
   --bg-border: hsl(213, 22%, 15%);
   --bg-scrollbar: hsl(210, 25%, 14%);
+
   // 'button' and 'select' styling:
   --bg-button: linear-gradient(hsl(0, 0%, 70%) 25%, hsl(0, 0%, 50%) 85%);
   --bg-button-shadow: hsl(0, 0%, 40%);
@@ -91,20 +97,24 @@ $mediumWidthQuery: (max-width: 60rem);
   --bg-option-hover: hsla(0, 0%, 35%, 0.25);
   --bg-toggle-track: hsl(221, 28%, 80%);
   --bg-toggle-thumb: var(--bg-scrollbar);
+
   // Inactive background of portrait sidebar:
   --overlay-lightness: 100%; // 100% = white!
   --overlay-transparency: 0.15;
 
   .sidebar {
-    --bg-header: hsl(0, 0%, 0%);
+    --bg-icon: hsl(0, 0%, 0%);
+    --bg-icon-hover: hsl(213, 22%, 17%);
+    --fg-icon: hsla(237, 21%, 82%, 0.8);
+    --fg-icon-hover: white;
+
+    --bg-header: var(--bg-icon);
     --fg-header: hsl(237, 21%, 85%);
     --bg-content: hsl(0, 6%, 6%);
     --fg-content: hsla(237, 21%, 85%, 0.7);
+
     --bg-border: hsl(213, 22%, 16%);
     --bg-border-hover: hsl(213, 22%, 25%);
-    --bg-sidestrip-hover: hsl(213, 22%, 17%);
-    --fg-icon: hsla(237, 21%, 82%, 0.8);
-    --fg-icon-hover: white;
     --bg-scrollbar: hsl(213, 22%, 17%);
     --shadow: 0;
   }
@@ -118,6 +128,7 @@ $mediumWidthQuery: (max-width: 60rem);
   --fg-content: hsla(330, 100%, 39%, 0.8);
   --bg-border: hsla(254, 78%, 52%, 0.05);
   --bg-scrollbar: hsl(60, 79%, 82%);
+
   // 'button' and 'select' styling:
   --bg-button: linear-gradient(hsl(39, 100%, 90%) 25%, hsl(54, 100%, 72%) 85%);
   --bg-button-shadow: hsl(24, 100%, 85%);
@@ -129,17 +140,21 @@ $mediumWidthQuery: (max-width: 60rem);
   --bg-toggle-thumb: var(--bg-header);
 
   .sidebar.left {
-    --bg-header: hsl(24, 100%, 50%);
-    --fg-header: hsl(39, 100%, 85%);
-    --bg-content: hsl(24, 100%, 50%);
-    --fg-content: hsl(24, 100%, 90%);
-    --bg-border: hsl(24, 100%, 75%);
-    --bg-border-hover: hsl(24, 100%, 65%);
-    --bg-sidestrip-hover: hsl(24, 100%, 38%);
+    --bg-icon: hsl(24, 100%, 50%);
+    --bg-icon-hover: hsl(24, 100%, 38%);
     --fg-icon: hsl(39, 100%, 85%);
     --fg-icon-hover: #f1f1f1;
+
+    --bg-header: var(--bg-icon);
+    --fg-header: hsl(39, 100%, 85%);
+    --bg-content: var(--bg-icon);
+    --fg-content: hsl(24, 100%, 90%);
+
+    --bg-border: hsl(24, 100%, 75%);
+    --bg-border-hover: hsl(24, 100%, 65%);
     --bg-scrollbar: hsl(24, 100%, 70%);
     --shadow: 6px 0 15px 0;
+
     // 'button' and 'select' styling:
     --bg-button: linear-gradient(hsl(39, 100%, 90%) 25%, hsl(39, 100%, 65%) 85%);
     --bg-button-shadow: var(--fg-content);
@@ -148,17 +163,21 @@ $mediumWidthQuery: (max-width: 60rem);
   }
 
   .sidebar.right {
-    --bg-header: hsl(300, 76%, 52%);
-    --fg-header: hsl(300, 76%, 87%);
-    --bg-content: hsl(300, 76%, 52%);
-    --fg-content: hsl(300, 76%, 90%);
-    --bg-border: hsl(300, 76%, 77%);
-    --bg-border-hover: hsl(300, 76%, 67%);
-    --bg-sidestrip-hover: hsl(300, 76%, 37%);
+    --bg-icon: hsl(300, 76%, 52%);
+    --bg-icon-hover: hsl(300, 76%, 37%);
     --fg-icon: hsl(300, 76%, 87%);
     --fg-icon-hover: #f1f1f1;
+
+    --bg-header: var(--bg-icon);
+    --fg-header: hsl(300, 76%, 87%);
+    --bg-content: var(--bg-icon);
+    --fg-content: hsl(300, 76%, 90%);
+
+    --bg-border: hsl(300, 76%, 77%);
+    --bg-border-hover: hsl(300, 76%, 67%);
     --bg-scrollbar: hsl(300, 76%, 72%);
     --shadow: -6px 0 15px 0;
+
     // 'button' and 'select' styling:
     --bg-button: linear-gradient(hsl(300, 76%, 95%) 25%, hsl(300, 76%, 75%) 85%);
     --bg-button-shadow: var(--fg-content);
