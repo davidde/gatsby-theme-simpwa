@@ -1,18 +1,28 @@
 // The _vars.scss partial holds all variables:
 // sizes, media queries, theme colors, etc.
-$portraitQuery: screen and (orientation: portrait);
-$smallWidthQuery: (max-width: 40rem);
-$mediumWidthQuery: (max-width: 60rem);
+$phone: (orientation: portrait) and (max-device-width: 420px),
+        (orientation: landscape) and (max-device-width: 820px);
+$small-viewport: (max-width: 800px);
+$medium-viewport: (max-width: 1200px);
 :export {
-  portraitQuery: #{$portraitQuery};
-  mediumWidthQuery: #{$mediumWidthQuery};
+  mediumViewport: #{$medium-viewport};
 }
 
 :root {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  --font-size: 1rem;
+  --header-font-size: 1.7rem;
   --header-height: 4rem;
   --sidestrip-width: 0.5rem;
   --border-width: 2px;
-  @media #{$smallWidthQuery} {
+  @media #{$small-viewport} {
+    --header-font-size: 1.3rem;
+    --header-height: 3.2rem;
+  }
+  @media #{$phone} {
+    --font-size: 0.8rem;
+    --header-font-size: 1.05rem;
     --header-height: 2.75rem;
     --sidestrip-width: 0.4rem;
     --border-width: 1px;
@@ -21,7 +31,7 @@ $mediumWidthQuery: (max-width: 60rem);
   --sb-portrait-width: 80vw;
   --sb-landscape-width-left: 25vw;
   --sb-landscape-width-right: 25vw;
-  @media #{$mediumWidthQuery} {
+  @media #{$medium-viewport} {
     --sb-landscape-width-left: 35vw;
     --sb-landscape-width-right: 35vw;
   }

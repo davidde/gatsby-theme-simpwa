@@ -32,8 +32,8 @@ class Layout extends React.Component {
 
   componentDidMount() {
     let hasTouchscreen = window.matchMedia('(hover: none)').matches;
-    let isPortrait = window.matchMedia(vars.portraitQuery).matches;
-    let isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
+    let isPortrait = window.matchMedia('(orientation: portrait)').matches;
+    let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
     let leftActive = this.props.leftActive;
     let rightActive = this.props.rightActive;
 
@@ -62,8 +62,8 @@ class Layout extends React.Component {
   }
 
   updateViewports = () => {
-    let isPortrait = window.matchMedia(vars.portraitQuery).matches;
-    let isMediumViewport = window.matchMedia(vars.mediumWidthQuery).matches;
+    let isPortrait = window.matchMedia('(orientation: portrait)').matches;
+    let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
 
     // If either side is active while transitioning to/from a portrait viewport, unactivate both sides:
     if (this.state.isPortrait !== isPortrait) {
