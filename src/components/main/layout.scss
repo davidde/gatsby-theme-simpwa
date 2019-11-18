@@ -33,7 +33,7 @@ body {
   &.left {
     grid-area: left;
     border-right: var(--sidestrip-border-width) solid var(--bg-border);
-    &.active {
+    &.activeLandscape {
       border-right: var(--border-width) solid var(--bg-border);
       box-shadow: var(--shadow) var(--bg-shadow);
       width: var(--sb-landscape-width-left);
@@ -46,7 +46,7 @@ body {
   &.right {
     grid-area: right;
     border-left: var(--sidestrip-border-width) solid var(--bg-border);
-    &.active {
+    &.activeLandscape {
       border-left: var(--border-width) solid var(--bg-border);
       box-shadow: var(--shadow) var(--bg-shadow);
       width: var(--sb-landscape-width-right);
@@ -73,7 +73,7 @@ body {
 
     --offset: calc(-1 * var(--sb-portrait-width) - var(--border-width));
     &.left {
-      &.active {
+      &.activePortrait {
         left: 0;
       }
       left: var(--offset);
@@ -81,7 +81,7 @@ body {
       border-right: var(--border-width) solid var(--bg-border);
     }
     &.right {
-      &.active {
+      &.activePortrait {
         right: 0;
       }
       right: var(--offset);
@@ -104,7 +104,7 @@ body {
     background: hsla(0, 0%, 100%, var(--white-overlay-transparency));
     z-index: 20;
     visibility: hidden;
-    &.active {
+    &.activePortrait {
       visibility: visible;
       cursor: pointer;
     }
@@ -120,7 +120,7 @@ body {
     z-index: 19;
     background: hsla(0, 0%, 0%, var(--black-overlay-transparency));
     visibility: hidden;
-    &.active {
+    &.activePortrait {
       visibility: visible;
     }
   }
@@ -151,8 +151,15 @@ body {
     text-align: center;
     background: var(--bg-icon);
     border-bottom: var(--border-width) solid var(--bg-border);
-    &.active {
-      z-index: 100;
+    @media (orientation: portrait) {
+      &.activePortrait {
+        z-index: 100;
+      }
+    }
+    @media (orientation: landscape) {
+      &.activeLandscape {
+        z-index: 100;
+      }
     }
     &.left {
       border-right: var(--border-width) solid var(--bg-border);
@@ -179,10 +186,19 @@ body {
     transition-property: opacity;
     opacity: 1;
     transition-delay: var(--transition-duration);
-    &.active {
-      z-index: 99;
-      opacity: 0;
-      transition-delay: 0s;
+    @media (orientation: portrait) {
+      &.activePortrait {
+        z-index: 99;
+        opacity: 0;
+        transition-delay: 0s;
+      }
+    }
+    @media (orientation: landscape) {
+      &.activeLandscape {
+        z-index: 99;
+        opacity: 0;
+        transition-delay: 0s;
+      }
     }
 
     &.left {
@@ -221,9 +237,17 @@ body {
     transition-property: opacity;
     opacity: 1;
     transition-delay: var(--transition-duration);
-    &.active {
-      opacity: 0;
-      transition-delay: 0s;
+    @media (orientation: portrait) {
+      &.activePortrait {
+        opacity: 0;
+        transition-delay: 0s;
+      }
+    }
+    @media (orientation: landscape) {
+      &.activeLandscape {
+        opacity: 0;
+        transition-delay: 0s;
+      }
     }
     &.left {
       left: 0;

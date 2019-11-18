@@ -7,10 +7,8 @@ import SidestripContext from '../common/contexts/sidestrip-context';
 
 
 function Sidebar(props) {
-  let activePortrait = props.isActivePortrait ? 'active' : '';
-  let activeLandscape = props.isActiveLandscape ? 'active' : '';
-  let isActive = props.isActivePortrait || props.isActiveLandscape;
-  let active = isActive ? 'active' : '';
+  let activePortrait = props.isActivePortrait ? 'activePortrait' : '';
+  let activeLandscape = props.isActiveLandscape ? 'activeLandscape' : '';
 
   return (
     <SidestripContext.Consumer>
@@ -28,7 +26,8 @@ function Sidebar(props) {
             <Hoverbar
                 whichSide={props.whichSide}
                 icon={props.icon}
-                isActive={isActive}
+                activePortrait={activePortrait}
+                activeLandscape={activeLandscape}
                 onClick={props.toggleSidebar}
                 hasTouchscreen={props.hasTouchscreen}
                 sidestrip={sidestrip}
@@ -36,10 +35,10 @@ function Sidebar(props) {
 
             {/* Mock background layers to hide the portrait sidebar by clicking on it: */}
             <div
-              className={`mock-portrait-bg ${props.whichSide} ${active}`}
+              className={`mock-portrait-bg ${props.whichSide} ${activePortrait}`}
               onClick={props.toggleSidebar}
             />
-            <div className={`mock-portrait-bg-sub ${props.whichSide} ${active}`} />
+            <div className={`mock-portrait-bg-sub ${props.whichSide} ${activePortrait}`} />
 
             {/* In portrait mode the active sidebar is styled differently: */}
             <div className={`portraitSidebar ${props.whichSide} ${activePortrait}`}>
