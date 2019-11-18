@@ -85,8 +85,8 @@ class Layout extends React.Component {
     // If both sides are active while transitioning to a medium viewport, unactivate one side:
     if (this.state.isMediumViewport !== isMediumViewport) {
       this.setState({ isMediumViewport });
-      if ((this.state.leftActivePortrait || this.state.rightActivePortrait) &&
-          (this.state.leftActiveLandscape || this.state.rightActiveLandscape) &&
+      if ((this.state.leftActivePortrait || this.state.leftActiveLandscape) &&
+          (this.state.rightActivePortrait || this.state.rightActiveLandscape) &&
           isMediumViewport) {
               this.setState({
                 rightActivePortrait: false,
