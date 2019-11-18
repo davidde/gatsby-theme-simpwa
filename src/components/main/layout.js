@@ -195,8 +195,6 @@ class Layout extends React.Component {
   }
 
   render() {
-    console.log('leftActivePortrait = ', this.state.leftActivePortrait);
-    console.log('leftActiveLandscape = ', this.state.leftActiveLandscape);
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
         if (child.type.displayName === 'Leftside') {

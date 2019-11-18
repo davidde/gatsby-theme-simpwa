@@ -19,6 +19,7 @@ function ThemeSwitcher(props) {
                     name='theme'
                     value={theme}
                     onChange={changeTheme}
+                    width='6.0675em'
                   >
                     <option value='light'>light</option>
                     <option value='dark'>dark</option>
