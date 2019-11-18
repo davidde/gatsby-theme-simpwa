@@ -9,6 +9,9 @@
   box-sizing: border-box;
   font-family: 'Lucida Console', monospace;
   font-size: 1em;
+  // Vertically align the label and select component:
+  bottom: .08em;
+  vertical-align: middle;
 
   --fg-hoverable: var(--fg-button);
   --bg-border: var(--bg-shadow);
@@ -37,6 +40,7 @@
     padding: var(--padding-vertical) var(--padding-horizontal);
     border: var(--border-width) solid var(--bg-border);
     border-radius: var(--border-radius);
+    height: 1.2em;
 
     // Create the arrow inside the selected option:
     &::after {
