@@ -11,14 +11,7 @@ class CustomSelect extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: false,
-      width: null,
-    }
     this.optionValuesToNames = {};
-  }
-
-  componentDidMount() {
     let longestChildLength = this.props.children[0].props.children.length;
     // this.props.value = 'value' prop of CustomSelect
     // this.props.children = options of CustomSelect
@@ -33,8 +26,11 @@ class CustomSelect extends React.Component {
       }
     );
 
-    let width = longestChildLength * 0.6135 + 3 + 'em';
-    this.setState({ width });
+    this.width = longestChildLength * 0.6135 + 3 + 'em';
+
+    this.state = {
+      isOpen: false,
+    }
   }
 
   closeSelect = () => {
@@ -60,7 +56,7 @@ class CustomSelect extends React.Component {
 
   render() {
     let isOpen = this.state.isOpen ? 'open' : 'closed';
-    let width = this.props.width ? this.props.width : this.state.width;
+    let width = this.props.width ? this.props.width : this.width;
 
     return (
       <div

@@ -19,7 +19,6 @@ function SidestripSwitcher(props) {
                     name='sidestrip'
                     value={sidestrip}
                     onChange={changeSidestrip}
-                    width='10.362em'
                   >
                     <option value='on'>on</option>
                     <option value='hidden'>hidden</option>

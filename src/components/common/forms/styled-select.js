@@ -10,12 +10,6 @@ class StyledSelect extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      width: null,
-    }
-  }
-
-  componentDidMount() {
     let longestChildLength = this.props.children[0].props.children.length;
     this.props.children.forEach(
       (child) => {
@@ -25,21 +19,18 @@ class StyledSelect extends React.Component {
       }
     );
 
-    let width = longestChildLength * 0.6135 + 3 + 'em';
-    this.setState({ width });
+    this.width = longestChildLength * 0.6135 + 3 + 'em';
   }
 
   render() {
-    let width = this.props.width ? this.props.width : this.state.width;
+    let width = this.props.width ? this.props.width : this.width;
 
     return (
       <select
         className='styled-select'
         style={{ width: width }}
         {...this.props}
-      >
-        {this.props.children}
-      </select>
+      />
     );
   }
 }
