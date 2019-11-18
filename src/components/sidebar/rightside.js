@@ -1,17 +1,17 @@
-import React from "react"
-import Sidebar from "./sidebar"
+import React from 'react';
+import Sidebar from './sidebar';
 
 
 class Rightside extends React.Component {
   static displayName = 'Rightside';
 
   render() {
-      return <Sidebar
-                whichSide='right'
-                {...this.props}
-              >
-                {this.props.children}
-              </Sidebar>
+    return (
+      <Sidebar
+        whichSide='right'
+        {...this.props}
+      />
+    );
   }
 }
 
