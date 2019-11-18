@@ -34,12 +34,11 @@ body {
     grid-area: left;
     border-right: var(--sidestrip-border-width) solid var(--bg-border);
     &.activeLandscape {
-      border-right: var(--border-width) solid var(--bg-border);
-      box-shadow: var(--shadow) var(--bg-shadow);
-      width: var(--sb-landscape-width-left);
-      --scrollbar-width: auto;
-      @media (orientation: portrait) {
-        width: var(--sidestrip-width);
+      @media (orientation: landscape) {
+        border-right: var(--border-width) solid var(--bg-border);
+        box-shadow: var(--shadow) var(--bg-shadow);
+        width: var(--sb-landscape-width-left);
+        --scrollbar-width: auto;
       }
     }
   }
@@ -47,12 +46,11 @@ body {
     grid-area: right;
     border-left: var(--sidestrip-border-width) solid var(--bg-border);
     &.activeLandscape {
-      border-left: var(--border-width) solid var(--bg-border);
-      box-shadow: var(--shadow) var(--bg-shadow);
-      width: var(--sb-landscape-width-right);
-      --scrollbar-width: auto;
-      @media (orientation: portrait) {
-        width: var(--sidestrip-width);
+      @media (orientation: landscape) {
+        border-left: var(--border-width) solid var(--bg-border);
+        box-shadow: var(--shadow) var(--bg-shadow);
+        width: var(--sb-landscape-width-right);
+        --scrollbar-width: auto;
       }
     }
   }
@@ -286,12 +284,14 @@ body {
     &.main { // Make main h2 offset adaptive to sidebar status:
       position: absolute;
       left: calc(var(--header-height) - var(--sidestrip-width));
-      &.leftActive {
-        left: 0;
-      }
       right: calc(var(--header-height) - var(--sidestrip-width));
-      &.rightActive {
-        right: 0;
+      @media (orientation: landscape) {
+        &.leftActive {
+          left: 0;
+        }
+        &.rightActive {
+          right: 0;
+        }
       }
       transition: left var(--transition-duration), right var(--transition-duration);
     }
