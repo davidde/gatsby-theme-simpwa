@@ -148,7 +148,8 @@ class Layout extends React.Component {
     }
 
     // Left sidebar:
-    if ( this.clientX < (20/100 * window.screen.width) || this.state.leftActive ) {
+    if ( this.clientX < (20/100 * window.screen.width) ||
+         this.state.leftActivePortrait || this.state.leftActiveLandscape ) {
       if (xDelta > 0) { // Swipe to right:
         if (this.state.isPortrait) {
           this.setState({ leftActivePortrait: true });
@@ -164,7 +165,8 @@ class Layout extends React.Component {
     }
 
     // Right sidebar:
-    if ( this.clientX > (80/100 * window.screen.width) || this.state.rightActive ) {
+    if ( this.clientX > (80/100 * window.screen.width) ||
+         this.state.rightActivePortrait || this.state.rightActiveLandscape ) {
       if (xDelta > 0) { // Swipe to right:
         this.setState({
           rightActivePortrait: false,
