@@ -202,20 +202,15 @@ body {
     &.left {
       left: 0;
       border-right: var(--sidestrip-border-width) solid var(--bg-border);
-      &.sidestripHidden {
-        border-color: var(--bg-main-content);
-        background: var(--bg-main-content);
-        box-shadow: none;
-      }
     }
     &.right {
       right: 0;
       border-left: var(--sidestrip-border-width) solid var(--bg-border);
-      &.sidestripHidden {
-        border-color: var(--bg-main-content);
-        background: var(--bg-main-content);
-        box-shadow: none;
-      }
+    }
+    &.sidestripHidden {
+      border-color: var(--bg-main-content);
+      background: var(--bg-main-content);
+      box-shadow: none;
     }
   }
 
