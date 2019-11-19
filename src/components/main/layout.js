@@ -27,16 +27,16 @@ class Layout extends React.Component {
       mutex: this.props.mutex,
       theme: this.props.theme,
       sidestrip: this.props.sidestrip,
-      // To prevent :hover styles on mobile,
-      // and circumvent a desktop linux firefox bug:
-      hasTouchscreen: null,
+
       isPortrait: null,
       isMediumViewport: null,
     }
   }
 
   componentDidMount() {
-    let hasTouchscreen = window.matchMedia('(hover: none)').matches;
+    // 'hasTouchscreen' prevents :hover styles on mobile,
+    // and circumvents a desktop linux firefox bug:
+    this.hasTouchscreen = window.matchMedia('(hover: none)').matches;
     let isPortrait = window.matchMedia('(orientation: portrait)').matches;
     let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
     let leftActiveLandscape = this.state.leftActiveLandscape;
@@ -52,7 +52,6 @@ class Layout extends React.Component {
     }
 
     this.setState({
-      hasTouchscreen,
       isPortrait,
       isMediumViewport,
       leftActiveLandscape,
@@ -209,14 +208,14 @@ class Layout extends React.Component {
                 isActivePortrait: this.state.leftActivePortrait,
                 isActiveLandscape: this.state.leftActiveLandscape,
                 toggleSidebar: this.toggleLeftSidebar,
-                hasTouchscreen: this.state.hasTouchscreen,
+                hasTouchscreen: this.hasTouchscreen,
             });
         } else if (child.type.displayName === 'Rightside') {
             return React.cloneElement(child, {
                 isActivePortrait: this.state.rightActivePortrait,
                 isActiveLandscape: this.state.rightActiveLandscape,
                 toggleSidebar: this.toggleRightSidebar,
-                hasTouchscreen: this.state.hasTouchscreen,
+                hasTouchscreen: this.hasTouchscreen,
             });
         } else if (child.type.displayName === 'MainView') {
             return React.cloneElement(child, {
