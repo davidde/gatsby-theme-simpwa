@@ -17,8 +17,9 @@ class Layout extends React.Component {
     super(props);
 
     this.state = {
-      // We use separate state for portrait and landscape sidebars so that mobile and desktop
-      // sidebar activity can be independent of each other for the initial page load.
+      // We use separate state for portrait and landscape sidebars
+      // so that mobile and desktop sidebar activity can be independent
+      // of each other for the initial page load:
       leftActivePortrait: false,
       leftActiveLandscape: this.props.leftActive,
       rightActivePortrait: false,
@@ -69,24 +70,26 @@ class Layout extends React.Component {
     let isPortrait = window.matchMedia('(orientation: portrait)').matches;
     let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
 
-    // If either side is active while transitioning to/from a portrait viewport, unactivate both sides:
+    // If either side is active while transitioning
+    // to/from a portrait viewport, unactivate both sides:
     if (this.state.isPortrait !== isPortrait) {
       this.setState({ isPortrait });
-      if (this.state.leftActivePortrait || this.state.rightActivePortrait
-          || this.state.leftActiveLandscape || this.state.rightActiveLandscape) {
-        this.setState({
-          leftActivePortrait: false,
-          leftActiveLandscape: false,
-          rightActivePortrait: false,
-          rightActiveLandscape: false,
-        });
+      if (this.state.leftActivePortrait || this.state.rightActivePortrait ||
+          this.state.leftActiveLandscape || this.state.rightActiveLandscape) {
+              this.setState({
+                leftActivePortrait: false,
+                leftActiveLandscape: false,
+                rightActivePortrait: false,
+                rightActiveLandscape: false,
+              });
       }
     }
-    // If both sides are active while transitioning to a medium viewport, unactivate one side:
+    // If both sides are active while transitioning
+    // to a medium viewport, unactivate one side:
     if (this.state.isMediumViewport !== isMediumViewport) {
       this.setState({ isMediumViewport });
       if ((this.state.leftActivePortrait || this.state.leftActiveLandscape) &&
-          (this.state.rightActivePortrait || this.state.rightActiveLandscape) &&
+         (this.state.rightActivePortrait || this.state.rightActiveLandscape) &&
           isMediumViewport) {
               this.setState({
                 rightActivePortrait: false,
@@ -104,8 +107,9 @@ class Layout extends React.Component {
       }
     } else {
       this.setState({leftActiveLandscape: !this.state.leftActiveLandscape});
-      if (this.state.rightActiveLandscape && (this.state.isMediumViewport || this.state.mutex)) {
-        this.setState({ rightActiveLandscape: false });
+      if (this.state.rightActiveLandscape &&
+         (this.state.isMediumViewport || this.state.mutex)) {
+              this.setState({ rightActiveLandscape: false });
       }
     }
   }
@@ -118,8 +122,9 @@ class Layout extends React.Component {
       }
     } else {
       this.setState({rightActiveLandscape: !this.state.rightActiveLandscape});
-      if (this.state.leftActiveLandscape && (this.state.isMediumViewport || this.state.mutex)) {
-        this.setState({ leftActiveLandscape: false });
+      if (this.state.leftActiveLandscape &&
+         (this.state.isMediumViewport || this.state.mutex)) {
+              this.setState({ leftActiveLandscape: false });
       }
     }
   }
@@ -191,7 +196,7 @@ class Layout extends React.Component {
   }
 
   changeSidestrip = (event) => {
-    // For CustomSelect the event argument is no event, but the state of sidestrip:
+    // For CustomSelect the event argument is no event, but sidestrip state:
     let sidestrip = event.target ? event.target.value : event;
     this.setState({ sidestrip });
   }
@@ -215,7 +220,7 @@ class Layout extends React.Component {
             });
         } else if (child.type.displayName === 'MainView') {
             return React.cloneElement(child, {
-                // These props are used to change the text offset in the Main header:
+                // To change the text offset in the Main header:
                 leftActive: this.state.leftActiveLandscape,
                 rightActive: this.state.rightActiveLandscape,
             });
