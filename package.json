@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DavidDeprost/gatsby-theme-simpwa"
+    "url": "https://github.com/davidde/gatsby-theme-simpwa"
   },
   "devDependencies": {
     "gatsby": "^2.13.51",
