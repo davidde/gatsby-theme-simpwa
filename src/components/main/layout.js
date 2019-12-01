@@ -24,7 +24,6 @@ class Layout extends React.Component {
       leftActiveLandscape: this.props.leftActive,
       rightActivePortrait: false,
       rightActiveLandscape: this.props.rightActive,
-      mutex: this.props.mutex,
       theme: this.props.theme,
       sidestrip: this.props.sidestrip,
     }
@@ -42,7 +41,7 @@ class Layout extends React.Component {
         leftActiveLandscape: false,
         rightActiveLandscape: false,
       });
-    } else if (this.isMediumViewport || this.state.mutex) {
+    } else if (this.isMediumViewport || this.props.mutex) {
       if (this.state.leftActiveLandscape && this.state.rightActiveLandscape) {
         this.setState({ rightActiveLandscape: false });
       }
@@ -97,7 +96,7 @@ class Layout extends React.Component {
     } else {
       this.setState({leftActiveLandscape: !this.state.leftActiveLandscape});
       if (this.state.rightActiveLandscape &&
-         (this.isMediumViewport || this.state.mutex)) {
+         (this.isMediumViewport || this.props.mutex)) {
               this.setState({ rightActiveLandscape: false });
       }
     }
@@ -112,7 +111,7 @@ class Layout extends React.Component {
     } else {
       this.setState({rightActiveLandscape: !this.state.rightActiveLandscape});
       if (this.state.leftActiveLandscape &&
-         (this.isMediumViewport || this.state.mutex)) {
+         (this.isMediumViewport || this.props.mutex)) {
               this.setState({ leftActiveLandscape: false });
       }
     }
