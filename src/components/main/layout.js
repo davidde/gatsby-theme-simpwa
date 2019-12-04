@@ -190,27 +190,36 @@ class Layout extends React.Component {
   }
 
   render() {
+    let leftOpen = this.state.leftActivePortrait ||
+                   this.state.leftActiveLandscape ? 'open' : 'closed';
+    let rightOpen = this.state.rightActivePortrait ||
+                    this.state.rightActiveLandscape ? 'open' : 'closed';
+
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
         if (child.type.displayName === 'Leftside') {
             return React.cloneElement(child, {
-                isActivePortrait: this.state.leftActivePortrait,
-                isActiveLandscape: this.state.leftActiveLandscape,
+                open: leftOpen,
                 toggleSidebar: this.toggleLeftSidebar,
                 hasTouchscreen: this.hasTouchscreen,
             });
         } else if (child.type.displayName === 'Rightside') {
             return React.cloneElement(child, {
-                isActivePortrait: this.state.rightActivePortrait,
-                isActiveLandscape: this.state.rightActiveLandscape,
+                open: rightOpen,
                 toggleSidebar: this.toggleRightSidebar,
                 hasTouchscreen: this.hasTouchscreen,
             });
         } else if (child.type.displayName === 'MainView') {
             return React.cloneElement(child, {
-                // To change the text offset in the Main header:
-                leftActive: this.state.leftActiveLandscape,
-                rightActive: this.state.rightActiveLandscape,
+                // To change the text offset in the Main header in landscape mode:
+                leftActiveLandscape: this.state.leftActiveLandscape,
+                rightActiveLandscape: this.state.rightActiveLandscape,
+                // To change the portrait mock background visibility:
+                activePortrait: this.state.leftActivePortrait || this.state.rightActivePortrait,
+                closePortraitSidebars: () => this.setState({
+                  leftActivePortrait: false,
+                  rightActivePortrait: false,
+                }),
             });
         } // else return child;
       }

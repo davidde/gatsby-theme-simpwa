@@ -1,7 +1,8 @@
-import React from "react"
+import React from 'react';
 
-import Header from '../common/header'
-import Content from '../common/content'
+import Header from '../common/header';
+import Content from '../common/content';
+import MockBackground from './mock-background';
 
 
 class MainView extends React.Component {
@@ -10,17 +11,20 @@ class MainView extends React.Component {
   render() {
     return (
       <div id='main'>
+          <Header
+            title={this.props.header}
+            leftActiveLandscape={this.props.leftActiveLandscape}
+            rightActiveLandscape={this.props.rightActiveLandscape}
+          />
 
-        <Header
-          which='main'
-          title={this.props.header}
-          leftActive={this.props.leftActive}
-          rightActive={this.props.rightActive}
-        />
-        <Content which='main'>
-          {this.props.children}
-        </Content>
+          <Content>
+              {this.props.children}
+          </Content>
 
+          <MockBackground
+            activePortrait={this.props.activePortrait}
+            closePortraitSidebars={this.props.closePortraitSidebars}
+          />
       </div>
     )
   }

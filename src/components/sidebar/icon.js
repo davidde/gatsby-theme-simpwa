@@ -1,17 +1,20 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+
 /// Represents the inactive, hoverable sidebar that triggers activation by clicking on it:
-function Hoverbar(props) {
+function Icon(props) {
   let canHover = props.hasTouchscreen ? '' : 'canHover';
   let sidestripHidden = props.sidestrip === 'hidden' ? 'sidestripHidden' : '';
 
   return (
-    <div className={`hoverbar ${canHover}`}
-         onClick={props.onClick} >
+    <div
+      className={`icon ${canHover}`}
+      onClick={props.toggleSidebar}
+    >
 
         {/* Square icon div: */}
-        <div className={`iconSquare ${props.whichSide} ${props.activePortrait} ${props.activeLandscape}`} >
+        <div className={`icon-square ${props.whichSide} ${props.activePortrait} ${props.activeLandscape}`} >
             <FontAwesomeIcon icon={props.icon} />
         </div>
 
@@ -26,4 +29,4 @@ function Hoverbar(props) {
   )
 }
 
-export default Hoverbar;
+export default Icon;

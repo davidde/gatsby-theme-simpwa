@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from './sidebar';
+import Icon from './icon';
 
 
 class Leftside extends React.Component {
@@ -7,10 +8,19 @@ class Leftside extends React.Component {
 
   render() {
     return (
-      <Sidebar
-        whichSide='left'
-        {...this.props}
-      />
+        <div id='left' className={this.props.open} >
+            <Icon
+              icon={this.props.icon}
+              toggleSidebar={this.props.toggleSidebar}
+            />
+
+            <Sidebar
+              header={this.props.header}
+              open={this.props.open}
+            >
+                {this.props.children}
+            </Sidebar>
+        </div>
     );
   }
 }

@@ -9,20 +9,191 @@ body {
   overflow: hidden; // Disable scrolling on body
 }
 
+// Style in common for sidebars and main area:
 #layout {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  grid-template-areas: 'left main right';
-  background: var(--bg-content);
-  color: var(--fg-content);
-  --bg-main-content: var(--bg-content); // Make this color accessible in sidebars!
+  display: flex;
+
+  .header {
+    position: relative;
+    height: var(--header-height);
+    background: var(--bg-header);
+    color: var(--fg-header);
+    border-bottom: var(--border-width) solid var(--bg-border);
+    .title {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0;
+      box-sizing: border-box;
+      height: 100%; // Required to prevent overflow!
+      line-height: var(--header-height); // Vertical center
+      text-align: center; // Horizontal center
+      font-size: var(--header-font-size);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .content {
+    /* Without border-box, the left/right padding is added
+    to the 100% width, resulting in overflowing content! */
+    box-sizing: border-box;
+    height: calc(100vh - var(--header-height));
+    padding: var(--padding-content-sidebars);
+    overflow: auto;
+    background: var(--bg-content);
+    color: var(--fg-content);
+
+    // Scrollbar styling:
+    &::-webkit-scrollbar {
+      width: 0.6rem;
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--bg-scrollbar);
+      border-radius: 0.6rem;
+    } // Hide overflowing sidebar scrollbars on Mac Firefox:
+    scrollbar-width: var(--scrollbar-width);
+  }
 }
 
+// Main area specific style:
 #main {
-  grid-area: main;
-  min-width: 0;
+  // min-width: 0;
+  // background: var(--bg-content);
+  // color: var(--fg-content);
+
+  .header {
+    @media (orientation: landscape) {
+      .title {
+        transition: left var(--secs), right var(--secs);
+        &.left-closed-landscape { left: var(--header-height); }
+        &.right-closed-landscape { right: var(--header-height); }
+      }
+    }
+  }
+
+  @media (orientation: portrait) {
+    /// Mock background layers to hide the portrait sidebars by clicking
+    /// in the background; 2 layers are provided so dark themes can first
+    /// be darkened (to darken their lighter elements), and then lightened
+    /// so they are distinguished from the rest of the theme.
+    .mock-bg-white {
+      /// Top mock background layer which is used for clicking,
+      /// and coloring white-transparent.
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      min-height: 120vh; // Fix chrome mobile bug due to address bar
+      background: hsla(0, 0%, 100%, var(--white-overlay-transparency));
+      z-index: 5;
+      cursor: pointer;
+    }
+    .mock-bg-black {
+      /// Bottom mock background layer which is used for coloring black-transparent.
+      /// Click events are triggered on the above layer.
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      min-height: 120vh; // Fix chrome mobile bug due to address bar
+      z-index: 4;
+      background: hsla(0, 0%, 0%, var(--black-overlay-transparency));
+    }
+    .visible { visibility: visible; }
+    .invisible { visibility: hidden; }
+  }
 }
 
+// Style in common for both sidebars:
+#left, #right {
+  z-index: 10;
+  width: 0;
+  // Landscape ONLY transition:
+  transition: width var(--secs);
+  @media (orientation: landscape) {
+    &.open { width: calc(1% * var(--landscape-width)); }
+  }
+
+  .icon {
+    // @media (hover: hover) { -> Prevents hover effects on touch devices,
+    // but it also prevents desktop Linux Firefox from accessing :hover effects (bug!)
+    // => We create a .canHover class that does work on desktop Linux Firefox:
+    &.canHover:hover {
+      cursor: pointer;
+      --bg-icon: var(--bg-icon-hover);
+      --fg-icon: var(--fg-icon-hover);
+      --bg-shadow: var(--bg-shadow-hover);
+      --bg-border: var(--bg-border-hover);
+    }
+
+    // Square icon div:
+    .icon-square {
+      position: fixed;
+      z-index: 100;
+      width: var(--header-height);
+      height: var(--header-height);
+      line-height: var(--header-height);
+      font-size: calc(var(--header-height) / 3 + 0.25rem);
+      border-bottom: var(--border-width) solid var(--bg-border);
+      background: var(--bg-icon);
+      color: var(--fg-icon);
+      text-align: center;
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+
+  .sidebar {
+    // Portrait AND landscape transitions:
+    transition: transform var(--secs);
+    @media (orientation: portrait) { width: var(--portrait-width); }
+    @media (orientation: landscape) { width: calc(1vw * var(--landscape-width)); }
+    .header {
+      width: calc(100% - var(--header-height));
+    }
+  }
+}
+
+// Left sidebar specific style:
+#left {
+  --landscape-width: var(--landscape-width-left);
+  .icon-square {
+    left: 0;
+    border-right: var(--border-width) solid var(--bg-border);
+  }
+  .sidebar {
+    border-right: var(--border-width) solid var(--bg-border);
+    // Left portrait AND landscape transition:
+    &.closed { transform: translateX(-100%); }
+    .header { left: var(--header-height); }
+  }
+}
+
+// Right sidebar specific style:
+#right {
+  --landscape-width: var(--landscape-width-right);
+  .icon-square {
+    right: 0;
+    border-left: var(--border-width) solid var(--bg-border);
+  }
+  .sidebar {
+    border-left: var(--border-width) solid var(--bg-border);
+    @media (orientation: portrait) {
+      // Right portrait transition ONLY:
+      &.open { transform: translateX(-100%); }
+    }
+  }
+}
+
+
+
+
+
+
+/*
 .sidebar {
   background: var(--bg-content);
   width: var(--sidestrip-width);
@@ -31,7 +202,6 @@ body {
   --sidestrip-border-width: var(--border-width);
 
   &.left {
-    grid-area: left;
     border-right: var(--sidestrip-border-width) solid var(--bg-border);
     &.activeLandscape {
       @media (orientation: landscape) {
@@ -43,7 +213,6 @@ body {
     }
   }
   &.right {
-    grid-area: right;
     border-left: var(--sidestrip-border-width) solid var(--bg-border);
     &.activeLandscape {
       @media (orientation: landscape) {
@@ -268,9 +437,9 @@ body {
 
   > h1 {
     margin: 0;
-    height: 100%; /* Required to prevent overflow! */
-    line-height: calc(var(--header-height) - var(--border-width)); /* Vertical center */
-    text-align: center; /* Horizontal center */
+    height: 100%; // Required to prevent overflow!
+    line-height: calc(var(--header-height) - var(--border-width)); // Vertical center
+    text-align: center; // Horizontal center
     font-size: var(--header-font-size);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -308,8 +477,8 @@ body {
     }
   }
 
-  /* Without border-box, the left/right padding is added
-  to the 100% width, resulting in overflowing content! */
+  // Without border-box, the left/right padding is added
+  // to the 100% width, resulting in overflowing content!
   box-sizing: border-box;
   height: calc(100vh - var(--header-height));
   padding: var(--padding-content-sidebars);
@@ -328,3 +497,4 @@ body {
   } // Hide overflowing sidebar scrollbars on Mac Firefox:
   scrollbar-width: var(--scrollbar-width);
 }
+*/

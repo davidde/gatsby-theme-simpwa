@@ -2,13 +2,19 @@ import React from 'react';
 
 
 function Header(props) {
-  // Only exists in Main header, to change text offset in CSS:
-  let leftActive = props.leftActive ? 'leftActive' : '';
-  let rightActive = props.rightActive ? 'rightActive' : '';
+  // 'leftActiveLandscape' and 'rightActiveLandscape' props only exist
+  // in the Main header, to change the header's text offset in CSS:
+  let leftOpenLandscape = props.leftActiveLandscape ?
+                          'left-open-landscape' : 'left-closed-landscape';
+  let rightOpenLandscape = props.rightActiveLandscape ?
+                          'right-open-landscape' : 'right-closed-landscape';
 
   return (
-    <div className={`header ${props.which}`}>
-        <h1 className={`${props.which} ${leftActive} ${rightActive}`}>
+    <div className='header'>
+        <h1 className={`title
+            ${leftOpenLandscape}
+            ${rightOpenLandscape}
+        `}>
             {props.title}
         </h1>
     </div>

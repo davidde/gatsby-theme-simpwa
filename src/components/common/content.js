@@ -3,7 +3,7 @@ import React from 'react';
 
 function Content(props) {
   return (
-    <div className={`content ${props.which}`}>
+    <div className='content'>
       <div>
           {props.children}
       </div>

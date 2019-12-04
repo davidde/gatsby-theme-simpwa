@@ -28,14 +28,14 @@ $medium-viewport: (max-width: 1200px);
     --border-width: 1px;
   }
   // sidebar widths in portrait and landscape orientations:
-  --sb-portrait-width: 80vw;
-  --sb-landscape-width-left: 25vw;
-  --sb-landscape-width-right: 25vw;
+  --portrait-width: 80vw;
+  --landscape-width-left: 25; // The landscape widths are either '%' OR 'vw',
+  --landscape-width-right: 25; // so they are fully responsive on window resizing!
   @media #{$medium-viewport} {
-    --sb-landscape-width-left: 35vw;
-    --sb-landscape-width-right: 35vw;
+    --landscape-width-left: 35;
+    --landscape-width-right: 35;
   }
-  --transition-duration: 0.5s;
+  --secs: 0.4s;
   // Make these 0 if you don't want default paddings in Main and Sidebars:
   --padding-content-main: 2rem 15%;
   --padding-content-sidebars: 2rem 5%;
@@ -66,7 +66,7 @@ $medium-viewport: (max-width: 1200px);
   --bg-toggle-track: hsl(213, 22%, 40%);
   --bg-toggle-thumb: var(--bg-scrollbar);
 
-  .sidebar {
+  #left, #right { // Sidebar colors:
     --bg-icon: hsl(221, 28%, 87%);
     --bg-icon-hover: hsl(221, 28%, 75%);
     --fg-icon: hsl(252, 56%, 61%);
@@ -104,7 +104,7 @@ $medium-viewport: (max-width: 1200px);
   --bg-toggle-track: hsl(221, 28%, 80%);
   --bg-toggle-thumb: var(--bg-scrollbar);
 
-  .sidebar {
+  #left, #right { // Sidebar colors:
     --bg-icon: hsl(0, 0%, 0%);
     --bg-icon-hover: hsl(213, 22%, 17%);
     --fg-icon: hsla(237, 21%, 82%, 0.8);
@@ -142,7 +142,7 @@ $medium-viewport: (max-width: 1200px);
   --bg-toggle-track: hsl(213, 22%, 25%);
   --bg-toggle-thumb: var(--bg-header);
 
-  .sidebar.left {
+  #left { // Left sidebar colors:
     --bg-icon: hsl(24, 100%, 50%);
     --bg-icon-hover: hsl(24, 100%, 38%);
     --fg-icon: hsl(39, 100%, 85%);
@@ -165,7 +165,7 @@ $medium-viewport: (max-width: 1200px);
     --bg-option-hover: hsla(24, 100%, 50%, 0.25);
   }
 
-  .sidebar.right {
+  #right { // Right sidebar colors:
     --bg-icon: hsl(300, 76%, 52%);
     --bg-icon-hover: hsl(300, 76%, 37%);
     --fg-icon: hsl(300, 76%, 87%);
