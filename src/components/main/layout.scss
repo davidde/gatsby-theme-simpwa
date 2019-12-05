@@ -109,7 +109,10 @@ body {
 
 // Style in common for both sidebars:
 #left, #right {
-  z-index: 10;
+  z-index: 3;
+  &.open {
+    z-index: 10;
+  }
   width: 0;
   // Landscape ONLY transition:
   transition: width var(--secs);
