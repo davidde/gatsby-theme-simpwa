@@ -60,9 +60,7 @@ body {
 
 // Main area specific style:
 #main {
-  // min-width: 0;
-  // background: var(--bg-content);
-  // color: var(--fg-content);
+  flex-grow: 1;
 
   .header {
     @media (orientation: landscape) {
