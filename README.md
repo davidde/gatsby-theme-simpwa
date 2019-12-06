@@ -12,7 +12,7 @@ Focus is on:
 - On mobile, the PWA should deliver an experience comparable to native apps
 
 
-## Installation
+# Installation
 ```bash
 npm install gatsby-theme-simpwa
 ```
@@ -36,16 +36,19 @@ which does include those plugins:
 gatsby new my-awesome-app https://github.com/davidde/gatsby-starter-simpwa
 ```
 
-## Usage
-The theme provides 4 simple components to build your app; a parent `<Layout>` component,
-and its 3 children, `<MainView>`, `<Leftside>` and `<Rightside>`.
+# Usage
+The theme provides 4 simple components to build your app; a parent `<Layout>`
+component, and its 3 children, `<Leftside>`, `<MainView>` and `<Rightside>`.
+Since the sidebar implementation relies on flexbox, it is important to specify
+the children components in that exact source order (left to right),
+although either of the sidebars can be omitted.
 
 Simply import them into your code to start building:
 ```js
-import { Layout, MainView, Leftside, Rightside } from 'gatsby-theme-simpwa'
+import { Layout, MainView, Leftside, Rightside } from 'gatsby-theme-simpwa';
 ```
 
-### The \<Layout> component
+## \<Layout> component
 The parent component that enables its 3 children components to work properly.
 
 Props:
@@ -64,13 +67,13 @@ The Layout component's props are initialisation props.
 They will not trigger a rerender on subsequent updates, since they are immediately written to state.
 If you do not specify a prop, its state will default to the value set for it in the stylesheet's variables.
 
-### The \<MainView> component
+## \<MainView> component
 The main content of your app. Should be a direct descendant of `<Layout>`.
 
 Props:
   - **header**: The header of your app.
 
-### The \<Leftside> and \<Rightside> components
+## \<Leftside> and \<Rightside> components
 The **left and right sidebars** of your app. Should be direct descendants of `<Layout>`.  
 Either can be omitted if you only want a single sidebar.
 
@@ -80,11 +83,11 @@ Props:
     that triggers the sidebar.
 
 
-## Customization
+# Customization
 Customization is fairly simple due to a modular approach to styling/theming.
 
 > Even the theme 's got themes!
 
-These themes are defined in the scss partial `_vars.scss` in `/src/components/main/`.
-You can shadow this file together with the main `layout.scss` and modify the themes,
-or create your own themes altogether!
+These subthemes are defined in the scss partial `_vars.scss` in `/src/components/main/`.  
+You can shadow this file together with the main `layout.scss` and modify the subtheme variables,
+or create your own subthemes altogether!
