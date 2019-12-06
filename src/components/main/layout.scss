@@ -110,14 +110,13 @@ body {
 // Style in common for both sidebars:
 #left, #right {
   z-index: 3;
+  width: 0; // Landscape ONLY transition:
+  transition: width var(--secs);
   &.open {
     z-index: 10;
-  }
-  width: 0;
-  // Landscape ONLY transition:
-  transition: width var(--secs);
-  @media (orientation: landscape) {
-    &.open { width: calc(1% * var(--landscape-width)); }
+    @media (orientation: landscape) {
+      width: calc(1% * var(--landscape-width));
+    }
   }
 
   .icon {
