@@ -11,7 +11,9 @@ class Leftside extends React.Component {
         <div id='left' className={this.props.open} >
             <Icon
               icon={this.props.icon}
+              open={this.props.open}
               toggleSidebar={this.props.toggleSidebar}
+              hasTouchscreen={this.props.hasTouchscreen}
             />
 
             <Sidebar

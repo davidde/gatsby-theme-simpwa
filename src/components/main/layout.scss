@@ -106,7 +106,7 @@ body {
 }
 
 // Style in common for both sidebars:
-#left, #right {
+#left, #right { /// These are the flex items to push main content aside!
   z-index: 3;
   width: 0; // Landscape ONLY transition:
   transition: width var(--secs);
@@ -117,6 +117,18 @@ body {
     }
   }
 
+  /// Actual sidebar that slides into view:
+  .sidebar {
+    // Portrait AND landscape transitions:
+    transition: transform var(--secs);
+    @media (orientation: portrait) { width: var(--portrait-width); }
+    @media (orientation: landscape) { width: calc(1vw * var(--landscape-width)); }
+    .header {
+      width: calc(100% - var(--header-height));
+    }
+  }
+
+  /// The icon area; square + strip on the side of screen:
   .icon {
     // @media (hover: hover) { -> Prevents hover effects on touch devices,
     // but it also prevents desktop Linux Firefox from accessing :hover effects (bug!)
@@ -144,15 +156,52 @@ body {
       user-select: none;
       cursor: pointer;
     }
-  }
 
-  .sidebar {
-    // Portrait AND landscape transitions:
-    transition: transform var(--secs);
-    @media (orientation: portrait) { width: var(--portrait-width); }
-    @media (orientation: landscape) { width: calc(1vw * var(--landscape-width)); }
-    .header {
-      width: calc(100% - var(--header-height));
+    /// Small strip below icon to the side of the screen:
+    .icon-strip {
+      position: absolute;
+      // z-index: 2;
+      top: var(--header-height);
+      height: 100vh; // Fix chrome mobile bug due to address bar
+      width: var(--sidestrip-width);
+      background: var(--bg-icon);
+      box-shadow: var(--shadow) var(--bg-shadow);
+
+      transition: opacity;
+      opacity: 1;
+      transition-delay: var(--secs);
+      &.open {
+        opacity: 0;
+        transition-delay: 0s;
+      }
+
+      &.hidden {
+        border-color: var(--bg-main-content);
+        background: var(--bg-main-content);
+        box-shadow: none;
+      }
+    }
+
+    /// This class is a simple cosmetic touch that covers up the border between
+    /// .iconSquare and .sidestrip, so it appears as one whole:
+    .icon-strip-patch {
+      position: absolute;
+      z-index: 101;
+      top: calc(var(--header-height) * 3/4);
+      bottom: 0;
+      width: var(--sidestrip-width);
+      background: var(--bg-icon);
+      &.hidden {
+        background: transparent;
+      }
+
+      transition-property: opacity;
+      opacity: 1;
+      transition-delay: var(--secs);
+      &.open {
+        opacity: 0;
+        transition-delay: 0s;
+      }
     }
   }
 }
@@ -160,10 +209,11 @@ body {
 // Left sidebar specific style:
 #left {
   --landscape-width: var(--landscape-width-left);
-  .icon-square {
+  .icon-square, .icon-strip {
     left: 0;
     border-right: var(--border-width) solid var(--bg-border);
   }
+  .icon-strip-patch { left: 0; }
   .sidebar {
     border-right: var(--border-width) solid var(--bg-border);
     // Left portrait AND landscape transition:
@@ -175,10 +225,11 @@ body {
 // Right sidebar specific style:
 #right {
   --landscape-width: var(--landscape-width-right);
-  .icon-square {
+  .icon-square, .icon-strip {
     right: 0;
     border-left: var(--border-width) solid var(--bg-border);
   }
+  .icon-strip-patch { right: 0; }
   .sidebar {
     border-left: var(--border-width) solid var(--bg-border);
     @media (orientation: portrait) {
