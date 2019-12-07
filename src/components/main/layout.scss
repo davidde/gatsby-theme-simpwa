@@ -176,8 +176,8 @@ body {
       }
 
       &.hidden {
-        border-color: var(--bg-main-content);
-        background: var(--bg-main-content);
+        background: transparent;
+        border: none;
         box-shadow: none;
       }
     }
@@ -191,9 +191,6 @@ body {
       bottom: 0;
       width: var(--sidestrip-width);
       background: var(--bg-icon);
-      &.hidden {
-        background: transparent;
-      }
 
       transition-property: opacity;
       opacity: 1;
@@ -201,6 +198,10 @@ body {
       &.open {
         opacity: 0;
         transition-delay: 0s;
+      }
+
+      &.hidden {
+        background: transparent;
       }
     }
   }
