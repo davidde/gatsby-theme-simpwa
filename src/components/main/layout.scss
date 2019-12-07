@@ -12,6 +12,7 @@ body {
 // Style in common for sidebars and main area:
 #layout {
   display: flex;
+  background: var(--bg-content);
 
   .header {
     position: relative;
@@ -70,6 +71,10 @@ body {
         &.right-closed-landscape { right: var(--header-height); }
       }
     }
+  }
+
+  .content {
+    margin-right: var(--sidestrip-width);
   }
 
   @media (orientation: portrait) {
@@ -236,6 +241,13 @@ body {
     @media (orientation: portrait) {
       // Right portrait transition ONLY:
       &.open { transform: translateX(-100%); }
+    }
+
+    .content { // Put scrollbar on the left, so it's not in the icon-strip:
+      direction: rtl;
+      > div {
+        direction: ltr;
+      }
     }
   }
 }
