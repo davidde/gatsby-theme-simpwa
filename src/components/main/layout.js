@@ -220,6 +220,8 @@ class Layout extends React.Component {
                   leftActivePortrait: false,
                   rightActivePortrait: false,
                 }),
+                // To change the right margin when sidebar closes:
+                rightOpen: 'right-' + rightOpen,
             });
         } // else return child;
       }
