@@ -17,7 +17,10 @@ class MainView extends React.Component {
             rightActiveLandscape={this.props.rightActiveLandscape}
           />
 
-          <Content rightOpen={this.props.rightOpen}>
+          <Content
+            rightOpen={this.props.rightOpen}
+            leftOpen={this.props.leftOpen}
+          >
               {this.props.children}
           </Content>
 
