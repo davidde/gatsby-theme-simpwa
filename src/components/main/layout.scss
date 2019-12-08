@@ -12,6 +12,7 @@ body {
 // Style in common for sidebars and main area:
 #layout {
   display: flex;
+  overflow: hidden; // Disable scrolling on layout
   background: var(--bg-content);
 
   .header {
