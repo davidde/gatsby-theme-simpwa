@@ -63,14 +63,11 @@ class Layout extends React.Component {
     // If either side is active while transitioning
     // to/from a portrait viewport, unactivate both sides:
     if (this.isPortrait !== wasPortrait) {
-      if (this.state.leftActivePortrait || this.state.rightActivePortrait ||
-          this.state.leftActiveLandscape || this.state.rightActiveLandscape) {
-              this.setState({
-                leftActivePortrait: false,
-                leftActiveLandscape: false,
-                rightActivePortrait: false,
-                rightActiveLandscape: false,
-              });
+      if (this.state.leftActivePortrait || this.state.leftActiveLandscape) {
+          this.setState({ leftActivePortrait: false });
+      }
+      if (this.state.rightActivePortrait || this.state.rightActiveLandscape) {
+          this.setState({ rightActivePortrait: false });
       }
     }
     // If both sides are active while transitioning
@@ -190,10 +187,12 @@ class Layout extends React.Component {
   }
 
   render() {
-    let leftOpen = this.state.leftActivePortrait ||
-                   this.state.leftActiveLandscape ? 'open' : 'closed';
-    let rightOpen = this.state.rightActivePortrait ||
-                    this.state.rightActiveLandscape ? 'open' : 'closed';
+    let leftOpen = (this.isPortrait && this.state.leftActivePortrait) ||
+                   (!this.isPortrait && this.state.leftActiveLandscape) ?
+                   'open' : 'closed';
+    let rightOpen = (this.isPortrait && this.state.rightActivePortrait) ||
+                    (!this.isPortrait && this.state.rightActiveLandscape) ?
+                    'open' : 'closed';
 
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
