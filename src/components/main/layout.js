@@ -25,7 +25,7 @@ class Layout extends React.Component {
       rightActivePortrait: false,
       rightActiveLandscape: this.props.rightActive,
       theme: this.props.theme,
-      sidestrip: this.props.sidestrip,
+      sidestrip: 'on',
       isPortrait: null,
       isMediumViewport: null,
     }
@@ -38,6 +38,11 @@ class Layout extends React.Component {
     let isPortrait = window.matchMedia('(orientation: portrait)').matches;
     let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
     this.setState({ isPortrait, isMediumViewport });
+
+    if (this.hasTouchscreen &&
+       (this.props.sidestrip === 'mobileOff' || this.props.sidestrip === 'hidden')) {
+        this.setState({ sidestrip: 'off' });
+    }
 
     if (isPortrait) {
       this.setState({

@@ -20,12 +20,16 @@ function Icon(props) {
                   <FontAwesomeIcon icon={props.icon} />
               </div>
 
-              {/* Small strip below icon to the side of the screen: */}
-              <div className={`icon-strip ${props.open} ${sidestrip}`} />
-
-              {/* This div is a simple cosmetic touch that covers up the border between
-                  the icon-square and icon-strip divs, so it appears as one whole: */}
-              <div className={`icon-strip-patch ${props.open} ${sidestrip}`} />
+              { // Small strip below icon to the side of the screen:
+                (sidestrip !== 'off') ?
+                    <>
+                        <div className={`icon-strip ${props.open} ${sidestrip}`} />
+                        {/* Make icon-square and icon-strip appear as one whole: */}
+                        <div className={`icon-strip-patch ${props.open} ${sidestrip}`} />
+                    </>
+                    :
+                    null
+              }
           </div>
       )
     }

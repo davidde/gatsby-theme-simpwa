@@ -23,7 +23,6 @@ function SidestripSwitcher(props) {
                     <option value='on'>on</option>
                     <option value='hidden'>hidden</option>
                     <option value='off'>off</option>
-                    <option value='mobileOff'>off (mobile)</option>
                   </SelectTag>
                 </label>
             </form>
