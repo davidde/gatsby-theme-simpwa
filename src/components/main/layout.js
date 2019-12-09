@@ -26,6 +26,8 @@ class Layout extends React.Component {
       rightActiveLandscape: this.props.rightActive,
       theme: this.props.theme,
       sidestrip: this.props.sidestrip,
+      isPortrait: null,
+      isMediumViewport: null,
     }
   }
 
@@ -33,15 +35,16 @@ class Layout extends React.Component {
     // 'hasTouchscreen' prevents :hover styles on mobile,
     // and circumvents a desktop linux firefox bug:
     this.hasTouchscreen = window.matchMedia('(hover: none)').matches;
-    this.isPortrait = window.matchMedia('(orientation: portrait)').matches;
-    this.isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
+    let isPortrait = window.matchMedia('(orientation: portrait)').matches;
+    let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
+    this.setState({ isPortrait, isMediumViewport });
 
-    if (this.isPortrait) {
+    if (isPortrait) {
       this.setState({
         leftActiveLandscape: false,
         rightActiveLandscape: false,
       });
-    } else if (this.isMediumViewport || this.props.mutex) {
+    } else if (isMediumViewport || this.props.mutex) {
       if (this.state.leftActiveLandscape && this.state.rightActiveLandscape) {
         this.setState({ rightActiveLandscape: false });
       }
@@ -55,37 +58,37 @@ class Layout extends React.Component {
   }
 
   updateViewports = () => {
-    let wasPortrait = this.isPortrait;
-    this.isPortrait = window.matchMedia('(orientation: portrait)').matches;
-    let wasMediumViewport = this.isMediumViewport;
-    this.isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
+    let isPortrait = window.matchMedia('(orientation: portrait)').matches;
+    let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
 
     // If either side is active while transitioning
     // to/from a portrait viewport, unactivate both sides:
-    if (this.isPortrait !== wasPortrait) {
-      if (this.state.leftActivePortrait || this.state.leftActiveLandscape) {
+    if (isPortrait !== this.state.isPortrait) {
+      if (this.state.leftActivePortrait) {
           this.setState({ leftActivePortrait: false });
       }
-      if (this.state.rightActivePortrait || this.state.rightActiveLandscape) {
+      if (this.state.rightActivePortrait) {
           this.setState({ rightActivePortrait: false });
       }
     }
     // If both sides are active while transitioning
     // to a medium viewport, unactivate one side:
-    if (this.isMediumViewport !== wasMediumViewport) {
+    if (isMediumViewport !== this.state.isMediumViewport) {
       if ((this.state.leftActivePortrait || this.state.leftActiveLandscape) &&
          (this.state.rightActivePortrait || this.state.rightActiveLandscape) &&
-         this.isMediumViewport) {
+         isMediumViewport) {
               this.setState({
                 rightActivePortrait: false,
                 rightActiveLandscape: false,
               });
       }
     }
+
+    this.setState({ isPortrait, isMediumViewport });
   }
 
   toggleLeftSidebar = () => {
-    if (this.isPortrait) {
+    if (this.state.isPortrait) {
       this.setState({leftActivePortrait: !this.state.leftActivePortrait});
       if (this.state.rightActivePortrait) {
         this.setState({ rightActivePortrait: false });
@@ -93,14 +96,14 @@ class Layout extends React.Component {
     } else {
       this.setState({leftActiveLandscape: !this.state.leftActiveLandscape});
       if (this.state.rightActiveLandscape &&
-         (this.isMediumViewport || this.props.mutex)) {
+         (this.state.isMediumViewport || this.props.mutex)) {
               this.setState({ rightActiveLandscape: false });
       }
     }
   }
 
   toggleRightSidebar = () => {
-    if (this.isPortrait) {
+    if (this.state.isPortrait) {
       this.setState({rightActivePortrait: !this.state.rightActivePortrait});
       if (this.state.leftActivePortrait) {
         this.setState({ leftActivePortrait: false });
@@ -108,7 +111,7 @@ class Layout extends React.Component {
     } else {
       this.setState({rightActiveLandscape: !this.state.rightActiveLandscape});
       if (this.state.leftActiveLandscape &&
-         (this.isMediumViewport || this.props.mutex)) {
+         (this.state.isMediumViewport || this.props.mutex)) {
               this.setState({ leftActiveLandscape: false });
       }
     }
@@ -141,7 +144,7 @@ class Layout extends React.Component {
     if ( this.clientX < (20/100 * window.screen.width) ||
          this.state.leftActivePortrait || this.state.leftActiveLandscape ) {
       if (xDelta > 0) { // Swipe to right:
-        if (this.isPortrait) {
+        if (this.state.isPortrait) {
           this.setState({ leftActivePortrait: true });
         } else {
           this.setState({ leftActiveLandscape: true });
@@ -163,7 +166,7 @@ class Layout extends React.Component {
           rightActiveLandscape: false,
         });
       } else { // Swipe to left:
-        if (this.isPortrait) {
+        if (this.state.isPortrait) {
           this.setState({ rightActivePortrait: true });
         } else {
           this.setState({ rightActiveLandscape: true });
@@ -187,11 +190,11 @@ class Layout extends React.Component {
   }
 
   render() {
-    let leftOpen = (this.isPortrait && this.state.leftActivePortrait) ||
-                   (!this.isPortrait && this.state.leftActiveLandscape) ?
+    let leftOpen = (this.state.isPortrait && this.state.leftActivePortrait) ||
+                   (!this.state.isPortrait && this.state.leftActiveLandscape) ?
                    'open' : 'closed';
-    let rightOpen = (this.isPortrait && this.state.rightActivePortrait) ||
-                    (!this.isPortrait && this.state.rightActiveLandscape) ?
+    let rightOpen = (this.state.isPortrait && this.state.rightActivePortrait) ||
+                    (!this.state.isPortrait && this.state.rightActiveLandscape) ?
                     'open' : 'closed';
 
     const childrenWithProps = React.Children.map(this.props.children,
