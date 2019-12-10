@@ -13,23 +13,26 @@ class MainView extends React.Component {
       <div id='main'>
           <Header
             title={this.props.header}
-            leftActiveLandscape={this.props.leftActiveLandscape}
-            rightActiveLandscape={this.props.rightActiveLandscape}
+            leftLandscapeOpen={this.props.leftLandscapeOpen}
+            rightLandscapeOpen={this.props.rightLandscapeOpen}
           />
 
           <Content
-            rightOpen={this.props.rightOpen}
-            leftOpen={this.props.leftOpen}
+            leftPortraitOpen={this.props.leftPortraitOpen}
+            leftLandscapeOpen={this.props.leftLandscapeOpen}
+            rightPortraitOpen={this.props.rightPortraitOpen}
+            rightLandscapeOpen={this.props.rightLandscapeOpen}
           >
               {this.props.children}
           </Content>
 
           <MockBackground
-            activePortrait={this.props.activePortrait}
+            leftPortraitOpen={this.props.leftPortraitOpen}
+            rightPortraitOpen={this.props.rightPortraitOpen}
             closePortraitSidebars={this.props.closePortraitSidebars}
           />
       </div>
-    )
+    );
   }
 }
 

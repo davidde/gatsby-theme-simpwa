@@ -23,9 +23,9 @@ function Icon(props) {
               { // Small strip below icon to the side of the screen:
                 (sidestrip !== 'off') ?
                     <>
-                        <div className={`icon-strip ${props.open} ${sidestrip}`} />
+                        <div className={`icon-strip ${sidestrip} ${props.portraitOpen} ${props.landscapeOpen}`} />
                         {/* Make icon-square and icon-strip appear as one whole: */}
-                        <div className={`icon-strip-patch ${props.open} ${sidestrip}`} />
+                        <div className={`icon-strip-patch ${sidestrip} ${props.portraitOpen} ${props.landscapeOpen}`} />
                     </>
                     :
                     null

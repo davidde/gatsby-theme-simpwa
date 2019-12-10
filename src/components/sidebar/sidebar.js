@@ -6,7 +6,7 @@ import Header from '../common/header';
 
 function Sidebar(props) {
   return (
-    <div className={`sidebar ${props.open}`}>
+    <div className={`sidebar ${props.portraitOpen} ${props.landscapeOpen}`}>
         <Header title={props.header} />
 
         <Content>

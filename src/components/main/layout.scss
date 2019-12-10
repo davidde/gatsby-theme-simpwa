@@ -68,60 +68,67 @@ body {
     @media (orientation: landscape) {
       .title {
         transition: left var(--secs), right var(--secs);
-        &.left-closed-landscape { left: var(--header-height); }
-        &.right-closed-landscape { right: var(--header-height); }
+        &.left-landscape-closed { left: var(--header-height); }
+        &.right-landscape-closed { right: var(--header-height); }
       }
     }
   }
 
-  .content.right-closed {
-    margin-right: var(--sidestrip-width);
-  }
-  .content.left-closed {
-    margin-left: var(--sidestrip-width);
+  @media (orientation: landscape) {
+    .content.left-landscape-closed {
+      margin-left: var(--sidestrip-width);
+    }
+    .content.right-landscape-closed {
+      margin-right: var(--sidestrip-width);
+    }
   }
 
   @media (orientation: portrait) {
+    .content.left-portrait-closed {
+      margin-left: var(--sidestrip-width);
+    }
+    .content.right-portrait-closed {
+      margin-right: var(--sidestrip-width);
+    }
+
     /// Mock background layers to hide the portrait sidebars by clicking
-    /// in the background; 2 layers are provided so dark themes can first
+    /// in the background. 2 layers are provided so dark themes can first
     /// be darkened (to darken their lighter elements), and then lightened
     /// so they are distinguished from the rest of the theme.
-    .mock-bg-white {
+    .mock-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      min-height: 120vh; // Fix chrome mobile bug due to address bar
+      visibility: hidden;
+
       /// Top mock background layer which is used for clicking,
-      /// and coloring white-transparent.
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      min-height: 120vh; // Fix chrome mobile bug due to address bar
-      background: hsla(0, 0%, 100%, var(--white-overlay-transparency));
-      z-index: 5;
-      cursor: pointer;
+      /// and coloring white-transparent:
+      &.top-white {
+        cursor: pointer;
+        z-index: 5;
+        background: hsla(0, 0%, 100%, var(--white-overlay-transparency));
+      }
+      /// Bottom mock background layer which is used for coloring black-transparent:
+      /// (Click events are triggered on the above layer)
+      &.bottom-black {
+        z-index: 4;
+        background: hsla(0, 0%, 0%, var(--black-overlay-transparency));
+      }
+      &.left-portrait-open, &.right-portrait-open { visibility: visible; }
     }
-    .mock-bg-black {
-      /// Bottom mock background layer which is used for coloring black-transparent.
-      /// Click events are triggered on the above layer.
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      min-height: 120vh; // Fix chrome mobile bug due to address bar
-      z-index: 4;
-      background: hsla(0, 0%, 0%, var(--black-overlay-transparency));
-    }
-    .visible { visibility: visible; }
-    .invisible { visibility: hidden; }
   }
 }
 
 // Style in common for both sidebars:
 #left, #right { /// These are the flex items to push main content aside!
   z-index: 3;
+  &.portrait-open, &.landscape-open { z-index: 10; }
   width: 0; // Landscape ONLY transition:
   transition: width var(--secs);
-  &.open {
-    z-index: 10;
-    @media (orientation: landscape) {
+  @media (orientation: landscape) {
+    &.landscape-open {
       width: calc(1% * var(--landscape-width));
     }
   }
@@ -179,9 +186,17 @@ body {
       transition: opacity;
       opacity: 1;
       transition-delay: var(--secs);
-      &.open {
-        opacity: 0;
-        transition-delay: 0s;
+      @media (orientation: portrait) {
+        &.portrait-open {
+          opacity: 0;
+          transition-delay: 0s;
+        }
+      }
+      @media (orientation: landscape) {
+        &.landscape-open {
+          opacity: 0;
+          transition-delay: 0s;
+        }
       }
 
       &.hidden {
@@ -204,9 +219,17 @@ body {
       transition-property: opacity;
       opacity: 1;
       transition-delay: var(--secs);
-      &.open {
-        opacity: 0;
-        transition-delay: 0s;
+      @media (orientation: portrait) {
+        &.portrait-open {
+          opacity: 0;
+          transition-delay: 0s;
+        }
+      }
+      @media (orientation: landscape) {
+        &.landscape-open {
+          opacity: 0;
+          transition-delay: 0s;
+        }
       }
 
       &.hidden {
@@ -227,7 +250,13 @@ body {
   .sidebar {
     border-right: var(--border-width) solid var(--bg-border);
     // Left portrait AND landscape transition:
-    &.closed { transform: translateX(-100%); }
+    transform: translateX(-100%);
+    @media (orientation: portrait) {
+      &.portrait-open { transform: translateX(0); }
+    }
+    @media (orientation: landscape) {
+      &.landscape-open { transform: translateX(0); }
+    }
     .header { left: var(--header-height); }
   }
 }
@@ -244,7 +273,7 @@ body {
     border-left: var(--border-width) solid var(--bg-border);
     @media (orientation: portrait) {
       // Right portrait transition ONLY:
-      &.open { transform: translateX(-100%); }
+      &.portrait-open { transform: translateX(-100%); }
     }
 
     .content { // Put scrollbar on the left, so it's not in the icon-strip:

@@ -8,17 +8,19 @@ class Leftside extends React.Component {
 
   render() {
     return (
-        <div id='left' className={this.props.open} >
+        <div id='left' className={`${this.props.portraitOpen} ${this.props.landscapeOpen}`} >
             <Icon
               icon={this.props.icon}
-              open={this.props.open}
+              portraitOpen={this.props.portraitOpen}
+              landscapeOpen={this.props.landscapeOpen}
               toggleSidebar={this.props.toggleSidebar}
               hasTouchscreen={this.props.hasTouchscreen}
             />
 
             <Sidebar
               header={this.props.header}
-              open={this.props.open}
+              portraitOpen={this.props.portraitOpen}
+              landscapeOpen={this.props.landscapeOpen}
             >
                 {this.props.children}
             </Sidebar>

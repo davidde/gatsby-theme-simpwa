@@ -20,10 +20,10 @@ class Layout extends React.Component {
       // We use separate state for portrait and landscape sidebars
       // so that mobile and desktop sidebar activity can be independent
       // of each other for the initial page load:
-      leftActivePortrait: false,
-      leftActiveLandscape: this.props.leftActive,
-      rightActivePortrait: false,
-      rightActiveLandscape: this.props.rightActive,
+      leftPortraitActive: false,
+      leftLandscapeActive: this.props.leftActive,
+      rightPortraitActive: false,
+      rightLandscapeActive: this.props.rightActive,
       theme: this.props.theme,
       sidestrip: 'on',
       isPortrait: null,
@@ -46,12 +46,12 @@ class Layout extends React.Component {
 
     if (isPortrait) {
       this.setState({
-        leftActiveLandscape: false,
-        rightActiveLandscape: false,
+        leftLandscapeActive: false,
+        rightLandscapeActive: false,
       });
     } else if (isMediumViewport || this.props.mutex) {
-      if (this.state.leftActiveLandscape && this.state.rightActiveLandscape) {
-        this.setState({ rightActiveLandscape: false });
+      if (this.state.leftLandscapeActive && this.state.rightLandscapeActive) {
+        this.setState({ rightLandscapeActive: false });
       }
     }
 
@@ -69,32 +69,32 @@ class Layout extends React.Component {
     // When transitioning to/from a portrait viewport:
     if (isPortrait !== this.state.isPortrait) {
       // If the left sidebar is active ...
-      if (this.state.leftActivePortrait) {
+      if (this.state.leftPortraitActive) {
         if (isPortrait) { // ... while transitioning to portrait mode:
           // Deactivate it:
-          this.setState({ leftActivePortrait: false });
+          this.setState({ leftPortraitActive: false });
         } else { // ... while transitioning to landscape mode:
           // Keep it activated:
-          this.setState({ leftActiveLandscape: true });
+          this.setState({ leftLandscapeActive: true });
         }
       }
-      if (this.state.rightActivePortrait) { // Same for right side!
+      if (this.state.rightPortraitActive) { // Same for right side!
         if (isPortrait) {
-          this.setState({ rightActivePortrait: false });
+          this.setState({ rightPortraitActive: false });
         } else {
-          this.setState({ rightActiveLandscape: true });
+          this.setState({ rightLandscapeActive: true });
         }
       }
     }
     // If both sides are active while transitioning
     // to a medium viewport, unactivate one side:
     if (isMediumViewport !== this.state.isMediumViewport) {
-      if ((this.state.leftActivePortrait || this.state.leftActiveLandscape) &&
-         (this.state.rightActivePortrait || this.state.rightActiveLandscape) &&
+      if ((this.state.leftPortraitActive || this.state.leftLandscapeActive) &&
+         (this.state.rightPortraitActive || this.state.rightLandscapeActive) &&
          isMediumViewport) {
               this.setState({
-                rightActivePortrait: false,
-                rightActiveLandscape: false,
+                rightPortraitActive: false,
+                rightLandscapeActive: false,
               });
       }
     }
@@ -104,30 +104,30 @@ class Layout extends React.Component {
 
   toggleLeftSidebar = () => {
     if (this.state.isPortrait) {
-      this.setState({leftActivePortrait: !this.state.leftActivePortrait});
-      if (this.state.rightActivePortrait) {
-        this.setState({ rightActivePortrait: false });
+      this.setState({leftPortraitActive: !this.state.leftPortraitActive});
+      if (this.state.rightPortraitActive) {
+        this.setState({ rightPortraitActive: false });
       }
     } else {
-      this.setState({leftActiveLandscape: !this.state.leftActiveLandscape});
-      if (this.state.rightActiveLandscape &&
+      this.setState({leftLandscapeActive: !this.state.leftLandscapeActive});
+      if (this.state.rightLandscapeActive &&
          (this.state.isMediumViewport || this.props.mutex)) {
-              this.setState({ rightActiveLandscape: false });
+              this.setState({ rightLandscapeActive: false });
       }
     }
   }
 
   toggleRightSidebar = () => {
     if (this.state.isPortrait) {
-      this.setState({rightActivePortrait: !this.state.rightActivePortrait});
-      if (this.state.leftActivePortrait) {
-        this.setState({ leftActivePortrait: false });
+      this.setState({rightPortraitActive: !this.state.rightPortraitActive});
+      if (this.state.leftPortraitActive) {
+        this.setState({ leftPortraitActive: false });
       }
     } else {
-      this.setState({rightActiveLandscape: !this.state.rightActiveLandscape});
-      if (this.state.leftActiveLandscape &&
+      this.setState({rightLandscapeActive: !this.state.rightLandscapeActive});
+      if (this.state.leftLandscapeActive &&
          (this.state.isMediumViewport || this.props.mutex)) {
-              this.setState({ leftActiveLandscape: false });
+              this.setState({ leftLandscapeActive: false });
       }
     }
   }
@@ -157,34 +157,34 @@ class Layout extends React.Component {
 
     // Left sidebar:
     if ( this.clientX < (20/100 * window.screen.width) ||
-         this.state.leftActivePortrait || this.state.leftActiveLandscape ) {
+         this.state.leftPortraitActive || this.state.leftLandscapeActive ) {
       if (xDelta > 0) { // Swipe to right:
         if (this.state.isPortrait) {
-          this.setState({ leftActivePortrait: true });
+          this.setState({ leftPortraitActive: true });
         } else {
-          this.setState({ leftActiveLandscape: true });
+          this.setState({ leftLandscapeActive: true });
         }
       } else { // Swipe to left:
         this.setState({
-          leftActivePortrait: false,
-          leftActiveLandscape: false,
+          leftPortraitActive: false,
+          leftLandscapeActive: false,
         });
       }
     }
 
     // Right sidebar:
     if ( this.clientX > (80/100 * window.screen.width) ||
-         this.state.rightActivePortrait || this.state.rightActiveLandscape ) {
+         this.state.rightPortraitActive || this.state.rightLandscapeActive ) {
       if (xDelta > 0) { // Swipe to right:
         this.setState({
-          rightActivePortrait: false,
-          rightActiveLandscape: false,
+          rightPortraitActive: false,
+          rightLandscapeActive: false,
         });
       } else { // Swipe to left:
         if (this.state.isPortrait) {
-          this.setState({ rightActivePortrait: true });
+          this.setState({ rightPortraitActive: true });
         } else {
-          this.setState({ rightActiveLandscape: true });
+          this.setState({ rightLandscapeActive: true });
         }
       }
     }
@@ -205,41 +205,39 @@ class Layout extends React.Component {
   }
 
   render() {
-    let leftOpen = (this.state.isPortrait && this.state.leftActivePortrait) ||
-                   (!this.state.isPortrait && this.state.leftActiveLandscape) ?
-                   'open' : 'closed';
-    let rightOpen = (this.state.isPortrait && this.state.rightActivePortrait) ||
-                    (!this.state.isPortrait && this.state.rightActiveLandscape) ?
-                    'open' : 'closed';
+    let leftPortraitOpen = this.state.leftPortraitActive ? 'portrait-open' : 'portrait-closed';
+    let leftLandscapeOpen = this.state.leftLandscapeActive ? 'landscape-open' : 'landscape-closed';
+    let rightPortraitOpen = this.state.rightPortraitActive ? 'portrait-open' : 'portrait-closed';
+    let rightLandscapeOpen = this.state.rightLandscapeActive ? 'landscape-open' : 'landscape-closed';
 
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
         if (child.type.displayName === 'Leftside') {
             return React.cloneElement(child, {
-                open: leftOpen,
+                portraitOpen: leftPortraitOpen,
+                landscapeOpen: leftLandscapeOpen,
                 toggleSidebar: this.toggleLeftSidebar,
                 hasTouchscreen: this.hasTouchscreen,
             });
         } else if (child.type.displayName === 'Rightside') {
             return React.cloneElement(child, {
-                open: rightOpen,
+                portraitOpen: rightPortraitOpen,
+                landscapeOpen: rightLandscapeOpen,
                 toggleSidebar: this.toggleRightSidebar,
                 hasTouchscreen: this.hasTouchscreen,
             });
         } else if (child.type.displayName === 'MainView') {
             return React.cloneElement(child, {
                 // To change the text offset in the Main header in landscape mode:
-                leftActiveLandscape: this.state.leftActiveLandscape,
-                rightActiveLandscape: this.state.rightActiveLandscape,
+                leftLandscapeOpen: 'left-' + leftLandscapeOpen,
+                rightLandscapeOpen: 'right-' + rightLandscapeOpen,
                 // To change the portrait mock background visibility:
-                activePortrait: this.state.leftActivePortrait || this.state.rightActivePortrait,
+                leftPortraitOpen: 'left-' + leftPortraitOpen,
+                rightPortraitOpen: 'right-' + rightPortraitOpen,
                 closePortraitSidebars: () => this.setState({
-                  leftActivePortrait: false,
-                  rightActivePortrait: false,
+                  leftPortraitActive: false,
+                  rightPortraitActive: false,
                 }),
-                // To change the content margins when sidebar closes:
-                rightOpen: 'right-' + rightOpen,
-                leftOpen: 'left-' + leftOpen,
             });
         } // else return child;
       }
