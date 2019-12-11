@@ -124,10 +124,11 @@ body {
 // Style in common for both sidebars:
 #left, #right { /// These are the flex items to push main content aside!
   z-index: 3;
-  &.portrait-open, &.landscape-open { z-index: 10; }
+  @media (orientation: portrait) { &.portrait-open { z-index: 10; } }
   width: 0; // Landscape ONLY transition:
   transition: width var(--secs);
   @media (orientation: landscape) {
+    z-index: 10;
     &.landscape-open {
       width: calc(1% * var(--landscape-width));
     }
