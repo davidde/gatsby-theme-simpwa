@@ -25,7 +25,7 @@ class Layout extends React.Component {
       rightPortraitActive: false,
       rightLandscapeActive: this.props.rightActive,
       theme: this.props.theme,
-      sidestrip: 'on',
+      sidestrip: this.props.sidestrip === 'mobileOff' ? 'on' : this.props.sidestrip,
       isPortrait: null,
       isMediumViewport: null,
     }
