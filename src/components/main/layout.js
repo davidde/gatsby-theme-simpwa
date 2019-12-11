@@ -76,6 +76,9 @@ class Layout extends React.Component {
         } else { // ... while transitioning to landscape mode:
           // Keep it activated:
           this.setState({ leftLandscapeActive: true });
+          if (this.state.rightLandscapeActive) {
+            this.setState({ rightLandscapeActive: false });
+          }
         }
       }
       if (this.state.rightPortraitActive) { // Same for right side!
@@ -83,6 +86,9 @@ class Layout extends React.Component {
           this.setState({ rightPortraitActive: false });
         } else {
           this.setState({ rightLandscapeActive: true });
+          if (this.state.leftLandscapeActive) {
+            this.setState({ leftLandscapeActive: false });
+          }
         }
       }
     }
