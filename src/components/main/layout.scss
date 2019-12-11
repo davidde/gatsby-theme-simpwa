@@ -65,11 +65,13 @@ body {
   flex-grow: 1;
 
   .header {
-    @media (orientation: landscape) {
-      .title {
-        transition: left var(--secs), right var(--secs);
-        &.left-landscape-closed { left: var(--header-height); }
-        &.right-landscape-closed { right: var(--header-height); }
+    .title {
+      transition: left var(--secs), right var(--secs);
+      left: var(--header-height);
+      right: var(--header-height);
+      @media (orientation: landscape) {
+        &.left-landscape-open { left: 0; }
+        &.right-landscape-open { right: 0; }
       }
     }
   }
