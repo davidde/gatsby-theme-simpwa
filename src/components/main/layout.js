@@ -68,23 +68,21 @@ class Layout extends React.Component {
 
     // When transitioning to/from a portrait viewport:
     if (isPortrait !== this.state.isPortrait) {
-      // If the left sidebar is active ...
+      // If the left portrait sidebar is active:
       if (this.state.leftPortraitActive) {
-        if (isPortrait) { // ... while transitioning to portrait mode:
-          // Deactivate it:
-          this.setState({ leftPortraitActive: false });
-        } else { // ... while transitioning to landscape mode:
-          // Keep it activated:
+        // Deactivate its portrait mode:
+        this.setState({ leftPortraitActive: false });
+        if (!isPortrait) { // But when in landscape:
+          // Activate its landscape mode:
           this.setState({ leftLandscapeActive: true });
-          if (this.state.rightLandscapeActive) {
+          if (this.state.rightLandscapeActive) { // and deactivate the other side:
             this.setState({ rightLandscapeActive: false });
           }
         }
       }
       if (this.state.rightPortraitActive) { // Same for right side!
-        if (isPortrait) {
-          this.setState({ rightPortraitActive: false });
-        } else {
+        this.setState({ rightPortraitActive: false });
+        if (!isPortrait) {
           this.setState({ rightLandscapeActive: true });
           if (this.state.leftLandscapeActive) {
             this.setState({ leftLandscapeActive: false });
