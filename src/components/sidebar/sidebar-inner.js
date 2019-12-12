@@ -4,7 +4,8 @@ import Content from '../common/content';
 import Header from '../common/header';
 
 
-function Sidebar(props) {
+/// Represents the actual sidebar that slides into and out of view:
+function InnerSidebar(props) {
   return (
     <div className={`sidebar ${props.portraitOpen} ${props.landscapeOpen}`}>
         <Header title={props.header} />
@@ -16,4 +17,4 @@ function Sidebar(props) {
   );
 }
 
-export default Sidebar;
+export default InnerSidebar;
