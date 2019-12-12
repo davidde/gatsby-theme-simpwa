@@ -15,7 +15,8 @@ body {
   overflow: hidden; // Disable scrolling on layout
   background: var(--bg-content);
   &.sidestrip-hidden {
-    --sidestrip-opacity: 0;
+    --sidestrip-hidden: transparent;
+    --sidestrip-shadow: none;
   }
   &.sidestrip-off {
     --sidestrip-width: 0; // For margins in #main!
@@ -186,36 +187,32 @@ body {
 
     // Small strip below icon to the side of the screen:
     .icon-strip {
-      right: inherit;
-      opacity: var(--sidestrip-opacity, 1);
       display: var(--sidestrip-display, block);
-      .strip {
-        position: absolute;
-        right: inherit;
-        top: calc(var(--header-height) * 5/6);
-        height: 100vh; // Fix chrome mobile bug due to address bar
-        width: var(--sidestrip-width);
-        background: var(--bg-icon);
-        // The top strip covers up the border between .icon-square and .icon-strip:
-        &.top { z-index: 101; }
-        // The bottom strip goes below icon-square and .strip.top,
-        // and is basically for borders and shadows:
-        &.bottom { box-shadow: var(--shadow) var(--bg-shadow); }
+      position: absolute;
+      right: inherit;
+      top: calc(var(--header-height) * 5/6);
+      height: 100vh; // Fix chrome mobile bug due to address bar
+      width: var(--sidestrip-width);
+      background: var(--sidestrip-hidden, var(--bg-icon));
+      // The top strip covers up the border between .icon-square and .icon-strip:
+      &.top { z-index: 101; }
+      // The bottom strip goes below icon-square and .strip.top,
+      // and is basically for borders and shadows:
+      &.bottom { box-shadow: var(--shadow) var(--sidestrip-hidden, var(--bg-shadow)); }
 
-        transition: opacity;
-        opacity: 1;
-        transition-delay: var(--secs);
-        @media (orientation: portrait) {
-          &.portrait-open {
-            opacity: 0;
-            transition-delay: 0s;
-        } }
-        @media (orientation: landscape) {
-          &.landscape-open {
-            opacity: 0;
-            transition-delay: 0s;
-        } }
-      }
+      transition: opacity;
+      opacity: 1;
+      transition-delay: var(--secs);
+      @media (orientation: portrait) {
+        &.portrait-open {
+          opacity: 0;
+          transition-delay: 0s;
+      } }
+      @media (orientation: landscape) {
+        &.landscape-open {
+          opacity: 0;
+          transition-delay: 0s;
+      } }
     }
   }
 }
@@ -224,9 +221,13 @@ body {
 #left {
   --landscape-width: var(--landscape-width-left);
   .icon {
-    .icon-square, .icon-strip .strip.bottom {
+    .icon-square {
       border-right: var(--border-width) solid var(--bg-border);
-  } }
+    }
+    .icon-strip.bottom {
+      border-right: var(--border-width) var(--sidestrip-hidden, solid) var(--bg-border);
+    }
+  }
   .sidebar {
     border-right: var(--border-width) solid var(--bg-border);
     // Left portrait AND landscape transition:
@@ -245,9 +246,13 @@ body {
 #right {
   --landscape-width: var(--landscape-width-right);
   .icon { right: 0;
-    .icon-square, .icon-strip .strip.bottom {
+    .icon-square {
       border-left: var(--border-width) solid var(--bg-border);
-  } }
+    }
+    .icon-strip.bottom {
+      border-left: var(--border-width) var(--sidestrip-hidden, solid) var(--bg-border);
+    }
+  }
   .sidebar {
     border-left: var(--border-width) solid var(--bg-border);
     @media (orientation: portrait) {
