@@ -258,7 +258,7 @@ class Layout extends React.Component {
         }}>
             <div
               id='layout'
-              className={this.state.theme + 'Theme'}
+              className={`${this.state.theme}-theme sidestrip-${this.state.sidestrip}`}
               onTouchStart={this.handleTouchStart}
               onTouchMove={this.handleTouchMove}
             >

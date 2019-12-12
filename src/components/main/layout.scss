@@ -14,6 +14,13 @@ body {
   display: flex;
   overflow: hidden; // Disable scrolling on layout
   background: var(--bg-content);
+  &.sidestrip-hidden {
+    --sidestrip-opacity: 0;
+  }
+  &.sidestrip-off {
+    --sidestrip-width: 0; // For margins in #main!
+    --sidestrip-display: none;
+  }
 
   .header {
     position: relative;
@@ -178,7 +185,10 @@ body {
     }
 
     // Small strip below icon to the side of the screen:
-    .icon-strip { right: inherit;
+    .icon-strip {
+      right: inherit;
+      opacity: var(--sidestrip-opacity, 1);
+      display: var(--sidestrip-display, block);
       .strip {
         position: absolute;
         right: inherit;

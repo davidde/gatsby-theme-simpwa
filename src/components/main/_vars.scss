@@ -48,7 +48,7 @@ $medium-viewport: (max-width: 1200px);
 }
 
 // Light theme Colors:
-#layout.lightTheme {
+#layout.light-theme {
   --bg-header: hsl(221, 28%, 94%);
   --fg-header: hsla(254, 78%, 52%, 0.75);
   --bg-content: hsl(221, 28%, 97%);
@@ -86,7 +86,7 @@ $medium-viewport: (max-width: 1200px);
 }
 
 // Dark theme Colors:
-#layout.darkTheme {
+#layout.dark-theme {
   --bg-header: hsl(210, 25%, 11%);
   --fg-header: hsla(237, 21%, 82%, 1);
   --bg-content: hsl(210, 25%, 7%);
@@ -123,7 +123,7 @@ $medium-viewport: (max-width: 1200px);
 }
 
 // Joy theme Colors:
-#layout.joyTheme {
+#layout.joy-theme {
   --bg-header: linear-gradient(to right, hsl(39, 100%, 50%), hsl(300, 76%, 72%));
   --fg-header: hsla(254, 78%, 52%, 0.75);
   --bg-content: hsl(60, 100%, 89%);
