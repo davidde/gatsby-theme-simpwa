@@ -2,8 +2,8 @@ import React from 'react';
 
 
 function Header(props) {
-  // The 'leftLandscapeOpen' and 'rightLandscapeOpen' props only exist
-  // in the Main header, to change the header's text offset in CSS:
+  // The sidebar 'Open' props only exist in the #main header,
+  // to prevent the header title to overlap with the icon:
   return (
     <div className='header'>
         <h1 className={`title
