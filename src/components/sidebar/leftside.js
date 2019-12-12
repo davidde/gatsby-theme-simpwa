@@ -2,12 +2,9 @@ import React from 'react';
 import OuterSidebar from './sidebar-outer';
 
 
-class Leftside extends React.Component {
-  static displayName = 'Leftside';
-
-  render() {
-    return <OuterSidebar id='left' {...this.props} />;
-  }
+function Leftside(props) {
+  return <OuterSidebar id='left' {...props} />;
 }
 
+Leftside.displayName = 'Leftside';
 export default Leftside;

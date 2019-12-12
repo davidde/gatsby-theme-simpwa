@@ -5,35 +5,32 @@ import Content from '../common/content';
 import MockBackground from './mock-background';
 
 
-class MainView extends React.Component {
-  static displayName = 'MainView';
-
-  render() {
-    return (
+function MainView(props) {
+  return (
       <div id='main'>
           <Header
-            title={this.props.header}
-            leftLandscapeOpen={this.props.leftLandscapeOpen}
-            rightLandscapeOpen={this.props.rightLandscapeOpen}
+            title={props.header}
+            leftLandscapeOpen={props.leftLandscapeOpen}
+            rightLandscapeOpen={props.rightLandscapeOpen}
           />
 
           <Content
-            leftPortraitOpen={this.props.leftPortraitOpen}
-            leftLandscapeOpen={this.props.leftLandscapeOpen}
-            rightPortraitOpen={this.props.rightPortraitOpen}
-            rightLandscapeOpen={this.props.rightLandscapeOpen}
+            leftPortraitOpen={props.leftPortraitOpen}
+            leftLandscapeOpen={props.leftLandscapeOpen}
+            rightPortraitOpen={props.rightPortraitOpen}
+            rightLandscapeOpen={props.rightLandscapeOpen}
           >
-              {this.props.children}
+              {props.children}
           </Content>
 
           <MockBackground
-            leftPortraitOpen={this.props.leftPortraitOpen}
-            rightPortraitOpen={this.props.rightPortraitOpen}
-            closePortraitSidebars={this.props.closePortraitSidebars}
+            leftPortraitOpen={props.leftPortraitOpen}
+            rightPortraitOpen={props.rightPortraitOpen}
+            closePortraitSidebars={props.closePortraitSidebars}
           />
       </div>
-    );
-  }
+  );
 }
 
+MainView.displayName = 'MainView';
 export default MainView;
