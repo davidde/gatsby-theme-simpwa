@@ -63,8 +63,7 @@ body {
     &::-webkit-scrollbar-thumb {
       background: var(--bg-scrollbar);
       border-radius: 0.6rem;
-    } // Hide overflowing sidebar scrollbars on Mac Firefox:
-    scrollbar-width: var(--scrollbar-width);
+    }
   }
 }
 
@@ -196,7 +195,7 @@ body {
       background: var(--sidestrip-hidden, var(--bg-icon));
       // The top strip covers up the border between .icon-square and .icon-strip:
       &.top { z-index: 101; }
-      // The bottom strip goes below icon-square and .strip.top,
+      // The bottom strip goes below icon-square and .icon-strip.top,
       // and is basically for borders and shadows:
       &.bottom { box-shadow: var(--shadow) var(--sidestrip-hidden, var(--bg-shadow)); }
 
