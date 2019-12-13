@@ -37,8 +37,8 @@ $medium-viewport: (max-width: 1200px);
   }
   --secs: 0.4s;
   // Make these 0 if you don't want default paddings in Main and Sidebars:
-  --padding-content-main: 2rem 15%;
-  --padding-content-sidebars: 2rem 5%;
+  --main-content-padding: 2rem 5% 2rem 10%;
+  --sidebar-content-padding: 2rem 5%;
   // Color intensity of the inactive background of the portrait-mode sidebar:
   --white-overlay-transparency: 0.2;
   --black-overlay-transparency: 0.7;

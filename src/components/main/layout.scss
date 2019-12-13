@@ -49,7 +49,7 @@ body {
     to the 100% width, resulting in overflowing content! */
     box-sizing: border-box;
     height: calc(100vh - var(--header-height));
-    padding: var(--padding-content-sidebars);
+    padding: var(--content-padding);
     overflow: auto;
     background: var(--bg-content);
     color: var(--fg-content);
@@ -69,6 +69,7 @@ body {
 // Main area specific style:
 #main {
   flex-grow: 1;
+  --content-padding: var(--main-content-padding);
 
   .header {
     .title {
@@ -132,6 +133,7 @@ body {
 // Style in common for both sidebars:
 #left, #right { /// These are the flex items to push main content aside!
   z-index: 3;
+  --content-padding: var(--sidebar-content-padding);
   @media (orientation: portrait) { &.portrait-open { z-index: 10; } }
   width: 0; // Landscape ONLY transition:
   transition: width var(--secs);
