@@ -106,32 +106,17 @@ class Layout extends React.Component {
     this.setState({ isPortrait, isMediumViewport });
   }
 
-  toggleLeftSidebar = () => {
-    if (this.state.isPortrait) {
-      this.setState({leftPortraitActive: !this.state.leftPortraitActive});
-      if (this.state.rightPortraitActive) {
-        this.setState({ rightPortraitActive: false });
-      }
-    } else {
-      this.setState({leftLandscapeActive: !this.state.leftLandscapeActive});
-      if (this.state.rightLandscapeActive &&
-         (this.state.isMediumViewport || this.props.mutex)) {
-              this.setState({ rightLandscapeActive: false });
-      }
-    }
-  }
+  toggleSidebar = (event) => {
+    let toggleSide = event.currentTarget.parentNode.id;
+    let otherSide = toggleSide === 'left' ? 'right' : 'left';
 
-  toggleRightSidebar = () => {
     if (this.state.isPortrait) {
-      this.setState({rightPortraitActive: !this.state.rightPortraitActive});
-      if (this.state.leftPortraitActive) {
-        this.setState({ leftPortraitActive: false });
-      }
+      this.setState({ [toggleSide + 'PortraitActive']: !this.state[toggleSide + 'PortraitActive']});
     } else {
-      this.setState({rightLandscapeActive: !this.state.rightLandscapeActive});
-      if (this.state.leftLandscapeActive &&
+      this.setState({ [toggleSide + 'LandscapeActive']: !this.state[toggleSide + 'LandscapeActive']});
+      if (this.state[otherSide + 'LandscapeActive'] &&
          (this.state.isMediumViewport || this.props.mutex)) {
-              this.setState({ leftLandscapeActive: false });
+              this.setState({ [otherSide + 'LandscapeActive']: false });
       }
     }
   }
@@ -220,14 +205,14 @@ class Layout extends React.Component {
             return React.cloneElement(child, {
                 portraitOpen: leftPortraitOpen,
                 landscapeOpen: leftLandscapeOpen,
-                toggleSidebar: this.toggleLeftSidebar,
+                toggleSidebar: this.toggleSidebar,
                 hasTouchscreen: this.hasTouchscreen,
             });
         } else if (child.type.displayName === 'Rightside') {
             return React.cloneElement(child, {
                 portraitOpen: rightPortraitOpen,
                 landscapeOpen: rightLandscapeOpen,
-                toggleSidebar: this.toggleRightSidebar,
+                toggleSidebar: this.toggleSidebar,
                 hasTouchscreen: this.hasTouchscreen,
             });
         } else if (child.type.displayName === 'MainView') {
