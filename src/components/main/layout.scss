@@ -145,15 +145,15 @@ body {
 
   /// Actual sidebar that slides into view:
   .sidebar {
+    .header { width: calc(100% - var(--header-height)); }
     // Portrait AND landscape transitions:
     transition: transform var(--secs);
     @media (orientation: portrait) { width: var(--portrait-width); }
-    @media (orientation: landscape) { width: calc(1vw * var(--landscape-width)); }
-    .header {
-      width: calc(100% - var(--header-height));
-    }
-    .content {
-      box-shadow: var(--shadow) var(--bg-shadow);
+    @media (orientation: landscape) {
+      width: calc(1vw * var(--landscape-width));
+      &.landscape-open .content {
+        box-shadow: var(--shadow) var(--bg-shadow);
+      }
     }
   }
 
