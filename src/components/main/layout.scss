@@ -71,6 +71,7 @@ body {
   flex-grow: 1;
 
   .header {
+    box-shadow: var(--shadow) var(--bg-shadow);
     .title {
       transition: left var(--secs), right var(--secs);
       left: var(--header-height);
