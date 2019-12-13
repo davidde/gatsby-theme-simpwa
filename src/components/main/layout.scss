@@ -69,7 +69,6 @@ body {
 // Main area specific style:
 #main {
   flex-grow: 1;
-  --content-padding: var(--main-content-padding);
 
   .header {
     .title {
@@ -133,7 +132,6 @@ body {
 // Style in common for both sidebars:
 #left, #right { /// These are the flex items to push main content aside!
   z-index: 3;
-  --content-padding: var(--sidebar-content-padding);
   @media (orientation: portrait) { &.portrait-open { z-index: 10; } }
   width: 0; // Landscape ONLY transition:
   transition: width var(--secs);
@@ -152,6 +150,9 @@ body {
     @media (orientation: landscape) { width: calc(1vw * var(--landscape-width)); }
     .header {
       width: calc(100% - var(--header-height));
+    }
+    .content {
+      box-shadow: var(--shadow) var(--bg-shadow);
     }
   }
 
@@ -219,7 +220,6 @@ body {
 
 // Left sidebar specific style:
 #left {
-  --landscape-width: var(--landscape-width-left);
   .icon {
     .icon-square {
       border-right: var(--border-width) solid var(--bg-border);
@@ -244,7 +244,6 @@ body {
 
 // Right sidebar specific style:
 #right {
-  --landscape-width: var(--landscape-width-right);
   .icon { right: 0;
     .icon-square {
       border-left: var(--border-width) solid var(--bg-border);

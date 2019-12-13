@@ -27,25 +27,26 @@ $medium-viewport: (max-width: 1200px);
     --sidestrip-width: 0.2rem;
     --border-width: 1px;
   }
-  // sidebar widths in portrait and landscape orientations:
-  --portrait-width: 80vw;
-  --landscape-width-left: 25; // The landscape widths are either '%' OR 'vw',
-  --landscape-width-right: 25; // so they are fully responsive on window resizing!
-  @media #{$medium-viewport} {
-    --landscape-width-left: 35;
-    --landscape-width-right: 35;
-  }
+  // Sidebar transition duration:
   --secs: 0.4s;
-  // Make these 0 if you don't want default paddings in Main and Sidebars:
-  --main-content-padding: 2rem 5% 2rem 10%;
-  --sidebar-content-padding: 2rem 5%;
+  // Sidebar widths in portrait and landscape orientations:
+  // (If you want different sizes for left and right,
+  // duplicate this part under the #left or #right ids)
+  --portrait-width: 80vw;
+  --landscape-width: 25; // The landscape width is either '%' OR 'vw',
+  @media #{$medium-viewport} { // to make sure the sidebar is fully responsive
+    --landscape-width: 35; // when resizing the window!
+  }
   // Color intensity of the inactive background of the portrait-mode sidebar:
   --white-overlay-transparency: 0.2;
   --black-overlay-transparency: 0.7;
-  // General colors for shadows:
-  --bg-shadow: #888;
-  --bg-shadow-hover: #333;
+  // Padding for .content class, make 0 if you don't want default paddings:
+  --content-padding: 2rem 5%;
 }
+
+#main { --content-padding: 2rem 5% 2rem 10%; }
+#left { --shadow: 6px 0 15px 0; }
+#right { --shadow: -6px 0 15px 0; }
 
 // Light theme Colors:
 #layout.light-theme {
@@ -66,6 +67,10 @@ $medium-viewport: (max-width: 1200px);
   --bg-toggle-track: hsl(213, 22%, 40%);
   --bg-toggle-thumb: var(--bg-scrollbar);
 
+  // General colors for shadows:
+  --bg-shadow: hsl(223, 11%, 76%);
+  --bg-shadow-hover: hsl(223, 11%, 55%);
+
   #left, #right { // Sidebar colors:
     --bg-icon: hsl(221, 28%, 87%);
     --bg-icon-hover: hsl(221, 28%, 75%);
@@ -78,10 +83,9 @@ $medium-viewport: (max-width: 1200px);
     --fg-content: hsla(254, 78%, 62%, 0.75);
 
     --bg-border: hsl(221, 28%, 94%);
-    --bg-border-hover: #f1f1f1;
+    --bg-border-hover: hsl(221, 28%, 87%);
     --bg-scrollbar: hsl(221, 28%, 94%);
     --bg-button-shadow: white;
-    --shadow: 0;
   }
 }
 
@@ -104,6 +108,10 @@ $medium-viewport: (max-width: 1200px);
   --bg-toggle-track: hsl(221, 28%, 80%);
   --bg-toggle-thumb: var(--bg-scrollbar);
 
+  // General colors for shadows:
+  --bg-shadow: hsl(0, 0%, 15%);
+  --bg-shadow-hover: hsl(0, 0%, 25%);
+
   #left, #right { // Sidebar colors:
     --bg-icon: hsl(0, 0%, 0%);
     --bg-icon-hover: hsl(213, 22%, 17%);
@@ -118,7 +126,6 @@ $medium-viewport: (max-width: 1200px);
     --bg-border: hsl(213, 22%, 16%);
     --bg-border-hover: hsl(213, 22%, 25%);
     --bg-scrollbar: hsl(213, 22%, 17%);
-    --shadow: 0;
   }
 }
 
@@ -142,6 +149,10 @@ $medium-viewport: (max-width: 1200px);
   --bg-toggle-track: hsl(213, 22%, 25%);
   --bg-toggle-thumb: var(--bg-header);
 
+  // General colors for shadows:
+  --bg-shadow: #888;
+  --bg-shadow-hover: #333;
+
   #left { // Left sidebar colors:
     --bg-icon: hsl(24, 100%, 50%);
     --bg-icon-hover: hsl(24, 100%, 38%);
@@ -156,7 +167,6 @@ $medium-viewport: (max-width: 1200px);
     --bg-border: hsl(24, 100%, 75%);
     --bg-border-hover: hsl(24, 100%, 65%);
     --bg-scrollbar: hsl(24, 100%, 70%);
-    --shadow: 6px 0 15px 0;
 
     // 'button' and 'select' styling:
     --bg-button: linear-gradient(hsl(39, 100%, 90%) 25%, hsl(39, 100%, 65%) 85%);
@@ -179,7 +189,6 @@ $medium-viewport: (max-width: 1200px);
     --bg-border: hsl(300, 76%, 77%);
     --bg-border-hover: hsl(300, 76%, 67%);
     --bg-scrollbar: hsl(300, 76%, 72%);
-    --shadow: -6px 0 15px 0;
 
     // 'button' and 'select' styling:
     --bg-button: linear-gradient(hsl(300, 76%, 95%) 25%, hsl(300, 76%, 75%) 85%);
