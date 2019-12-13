@@ -60,7 +60,7 @@ Props:
   - **mutex**: *Bool* (not string) indicating whether the sidebars should mutually
     exclude each other from being active.
   - **sidestrip**: String indicating the status of the small hoverable strip
-  at the edge of the screen: 'on', 'hidden', 'off', 'mobileOff'.
+  at the edge of the screen: 'on', 'hidden', 'off', 'off-touchscreens'.
 
 **NOTE:**  
 The Layout component's props are initialisation props.

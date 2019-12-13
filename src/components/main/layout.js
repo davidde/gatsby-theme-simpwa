@@ -10,7 +10,7 @@ class Layout extends React.Component {
     rightActive: false,
     mutex: false,
     theme: 'light',
-    sidestrip: 'mobileOff',
+    sidestrip: 'off-touchscreens',
   }
 
   constructor(props) {
@@ -25,7 +25,7 @@ class Layout extends React.Component {
       rightPortraitActive: false,
       rightLandscapeActive: this.props.rightActive,
       theme: this.props.theme,
-      sidestrip: this.props.sidestrip === 'mobileOff' ? 'on' : this.props.sidestrip,
+      sidestrip: this.props.sidestrip,
       isPortrait: null,
       isMediumViewport: null,
     }
@@ -38,11 +38,6 @@ class Layout extends React.Component {
     let isPortrait = window.matchMedia('(orientation: portrait)').matches;
     let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
     this.setState({ isPortrait, isMediumViewport });
-
-    if (this.hasTouchscreen &&
-       (this.props.sidestrip === 'mobileOff' || this.props.sidestrip === 'hidden')) {
-        this.setState({ sidestrip: 'off' });
-    }
 
     if (isPortrait) {
       this.setState({
@@ -238,7 +233,8 @@ class Layout extends React.Component {
         changeTheme: this.changeTheme,
       }}>
         <SidestripContext.Provider value={{
-          sidestrip: this.state.sidestrip,
+          sidestrip: this.state.sidestrip === 'off-touchscreens' ?
+                    (this.hasTouchscreen ? 'off' : 'on') : this.state.sidestrip,
           changeSidestrip: this.changeSidestrip,
         }}>
             <div

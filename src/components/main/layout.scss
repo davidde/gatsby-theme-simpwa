@@ -21,6 +21,12 @@ body {
     --sidestrip-width: 0; // For margins in #main!
     --sidestrip-display: none;
   }
+  @media (hover: none) {
+    &.sidestrip-off-touchscreens {
+      --sidestrip-width: 0; // For margins in #main!
+      --sidestrip-display: none;
+    }
+  }
 
   .header {
     position: relative;
