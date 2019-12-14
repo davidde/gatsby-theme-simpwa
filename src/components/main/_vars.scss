@@ -96,10 +96,10 @@ $medium-viewport: (max-width: 1200px);
 
 // Dark theme Colors:
 #layout.dark-theme {
-  --bg-header: hsl(210, 25%, 11%);
-  --fg-header: hsla(237, 21%, 82%, 1);
-  --bg-content: hsl(210, 25%, 7%);
-  --fg-content: hsla(0, 0%, 77%, 0.9);
+  --bg-header: hsl(210, 25%, 8%);
+  --fg-header: hsl(206, 34%, 75%);
+  --bg-content: hsl(0, 0%, 0%);
+  --fg-content: hsla(206, 33%, 79%, 0.85); //hsla(0, 0%, 77%, 0.9);
   --bg-border: hsl(213, 22%, 15%);
   --bg-scrollbar: hsl(210, 25%, 14%);
 
@@ -114,21 +114,31 @@ $medium-viewport: (max-width: 1200px);
   --bg-toggle-thumb: var(--bg-scrollbar);
 
   // General colors for shadows:
-  --bg-shadow: hsl(0, 0%, 15%);
-  --bg-shadow-hover: hsl(0, 0%, 25%);
+  --bg-shadow: hsl(0, 0%, 7%);
+  --bg-shadow-hover: hsl(0, 0%, 15%);
+  #main { --shadow: 0 8px 20px 5px; }
+  #left {
+    --shadow: 10px 0 20px 5px;
+    .sidebar { --shadow: 5px 0 20px 5px; }
+    --fg-icon: hsla(210, 50%, 80%, 0.8);
+  }
+  #right {
+    --shadow: -10px 0 20px 5px;
+    .sidebar { --shadow: -5px 0 20px 5px; }
+    --fg-icon: hsl(190, 20%, 65%);
+  }
 
   #left, #right { // Sidebar colors:
-    --bg-icon: hsl(0, 0%, 0%);
+    --bg-icon: hsl(210, 25%, 10%);
     --bg-icon-hover: hsl(213, 22%, 17%);
-    --fg-icon: hsla(237, 21%, 82%, 0.8);
     --fg-icon-hover: white;
 
-    --bg-header: var(--bg-icon);
-    --fg-header: hsl(237, 21%, 85%);
-    --bg-content: hsl(0, 6%, 6%);
-    --fg-content: hsla(237, 21%, 85%, 0.7);
+    --bg-header: hsl(210, 25%, 10%);
+    --fg-header: var(--fg-icon);
+    --bg-content: hsl(210, 25%, 7%);
+    --fg-content: var(--fg-icon);
 
-    --bg-border: hsl(213, 22%, 16%);
+    --bg-border: hsl(213, 22%, 19%);
     --bg-border-hover: hsl(213, 22%, 25%);
     --bg-scrollbar: hsl(213, 22%, 17%);
   }
