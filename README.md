@@ -51,21 +51,20 @@ import { Layout, MainView, Leftside, Rightside } from 'gatsby-theme-simpwa';
 ## \<Layout> component
 The parent component that enables its 3 children components to work properly.
 
-Props:
-  - **theme**: The theme to use for your app: 'light', 'dark' or 'joy'.
+Optional props:
+  - **theme**: The theme to use for your app: 'light', 'dark' or 'joy'. Default 'joy'.
   - **leftActive**: *Bool* (not string) indicating whether the left sidebar
-    should be active on first load.
+    should be active on first load. Default true.
   - **rightActive**: *Bool* (not string) indicating whether the right sidebar
-    should be active on first load.
+    should be active on first load. Default true.
   - **mutex**: *Bool* (not string) indicating whether the sidebars should mutually
-    exclude each other from being active.
+    exclude each other from being active. Default false.
   - **sidestrip**: String indicating the status of the small hoverable strip
-  at the edge of the screen: 'on', 'hidden', 'off', 'off-touchscreens'.
+  at the edge of the screen: 'on', 'hidden', 'off', 'off-touchscreens'. Default 'off-touchscreens'.
 
 **NOTE:**  
 The Layout component's props are initialisation props.
 They will not trigger a rerender on subsequent updates, since they are immediately written to state.
-If you do not specify a prop, its state will default to the value set for it in the stylesheet's variables.
 
 ## \<MainView> component
 The main content of your app. Should be a direct descendant of `<Layout>`.
