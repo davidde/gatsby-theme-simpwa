@@ -13,6 +13,7 @@ function SidestripSwitcher(props) {
     {
         ({ sidestrip, changeSidestrip }) => (
             <form style={{margin: '1em 0'}}>
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label>
                   <span>Sidestrip: &nbsp;</span>
                   <SelectTag

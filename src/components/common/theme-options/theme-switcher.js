@@ -13,6 +13,7 @@ function ThemeSwitcher(props) {
     {
         ({ theme, changeTheme }) => (
             <form style={{margin: '1em 0'}}>
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label>
                   <span>Theme: &nbsp;</span>
                   <SelectTag

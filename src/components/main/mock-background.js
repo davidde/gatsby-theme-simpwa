@@ -5,8 +5,9 @@ import React from 'react';
 /// sidebars by clicking in the background:
 function MockBackground(props) {
   return (
-    <>
-        <div className={`mock-bg top-white ${props.leftPortraitOpen} ${props.rightPortraitOpen}`}
+    <>  {/* eslint-disable-next-line */}
+        <div
+          className={`mock-bg top-white ${props.leftPortraitOpen} ${props.rightPortraitOpen}`}
           onClick={props.closePortraitSidebars}
         />
         <div className={`mock-bg bottom-black ${props.leftPortraitOpen} ${props.rightPortraitOpen}`} />

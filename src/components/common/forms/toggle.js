@@ -18,6 +18,6 @@ function Toggle(props) {
         </div>
     </label>
   );
-};
+}
 
 export default Toggle;

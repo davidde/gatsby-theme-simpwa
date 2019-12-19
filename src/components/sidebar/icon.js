@@ -7,6 +7,7 @@ function Icon(props) {
   let canHover = props.hasTouchscreen ? '' : 'canHover';
 
   return (
+      /* eslint-disable-next-line */
       <div
         className={`icon ${canHover}`}
         onClick={props.toggleSidebar}

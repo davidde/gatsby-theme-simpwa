@@ -2,6 +2,7 @@ import React from 'react';
 import './custom-select.scss';
 
 
+/* eslint-disable */
 /// This CustomSelect can be styled any way possible,
 /// because it uses divs internally instead of an actual select element.
 /// The disadvantage is that every attribute/event of native selects
