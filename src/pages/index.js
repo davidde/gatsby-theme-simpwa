@@ -1,5 +1,4 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 // Prevent fontawesome from dynamically adding its CSS since we did it manually above:
@@ -17,7 +16,7 @@ import Button from '../components/common/forms/button';
 import DayNightToggle from '../components/common/theme-options/day-night-toggle';
 
 
-export default ({ data }) => (
+export default () => (
   <Layout theme='joy' >
     <SEO />
     <Leftside header='Contents' icon={faBars} >
@@ -66,7 +65,7 @@ export default ({ data }) => (
       </p>
     </Leftside>
 
-    <MainView header={data.site.siteMetadata.title} >
+    <MainView header='Gatsby Theme simPWA' >
       <DayNightToggle /><br/><br/>
       <Button>Button</Button>
       <ThemeSwitcher select='styled' />
@@ -159,13 +158,3 @@ export default ({ data }) => (
     </Rightside>
   </Layout>
 )
-
-export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
