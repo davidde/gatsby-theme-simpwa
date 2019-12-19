@@ -96,11 +96,11 @@ $medium-viewport: (max-width: 1200px);
 
 // Dark theme Colors:
 #layout.dark-theme {
-  --bg-header: hsl(210, 25%, 8%);
-  --fg-header: hsl(206, 34%, 75%);
+  --bg-header: hsl(210, 25%, 9%);
+  --fg-header: hsl(190, 20%, 65%);
   --bg-content: hsl(0, 0%, 0%);
   --fg-content: hsla(206, 33%, 79%, 0.85); //hsla(0, 0%, 77%, 0.9);
-  --bg-border: hsl(213, 22%, 15%);
+  --bg-border: hsl(160, 7%, 17%);
   --bg-scrollbar: hsl(210, 25%, 14%);
 
   // 'button' and 'select' styling:
@@ -114,28 +114,27 @@ $medium-viewport: (max-width: 1200px);
   --bg-toggle-thumb: var(--bg-scrollbar);
 
   // General colors for shadows:
-  --bg-shadow: hsl(0, 0%, 7%);
+  --bg-shadow: hsl(0, 0%, 10%);
   --bg-shadow-hover: hsl(0, 0%, 15%);
   #main { --shadow: 0 8px 20px 5px; }
   #left {
     --shadow: 10px 0 20px 5px;
-    .sidebar { --shadow: 5px 0 20px 5px; }
-    --fg-icon: hsla(210, 50%, 80%, 0.8);
+    .sidebar { --shadow: 8px 0 20px 5px; }
   }
   #right {
     --shadow: -10px 0 20px 5px;
     .sidebar { --shadow: -5px 0 20px 5px; }
-    --fg-icon: hsl(190, 20%, 65%);
   }
 
   #left, #right { // Sidebar colors:
-    --bg-icon: hsl(210, 25%, 10%);
-    --bg-icon-hover: hsl(213, 22%, 17%);
+    --bg-icon: hsl(210, 34%, 14%);
+    --fg-icon: hsla(210, 50%, 80%, 0.8);
+    --bg-icon-hover: hsl(211, 32%, 20%);
     --fg-icon-hover: white;
 
-    --bg-header: hsl(210, 25%, 10%);
+    --bg-header: var(--bg-icon);
     --fg-header: var(--fg-icon);
-    --bg-content: hsl(210, 25%, 7%);
+    --bg-content: hsl(210, 25%, 10%);
     --fg-content: var(--fg-icon);
 
     --bg-border: hsl(213, 22%, 19%);
