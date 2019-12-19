@@ -6,12 +6,6 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-plugin-compile-es6-packages',
-      options: {
-        modules: ['gatsby-theme-simpwa'],
-      },
-    },
     'gatsby-plugin-sass',
   ],
 }
