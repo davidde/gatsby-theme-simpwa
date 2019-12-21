@@ -3,34 +3,45 @@ import React from 'react';
 import Header from '../common/header';
 import Content from '../common/content';
 import MockBackground from './mock-background';
+import LeftContext from '../common/contexts/left-context';
+import RightContext from '../common/contexts/right-context';
 
 
 function MainView(props) {
   return (
-      <div id='main'>
-          <Header
-            title={props.header}
-            leftLandscapeOpen={props.leftLandscapeOpen}
-            rightLandscapeOpen={props.rightLandscapeOpen}
-          />
+    <LeftContext.Consumer>
+    { left => (
+    <RightContext.Consumer>
+    { right => (
 
-          <Content
-            leftPortraitOpen={props.leftPortraitOpen}
-            leftLandscapeOpen={props.leftLandscapeOpen}
-            rightPortraitOpen={props.rightPortraitOpen}
-            rightLandscapeOpen={props.rightLandscapeOpen}
-          >
-              {props.children}
-          </Content>
+        <div id='main'>
+            <Header
+              title={props.header}
+              leftLandscapeOpen={'left-' + left.landscapeOpen}
+              rightLandscapeOpen={'right-' + right.landscapeOpen}
+            />
 
-          <MockBackground
-            leftPortraitOpen={props.leftPortraitOpen}
-            rightPortraitOpen={props.rightPortraitOpen}
-            closePortraitSidebars={props.closePortraitSidebars}
-          />
-      </div>
+            <Content
+              leftPortraitOpen={'left-' + left.portraitOpen}
+              leftLandscapeOpen={'left-' + left.landscapeOpen}
+              rightPortraitOpen={'right-' + right.portraitOpen}
+              rightLandscapeOpen={'right-' + right.landscapeOpen}
+            >
+                {props.children}
+            </Content>
+
+            <MockBackground
+              leftPortraitOpen={'left-' + left.portraitOpen}
+              rightPortraitOpen={'right-' + right.portraitOpen}
+              toggleSidebar={left.toggleSidebar}
+            />
+        </div>
+
+    )}
+    </RightContext.Consumer>
+    )}
+    </LeftContext.Consumer>
   );
 }
 
-MainView.displayName = 'MainView';
 export default MainView;

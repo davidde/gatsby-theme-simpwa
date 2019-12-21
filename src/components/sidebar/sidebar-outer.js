@@ -9,25 +9,33 @@ import Icon from './icon';
 /// * The Icon, which always remains fixed in place.
 /// * The InnerSidebar, which slides in and out of view.
 function OuterSidebar(props) {
-    return (
-        <div id={props.id} className={`${props.portraitOpen} ${props.landscapeOpen}`} >
-            <Icon
-              icon={props.icon}
-              portraitOpen={props.portraitOpen}
-              landscapeOpen={props.landscapeOpen}
-              toggleSidebar={props.toggleSidebar}
-              hasTouchscreen={props.hasTouchscreen}
-            />
+  let SidebarContext = require('../common/contexts/' + props.id + '-context.js').default;
 
-            <InnerSidebar
-              header={props.header}
-              portraitOpen={props.portraitOpen}
-              landscapeOpen={props.landscapeOpen}
-            >
-                {props.children}
-            </InnerSidebar>
-        </div>
-    );
+  return (
+    <SidebarContext.Consumer>
+    { sidebar => (
+
+            <div id={props.id} className={`${sidebar.portraitOpen} ${sidebar.landscapeOpen}`} >
+                <Icon
+                  icon={props.icon}
+                  portraitOpen={sidebar.portraitOpen}
+                  landscapeOpen={sidebar.landscapeOpen}
+                  toggleSidebar={sidebar.toggleSidebar}
+                  hasTouchscreen={sidebar.hasTouchscreen}
+                />
+
+                <InnerSidebar
+                  header={props.header}
+                  portraitOpen={sidebar.portraitOpen}
+                  landscapeOpen={sidebar.landscapeOpen}
+                >
+                    {props.children}
+                </InnerSidebar>
+            </div>
+
+    )}
+    </SidebarContext.Consumer>
+  );
 }
 
 export default OuterSidebar;

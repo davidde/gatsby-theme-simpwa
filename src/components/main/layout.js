@@ -8,6 +8,9 @@ config.autoAddCss = false; /* eslint-disable import/first */
 
 import ThemeContext from '../common/contexts/theme-context';
 import SidestripContext from '../common/contexts/sidestrip-context';
+import LeftContext from '../common/contexts/left-context';
+import RightContext from '../common/contexts/right-context';
+
 import vars from './layout.scss';
 
 
@@ -109,7 +112,7 @@ class Layout extends React.Component {
   }
 
   toggleSidebar = (event) => {
-    let toggleSide = event.currentTarget.parentNode.id;
+    let toggleSide = event.currentTarget ? event.currentTarget.parentNode.id : event;
     let otherSide = toggleSide === 'left' ? 'right' : 'left';
 
     if (this.state.isPortrait) {
@@ -196,54 +199,29 @@ class Layout extends React.Component {
   }
 
   render() {
-    let leftPortraitOpen = this.state.leftPortraitActive ? 'portrait-open' : 'portrait-closed';
-    let leftLandscapeOpen = this.state.leftLandscapeActive ? 'landscape-open' : 'landscape-closed';
-    let rightPortraitOpen = this.state.rightPortraitActive ? 'portrait-open' : 'portrait-closed';
-    let rightLandscapeOpen = this.state.rightLandscapeActive ? 'landscape-open' : 'landscape-closed';
-
-    const childrenWithProps = React.Children.map(this.props.children,
-      (child) => {
-        if (child.type.displayName === 'Leftside') {
-            return React.cloneElement(child, {
-                portraitOpen: leftPortraitOpen,
-                landscapeOpen: leftLandscapeOpen,
-                toggleSidebar: this.toggleSidebar,
-                hasTouchscreen: this.hasTouchscreen,
-            });
-        } else if (child.type.displayName === 'Rightside') {
-            return React.cloneElement(child, {
-                portraitOpen: rightPortraitOpen,
-                landscapeOpen: rightLandscapeOpen,
-                toggleSidebar: this.toggleSidebar,
-                hasTouchscreen: this.hasTouchscreen,
-            });
-        } else if (child.type.displayName === 'MainView') {
-            return React.cloneElement(child, {
-                // To change the text offset in the Main header in landscape mode:
-                leftLandscapeOpen: 'left-' + leftLandscapeOpen,
-                rightLandscapeOpen: 'right-' + rightLandscapeOpen,
-                // To change the portrait mock background visibility:
-                leftPortraitOpen: 'left-' + leftPortraitOpen,
-                rightPortraitOpen: 'right-' + rightPortraitOpen,
-                closePortraitSidebars: () => this.setState({
-                  leftPortraitActive: false,
-                  rightPortraitActive: false,
-                }),
-            });
-        } // else return child;
-      }
-    );
-
     return (
       <ThemeContext.Provider value={{
         theme: this.state.theme,
         changeTheme: this.changeTheme,
       }}>
-        <SidestripContext.Provider value={{
-          sidestrip: this.state.sidestrip === 'off-touchscreens' ?
-                    (this.hasTouchscreen ? 'off' : 'on') : this.state.sidestrip,
-          changeSidestrip: this.changeSidestrip,
-        }}>
+      <SidestripContext.Provider value={{
+        sidestrip: this.state.sidestrip === 'off-touchscreens' ?
+                  (this.hasTouchscreen ? 'off' : 'on') : this.state.sidestrip,
+        changeSidestrip: this.changeSidestrip,
+      }}>
+      <LeftContext.Provider value={{
+        portraitOpen: this.state.leftPortraitActive ? 'portrait-open' : 'portrait-closed',
+        landscapeOpen: this.state.leftLandscapeActive ? 'landscape-open' : 'landscape-closed',
+        hasTouchscreen: this.hasTouchscreen,
+        toggleSidebar: this.toggleSidebar,
+      }}>
+      <RightContext.Provider value={{
+        portraitOpen: this.state.rightPortraitActive ? 'portrait-open' : 'portrait-closed',
+        landscapeOpen: this.state.rightLandscapeActive ? 'landscape-open' : 'landscape-closed',
+        hasTouchscreen: this.hasTouchscreen,
+        toggleSidebar: this.toggleSidebar,
+      }}>
+
             <div
               id='layout'
               className={`${this.state.theme}-theme sidestrip-${this.state.sidestrip}`}
@@ -251,10 +229,13 @@ class Layout extends React.Component {
               onTouchMove={this.handleTouchMove}
             >
 
-              {childrenWithProps}
+                  {this.props.children}
 
             </div>
-        </SidestripContext.Provider>
+
+      </RightContext.Provider>
+      </LeftContext.Provider>
+      </SidestripContext.Provider>
       </ThemeContext.Provider>
     )
   }

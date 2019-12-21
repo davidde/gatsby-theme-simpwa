@@ -6,5 +6,4 @@ function Leftside(props) {
   return <OuterSidebar id='left' {...props} />;
 }
 
-Leftside.displayName = 'Leftside';
 export default Leftside;
