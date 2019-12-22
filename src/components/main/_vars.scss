@@ -97,19 +97,19 @@ $medium-viewport: (max-width: 1200px);
 // Dark theme Colors:
 #layout.dark-theme {
   --bg-header: hsl(210, 25%, 9%);
-  --fg-header: hsl(190, 20%, 65%);
-  --bg-content: hsl(0, 0%, 0%);
-  --fg-content: hsla(206, 33%, 79%, 0.85); //hsla(0, 0%, 77%, 0.9);
+  --fg-header: hsl(207, 58%, 64%);
+  --bg-content: hsl(0, 0%, 5%);
+  --fg-content: hsla(207, 66%, 71%, 0.75); //hsla(0, 0%, 77%, 0.9);
   --bg-border: hsl(160, 7%, 17%);
   --bg-scrollbar: hsl(210, 25%, 14%);
 
   // 'button' and 'select' styling:
-  --bg-button: linear-gradient(hsl(0, 0%, 70%) 25%, hsl(0, 0%, 50%) 85%);
+  --bg-button: linear-gradient(hsl(210, 13%, 69%) 25%, hsl(220, 66%, 67%) 75%);
   --bg-button-shadow: hsl(0, 0%, 40%);
   --fg-button: hsla(0, 0%, 3%, 0.75);
   --fg-button-hover: hsl(0, 0%, 3%);
-  --bg-options: hsl(0, 0%, 65%);
-  --bg-option-hover: hsla(0, 0%, 35%, 0.25);
+  --bg-options: hsl(212, 39%, 72%);
+  --bg-option-hover: hsl(220, 38%, 69%);
   --bg-toggle-track: hsl(221, 28%, 80%);
   --bg-toggle-thumb: var(--bg-scrollbar);
 
