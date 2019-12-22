@@ -114,9 +114,12 @@ $medium-viewport: (max-width: 1200px);
   --bg-toggle-thumb: var(--bg-scrollbar);
 
   // General colors for shadows:
-  --bg-shadow: hsl(0, 0%, 10%);
-  --bg-shadow-hover: hsl(0, 0%, 15%);
-  #main { --shadow: 0 8px 20px 5px; }
+  --bg-shadow: hsl(210, 55%, 10%);
+  --bg-shadow-hover: hsl(212, 58%, 16%);
+  #main {
+    --bg-shadow: hsl(0, 0%, 10%);
+    --shadow: 0 8px 20px 5px;
+  }
   #left {
     --shadow: 10px 0 20px 5px;
     .sidebar { --shadow: 8px 0 20px 5px; }
