@@ -15,19 +15,45 @@ function OuterSidebar(props) {
     <SidebarContext.Consumer>
     { sidebar => (
 
-            <div id={props.id} className={`${sidebar.portraitOpen} ${sidebar.landscapeOpen}`} >
+            <div id={sidebar.style[props.id]}
+                 className={`
+                    ${sidebar.style[sidebar.portraitOpen]}
+                    ${sidebar.style[sidebar.landscapeOpen]}
+                 `}
+            >
                 <Icon
                   icon={props.icon}
-                  portraitOpen={sidebar.portraitOpen}
-                  landscapeOpen={sidebar.landscapeOpen}
+                  id={props.id}
+                  iconClass={`
+                    ${sidebar.style['icon']}
+                    ${sidebar.style[props.hasTouchscreen ? '' : 'canHover']}
+                  `}
+                  iconSquareClass={sidebar.style['iconSquare']}
+                  topStripClass={`
+                    ${sidebar.style['iconStrip']}
+                    ${sidebar.style['top']}
+                    ${sidebar.style[sidebar.portraitOpen]}
+                    ${sidebar.style[sidebar.landscapeOpen]}
+                  `}
+                  bottomStripClass={`
+                    ${sidebar.style['iconStrip']}
+                    ${sidebar.style['bottom']}
+                    ${sidebar.style[sidebar.portraitOpen]}
+                    ${sidebar.style[sidebar.landscapeOpen]}
+                  `}
                   toggleSidebar={sidebar.toggleSidebar}
-                  hasTouchscreen={sidebar.hasTouchscreen}
                 />
 
                 <InnerSidebar
                   header={props.header}
-                  portraitOpen={sidebar.portraitOpen}
-                  landscapeOpen={sidebar.landscapeOpen}
+                  sidebarClass={`
+                    ${sidebar.style['InnerSidebar']}
+                    ${sidebar.style[sidebar.portraitOpen]}
+                    ${sidebar.style[sidebar.landscapeOpen]}
+                  `}
+                  headerClass={sidebar.style['header']}
+                  titleClass={sidebar.style['title']}
+                  contentClass={sidebar.style['content']}
                 >
                     {props.children}
                 </InnerSidebar>

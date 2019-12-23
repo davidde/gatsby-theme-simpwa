@@ -52,7 +52,7 @@ $medium-viewport: (max-width: 1200px);
 #right { --shadow: -6px 0 15px 0; }
 
 // Light theme Colors:
-#layout.light-theme {
+#layout.lightTheme {
   --bg-header: hsl(221, 28%, 94%);
   --fg-header: hsla(254, 78%, 52%, 0.75);
   --bg-content: hsl(221, 28%, 97%);
@@ -95,7 +95,7 @@ $medium-viewport: (max-width: 1200px);
 }
 
 // Dark theme Colors:
-#layout.dark-theme {
+#layout.darkTheme {
   --bg-header: hsl(210, 25%, 9%);
   --fg-header: hsl(207, 58%, 64%);
   --bg-content: hsl(0, 0%, 5%);
@@ -147,7 +147,7 @@ $medium-viewport: (max-width: 1200px);
 }
 
 // Joy theme Colors:
-#layout.joy-theme {
+#layout.joyTheme {
   --bg-header: linear-gradient(to right, hsl(39, 100%, 50%), hsl(300, 76%, 72%));
   --fg-header: hsla(254, 78%, 52%, 0.75);
   --bg-content: hsl(60, 100%, 89%);

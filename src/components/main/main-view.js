@@ -14,25 +14,32 @@ function MainView(props) {
     <RightContext.Consumer>
     { right => (
 
-        <div id='main'>
+        <div id={left.style.main}> {/* left.style is identical to right.style */}
             <Header
               title={props.header}
-              leftLandscapeOpen={'left-' + left.landscapeOpen}
-              rightLandscapeOpen={'right-' + right.landscapeOpen}
+              headerClass={left.style['header']}
+              titleClass={`
+                ${left.style['title']}
+                ${left.style['left' + left.landscapeOpen]}
+                ${left.style['right' + right.landscapeOpen]}
+              `}
             />
 
             <Content
-              leftPortraitOpen={'left-' + left.portraitOpen}
-              leftLandscapeOpen={'left-' + left.landscapeOpen}
-              rightPortraitOpen={'right-' + right.portraitOpen}
-              rightLandscapeOpen={'right-' + right.landscapeOpen}
+              contentClass={`
+                ${left.style['content']}
+                ${left.style['left' + left.portraitOpen]}
+                ${left.style['left' + left.landscapeOpen]}
+                ${left.style['right' + right.portraitOpen]}
+                ${left.style['right' + right.landscapeOpen]}
+              `}
             >
                 {props.children}
             </Content>
 
             <MockBackground
-              leftPortraitOpen={'left-' + left.portraitOpen}
-              rightPortraitOpen={'right-' + right.portraitOpen}
+              leftPortraitOpen={`${left.style['left' + left.portraitOpen]}`}
+              rightPortraitOpen={`${left.style['right' + right.portraitOpen]}`}
               toggleSidebar={left.toggleSidebar}
             />
         </div>

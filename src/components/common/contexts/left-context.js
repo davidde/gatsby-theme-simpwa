@@ -5,6 +5,7 @@ const LeftContext = React.createContext({
   portraitOpen: '',
   landscapeOpen: '',
   hasTouchscreen: null,
+  style: {},
   toggleSidebar: () => {},
 });
 

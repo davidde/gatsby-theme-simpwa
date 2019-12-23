@@ -11,7 +11,7 @@ import SidestripContext from '../common/contexts/sidestrip-context';
 import LeftContext from '../common/contexts/left-context';
 import RightContext from '../common/contexts/right-context';
 
-import vars from './layout.scss';
+import style from './layout.module.scss';
 
 
 class Layout extends React.Component {
@@ -20,7 +20,7 @@ class Layout extends React.Component {
     rightActive: false,
     mutex: false,
     theme: 'light',
-    sidestrip: 'off-touchscreens',
+    sidestrip: 'offTouchscreen',
   }
 
   constructor(props) {
@@ -46,7 +46,7 @@ class Layout extends React.Component {
     // and circumvents a desktop linux firefox bug:
     this.hasTouchscreen = window.matchMedia('(hover: none)').matches;
     let isPortrait = window.matchMedia('(orientation: portrait)').matches;
-    let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
+    let isMediumViewport = window.matchMedia(style.mediumViewport).matches;
     this.setState({ isPortrait, isMediumViewport });
 
     if (isPortrait) {
@@ -69,7 +69,7 @@ class Layout extends React.Component {
 
   updateViewports = () => {
     let isPortrait = window.matchMedia('(orientation: portrait)').matches;
-    let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
+    let isMediumViewport = window.matchMedia(style.mediumViewport).matches;
 
     // When transitioning to/from a portrait viewport:
     if (isPortrait !== this.state.isPortrait) {
@@ -198,33 +198,35 @@ class Layout extends React.Component {
     this.setState({ sidestrip });
   }
 
-  render() {
+  render() { console.log(style);
     return (
       <ThemeContext.Provider value={{
         theme: this.state.theme,
         changeTheme: this.changeTheme,
       }}>
       <SidestripContext.Provider value={{
-        sidestrip: this.state.sidestrip === 'off-touchscreens' ?
+        sidestrip: this.state.sidestrip === 'offTouchscreen' ?
                   (this.hasTouchscreen ? 'off' : 'on') : this.state.sidestrip,
         changeSidestrip: this.changeSidestrip,
       }}>
       <LeftContext.Provider value={{
-        portraitOpen: this.state.leftPortraitActive ? 'portrait-open' : 'portrait-closed',
-        landscapeOpen: this.state.leftLandscapeActive ? 'landscape-open' : 'landscape-closed',
+        portraitOpen: this.state.leftPortraitActive ? 'PortraitOpen' : 'PortraitClosed',
+        landscapeOpen: this.state.leftLandscapeActive ? 'LandscapeOpen' : 'LandscapeClosed',
         hasTouchscreen: this.hasTouchscreen,
+        style: style,
         toggleSidebar: this.toggleSidebar,
       }}>
       <RightContext.Provider value={{
-        portraitOpen: this.state.rightPortraitActive ? 'portrait-open' : 'portrait-closed',
-        landscapeOpen: this.state.rightLandscapeActive ? 'landscape-open' : 'landscape-closed',
+        portraitOpen: this.state.rightPortraitActive ? 'PortraitOpen' : 'PortraitClosed',
+        landscapeOpen: this.state.rightLandscapeActive ? 'LandscapeOpen' : 'LandscapeClosed',
         hasTouchscreen: this.hasTouchscreen,
+        style: style,
         toggleSidebar: this.toggleSidebar,
       }}>
 
             <div
-              id='layout'
-              className={`${this.state.theme}-theme sidestrip-${this.state.sidestrip}`}
+              id={style.layout}
+              className={`${style[this.state.theme + 'Theme']} ${style[this.state.sidestrip + 'Sidestrip']}`}
               onTouchStart={this.handleTouchStart}
               onTouchMove={this.handleTouchMove}
             >
