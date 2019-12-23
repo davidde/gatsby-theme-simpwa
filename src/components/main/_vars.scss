@@ -131,8 +131,8 @@ $medium-viewport: (max-width: 1200px);
 
   #left, #right { // Sidebar colors:
     --bg-icon: hsl(210, 34%, 14%);
-    --fg-icon: hsla(210, 50%, 80%, 0.8);
-    --bg-icon-hover: hsl(211, 32%, 20%);
+    --fg-icon: hsla(210, 50%, 80%, 0.7);
+    --bg-icon-hover: hsl(211, 33%, 23%);
     --fg-icon-hover: white;
 
     --bg-header: var(--bg-icon);
