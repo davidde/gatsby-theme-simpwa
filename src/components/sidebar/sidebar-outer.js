@@ -1,6 +1,7 @@
 import React from 'react';
 import InnerSidebar from './sidebar-inner';
 import Icon from './icon';
+import StyleContext from '../common/contexts/style-context';
 
 
 /// Represents the flex item that expands/shrinks upon activation/deactivation,
@@ -14,32 +15,34 @@ function OuterSidebar(props) {
   return (
     <SidebarContext.Consumer>
     { sidebar => (
+    <StyleContext.Consumer>
+    { style => (
 
-            <div id={sidebar.style[props.id]}
+            <div id={style[props.id]}
                  className={`
-                    ${sidebar.style[sidebar.portraitOpen]}
-                    ${sidebar.style[sidebar.landscapeOpen]}
+                    ${style[sidebar.portraitOpen]}
+                    ${style[sidebar.landscapeOpen]}
                  `}
             >
                 <Icon
                   icon={props.icon}
                   id={props.id}
                   iconClass={`
-                    ${sidebar.style['icon']}
-                    ${sidebar.style[props.hasTouchscreen ? '' : 'canHover']}
+                    ${style['icon']}
+                    ${style[props.hasTouchscreen ? '' : 'canHover']}
                   `}
-                  iconSquareClass={sidebar.style['iconSquare']}
+                  iconSquareClass={style['iconSquare']}
                   topStripClass={`
-                    ${sidebar.style['iconStrip']}
-                    ${sidebar.style['top']}
-                    ${sidebar.style[sidebar.portraitOpen]}
-                    ${sidebar.style[sidebar.landscapeOpen]}
+                    ${style['iconStrip']}
+                    ${style['top']}
+                    ${style[sidebar.portraitOpen]}
+                    ${style[sidebar.landscapeOpen]}
                   `}
                   bottomStripClass={`
-                    ${sidebar.style['iconStrip']}
-                    ${sidebar.style['bottom']}
-                    ${sidebar.style[sidebar.portraitOpen]}
-                    ${sidebar.style[sidebar.landscapeOpen]}
+                    ${style['iconStrip']}
+                    ${style['bottom']}
+                    ${style[sidebar.portraitOpen]}
+                    ${style[sidebar.landscapeOpen]}
                   `}
                   toggleSidebar={sidebar.toggleSidebar}
                 />
@@ -47,18 +50,20 @@ function OuterSidebar(props) {
                 <InnerSidebar
                   header={props.header}
                   sidebarClass={`
-                    ${sidebar.style['InnerSidebar']}
-                    ${sidebar.style[sidebar.portraitOpen]}
-                    ${sidebar.style[sidebar.landscapeOpen]}
+                    ${style['InnerSidebar']}
+                    ${style[sidebar.portraitOpen]}
+                    ${style[sidebar.landscapeOpen]}
                   `}
-                  headerClass={sidebar.style['header']}
-                  titleClass={sidebar.style['title']}
-                  contentClass={sidebar.style['content']}
+                  headerClass={style['header']}
+                  titleClass={style['title']}
+                  contentClass={style['content']}
                 >
                     {props.children}
                 </InnerSidebar>
             </div>
 
+    )}
+    </StyleContext.Consumer>
     )}
     </SidebarContext.Consumer>
   );

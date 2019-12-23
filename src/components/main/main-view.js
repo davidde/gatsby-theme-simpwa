@@ -5,7 +5,7 @@ import Content from '../common/content';
 import MockBackground from './mock-background';
 import LeftContext from '../common/contexts/left-context';
 import RightContext from '../common/contexts/right-context';
-
+import StyleContext from '../common/contexts/style-context';
 
 function MainView(props) {
   return (
@@ -13,37 +13,41 @@ function MainView(props) {
     { left => (
     <RightContext.Consumer>
     { right => (
+    <StyleContext.Consumer>
+    { style => (
 
-        <div id={left.style.main}> {/* left.style is identical to right.style */}
+        <div id={style.main}>
             <Header
               title={props.header}
-              headerClass={left.style['header']}
+              headerClass={style['header']}
               titleClass={`
-                ${left.style['title']}
-                ${left.style['left' + left.landscapeOpen]}
-                ${left.style['right' + right.landscapeOpen]}
+                ${style['title']}
+                ${style['left' + left.landscapeOpen]}
+                ${style['right' + right.landscapeOpen]}
               `}
             />
 
             <Content
               contentClass={`
-                ${left.style['content']}
-                ${left.style['left' + left.portraitOpen]}
-                ${left.style['left' + left.landscapeOpen]}
-                ${left.style['right' + right.portraitOpen]}
-                ${left.style['right' + right.landscapeOpen]}
+                ${style['content']}
+                ${style['left' + left.portraitOpen]}
+                ${style['left' + left.landscapeOpen]}
+                ${style['right' + right.portraitOpen]}
+                ${style['right' + right.landscapeOpen]}
               `}
             >
                 {props.children}
             </Content>
 
             <MockBackground
-              leftPortraitOpen={`${left.style['left' + left.portraitOpen]}`}
-              rightPortraitOpen={`${left.style['right' + right.portraitOpen]}`}
+              leftPortraitOpen={`${style['left' + left.portraitOpen]}`}
+              rightPortraitOpen={`${style['right' + right.portraitOpen]}`}
               toggleSidebar={left.toggleSidebar}
             />
         </div>
 
+    )}
+    </StyleContext.Consumer>
     )}
     </RightContext.Consumer>
     )}

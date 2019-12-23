@@ -10,6 +10,7 @@ import ThemeContext from '../common/contexts/theme-context';
 import SidestripContext from '../common/contexts/sidestrip-context';
 import LeftContext from '../common/contexts/left-context';
 import RightContext from '../common/contexts/right-context';
+import StyleContext from '../common/contexts/style-context';
 
 import style from './layout.module.scss';
 
@@ -213,16 +214,15 @@ class Layout extends React.Component {
         portraitOpen: this.state.leftPortraitActive ? 'PortraitOpen' : 'PortraitClosed',
         landscapeOpen: this.state.leftLandscapeActive ? 'LandscapeOpen' : 'LandscapeClosed',
         hasTouchscreen: this.hasTouchscreen,
-        style: style,
         toggleSidebar: this.toggleSidebar,
       }}>
       <RightContext.Provider value={{
         portraitOpen: this.state.rightPortraitActive ? 'PortraitOpen' : 'PortraitClosed',
         landscapeOpen: this.state.rightLandscapeActive ? 'LandscapeOpen' : 'LandscapeClosed',
         hasTouchscreen: this.hasTouchscreen,
-        style: style,
         toggleSidebar: this.toggleSidebar,
       }}>
+      <StyleContext.Provider value={style} >
 
             <div
               id={style.layout}
@@ -235,6 +235,7 @@ class Layout extends React.Component {
 
             </div>
 
+      </StyleContext.Provider>
       </RightContext.Provider>
       </LeftContext.Provider>
       </SidestripContext.Provider>
