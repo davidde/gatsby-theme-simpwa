@@ -4,11 +4,9 @@ $phone: (orientation: portrait) and (max-device-width: 420px),
         (orientation: landscape) and (max-device-width: 820px);
 $small-viewport: (max-width: 800px);
 $medium-viewport: (max-width: 1200px);
-:export {
-  mediumViewport: #{$medium-viewport};
-}
 
 :root {
+  --medium-viewport: #{$medium-viewport}; // To access it from JS
   font-family: system-ui, Oxygen-Sans, Cantarell, sans-serif;
   font-size: 20px;
   --font-size: 1rem;

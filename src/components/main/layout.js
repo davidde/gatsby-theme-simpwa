@@ -11,7 +11,7 @@ import SidestripContext from '../common/contexts/sidestrip-context';
 import LeftContext from '../common/contexts/left-context';
 import RightContext from '../common/contexts/right-context';
 
-import vars from './layout.scss';
+import './layout.scss';
 
 
 class Layout extends React.Component {
@@ -45,8 +45,10 @@ class Layout extends React.Component {
     // 'hasTouchscreen' prevents :hover styles on mobile,
     // and circumvents a desktop linux firefox bug:
     this.hasTouchscreen = window.matchMedia('(hover: none)').matches;
+    this.mediumViewportQuery = getComputedStyle(document.body)
+                              .getPropertyValue('--medium-viewport');
+    let isMediumViewport = window.matchMedia(this.mediumViewportQuery).matches;
     let isPortrait = window.matchMedia('(orientation: portrait)').matches;
-    let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
     this.setState({ isPortrait, isMediumViewport });
 
     if (isPortrait) {
@@ -69,7 +71,7 @@ class Layout extends React.Component {
 
   updateViewports = () => {
     let isPortrait = window.matchMedia('(orientation: portrait)').matches;
-    let isMediumViewport = window.matchMedia(vars.mediumViewport).matches;
+    let isMediumViewport = window.matchMedia(this.mediumViewportQuery).matches;
 
     // When transitioning to/from a portrait viewport:
     if (isPortrait !== this.state.isPortrait) {
