@@ -6,48 +6,51 @@ The intended use case is for **simple web apps** aiming to present themselves as
 as possible to native mobile apps. The idea here is that a simple app can stuff all
 its content in the main screen and its sidebars.
 
-**Priorities:**
+### Priorities:
 - Single codebase for both desktop and mobile
 - PWA experience comparable to native apps
 - Touch-friendly: sidebars should respond to swiping
 - Responsive design: should work on any viewport size
 - Simple sidebar design: see [minimal implementation](https://github.com/davidde/sidebars)
 
-**How it looks like:**
+### How it looks like:
 - [Deployed theme starter](https://davidde.github.io/gatsby-starter-simpwa/)
 ([source code](https://github.com/davidde/gatsby-starter-simpwa))
 
 # Installation
-```bash
-npm install gatsby-theme-simpwa
-```
-Then, in your gatsby-config.js, add the theme to your plugins,
-and override the default PWA manifest options:
-```js
-module.exports = {
-  plugins: [
-    'gatsby-theme-simpwa',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'my-app',
-        short_name: 'my-app',
-        start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
-        display: 'standalone',
-        icon: 'src/images/icon.png', // This path is relative to the root of the site.
+* Create a new project based on
+  [this theme's starter](https://github.com/davidde/gatsby-starter-simpwa):
+  ```bash
+  gatsby new my-app https://github.com/davidde/gatsby-starter-simpwa
+  cd my-app
+  gatsby develop
+  ```
+
+* **Or** install the theme to an existing project and configure it:
+  ```bash
+  npm install gatsby-theme-simpwa
+  ```
+  Then, in your gatsby-config.js, add the theme to your plugins,
+  and override the default PWA manifest options:
+  ```js
+  module.exports = {
+    plugins: [
+      'gatsby-theme-simpwa',
+      {
+        resolve: 'gatsby-plugin-manifest',
+        options: {
+          name: 'my-app',
+          short_name: 'my-app',
+          start_url: '/',
+          background_color: '#663399',
+          theme_color: '#663399',
+          display: 'standalone',
+          icon: 'src/images/icon.png', // This path is relative to the root of the site.
+        },
       },
-    },
-  ],
-}
-```
-Alternatively, you could opt for the **all-in-one experience** by using
-[this theme's starter](https://github.com/davidde/gatsby-starter-simpwa),
-which has all of that already set up:
-```bash
-gatsby new my-app https://github.com/davidde/gatsby-starter-simpwa
-```
+    ],
+  }
+  ```
 
 # Usage
 The theme provides 4 main components to build your app; a parent `<Layout>`
