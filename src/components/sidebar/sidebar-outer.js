@@ -15,7 +15,7 @@ function OuterSidebar(props) {
     <SidebarContext.Consumer>
     { sidebar => (
 
-            <div id={props.id} className={`${sidebar.portraitOpen} ${sidebar.landscapeOpen}`} >
+            <div id={props.id} className={`outer-sidebar ${sidebar.portraitOpen} ${sidebar.landscapeOpen}`} >
                 <Icon
                   icon={props.icon}
                   portraitOpen={sidebar.portraitOpen}

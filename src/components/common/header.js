@@ -5,13 +5,13 @@ function Header(props) {
   // The sidebar 'Open' props only exist in the #main header,
   // to prevent the header title to overlap with the icon:
   return (
-    <div className='header'>
-        <h1 className={`title
+    <div className='header-div'>
+        <div className={`title-div
             ${props.leftLandscapeOpen}
             ${props.rightLandscapeOpen}
         `}>
             {props.title}
-        </h1>
+        </div>
     </div>
   );
 }

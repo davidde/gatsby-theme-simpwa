@@ -5,7 +5,7 @@ function Content(props) {
   // The sidebar 'Open' props only exist in the #main content,
   // to prevent the content to overlap with the sidestrip:
   return (
-    <div className={`content
+    <div className={`content-div
         ${props.leftPortraitOpen}
         ${props.leftLandscapeOpen}
         ${props.rightPortraitOpen}

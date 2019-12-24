@@ -28,13 +28,13 @@ body {
     }
   }
 
-  .header {
+  .header-div {
     position: relative;
     height: var(--header-height);
     background: var(--bg-header);
     color: var(--fg-header);
     border-bottom: var(--border-width) solid var(--bg-border);
-    .title {
+    .title-div {
       position: absolute;
       left: 0;
       right: 0;
@@ -44,13 +44,14 @@ body {
       line-height: var(--header-height); // Vertical center
       text-align: center; // Horizontal center
       font-size: var(--header-font-size);
+      font-weight: bold;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
   }
 
-  .content {
+  .content-div {
     /* Without border-box, the left/right padding is added
     to the 100% width, resulting in overflowing content! */
     box-sizing: border-box;
@@ -76,9 +77,9 @@ body {
 #main {
   flex-grow: 1;
 
-  .header {
+  .header-div {
     box-shadow: var(--shadow) var(--bg-shadow);
-    .title {
+    .title-div {
       transition: left var(--secs), right var(--secs);
       left: var(--header-height);
       right: var(--header-height);
@@ -90,19 +91,19 @@ body {
   }
 
   @media (orientation: landscape) {
-    .content.left-landscape-closed {
+    .content-div.left-landscape-closed {
       margin-left: var(--sidestrip-width);
     }
-    .content.right-landscape-closed {
+    .content-div.right-landscape-closed {
       margin-right: var(--sidestrip-width);
     }
   }
 
   @media (orientation: portrait) {
-    .content.left-portrait-closed {
+    .content-div.left-portrait-closed {
       margin-left: var(--sidestrip-width);
     }
-    .content.right-portrait-closed {
+    .content-div.right-portrait-closed {
       margin-right: var(--sidestrip-width);
     }
 
@@ -137,8 +138,9 @@ body {
   }
 }
 
-// Style in common for both sidebars:
-#left, #right { /// These are the flex items to push main content aside!
+/// Style in common for both sidebars:
+/// The outer-sidebar is the flex item that pushes the main content aside!
+.outer-sidebar {
   z-index: 3;
   @media (orientation: portrait) { &.portrait-open { z-index: 10; } }
   width: 0; // Landscape ONLY transition:
@@ -150,15 +152,15 @@ body {
     }
   }
 
-  /// Actual sidebar that slides into view:
-  .sidebar {
-    .header { width: calc(100% - var(--header-height)); }
+  /// The inner-sidebar is the actual sidebar that slides into view!
+  .inner-sidebar {
+    .header-div { width: calc(100% - var(--header-height)); }
     // Portrait AND landscape transitions:
     transition: transform var(--secs);
     @media (orientation: portrait) { width: var(--portrait-width); }
     @media (orientation: landscape) {
       width: calc(1vw * var(--landscape-width));
-      &.landscape-open .content {
+      &.landscape-open .content-div {
         box-shadow: var(--shadow) var(--bg-shadow);
       }
     }
@@ -227,7 +229,7 @@ body {
 }
 
 // Left sidebar specific style:
-#left {
+#left.outer-sidebar {
   .icon {
     .icon-square {
       border-right: var(--border-width) solid var(--bg-border);
@@ -236,7 +238,7 @@ body {
       border-right: var(--border-width) var(--sidestrip-hidden, solid) var(--bg-border);
     }
   }
-  .sidebar {
+  .inner-sidebar {
     border-right: var(--border-width) solid var(--bg-border);
     // Left portrait AND landscape transition:
     transform: translateX(-100%);
@@ -246,12 +248,12 @@ body {
     @media (orientation: landscape) {
       &.landscape-open { transform: translateX(0); }
     }
-    .header { left: var(--header-height); }
+    .header-div { left: var(--header-height); }
   }
 }
 
 // Right sidebar specific style:
-#right {
+#right.outer-sidebar {
   .icon { right: 0;
     .icon-square {
       border-left: var(--border-width) solid var(--bg-border);
@@ -260,14 +262,14 @@ body {
       border-left: var(--border-width) var(--sidestrip-hidden, solid) var(--bg-border);
     }
   }
-  .sidebar {
+  .inner-sidebar {
     border-left: var(--border-width) solid var(--bg-border);
     @media (orientation: portrait) {
       // Right portrait transition ONLY:
       &.portrait-open { transform: translateX(-100%); }
     }
 
-    .content { // Put scrollbar on the left, so it's not in the icon-strip:
+    .content-div { // Put scrollbar on the left, so it's not in the icon-strip:
       direction: rtl;
       > div {
         direction: ltr;
