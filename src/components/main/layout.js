@@ -17,7 +17,7 @@ import './layout.scss';
 class Layout extends React.Component {
   static defaultProps = {
     leftActive: true,
-    rightActive: false,
+    rightActive: true,
     mutex: false,
     theme: 'light',
     sidestrip: 'off-touchscreens',

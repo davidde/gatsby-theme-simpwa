@@ -13,7 +13,7 @@ its content in the main screen and its sidebars.
 - Responsive design: should work on any viewport size
 - Simple sidebar design: see [minimal implementation](https://github.com/davidde/sidebars)
 
-### How it looks like:
+### How it looks:
 - [Deployed theme starter](https://davidde.github.io/gatsby-starter-simpwa/)
 ([source code](https://github.com/davidde/gatsby-starter-simpwa))
 
@@ -68,7 +68,7 @@ import { Layout, MainView, Leftside, Rightside } from 'gatsby-theme-simpwa';
 The parent component that enables its 3 children components to work properly.
 
 *Optional* props:
-  - **theme**: The theme to use for your app: 'light', 'dark' or 'joy'. Defaults to 'joy'.
+  - **theme**: The theme to use for your app: 'light', 'dark' or 'joy'. Defaults to 'light'.
   - **leftActive**: *Bool* (not string) indicating whether the left sidebar
     should be active on first load. Defaults to true.
   - **rightActive**: *Bool* (not string) indicating whether the right sidebar
