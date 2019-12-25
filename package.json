@@ -2,7 +2,7 @@
   "name": "gatsby-theme-simpwa",
   "description": "Configurable template for building simple PWA's",
   "author": "David Deprost",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "main": "index.js",
   "keywords": [
     "gatsby",
