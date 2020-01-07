@@ -35,9 +35,8 @@ its content in the main screen and its sidebars.
   ```js
   module.exports = {
     plugins: [
-      'gatsby-theme-simpwa',
       {
-        resolve: 'gatsby-plugin-manifest',
+        resolve: 'gatsby-theme-simpwa',
         options: {
           name: 'my-app',
           short_name: 'my-app',
