@@ -38,12 +38,15 @@ $medium-viewport: (max-width: 1200px);
   // Color intensity of the inactive background of the portrait-mode sidebar:
   --white-overlay-transparency: 0.2;
   --black-overlay-transparency: 0.7;
-  // Padding for .content class, make 0 if you don't want default paddings:
+  // Padding for .content-div class, make 0 if you don't want default paddings:
   --content-padding: 2rem 5%;
 }
 
 #main {
   --content-padding: 2rem 5% 2rem 10%;
+  @media #{$phone} {
+    --content-padding: 2rem 0.5rem 2rem 1.2rem;
+  }
   --shadow: 0 0 20px 0;
 }
 #left { --shadow: 6px 0 15px 0; }
